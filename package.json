@@ -1,0 +1,10 @@
+{
+  "name": "growitwithhr",
+  "version": "1.0.0",
+  "description": "GrowItWithHR Compliance Monitoring Engine",
+  "main": "scripts/scrape-updates.js",
+  "dependencies": {
+    "axios": "^1.11.0",
+    "cheerio": "^1.1.2"
+  }
+}
