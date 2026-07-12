@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GrowWithHR | HRTechify</title>
+  <meta name="description" content="GrowWithHR helps founders and HR leaders map HR compliance, people governance and growth-readiness obligations in minutes.">
+  <link rel="stylesheet" href="styles.css">
+  <link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="icon" href="assets/favicon.ico">
+
+  <style>
+    .hero{
+      min-height:auto;
+      padding-bottom:44px;
+    }
+
+    .hero-layout{
+      gap:22px;
+    }
+
+    .hero-description{
+      margin-bottom:26px;
+    }
+
+    .hero-dashboard-layout{
+      gap:16px;
+      padding:18px;
+    }
+
+    .hero-sidebar{
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:16px;
+    }
+
+    .hero-sidebar .workspace-card{
+      display:flex;
+      flex-direction:column;
+      min-height:0;
+      height:100%;
+      padding:20px;
+      gap:16px;
+      border-radius:20px;
+      box-sizing:border-box;
+    }
+
+    .hero-sidebar .card-header h3{
+      margin:0;
+      font-size:1.2rem;
+      line-height:1.2;
+    }
+
+    .dna-pillars,
+    .growth-stage-list,
+    .recommendation-list{
+      flex:1;
+      gap:10px;
+      justify-content:space-between;
+      box-shadow:none;
+    }
+
+    .dna-item,
+    .stage-item,
+    .recommendation-item{
+      min-height:52px;
+      padding:0 16px;
+      gap:12px;
+      border-radius:14px;
+    }
+
+    .hero-graph{
+      min-height:390px;
+    }
+
+    .hero-footer{
+      text-align:center;
+      margin-top:-8px;
+    }
+
+    .compact-section{
+      padding-top:64px;
+      padding-bottom:64px;
+    }
+
+    .how-grid,
+    .capability-carousel{
+      margin-top:44px;
+    }
+
+    .how-card{
+      min-height:100%;
+    }
+
+    .capability-carousel{
+      grid-template-columns:56px minmax(0,1fr) 56px;
+      gap:18px;
+      width:100%;
+    }
+
+    .carousel-track{
+      display:flex;
+      gap:24px;
+      width:100%;
+      max-width:100%;
+      margin:0;
+    }
+
+    .capability-slide{
+      flex:0 0 clamp(280px, 32vw, 380px);
+      width:clamp(280px, 32vw, 380px);
+      min-height:320px;
+      box-sizing:border-box;
+    }
+
+    @media (max-width: 900px){
+      .hero-sidebar{
+        grid-template-columns:1fr;
+      }
+
+      .hero-sidebar .workspace-card{
+        height:auto;
+      }
+
+      .capability-carousel{
+        grid-template-columns:44px minmax(0,1fr) 44px;
+        gap:10px;
+      }
+
+      .carousel-track{
+        width:100%;
+      }
+
+      .capability-slide{
+        flex-basis:min(320px, calc(100vw - 132px));
+        width:min(320px, calc(100vw - 132px));
+      }
+    }
+  </style>
+</head>
+<body>
+  
+<nav class="navbar">
+
+    <div class="nav-container">
+
+        <!-- Brand -->
+
+        <a href="#home" class="brand">
+
+            <img
+                src="assets/hrtechify-logo.png"
+                class="nav-logo"
+                alt="HRTechify Logo">
+
+            <div>
+
+                <div class="brand-name">
+                    HRTechify
+                </div>
+
+                <div class="product-name">
+                    GrowWithHR
+                </div>
+
+            </div>
+
+        </a>
+
+        <!-- Mobile Menu -->
+
+        <button
+            class="hamburger"
+            id="hamburger"
+            aria-label="Open Navigation">
+
+            ☰
+
+        </button>
+
+        <!-- Navigation -->
+
+        <div class="nav-links" id="navLinks">
+
+            <a href="#platform">Platform</a>
+
+            <a href="#assessment">Assessment</a>
+
+            <a href="sample-advisory-report.html">Advisory</a>
+
+            <div class="nav-dropdown">
+
+                <button
+                    class="dropdown-toggle"
+                    type="button">
+
+                    More
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </button>
+
+                <div class="dropdown-menu">
+
+                    <a href="#about">About</a>
+
+                    <a href="#privacy">Privacy</a>
+
+                    <a href="#contact">Contact</a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CTA -->
+
+      <a href="assessment.html"
+          class="nav-cta">
+          Analyze My Company
+    </a>
+
+    </div>
+
+</nav>
+
+<header id="home" class="hero hero-v2">
+
+    <div class="hero-bg-grid"></div>
+    <div class="hero-glow hero-glow-1"></div>
+    <div class="hero-glow hero-glow-2"></div>
+
+    <div class="container hero-layout">
+
+        <div class="hero-content hero-home">
+
+            <div class="hero-badge">
+
+                AI-powered company advisory platform
+
+            </div>
+
+            <h1>
+
+                Tell us about your company.
+
+                <br>
+
+                <span>We'll tell you what matters next.</span>
+
+            </h1>
+
+            <div class="hero-actions">
+
+               <a href="sample-advisory-report.html" class="secondary-btn">
+
+                    View Sample Advisory
+
+                </a>
+
+            </div>
+
+        
+        </div>
+
+        <div class="hero-workspace">
+
+            <div class="workspace-window">
+
+                <div class="workspace-header">
+
+                    <div class="workspace-dot red"></div>
+                    <div class="workspace-dot yellow"></div>
+                    <div class="workspace-dot green"></div>
+
+                    <div class="workspace-title">
+
+                        Executive Intelligence
+
+                    </div>
+
+                </div>
+
+                <div class="hero-dashboard-layout">
+
+                    <section class="hero-sidebar" aria-label="Executive intelligence controls">
+
+                        <div class="workspace-card company-dna-card">
+
+                            <div class="card-header">
+                                <h3>Company DNA</h3>
+                            </div>
+
+                            <div class="dna-pillars">
+
+                                <button class="selector-item dna-item active" data-pillar="company">
+                                    <i class="fa-solid fa-building"></i>
+                                    <span>Company</span>
+                                </button>
+
+                                <button class="selector-item dna-item" data-pillar="people">
+                                    <i class="fa-solid fa-users"></i>
+                                    <span>People</span>
+                                </button>
+
+                                <button class="selector-item dna-item" data-pillar="operations">
+                                    <i class="fa-solid fa-gears"></i>
+                                    <span>Operations</span>
+                                </button>
+
+                                <button class="selector-item dna-item" data-pillar="growth">
+                                    <i class="fa-solid fa-chart-line"></i>
+                                    <span>Maturity</span>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="workspace-card growth-stage">
+
+                            <div class="card-header">
+                                <h3>Growth Stage</h3>
+                            </div>
+
+                            <div class="growth-stage-list">
+
+                                <button class="selector-item stage-item active" data-stage="startup">
+                                    <i class="fa-solid fa-seedling"></i>
+                                    <span>Startup</span>
+                                </button>
+
+                                <button class="selector-item stage-item" data-stage="growth">
+                                    <i class="fa-solid fa-chart-line"></i>
+                                    <span>Growth</span>
+                                </button>
+
+                                <button class="selector-item stage-item" data-stage="scaling">
+                                    <i class="fa-solid fa-arrow-trend-up"></i>
+                                    <span>Scaling</span>
+                                </button>
+
+                                <button class="selector-item stage-item" data-stage="enterprise">
+                                    <i class="fa-solid fa-building"></i>
+                                    <span>Enterprise</span>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="workspace-card recommendation-card">
+
+                            <div class="card-header">
+                                <h3>Recommendation Basis</h3>
+                            </div>
+
+                            <div class="recommendation-list">
+
+                                <button class="selector-item recommendation-item active" data-recommendation="company">
+                                    <i class="fa-solid fa-building"></i>
+                                    <span>Organization Profile</span>
+                                </button>
+
+                                <button class="selector-item recommendation-item" data-recommendation="stage">
+                                    <i class="fa-solid fa-chart-line"></i>
+                                    <span>Maturity Stage</span>
+                                </button>
+
+                                <button class="selector-item recommendation-item" data-recommendation="laws">
+                                    <i class="fa-solid fa-scale-balanced"></i>
+                                    <span>Applicable Laws</span>
+                                </button>
+
+                                <button class="selector-item recommendation-item" data-recommendation="updates">
+                                    <i class="fa-solid fa-bell"></i>
+                                    <span>Regulatory Updates</span>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <section class="hero-graph">
+
+                        <div class="dna-core-wrapper">
+
+                            <div id="dnaCoreCanvas"></div>
+
+                        </div>
+
+                    </section>
+
+                    <footer class="hero-footer">
+
+                        <h3 class="core-title">
+
+                            GrowWithHR Intelligence Core
+
+                        </h3>
+
+                        <p class="core-subtitle">
+
+                            Executive Advisory Preview
+
+                        </p>
+
+                    </footer>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+<section id="platform" class="how-section compact-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div class="section-tag">
+
+                HOW IT WORKS
+
+            </div>
+
+            <h2>
+
+                A focused path from company context to executive action.
+
+            </h2>
+
+        </div>
+
+        <div class="how-grid">
+
+            <article class="how-card">
+
+                <div class="how-number">
+
+                    01
+
+                </div>
+
+                <h3>
+
+                    Understand
+
+                </h3>
+
+                <p>
+
+                    Capture your Company DNA through a guided assessment.
+
+                </p>
+
+            </article>
+
+            <article class="how-card">
+
+                <div class="how-number">
+
+                    02
+
+                </div>
+
+                <h3>
+
+                    Analyze
+
+                </h3>
+
+                <p>
+
+                    Our intelligence engine evaluates compliance, governance and growth readiness.
+
+                </p>
+
+            </article>
+
+            <article class="how-card">
+
+                <div class="how-number">
+
+                    03
+
+                </div>
+
+                <h3>
+
+                    Advise
+
+                </h3>
+
+                <p>
+
+                    Receive an executive advisory dashboard with actionable recommendations.
+
+                </p>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="capabilities" class="capabilities-section compact-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div class="section-tag">
+
+                PLATFORM CAPABILITIES
+
+            </div>
+
+            <h2>
+
+                Flagship capabilities available today.
+
+            </h2>
+
+        </div>
+
+<div class="capability-carousel">
+
+    <button class="carousel-arrow prev">
+
+        ←
+
+    </button>
+
+    <div class="carousel-track">
+
+        <article class="capability-slide active">
+
+            <div class="capability-icon">
+
+                ⚖️
+
+            </div>
+
+            <h3>
+
+                Compliance Intelligence
+
+            </h3>
+
+            <p>
+
+                Automatically identify statutory obligations applicable today, upcoming compliance milestones and executive risks.
+
+            </p>
+
+        </article>
+
+        <article class="capability-slide">
+
+            <div class="capability-icon">
+
+                🏢
+
+            </div>
+
+            <h3>
+
+                Organization Intelligence
+
+            </h3>
+
+            <p>
+
+                Build scalable structures, reporting lines and operating models as your company grows.
+
+            </p>
+
+        </article>
+
+        <article class="capability-slide">
+
+            <div class="capability-icon">
+
+                👥
+
+            </div>
+
+            <h3>
+
+                Talent Intelligence
+
+            </h3>
+
+            <p>
+
+                Understand workforce composition, hiring priorities and future capability needs.
+
+            </p>
+
+        </article>
+
+        <article class="capability-slide">
+
+            <div class="capability-icon">
+
+                🎯
+
+            </div>
+
+            <h3>
+
+                Leadership Intelligence
+
+            </h3>
+
+            <p>
+
+                Evaluate leadership maturity, succession readiness and executive capability.
+
+            </p>
+
+        </article>
+
+        <article class="capability-slide">
+
+            <div class="capability-icon">
+
+                📈
+
+            </div>
+
+            <h3>
+
+                Performance Intelligence
+
+            </h3>
+
+            <p>
+
+                Align goals, performance systems and accountability with business growth.
+
+            </p>
+
+        </article>
+
+        <article class="capability-slide">
+
+            <div class="capability-icon">
+
+                🎓
+
+            </div>
+
+            <h3>
+
+                Learning Intelligence
+
+            </h3>
+
+            <p>
+
+                Build future capability through targeted learning and development recommendations.
+
+            </p>
+
+        </article>
+
+        <article class="capability-slide">
+
+            <div class="capability-icon">
+
+                💰
+
+            </div>
+
+            <h3>
+
+                Rewards Intelligence
+
+            </h3>
+
+            <p>
+
+                Design compensation and recognition strategies that support sustainable growth.
+
+            </p>
+
+        </article>
+
+        <article class="capability-slide">
+
+            <div class="capability-icon">
+
+                🤖
+
+            </div>
+
+            <h3>
+
+                Company Coach
+
+            </h3>
+
+            <p>
+
+                Ask founder questions and receive company-specific recommendations based on your Company DNA.
+
+            </p>
+
+        </article>
+
+    </div>
+
+    <button class="carousel-arrow next">
+
+        →
+
+    </button>
+
+</div>
+
+</section>
+
+<section id="assessment" class="assessment-section compact-section">
+  <div class="container">
+    <div class="assessment-panel">
+
+    <div class="assessment-wrapper">
+
+    <div class="assessment-form">
+
+    <!-- ==========================================
+         COMPANY DNA WIZARD
+    ========================================== -->
+
+    <div class="wizard-progress">
+
+        <div class="wizard-step active">
+
+            <span>1</span>
+
+            <small>Company</small>
+
+        </div>
+
+        <div class="wizard-line"></div>
+
+        <div class="wizard-step">
+
+            <span>2</span>
+
+            <small>People</small>
+
+        </div>
+
+        <div class="wizard-line"></div>
+
+        <div class="wizard-step">
+
+            <span>3</span>
+
+            <small>Operations</small>
+
+        </div>
+
+        <div class="wizard-line"></div>
+
+        <div class="wizard-step">
+
+            <span>4</span>
+
+            <small>Growth</small>
+
+        </div>
+
+    </div>
+
+        <!-- ==========================================
+        COMPANY INFORMATION
+        ========================================== -->
+
+        <div class="section-heading left-heading">
+
+            <div class="section-tag">
+
+                COMPANY DNA
+
+            </div>
+
+            <h2>
+
+                Tell us about your organisation
+
+            </h2>
+
+            <p>
+
+                Share a few organisation basics to receive a focused executive advisory.
+
+            </p>
+
+        </div>
+
+        <div class="assessment-group wizard-card">
+
+            <h3>
+
+                Company Information
+
+            </h3>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label for="companyName">
+
+                        Company Name
+
+                    </label>
+
+                    <input
+                        type="text"
+                        id="companyName"
+                        placeholder="ABC Technologies Pvt. Ltd.">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="entitySelect">
+
+                        Entity Type
+
+                    </label>
+
+                    <select id="entitySelect">
+
+                        <option value="">
+
+                            Select
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="industrySelect">
+
+                        Industry
+
+                    </label>
+
+                    <select id="industrySelect">
+
+                        <option value="">
+
+                            Select
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+              <div class="form-group">
+
+    <label for="businessNature">
+
+        Nature of Business
+
+    </label>
+
+    <select id="businessNature">
+
+        <option>
+
+            Select
+
+        </option>
+
+        <option>
+
+            SaaS
+
+        </option>
+
+        <option>
+
+            IT Services
+
+        </option>
+
+        <option>
+
+            Manufacturing
+
+        </option>
+
+        <option>
+
+            Retail
+
+        </option>
+
+        <option>
+
+            Healthcare
+
+        </option>
+
+        <option>
+
+            Financial Services
+
+        </option>
+
+        <option>
+
+            Consulting
+
+        </option>
+
+        <option>
+
+            Education
+
+        </option>
+
+        <option>
+
+            Logistics
+
+        </option>
+
+        <option>
+
+            Other
+
+        </option>
+
+    </select>
+
+</div>
+
+                <div class="form-group">
+
+                    <label for="yearFounded">
+
+                        Year Founded
+
+                    </label>
+
+                    <input
+                        type="number"
+                        id="yearFounded"
+                        placeholder="2022"
+                        min="1900"
+                        max="2100">
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ==========================================
+        WORKFORCE
+        ========================================== -->
+
+        <div class="assessment-group wizard-card">
+
+            <h3>
+
+                Workforce Profile
+
+            </h3>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label for="employeeCount">
+
+                        Employee Count
+
+                    </label>
+
+                    <select id="employeeCount">
+
+                        <option>1-5</option>
+                        <option>6-9</option>
+                        <option>10-19</option>
+                        <option>20-49</option>
+                        <option>50-99</option>
+                        <option>100-249</option>
+                        <option>250-499</option>
+                        <option>500-999</option>
+                        <option>1000-4999</option>
+                        <option>5000-9999</option>
+                        <option>10000-24999</option>
+                        <option>25000-49999</option>
+                        <option>50000-99999</option>
+                        <option>100000+</option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="contractWorkers">
+
+                        Contract Workers
+
+                    </label>
+
+                    <input
+                        type="number"
+                        id="contractWorkers"
+                        value="0"
+                        min="0">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="interns">
+
+                        Interns
+
+                    </label>
+
+                    <input
+                        type="number"
+                        id="interns"
+                        value="0"
+                        min="0">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="apprentices">
+
+                        Apprentices
+
+                    </label>
+
+                    <input
+                        type="number"
+                        id="apprentices"
+                        value="0"
+                        min="0">
+
+                </div>
+              <div class="form-group">
+
+    <label for="remoteWorkforce">
+
+        Remote Workforce
+
+    </label>
+
+    <select id="remoteWorkforce">
+
+        <option>
+
+            0%
+
+        </option>
+
+        <option>
+
+            1–25%
+
+        </option>
+
+        <option>
+
+            26–50%
+
+        </option>
+
+        <option>
+
+            51–75%
+
+        </option>
+
+        <option>
+
+            76–100%
+
+        </option>
+
+    </select>
+
+</div>
+
+            </div>
+
+        </div>
+
+        <!-- ==========================================
+        OPERATIONS
+        ========================================== -->
+
+       <div class="assessment-group wizard-card">
+
+            <h3>
+
+                Operations
+
+            </h3>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label for="stateSelect">
+
+                        Primary State / Union Territory
+
+                    </label>
+
+                    <input
+                        type="text"
+                        id="stateSelect"
+                        list="stateList"
+                        placeholder="Start typing a State or UT">
+
+                    <datalist id="stateList"></datalist>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="workModel">
+
+                        Work Model
+
+                    </label>
+
+                    <select id="workModel">
+
+                        <option value="office">
+
+                            Office Based
+
+                        </option>
+
+                        <option value="hybrid">
+
+                            Hybrid
+
+                        </option>
+
+                        <option value="remote">
+
+                            Remote
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="additionalStates">
+
+                    Operating Locations
+
+                    </label>
+
+                    <input
+                        type="text"
+                        id="additionalStates"
+                        placeholder="e.g. Bihar, Karnataka">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="countries">
+
+                        Countries of Operation
+
+                    </label>
+
+                    <input
+                        type="text"
+                        id="countries"
+                        placeholder="India">
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- PART 2 CONTINUES -->
+              <!-- ==========================================
+        GROWTH OUTLOOK
+        ========================================== -->
+
+       <div class="assessment-group wizard-card">
+
+            <h3>
+
+                Growth Outlook
+
+            </h3>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label for="plannedHiring">
+
+                        Planned Hiring (Next 12 Months)
+
+                    </label>
+
+                    <select id="plannedHiring">
+
+                        <option value="none">
+
+                            No Hiring Planned
+
+                        </option>
+
+                        <option value="1-10">
+
+                            1 – 10 Employees
+
+                        </option>
+
+                        <option value="11-25">
+
+                            11 – 25 Employees
+
+                        </option>
+
+                        <option value="26-50">
+
+                            26 – 50 Employees
+
+                        </option>
+
+                        <option value="50+">
+
+                            More than 50 Employees
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="fundingStage">
+
+                        Funding Stage
+
+                    </label>
+
+                    <select id="fundingStage">
+
+                        <option>
+
+                            Bootstrapped
+
+                        </option>
+
+                        <option>
+
+                            Pre-Seed
+
+                        </option>
+
+                        <option>
+
+                            Seed
+
+                        </option>
+
+                        <option>
+
+                            Series A
+
+                        </option>
+
+                        <option>
+
+                            Series B+
+
+                        </option>
+
+                        <option>
+
+                            Enterprise
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="expansionPlans">
+
+                        Expansion Plans
+
+                    </label>
+
+                    <select id="expansionPlans">
+
+                        <option>
+
+                            No Immediate Expansion
+
+                        </option>
+
+                        <option>
+
+                            New City
+
+                        </option>
+
+                        <option>
+
+                            New State
+
+                        </option>
+
+                        <option>
+
+                            International Expansion
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="hrOwner">
+
+                       Current People Function
+
+
+                    </label>
+
+                    <select id="hrOwner">
+
+    <option value="founder">
+
+        Founder manages HR
+
+    </option>
+
+    <option value="operations">
+
+        Operations manages HR
+
+    </option>
+
+    <option value="hr-executive">
+
+        HR Executive
+
+    </option>
+
+    <option value="hr-manager">
+
+        HR Manager
+
+    </option>
+
+    <option value="hrbp">
+
+        HR Business Partner
+
+    </option>
+
+    <option value="head-hr">
+
+        Head of HR / CHRO
+
+    </option>
+
+</select>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ==========================================
+        COMPANY DNA SUMMARY
+        ========================================== -->
+
+       <div class="summary-card glass">
+
+    <h3>
+
+        Your Executive Advisory Will Include
+
+    </h3>
+
+              <ul class="action-list">
+
+    <li>
+
+        Applicable statutory compliance obligations based on your organisation profile
+
+    </li>
+
+    <li>
+
+        Immediate business and legal risks requiring executive attention
+
+    </li>
+
+    <li>
+
+        HR governance priorities aligned to your current growth stage
+
+    </li>
+
+    <li>
+
+        People practices recommended for your organisation today
+
+    </li>
+
+    <li>
+
+        Future compliance and organisational milestones as your business scales
+
+    </li>
+
+    <li>
+
+        Official government references supporting every recommendation
+
+    </li>
+
+</ul>
+
+</div>
+
+        <!-- ==========================================
+        GENERATE REPORT
+        ========================================== -->
+
+        <button
+
+            id="generateReport"
+
+            class="primary-btn">
+
+              Analyze My Company
+
+        </button>
+
+    </div>
+
+</div>
+
+    </div>
+    <div id="reportContainer" class="report-container"></div>
+  </div>
+</section>
+
+
+
+<section id="officialResources" class="updates-section compact-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div class="section-tag">
+
+                VERIFIED SOURCES
+
+            </div>
+
+            <h2>
+
+                Official Government Resources
+
+            </h2>
+
+            <p>
+
+                Official sources used to validate compliance guidance.
+
+            </p>
+
+        </div>
+
+        <div
+            id="officialResourcesContainer"
+            class="updates-grid">
+
+            <div class="update-card">
+
+                Loading official resources...
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="about" class="trust-section compact-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+            <div class="section-tag">
+                WHY GROWWITHHR
+            </div>
+
+            <h2>
+                Practical HR intelligence for growing businesses.
+            </h2>
+
+            <p>
+                Everything you need to make confident people decisions.
+            </p>
+        </div>
+
+        <div class="trust-grid">
+
+            <!-- About -->
+
+            <article class="trust-card">
+
+                <div class="trust-icon">
+                    ✨
+                </div>
+
+                <h3>About</h3>
+
+                <p>
+                    Practical HR intelligence built around Company DNA,
+                    compliance and growth.
+                </p>
+
+                <div class="trust-features">
+
+                    <span>🏢 Company DNA</span>
+
+                    <span>🛡 Compliance</span>
+
+                    <span>📈 Growth</span>
+
+                </div>
+
+            </article>
+
+            <!-- Privacy -->
+
+            <article class="trust-card">
+
+                <div class="trust-icon">
+                    🔒
+                </div>
+
+                <h3>Privacy</h3>
+
+                <ul>
+
+                    <li>Session-based reports</li>
+
+                    <li>No permanent storage</li>
+
+                    <li>No data selling</li>
+
+                    <li>Secure by design</li>
+
+                </ul>
+
+            </article>
+
+            <!-- Contact -->
+
+            <article class="trust-card">
+
+                <div class="trust-icon">
+                    ✉</div>
+
+                <h3>Contact</h3>
+
+                <p>
+                    Questions, partnerships or suggestions to improve?
+                </p>
+
+                <a
+                    href="mailto:hrtechifyed@gmail.com?subject=GrowWithHR%20Early%20Access"
+                    class="primary-btn">
+
+                    Write to me
+
+                </a>
+
+                <div class="contact-email">
+
+                    hrtechifyed@gmail.com
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section><footer class="footer"><div class="container"><div class="footer-content"><div class="footer-brand"><img src="assets/hrtechify-logo.png" alt="HRTechify Logo" class="footer-logo"><div><div class="brand-name">HRTechify</div><div class="product-name" id="productVersion">GrowWithHR Public </div></div></div><p>© 2026 HRTechify. All Rights Reserved.</p><p>Smart People Strategy. More business momentum.</p></div></div></footer>
+
+
+  
+<script async src="https://unpkg.com/es-module-shims@1.10.0/dist/es-module-shims.js"></script>
+
+<script type="importmap">
+{
+  "imports": {
+    "three":"https://unpkg.com/three@0.165.0/build/three.module.js"
+  }
+}
+</script>
+
+<script type="module" src="app.js"></script>  
+
+<script>
+const hamburger=document.getElementById("hamburger");const navLinks=document.getElementById("navLinks");hamburger.addEventListener("click",()=>navLinks.classList.toggle("active"));document.querySelectorAll("#navLinks a").forEach(link=>link.addEventListener("click",()=>navLinks.classList.remove("active")));
+</script>
+</body>
+</html>
