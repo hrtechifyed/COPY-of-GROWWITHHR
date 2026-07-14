@@ -1004,3 +1004,43 @@
     transform: translateY(0);
 
 }
+
+#transitionMessage {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 120px;
+
+    text-align: center;
+
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
+
+    font-weight: 500;
+
+    line-height: 1.7;
+
+    transition:
+        opacity .4s ease,
+        transform .4s ease;
+
+}
+
+#transitionMessage.visible {
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+}
+
+#transitionMessage:not(.visible) {
+
+    opacity: 0;
+
+    transform: translateY(12px);
+
+}
