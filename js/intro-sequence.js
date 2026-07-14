@@ -109,29 +109,47 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-    function hideAllSections() {
+   /* ==========================================================
+   FADE TRANSITION ENGINE
+========================================================== */
 
-        Object.values(sections).forEach(section => {
+function hideAllSections() {
 
-            if (!section) return;
+    Object.values(sections).forEach(section => {
 
-            section.classList.remove("is-active");
+        if (!section) return;
 
-        });
+        section.classList.remove(
+            "is-active",
+            "fade-in"
+        );
 
-    }
+        section.classList.add("fade-out");
 
-    function showSection(name) {
+    });
 
-        hideAllSections();
+}
 
-        if (sections[name]) {
+function showSection(name) {
 
-            sections[name].classList.add("is-active");
+    const nextSection = sections[name];
 
-        }
+    if (!nextSection) return;
 
-    }
+    hideAllSections();
+
+    requestAnimationFrame(() => {
+
+        nextSection.classList.remove("fade-out");
+
+        nextSection.classList.add(
+            "is-active",
+            "fade-in"
+        );
+
+    });
+
+}
 
     function activate(list, index) {
 
