@@ -705,3 +705,63 @@
     transform: translateY(0);
 
 }
+
+
+.coach-typing {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition: opacity .25s ease;
+
+}
+
+.coach-typing.active {
+
+    opacity: 1;
+
+    visibility: visible;
+
+}
+
+.coach-typing.active::after {
+
+    content: "";
+
+    width: 6px;
+
+    height: 6px;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 currentColor,
+        10px 0 0 currentColor,
+        20px 0 0 currentColor;
+
+    animation: coachDots .9s infinite ease-in-out;
+
+}
+
+@keyframes coachDots {
+
+    0%,100% {
+
+        opacity: .35;
+
+    }
+
+    50% {
+
+        opacity: 1;
+
+    }
+
+}
