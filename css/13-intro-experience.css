@@ -7,7 +7,7 @@
     width:100%;
     min-height:calc(100vh - 110px);
 
-    display:flex;
+    display:flex;a
     flex-direction:column;
     justify-content:center;
     align-items:center;
@@ -131,19 +131,6 @@
     gap:18px;
 
 }
-
-/* ----------------------------------------------------------
-   Hide everything except Hero
----------------------------------------------------------- */
-
-#introTransition,
-
-#introActions{
-
-    display:none;
-
-}
-
 
 /* ==========================================================
    OVERRIDE EXECUTIVE ASSESSMENT LAYOUT
@@ -420,5 +407,27 @@
         text-align:center;
 
     }
+
+}
+
+/* ==========================================================
+   INTRO ENGINE
+========================================================== */
+
+.intro-screen{
+
+    display:none;
+
+    opacity:0;
+
+    transition:opacity .6s ease;
+
+}
+
+.intro-screen.is-active{
+
+    display:flex;
+
+    opacity:1;
 
 }
