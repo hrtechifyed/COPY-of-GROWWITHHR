@@ -48,18 +48,66 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-    window.introEngine={
+ window.introEngine = {
 
-        current:0,
+    current:0,
 
-        showStep,
+    showStep,
 
-        hideAllSteps
+    hideAllSteps
 
-    };
+};
 
-    /* ---------- INITIAL STATE ---------- */
+/* ==========================================================
+   INTRO TIMELINE
+========================================================== */
 
-    showStep(0);
+const introMessages = document.querySelectorAll(".intro-scene");
+
+let currentScene = 0;
+
+function showMessage(index){
+
+    introMessages.forEach(scene=>{
+
+        scene.classList.remove("active");
+
+    });
+
+    introMessages[index].classList.add("active");
+
+}
+
+function playIntroMessages(){
+
+    if(currentScene >= introMessages.length){
+
+        showStep(2);
+
+        return;
+
+    }
+
+    showStep(1);
+
+    showMessage(currentScene);
+
+    currentScene++;
+
+    const delay = currentScene === 3 ? 2500 : 2000;
+
+    setTimeout(playIntroMessages, delay);
+
+}
+
+/* ---------- START ---------- */
+
+showStep(0);
+
+setTimeout(() => {
+
+    playIntroMessages();
+
+}, 2000);
 
 });
