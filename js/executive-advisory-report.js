@@ -7,14 +7,38 @@ class ExecutiveAdvisoryReport {
 
     constructor() {
 
-        this.reportData =
-            JSON.parse(
-                localStorage.getItem("growwithhr-report")
-            ) || {};
+    this.reportData =
+        JSON.parse(
+            localStorage.getItem("growwithhr-report")
+        ) || {};
 
-        this.init();
+    this.cacheElements();
 
-    }
+    this.init();
+
+}
+
+   cacheElements() {
+
+    this.companyName =
+        document.getElementById("companyName");
+
+    this.companyState =
+        document.getElementById("companyState");
+
+    this.companyIndustry =
+        document.getElementById("companyIndustry");
+
+    this.companyEntity =
+        document.getElementById("companyEntity");
+
+    this.employeeCount =
+        document.getElementById("employeeCount");
+
+    this.growthStage =
+        document.getElementById("growthStage");
+
+}
 
     init() {
 
@@ -86,7 +110,27 @@ class ExecutiveAdvisoryReport {
 
     }
 
-    populateCompanyProfile() {}
+    populateCompanyProfile() {
+
+    this.companyName.textContent =
+        this.reportData.companyName || "Not Provided";
+
+    this.companyState.textContent =
+        this.reportData.state || "Not Provided";
+
+    this.companyIndustry.textContent =
+        this.reportData.industry || "Not Provided";
+
+    this.companyEntity.textContent =
+        this.reportData.legalStructure || "Not Provided";
+
+    this.employeeCount.textContent =
+        this.reportData.employeeCount || "Not Provided";
+
+    this.growthStage.textContent =
+        this.reportData.growthStage || "Not Provided";
+
+}
 
     generateExecutiveSummary() {}
 
