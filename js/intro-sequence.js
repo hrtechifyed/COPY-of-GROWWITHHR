@@ -1,46 +1,32 @@
 /* ==========================================================
    GrowWithHR
    Executive Intro Engine
-   Version 1.0
+   Version 2.0
 ========================================================== */
 
-class IntroEngine {
+document.addEventListener("DOMContentLoaded", () => {
 
-    constructor() {
+    const steps = [
 
-        this.current = 0;
+        document.getElementById("introHero"),
 
-        this.timeline = [];
+        document.getElementById("introMessages"),
 
-        this.steps = {
+        document.getElementById("introCards"),
 
-            hero: document.getElementById("introHero"),
+        document.getElementById("introTransition"),
 
-            messages: document.getElementById("introMessages"),
+        document.getElementById("coachIntroduction"),
 
-            cards: document.getElementById("introCards"),
+        document.getElementById("introActions")
 
-            transition: document.getElementById("introTransition"),
+    ];
 
-            coach: document.getElementById("coachIntroduction"),
+    function hideAllSteps(){
 
-            actions: document.getElementById("introActions")
+        steps.forEach(step=>{
 
-        };
-
-    }
-
-    register(step) {
-
-        this.timeline.push(step);
-
-    }
-
-    hideAll() {
-
-        Object.values(this.steps).forEach(step => {
-
-            if (step) {
+            if(step){
 
                 step.classList.remove("is-active");
 
@@ -50,22 +36,30 @@ class IntroEngine {
 
     }
 
-    show(name) {
+    function showStep(index){
 
-        this.hideAll();
+        hideAllSteps();
 
-        if (this.steps[name]) {
+        if(steps[index]){
 
-            this.steps[name].classList.add("is-active");
+            steps[index].classList.add("is-active");
 
         }
 
     }
 
-}
+    window.introEngine={
 
-document.addEventListener("DOMContentLoaded", () => {
+        current:0,
 
-    window.introEngine = new IntroEngine();
+        showStep,
+
+        hideAllSteps
+
+    };
+
+    /* ---------- INITIAL STATE ---------- */
+
+    showStep(0);
 
 });
