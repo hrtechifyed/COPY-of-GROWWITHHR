@@ -23,6 +23,14 @@ import complianceService from "../modules/compliance/service.js";
 
 class AdvisorEngine {
 
+    buildExecutiveObservations(company) {
+
+        const observations = [];
+
+        return observations;
+
+    }
+
     analyze(context = {}) {
 
         const company =
@@ -87,6 +95,13 @@ const organizationProfile = {
 
 };
 
+        const observations = [];
+
+        const risks = [];
+
+        const opportunities = [];
+
+        const recommendations = [];
         
         return {
 
@@ -96,14 +111,14 @@ const organizationProfile = {
             
     modules,
 
-    observations: [],
+    observations,
 
-    risks: [],
+    risks,
 
-    opportunities: [],
+    opportunities,
 
-    recommendations: [],
-
+    recommendations,
+    
     context
 
         };
