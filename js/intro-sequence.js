@@ -374,11 +374,21 @@ const timeline = [
        CTA
     -------------------------------------------------- */
 
-    {
-        section: "actions",
-        duration: 0,
-        action: () => {}
+{
+    section: "actions",
+    duration: TIMING.cta,
+
+    action: () => {
+
+        const actions = document.getElementById("introActions");
+
+        if (!actions) return;
+
+        actions.classList.add("is-active");
+
     }
+
+}
 
 ];
 
