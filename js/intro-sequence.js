@@ -538,7 +538,7 @@ function beginConversation() {
        (continues in Part 5)
     ========================================================== */
 
-          function initialize() {
+function initialize() {
 
     resetTimeline();
 
@@ -558,16 +558,11 @@ function beginConversation() {
 
     state.running = true;
 
-    state.timer = setTimeout(() => {
+    state.stepIndex = 0;
 
-        state.stepIndex = 1;
-
-        runTimeline();
-
-    }, TIMING.hero);
+    next(TIMING.hero);
 
 }
-
 
    /* ==========================================================
        DEBUG UTILITIES
