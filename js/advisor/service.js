@@ -48,30 +48,14 @@ class AdvisorService {
 };
     }
 
-    recommendations(context = {}) {
+recommendations(context = {}) {
 
-        const analysis =
-            this.analyze(context);
+    const analysis =
+        this.analyze(context);
 
-        return analysis.modules
+    return analysis.recommendations;
 
-            .filter(module =>
-
-                module.recommendations > 0
-
-            )
-
-            .sort(
-
-                (a, b) =>
-
-                    b.recommendations -
-
-                    a.recommendations
-
-            );
-
-    }
+}
 
     priorities(context = {}) {
 
