@@ -274,3 +274,8 @@ section{
     background:var(--brand-red);
 
 }
+
+
+[hidden] {
+    display: none !important;
+}
