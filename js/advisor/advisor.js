@@ -23,14 +23,260 @@ import complianceService from "../modules/compliance/service.js";
 
 class AdvisorEngine {
 
+buildExecutiveContext(company) {
+
+    return {
+
+        currentEmployees:
+            company.getTotalEmployees(),
+
+        projectedEmployees:
+            company.company.growth
+                ?.projectedEmployees ?? null,
+
+        growthPlanned:
+            (
+                company.company.growth
+                    ?.projectedEmployees ?? 0
+            ) >
+            company.getTotalEmployees(),
+
+        operatesInMultipleStates:
+            (company.company.states || []).length > 1,
+
+        operatesInMultipleCountries:
+            (company.company.countries || []).length > 1,
+
+        operatesInMultipleCities:
+            (company.company.cities || []).length > 1,
+
+        workModel:
+            company.company.workModel,
+
+        industry:
+            company.company.industry,
+
+        entityType:
+            company.company.entityType
+
+    };
+
+}
+    
     buildExecutiveObservations(company) {
 
         const observations = [];
 
+if (executiveContext.growthPlanned) {
+
+    observations.push({
+
+        id: "growth-planned",
+
+        category: "Growth",
+
+        title: "Workforce expansion planned",
+
+        description:
+            "The assessment indicates planned employee growth. HR processes, onboarding capacity and workforce planning should scale alongside business growth.",
+
+        evidence: {
+
+            currentEmployees:
+                executiveContext.currentEmployees,
+
+            projectedEmployees:
+                executiveContext.projectedEmployees
+
+        }
+
+    });
+
+}
+
+if (executiveContext.operatesInMultipleStates) {
+
+    observations.push({
+
+        id: "multi-state",
+
+        category: "Operations",
+
+        title: "Operations span multiple states",
+
+        description:
+            "Operating across multiple states increases administrative and statutory complexity and benefits from standardized HR processes."
+
+    });
+
+}
+
+if (executiveContext.operatesInMultipleCountries) {
+
+    observations.push({
+
+        id: "multi-country",
+
+        category: "Operations",
+
+        title: "International operations detected",
+
+        description:
+            "Operating across multiple countries introduces additional people, compliance and governance considerations."
+
+    });
+
+}
+
+if (executiveContext.workModel === "Hybrid") {
+
+    observations.push({
+
+        id: "hybrid-work",
+
+        category: "Workforce",
+
+        title: "Hybrid workforce model",
+
+        description:
+            "A hybrid workforce benefits from consistent people practices, communication and performance management."
+
+    });
+
+}
+        
         return observations;
 
     }
 
+buildExecutiveRisks(executiveContext, observations) {
+
+    const risks = [];
+
+    if (executiveContext.growthPlanned) {
+
+        risks.push({
+
+            id: "growth-capacity",
+
+            category: "Growth",
+
+            title: "People processes may not scale with planned growth",
+
+            description:
+                "Planned workforce expansion may place additional demands on hiring, onboarding, performance management and HR administration.",
+
+            relatedObservation:
+                "growth-planned"
+
+        });
+
+    }
+
+    if (executiveContext.operatesInMultipleStates) {
+
+        risks.push({
+
+            id: "multi-state-compliance",
+
+            category: "Compliance",
+
+            title: "Multi-state operations increase compliance complexity",
+
+            description:
+                "Operating across multiple states may require additional statutory compliance, documentation and policy consistency.",
+
+            relatedObservation:
+                "multi-state"
+
+        });
+
+    }
+
+    if (executiveContext.operatesInMultipleCountries) {
+
+        risks.push({
+
+            id: "global-governance",
+
+            category: "Governance",
+
+            title: "International operations require stronger governance",
+
+            description:
+                "Cross-border operations introduce additional employment, policy and governance considerations.",
+
+            relatedObservation:
+                "multi-country"
+
+        });
+
+    }
+
+    return risks;
+
+}
+
+    buildExecutiveOpportunities(executiveContext, observations, risks) {
+
+    const opportunities = [];
+
+    if (executiveContext.growthPlanned) {
+
+        opportunities.push({
+
+            id: "scale-people-operations",
+
+            category: "Growth",
+
+            title: "Strengthen people operations before expansion",
+
+            description:
+                "Planned workforce growth presents an opportunity to establish scalable HR processes before headcount increases."
+
+        });
+
+    }
+
+    if (executiveContext.operatesInMultipleStates) {
+
+        opportunities.push({
+
+            id: "standardize-operations",
+
+            category: "Operations",
+
+            title: "Standardize HR practices across locations",
+
+            description:
+                "Common HR processes, policies and documentation can improve consistency across operating locations."
+
+        });
+
+    }
+
+    if (executiveContext.workModel === "Hybrid") {
+
+        opportunities.push({
+
+            id: "hybrid-framework",
+
+            category: "Workforce",
+
+            title: "Strengthen hybrid workforce practices",
+
+            description:
+                "Clear communication, performance expectations and collaboration practices can improve hybrid workforce effectiveness."
+
+        });
+
+    }
+
+    return opportunities;
+
+}
+
+    
     analyze(context = {}) {
 
         const company =
@@ -95,14 +341,29 @@ const organizationProfile = {
 
 };
 
-        const observations =
-    this.buildExecutiveObservations(
+        const executiveContext =
+    this.buildExecutiveContext(
         company
     );
 
-        const risks = [];
+       const observations =
+    this.buildExecutiveObservations(
+        executiveContext
+    );
 
-        const opportunities = [];
+    const risks =
+    this.buildExecutiveRisks(
+        executiveContext,
+        observations
+    );
+
+
+        const opportunities =
+    this.buildExecutiveOpportunities(
+        executiveContext,
+        observations,
+        risks
+    );
 
         const recommendations = [];
         
@@ -111,6 +372,8 @@ const organizationProfile = {
     company,
  
     organizationProfile,
+    
+    executiveContext,
             
     modules,
 
