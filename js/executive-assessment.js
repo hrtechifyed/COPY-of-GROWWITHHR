@@ -1185,11 +1185,13 @@ if (this.onWelcome) {
 
         this.autoSave();
 
-        setTimeout(() => {
+      setTimeout(() => {
 
-            this.goToNextQuestion();
+    console.log("GOING TO NEXT QUESTION");
 
-        }, 900);
+    this.goToNextQuestion();
+
+}, 900);
 
     }
 
@@ -1536,6 +1538,11 @@ if (this.onWelcome) {
     ========================================================== */
 
     goToNextQuestion() {
+       console.log(
+    "goToNextQuestion",
+    this.currentStep,
+    this.currentQuestion
+);
 
         const step =
             this.questionBank[this.currentStep];
