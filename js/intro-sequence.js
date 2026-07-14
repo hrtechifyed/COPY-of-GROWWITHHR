@@ -157,24 +157,21 @@ function showSection(name) {
 
 function activate(list, index) {
 
-    list.forEach(item => {
+    list.forEach((item, itemIndex) => {
 
-        item.classList.remove("active");
+        item.classList.toggle("active", itemIndex === index);
 
-        item.setAttribute("aria-hidden", "true");
+        item.setAttribute(
+            "aria-hidden",
+            itemIndex === index ? "false" : "true"
+        );
 
     });
 
-    if (list[index]) {
-
-        list[index].classList.add("active");
-
-        list[index].setAttribute("aria-hidden", "false");
-
-    }
-
 }
-    function next(delay) {
+   
+   
+   function next(delay) {
 
         clearTimer();
 
@@ -437,19 +434,31 @@ function activate(list, index) {
        ENGINE CONTROLS
     ========================================================== */
 
-    function startTimeline() {
+function startTimeline() {
 
-        clearTimer();
+    clearTimer();
 
-        state.stepIndex = 0;
+    state.stepIndex = 0;
 
-        state.running = true;
+    state.running = true;
 
-        state.skipped = false;
+    state.skipped = false;
 
-        runTimeline();
+    activate(messageScenes, -1);
+
+    activate(briefingCards, -1);
+
+    activate(coachLines, -1);
+
+    if (coachTyping) {
+
+        coachTyping.classList.remove("active");
 
     }
+
+    runTimeline();
+
+}
 
     function stopTimeline() {
 
@@ -487,19 +496,21 @@ function resetTimeline() {
        PUBLIC API
     ========================================================== */
 
-    window.introEngine = {
+window.introEngine = {
 
-        start: startTimeline,
+    start: startTimeline,
 
-        stop: stopTimeline,
+    stop: stopTimeline,
 
-        reset: resetTimeline,
+    reset: resetTimeline,
 
-        next: runTimeline,
+    next: runTimeline,
 
-        state
+    startAssessment,
 
-    };
+    state
+
+};
 
     /* ==========================================================
        INTRODUCTION ENTRY POINT
@@ -621,36 +632,36 @@ function resetTimeline() {
 
           function initialize() {
 
-        /*
-         * Reset everything to a known state.
-         */
+    resetTimeline();
 
-        resetTimeline();
+    showSection("hero");
 
-        /*
-         * Hero is always the first experience.
-         */
+    activate(messageScenes, -1);
 
-        showSection("hero");
+    activate(briefingCards, -1);
 
-        /*
-         * Give the user a moment before
-         * beginning the sequence.
-         */
+    activate(coachLines, -1);
 
-        state.running = true;
+    if (coachTyping) {
 
-        state.timer = setTimeout(() => {
-
-            state.stepIndex = 1;
-
-            runTimeline();
-
-        }, TIMING.hero);
+        coachTyping.classList.remove("active");
 
     }
 
-    /* ==========================================================
+    state.running = true;
+
+    state.timer = setTimeout(() => {
+
+        state.stepIndex = 1;
+
+        runTimeline();
+
+    }, TIMING.hero);
+
+}
+
+
+   /* ==========================================================
        DEBUG UTILITIES
        (Available only from browser console)
     ========================================================== */
