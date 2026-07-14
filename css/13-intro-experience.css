@@ -1,0 +1,86 @@
+/* ==========================================================
+   EXECUTIVE INTRO EXPERIENCE
+   GrowWithHR
+========================================================== */
+
+#introApp{
+
+    width:100%;
+    max-width:920px;
+    margin:0 auto;
+    min-height:70vh;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    padding:80px 32px;
+
+    text-align:center;
+
+}
+
+.exec-intro-logo{
+
+    width:90px;
+    height:90px;
+
+    object-fit:contain;
+
+    margin-bottom:28px;
+
+}
+
+.exec-intro-title{
+
+    font-size:2.6rem;
+    font-weight:700;
+
+    line-height:1.15;
+
+    margin-bottom:12px;
+
+}
+
+.exec-intro-subtitle{
+
+    font-size:1.05rem;
+
+    opacity:.72;
+
+    margin-bottom:80px;
+
+}
+
+.exec-scene{
+
+    max-width:760px;
+
+    min-height:120px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+}
+
+.exec-scene h2{
+
+    font-size:2rem;
+
+    font-weight:600;
+
+    line-height:1.4;
+
+}
+
+.exec-hidden{
+
+    display:none;
+
+}
