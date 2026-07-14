@@ -324,3 +324,103 @@
     color:#f7a600;
 
 }
+
+/* ==========================================================
+   COACH INTRODUCTION
+========================================================== */
+
+.coach-card{
+
+    width:min(820px,92vw);
+
+    display:flex;
+
+    gap:32px;
+
+    align-items:flex-start;
+
+    padding:clamp(24px,4vw,42px);
+
+    border-radius:28px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(20px);
+
+}
+
+.coach-avatar-circle{
+
+    width:72px;
+
+    height:72px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:1.2rem;
+
+    font-weight:700;
+
+    background:#f7a600;
+
+    color:#111;
+
+}
+
+.coach-dialogue{
+
+    flex:1;
+
+}
+
+.coach-typing{
+
+    font-size:1.4rem;
+
+    letter-spacing:.25rem;
+
+    color:#f7a600;
+
+    margin-bottom:28px;
+
+}
+
+.coach-line{
+
+    display:none;
+
+    font-size:clamp(1.1rem,2vw,1.35rem);
+
+    line-height:1.8;
+
+    color:white;
+
+}
+
+.coach-line.active{
+
+    display:block;
+
+}
+
+@media(max-width:768px){
+
+    .coach-card{
+
+        flex-direction:column;
+
+        align-items:center;
+
+        text-align:center;
+
+    }
+
+}
