@@ -206,7 +206,127 @@ function activate(list, index) {
 }
    
    
- function next(delay) {
+const timeline = [
+
+    /* --------------------------------------------------
+       HERO
+    -------------------------------------------------- */
+
+    {
+        section: "hero",
+        duration: TIMING.hero,
+        action: () => {}
+    },
+
+    /* --------------------------------------------------
+       INTRO MESSAGES
+    -------------------------------------------------- */
+
+    {
+        section: "messages",
+        duration: TIMING.message,
+        action: () => activate(messageScenes, 0)
+    },
+
+    {
+        section: "messages",
+        duration: TIMING.message,
+        action: () => activate(messageScenes, 1)
+    },
+
+    {
+        section: "messages",
+        duration: TIMING.lastMessage,
+        action: () => activate(messageScenes, 2)
+    },
+
+    /* --------------------------------------------------
+       EXECUTIVE BRIEFING
+    -------------------------------------------------- */
+
+    {
+        section: "cards",
+        duration: TIMING.card,
+        action: () => activate(briefingCards, 0)
+    },
+
+    {
+        section: "cards",
+        duration: TIMING.card,
+        action: () => activate(briefingCards, 1)
+    },
+
+    {
+        section: "cards",
+        duration: TIMING.card,
+        action: () => activate(briefingCards, 2)
+    },
+
+    {
+        section: "cards",
+        duration: TIMING.card,
+        action: () => activate(briefingCards, 3)
+    },
+
+    {
+        section: "cards",
+        duration: TIMING.card,
+        action: () => activate(briefingCards, 4)
+    },
+
+    {
+        section: "cards",
+        duration: TIMING.card,
+        action: () => activate(briefingCards, 5)
+    },
+
+    /* --------------------------------------------------
+       TRANSITION
+    -------------------------------------------------- */
+
+    {
+        section: "transition",
+        duration: TIMING.transition,
+        action: () => {
+
+            const transitionMessage =
+                document.getElementById("transitionMessage");
+
+            if (!transitionMessage) return;
+
+            transitionMessage.textContent =
+                "Every recommendation begins with understanding your organisation.";
+
+        }
+    },
+
+    /* --------------------------------------------------
+       COACH
+    -------------------------------------------------- */
+
+    ...coachLines.map((_, index) => ({
+
+        section: "coach",
+
+        duration: TIMING.coach,
+
+        action: () => activate(coachLines, index)
+
+    })),
+
+    /* --------------------------------------------------
+       CTA
+    -------------------------------------------------- */
+
+    {
+        section: "actions",
+        duration: 0,
+        action: () => {}
+    }
+
+];
+
+function next(delay) {
 
     clearTimer();
 
@@ -219,9 +339,6 @@ function activate(list, index) {
     state.timer = setTimeout(runTimeline, Math.max(0, delay));
 
 }
-
-
-
         /* --------------------------------------------------
            HERO
         -------------------------------------------------- */
