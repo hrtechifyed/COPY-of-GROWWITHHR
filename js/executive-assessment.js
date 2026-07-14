@@ -959,6 +959,7 @@ showLanding() {
        RENDER CURRENT QUESTION
     ========================================================== */
     renderCurrentQuestion() {
+       console.log("RENDER CURRENT QUESTION");
 
         const step = this.questionBank[this.currentStep];
 
