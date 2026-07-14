@@ -27,18 +27,25 @@ class AdvisorService {
 
         return {
 
-            company:
-                analysis.company.company
-                    ?.legalName || "",
+    company:
+        analysis.company.company?.legalName || "",
 
-            overallScore:
-                analysis.overallScore,
+    modules:
+        analysis.modules.length,
 
-            modules:
-                analysis.modules.length
+    observations:
+        analysis.observations.length,
 
-        };
+    risks:
+        analysis.risks.length,
 
+    opportunities:
+        analysis.opportunities.length,
+
+    recommendations:
+        analysis.recommendations.length
+
+};
     }
 
     recommendations(context = {}) {
@@ -68,28 +75,11 @@ class AdvisorService {
 
     priorities(context = {}) {
 
-        const analysis =
-            this.analyze(context);
+    const analysis = this.analyze(context);
 
-        return analysis.modules
+    return analysis.recommendations;
 
-            .filter(module =>
-
-                module.score < 75
-
-            )
-
-            .sort(
-
-                (a, b) =>
-
-                    a.score -
-
-                    b.score
-
-            );
-
-    }
+}
 
 }
 
