@@ -2118,8 +2118,6 @@ resetAssessment() {
 
         this.restoreSession();
 
-        this.refreshUI();
-
         this.bindKeyboardShortcuts();
 
         this.bindExitEvents();
