@@ -380,11 +380,9 @@ function activate(list, index) {
 
     if (step.section === "coach") {
 
-        const typing = document.getElementById("coachTyping");
+        if (coachTyping) {
 
-        if (typing) {
-
-            typing.classList.add("active");
+            coachTyping.classList.add("active");
 
         }
 
@@ -392,9 +390,9 @@ function activate(list, index) {
 
         state.timer = setTimeout(() => {
 
-            if (typing) {
+            if (coachTyping) {
 
-                typing.classList.remove("active");
+                coachTyping.classList.remove("active");
 
             }
 
@@ -408,11 +406,11 @@ function activate(list, index) {
 
             if (step.duration > 0) {
 
-                next(step.duration);
+                next(step.duration - TIMING.typing);
 
             }
 
-        }, 700);
+        }, TIMING.typing);
 
         return;
 
@@ -433,7 +431,9 @@ function activate(list, index) {
     }
 
 }
-    /* ==========================================================
+
+   
+   /* ==========================================================
        ENGINE CONTROLS
     ========================================================== */
 
