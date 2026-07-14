@@ -965,7 +965,12 @@ showLanding() {
     /* ==========================================================
        RENDER CURRENT QUESTION
     ========================================================== */
-
+console.log(
+    "renderCurrentQuestion()",
+    this.currentStep,
+    this.currentQuestion
+);
+   
     renderCurrentQuestion() {
 
         const step = this.questionBank[this.currentStep];
@@ -1134,25 +1139,34 @@ showLanding() {
        NEXT
     ========================================================== */
 
+   console.log(
+    "next()",
+    this.onWelcome,
+    this.currentStep,
+    this.currentQuestion
+);
     next() {
 
-        if (this.onWelcome) {
+if (this.onWelcome) {
 
-            this.onWelcome = false;
+    this.onWelcome = false;
 
-            this.backButton.hidden = false;
+    this.backButton.hidden = false;
 
-            this.nextButton.innerHTML =
+    this.nextButton.innerHTML =
+        `Continue <i class="fa-solid fa-arrow-right"></i>`;
 
-                `Continue <i class="fa-solid fa-arrow-right"></i>`;
+    requestAnimationFrame(() => {
 
-            this.refreshUI();
+        this.refreshUI();
 
-            this.renderCurrentQuestion();
+        this.renderCurrentQuestion();
 
-            return;
+    });
 
-        }
+    return;
+
+}
 
         if (!this.saveCurrentAnswer()) {
 
