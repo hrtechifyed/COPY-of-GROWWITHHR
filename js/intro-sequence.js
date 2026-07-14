@@ -273,72 +273,29 @@ function activate(list, index) {
            COACH
         -------------------------------------------------- */
 
-        {
-            section: "coach",
-            duration: TIMING.coach,
-            action: () => activate(coachLines, 0)
-        },
+       /* --------------------------------------------------
+   COACH
+-------------------------------------------------- */
 
-        {
-            section: "coach",
-            duration: TIMING.coach,
-            action: () => activate(coachLines, 1)
-        },
+...coachLines.map((_, index) => ({
 
-        {
-            section: "coach",
-            duration: TIMING.coach,
-            action: () => activate(coachLines, 2)
-        },
+    section: "coach",
 
-        {
-            section: "coach",
-            duration: TIMING.coach,
-            action: () => activate(coachLines, 3)
-        },
+    duration: TIMING.coach,
 
-        {
-            section: "coach",
-            duration: TIMING.coach,
-            action: () => activate(coachLines, 4)
-        },
+    action: () => activate(coachLines, index)
 
-        {
-            section: "coach",
-            duration: TIMING.coach,
-            action: () => activate(coachLines, 5)
-        },
+})),
 
-        {
-            section: "coach",
-            duration: TIMING.coach,
-            action: () => activate(coachLines, 6)
-        },
+/* --------------------------------------------------
+   CTA
+-------------------------------------------------- */
 
-        {
-            section: "coach",
-            duration: TIMING.coach,
-            action: () => activate(coachLines, 7)
-        },
-
-        {
-            section: "coach",
-            duration: TIMING.coach,
-            action: () => activate(coachLines, 8)
-        },
-
-        {
-            section: "coach",
-            duration: TIMING.coach,
-            action: () => activate(coachLines, 9)
-        },
-
-        {
-            section: "coach",
-            duration: TIMING.coach,
-            action: () => activate(coachLines, 10)
-        },
-
+{
+    section: "actions",
+    duration: 0,
+    action: () => {}
+}
         /* --------------------------------------------------
            CTA
         -------------------------------------------------- */
@@ -357,77 +314,23 @@ function activate(list, index) {
     ========================================================== */
 
 
-     function runTimeline() {
+const TIMING = {
 
-    if (state.skipped) {
+    hero: 2000,
 
-        return;
+    message: 2000,
 
-    }
+    lastMessage: 2500,
 
-    if (state.stepIndex >= timeline.length) {
+    card: 2250,
 
-        return;
+    transition: 2000,
 
-    }
+    typing: 700,
 
-    const step = timeline[state.stepIndex];
+    coach: 1900
 
-    showSection(step.section);
-
-    if (step.section === "coach") {
-
-        if (coachTyping) {
-
-            coachTyping.classList.add("active");
-
-        }
-
-        clearTimer();
-
-        state.timer = setTimeout(() => {
-
-            if (coachTyping) {
-
-                coachTyping.classList.remove("active");
-
-            }
-
-            if (typeof step.action === "function") {
-
-                step.action();
-
-            }
-
-            state.stepIndex++;
-
-            if (step.duration > 0) {
-
-                next(step.duration - TIMING.typing);
-
-            }
-
-        }, TIMING.typing);
-
-        return;
-
-    }
-
-    if (typeof step.action === "function") {
-
-        step.action();
-
-    }
-
-    state.stepIndex++;
-
-    if (step.duration > 0) {
-
-        next(step.duration);
-
-    }
-
-}
+};
 
    
    /* ==========================================================
