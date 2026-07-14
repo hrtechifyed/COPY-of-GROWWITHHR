@@ -1322,8 +1322,6 @@ showLanding() {
 
     showReview() {
 
-     showReview() {
-
     this.hideAll();
 
     this.workspace.hidden = true;
