@@ -427,6 +427,14 @@
 
 }
 
+#introHero{
+
+    display:flex;
+
+    opacity:1;
+
+}
+
 .intro-screen.is-active{
 
     display:flex;
