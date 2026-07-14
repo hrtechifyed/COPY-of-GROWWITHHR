@@ -1328,16 +1328,21 @@ showLanding() {
 
     this.workspace.hidden = true;
 
-    this.reviewScreen.hidden = false;
-
-    window.scrollTo({
-        top: 0,
-        behavior: "instant"
-    });
-
-    this.conversationContainer.innerHTML = "";
+   this.reviewScreen.hidden = false;
+   
+   // Ensure the previous assessment UI is completely hidden
+   this.workspace.hidden = true;
+   
+   // Move user to the review screen
+   window.scrollTo({
+       top: 0,
+       behavior: "smooth"
+   });
 
     this.reviewContainer.innerHTML = "";
+
+   // Clear completed conversation
+   this.conversationContainer.innerHTML = "";
 
         this.questionBank.forEach(step => {
 
