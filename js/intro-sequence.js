@@ -339,19 +339,23 @@ const TIMING = {
 
 function startTimeline() {
 
-    clearTimer();
-
-    state.stepIndex = 0;
+    resetTimeline();
 
     state.running = true;
 
     state.skipped = false;
 
-    activate(messageScenes, -1);
+    state.stepIndex = 0;
 
-    activate(briefingCards, -1);
+    next(TIMING.hero);
 
-    activate(coachLines, -1);
+}
+
+function stopTimeline() {
+
+    clearTimer();
+
+    state.running = false;
 
     if (coachTyping) {
 
@@ -359,17 +363,7 @@ function startTimeline() {
 
     }
 
-    runTimeline();
-
 }
-
-    function stopTimeline() {
-
-        clearTimer();
-
-        state.running = false;
-
-    }
 
 function resetTimeline() {
 
@@ -393,8 +387,9 @@ function resetTimeline() {
 
     }
 
-}
+    showSection("hero");
 
+}
     /* ==========================================================
        PUBLIC API
     ========================================================== */
@@ -410,6 +405,10 @@ window.introEngine = {
     next: runTimeline,
 
     startAssessment,
+
+    skip: skipIntroduction,
+
+    restart: initialize,
 
     state
 
@@ -507,31 +506,30 @@ function beginConversation() {
        Pause timeline when browser tab loses focus.
     ========================================================== */
 
-    document.addEventListener(
+document.addEventListener(
+    "visibilitychange",
+    () => {
 
-        "visibilitychange",
+        if (!state.running) {
 
-        () => {
-
-            if (!state.running) {
-
-                return;
-
-            }
-
-            if (document.hidden) {
-
-                clearTimer();
-
-            } else {
-
-                runTimeline();
-
-            }
+            return;
 
         }
 
-    );
+        if (document.hidden) {
+
+            stopTimeline();
+
+        } else {
+
+            state.running = true;
+
+            runTimeline();
+
+        }
+
+    }
+);
 
     /* ==========================================================
        INITIALIZATION
