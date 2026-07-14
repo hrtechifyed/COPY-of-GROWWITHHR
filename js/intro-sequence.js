@@ -19,6 +19,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
     "use strict";
 
+    window.executiveAssessment = {
+
+        start() {
+
+            const landingScreen =
+                document.getElementById("landingScreen");
+
+            const conversationWorkspace =
+                document.getElementById("conversationWorkspace");
+
+            if (landingScreen) {
+
+                landingScreen.hidden = true;
+
+            }
+
+            if (conversationWorkspace) {
+
+                conversationWorkspace.hidden = false;
+
+            }
+
+            if (typeof initializeAssessment === "function") {
+
+                initializeAssessment();
+
+            }
+
+        }
+
+    };
+
     /* ==========================================================
        DOM REFERENCES
     ========================================================== */
@@ -59,9 +91,9 @@ const TYPING_DELAY = 700;
     const skipButton =
         document.getElementById("skipIntro");
 
-    const beginButton =
-        document.getElementById("beginConversation");
-
+   const beginButton =
+    document.getElementById("startAssessment");
+   
     /* ==========================================================
        ENGINE STATE
     ========================================================== */
@@ -568,15 +600,17 @@ window.introEngine = {
 
     next: runTimeline,
 
-    startAssessment,
-
     skip: skipIntroduction,
+
+    startAssessment,
 
     restart: initialize,
 
     state
 
 };
+
+window.startAssessment = startAssessment;
 
     /* ==========================================================
        INTRODUCTION ENTRY POINT
@@ -591,38 +625,51 @@ function startAssessment() {
 
     stopTimeline();
 
-    hideAllSections();
+    const landingScreen =
+        document.getElementById("landingScreen");
 
-    if (coachTyping) {
+    const conversationWorkspace =
+        document.getElementById("conversationWorkspace");
 
-        coachTyping.classList.remove("active");
+    if (landingScreen) {
+
+        landingScreen.hidden = true;
 
     }
 
-    activate(messageScenes, -1);
+    if (conversationWorkspace) {
 
-    activate(briefingCards, -1);
+        conversationWorkspace.hidden = false;
 
-    activate(coachLines, -1);
+    }
 
-    console.log("Starting Executive Assessment...");
+    if (
+        window.executiveAssessment &&
+        typeof window.executiveAssessment.start === "function"
+    ) {
+
+        window.executiveAssessment.start();
+
+    }
 
 }
-
     /* ==========================================================
        SKIP INTRODUCTION
     ========================================================== */
 
 function skipIntroduction() {
 
+    if (state.skipped) return;
+
     state.skipped = true;
+
+    clearTimer();
 
     stopTimeline();
 
     startAssessment();
 
 }
-
     /* ==========================================================
        CTA
     ========================================================== */
@@ -653,17 +700,17 @@ function beginConversation() {
 
     }
 
-    if (beginButton) {
-
-        beginButton.addEventListener(
-
-            "click",
-
-            beginConversation
-
-        );
-
-    }
+      if (beginButton) {
+      
+          beginButton.addEventListener(
+      
+              "click",
+      
+              startAssessment
+      
+          );
+      
+      }
 
     /* ==========================================================
        PAGE VISIBILITY
