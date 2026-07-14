@@ -1538,7 +1538,13 @@ showLanding() {
 
             this.updateProgress();
 
-            this.renderCurrentQuestion();
+            this.showStepIntroduction();
+
+            setTimeout(() => {
+
+                this.renderCurrentQuestion();
+
+            }, 1800);
 
             return;
 
