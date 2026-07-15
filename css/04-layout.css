@@ -329,17 +329,3 @@ main{
 .footer-brand {
     gap: 12px;
 }
-
-/* Brand promise displayed beneath GrowWithHR */
-.brand .product-name::after,
-.footer-brand .product-name::after {
-    content: "Smart People Strategy. More business momentum.";
-    display: block;
-    margin-top: 2px;
-    font-size: .66rem;
-    line-height: 1.2;
-    font-style: italic;
-    font-weight: 500;
-    color: rgba(255,255,255,.62);
-    letter-spacing: .01em;
-}

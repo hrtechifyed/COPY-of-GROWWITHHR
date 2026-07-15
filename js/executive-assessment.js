@@ -591,10 +591,6 @@ showScreen(screen) {
                             "Healthcare",
                             "Education",
                             "Financial Services",
-                            "FinTech",
-                            "Semiconductor",
-                            "FMCG / Consumer Goods",
-                            "EdTech",
                             "Logistics",
                             "Hospitality",
                             "Construction",
@@ -1710,6 +1706,11 @@ showStepIntroduction() {
             introductions[this.currentStep - 1]
         );
 
+        this.renderSegmentTransitionCard(
+            this.steps[this.currentStep],
+            introductions[this.currentStep - 1]
+        );
+
         this.animateTextChange(
 
             this.footerMessage,
@@ -1737,7 +1738,6 @@ renderSegmentTransitionCard(title, message) {
             <h2>${title}</h2>
             <p>${message}</p>
             <div class="exec-segment-progress">Preparing your next set of questions...</div>
-            <div class="exec-buffer"><i></i></div>
         </article>
     `;
 
