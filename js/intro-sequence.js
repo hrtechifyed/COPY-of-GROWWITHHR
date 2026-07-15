@@ -77,27 +77,6 @@ const TYPING_DELAY = 700;
         skipped: false
 
     };
-   
-
-/* ==========================================================
-   SCREEN ORDER
-========================================================== */
-
-const SCREEN_SEQUENCE = [
-
-    "hero",
-
-    "messages",
-
-    "cards",
-
-    "transition",
-
-    "coach",
-
-    "actions"
-
-];
 
     /* ==========================================================
        TIMINGS
@@ -147,129 +126,84 @@ function clearTimer() {
 
 function hideAllSections() {
 
-    SCREEN_SEQUENCE.forEach(name => {
-
-        const section = sections[name];
+    Object.values(sections).forEach(section => {
 
         if (!section) return;
 
         section.classList.remove(
-
             "is-active",
-
             "fade-in"
-
         );
 
         section.classList.add("fade-out");
 
     });
 
-    if (coachTyping) {
+if (coachTyping) {
 
-        coachTyping.classList.remove("active");
+    coachTyping.classList.remove("active");
 
-        coachTyping.setAttribute(
+    coachTyping.setAttribute("aria-hidden", "true");
 
-            "aria-hidden",
-
-            "true"
-
-        );
-
-    }
+}
 
 }
 
 function showSection(name) {
 
-    SCREEN_SEQUENCE.forEach(screenName => {
+    const nextSection = sections[name];
 
-        const screen = sections[screenName];
+    if (!nextSection) return;
 
-        if (!screen) return;
+    Object.values(sections).forEach(section => {
 
-        const active = screenName === name;
+        if (!section) return;
 
-        screen.classList.toggle(
+        if (section === nextSection) {
 
-            "is-active",
+            section.classList.remove("fade-out");
 
-            active
+            section.classList.add(
+                "is-active",
+                "fade-in"
+            );
 
-        );
+        } else {
 
-        screen.classList.toggle(
+            section.classList.remove(
+                "is-active",
+                "fade-in"
+            );
 
-            "fade-in",
+            section.classList.add("fade-out");
 
-            active
-
-        );
-
-        screen.classList.toggle(
-
-            "fade-out",
-
-            !active
-
-        );
+        }
 
     });
 
 }
-   
-/* ==========================================================
-   ACTIVATE COLLECTION ITEM
-========================================================== */
+function activate(list, index) {
 
-function activate(collection, activeIndex) {
+    list.forEach((item, itemIndex) => {
 
-    collection.forEach((item, index) => {
+        const active = itemIndex === index;
 
-        const isActive = index === activeIndex;
-
-        item.classList.toggle("active", isActive);
+        item.classList.toggle("active", active);
 
         item.setAttribute(
             "aria-hidden",
-            isActive ? "false" : "true"
+            active ? "false" : "true"
         );
 
     });
 
-    if (collection === coachLines && coachTyping) {
+    if (list === coachLines && coachTyping) {
 
         coachTyping.classList.remove("active");
 
-        coachTyping.setAttribute(
-            "aria-hidden",
-            "true"
-        );
-
     }
 
-}   
-
-
-/* ==========================================================
-   TIMELINE HELPERS
-========================================================== */
-
-function timelineStep(section, duration, action = null) {
-
-    return {
-
-        section,
-
-        duration,
-
-        action
-
-    };
-
 }
-
    
    
 const timeline = [
@@ -278,33 +212,34 @@ const timeline = [
        HERO
     -------------------------------------------------- */
 
-   timelineStep(
-    "hero",
-    TIMING.hero
-),
+    {
+        section: "hero",
+        duration: TIMING.hero,
+        action: () => {}
+    },
 
     /* --------------------------------------------------
        INTRO MESSAGES
     -------------------------------------------------- */
 
-  timelineStep(
-    "messages",
-    TIMING.message,
-    () => activate(messageScenes, 0)
-),
+    {
+        section: "messages",
+        duration: TIMING.message,
+        action: () => activate(messageScenes, 0)
+    },
 
-   
-timelineStep(
-    "messages",
-    TIMING.message,
-    () => activate(messageScenes, 1)
-),
+    {
+        section: "messages",
+        duration: TIMING.message,
+        action: () => activate(messageScenes, 1)
+    },
 
-  timelineStep(
-    "messages",
-    TIMING.lastMessage,
-    () => activate(messageScenes, 2)
-),
+    {
+        section: "messages",
+        duration: TIMING.lastMessage,
+        action: () => activate(messageScenes, 2)
+    },
+
     /* --------------------------------------------------
        EXECUTIVE BRIEFING
     -------------------------------------------------- */
