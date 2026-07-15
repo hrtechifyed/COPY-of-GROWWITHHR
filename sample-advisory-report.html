@@ -30,7 +30,7 @@
 
 </head>
 
-<body>
+<body class="sample-advisory-page">
 
 <!-- ==========================================
 NAVBAR
@@ -40,38 +40,16 @@ NAVBAR
 
     <div class="nav-container">
 
-        <a
-            class="brand"
-            href="index.html">
-
-            <img
-                src="assets/hrtechify-logo.png"
-                class="nav-logo"
-                alt="HRTechify Logo">
-
-            <div>
-
-                <div class="brand-name">
-
-                    HRTechify
-
-                </div>
-
-                <div class="product-name">
-
-                    GrowWithHR
-
-                </div>
-
-            </div>
-
+        <a href="index.html#home" class="brand">
+            <img src="assets/hrtechify-logo.png" class="nav-logo" alt="HRTechify Logo">
+            <div><div class="brand-name">HRTechify</div><div class="product-name">GrowWithHR</div></div>
         </a>
 
-        <div class="nav-links">
-            <a href="index.html#home">Home</a>
+        <button class="hamburger" id="hamburger" aria-label="Open Navigation">☰</button>
+
+        <div class="nav-links" id="navLinks">
             <a href="index.html#platform">Platform</a>
             <a href="analyze-company.html">Analyze My Company</a>
-            <a href="sample-advisory-report.html">Sample Advisory</a>
             <a href="official-resources.html">Official Sources</a>
             <a href="more-info.html#privacy">Privacy</a>
             <a href="more-info.html#about">About</a>
@@ -119,6 +97,10 @@ HERO
     Fictional Company Data • Illustrative Report • Not a Real Assessment
 
 </div> 
+
+            <div class="sample-download-actions">
+                <button class="primary-btn" type="button" onclick="window.print()">Download Sample Advisory PDF</button>
+            </div>
 
             <div class="trust-strip">
 
@@ -1393,6 +1375,7 @@ FOOTER
 
 </footer>
 
+<script>const hamburger=document.getElementById("hamburger");const navLinks=document.getElementById("navLinks");if(hamburger&&navLinks){hamburger.addEventListener("click",()=>navLinks.classList.toggle("active"));document.querySelectorAll("#navLinks a").forEach(link=>link.addEventListener("click",()=>navLinks.classList.remove("active")));}</script>
 </body>
 
 </html>
