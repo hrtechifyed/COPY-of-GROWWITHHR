@@ -548,6 +548,10 @@ showScreen(screen) {
 
                             "LLP",
 
+                            "One Person Company",
+
+                            "DPIIT Recognized Startup",
+
                             "Partnership",
 
                             "Proprietorship",
@@ -617,7 +621,7 @@ showScreen(screen) {
 
                         id: "founded",
 
-                        type: "number",
+                        type: "select",
 
                         icon: "fa-calendar",
 
@@ -626,8 +630,10 @@ showScreen(screen) {
                         helper:
                             "An approximate year is perfectly acceptable if you're unsure.(but this is one year you won't like to forget \ud83d\ude1c)",
 
-                        placeholder:
-                            "Year"
+                        options: Array.from(
+                            { length: new Date().getFullYear() - 1899 },
+                            (_, index) => String(new Date().getFullYear() - index)
+                        )
 
                     }
 
@@ -1038,7 +1044,7 @@ showScreen(screen) {
             question.helper || "Share the closest accurate response available today.";
 
         card.getElementById("questionText").textContent =
-            question.label;
+            "";
 
         card.getElementById("questionExplanation").textContent =
             question.helper;
@@ -1703,15 +1709,40 @@ showStepIntroduction() {
 
         );
 
+        this.renderSegmentTransitionCard(
+            this.steps[this.currentStep],
+            introductions[this.currentStep - 1]
+        );
+
         this.animateTextChange(
 
             this.footerMessage,
 
-            `Preparing ${this.steps[this.currentStep]}...`
+            `Entering ${this.steps[this.currentStep]} section...`
 
         );
 
     }
+
+}
+
+
+renderSegmentTransitionCard(title, message) {
+
+    if (!this.conversationContainer) {
+
+        return;
+
+    }
+
+    this.conversationContainer.innerHTML = `
+        <article class="exec-segment-card exec-fade-in">
+            <span>Next Section</span>
+            <h2>${title}</h2>
+            <p>${message}</p>
+            <div class="exec-segment-progress">Preparing your next set of questions...</div>
+        </article>
+    `;
 
 }
 
