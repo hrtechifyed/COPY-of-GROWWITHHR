@@ -1015,13 +1015,9 @@ showScreen(screen) {
         this.stepDescription.textContent =
             step.description;
 
-        this.setCoachMessage(
-
-            step.coach,
-
-            this.currentQuestion === 0
-
-        );
+        if (this.coachSection) {
+            this.coachSection.hidden = true;
+        }
 
         this.updateFooterMessage();
 
@@ -1032,7 +1028,7 @@ showScreen(screen) {
             template.content.cloneNode(true);
 
         card.getElementById("questionCategory").textContent =
-            step.title;
+            "";
 
         card.getElementById("questionTitle").textContent =
             question.label;
@@ -1701,12 +1697,13 @@ showStepIntroduction() {
 
     ) {
 
-        this.setCoachMessage(
+        if (this.coachSection) {
+            this.coachSection.hidden = true;
+        }
 
-            introductions[this.currentStep - 1],
-
-            true
-
+        this.renderSegmentTransitionCard(
+            this.steps[this.currentStep],
+            introductions[this.currentStep - 1]
         );
 
         this.renderSegmentTransitionCard(
@@ -2011,20 +2008,18 @@ resetAssessment() {
         this.progressBar.style.width =
             "0%";
 
-        this.setCoachMessage(
+        if (this.coachSection) {
+            this.coachSection.hidden = true;
+        }
 
-            "Welcome, and thank you for taking the time to have this conversation. " +
-            "Every organisation has its own journey, ambitions and unique way of working, " +
-            "and before we're ready to offer any meaningful guidance, we'd like to understand " +
-            "yours a little better. There are no right or wrong answers here \u2014 simply answer " +
-            "each question to the best of your current knowledge, and we'll take it one step at a time.",
-
-            true
-
-        );
-
-        this.conversationContainer.innerHTML =
-            "";
+        this.conversationContainer.innerHTML = `
+            <article class="exec-coach-intro-card exec-page-turn-in">
+                <span>Company</span>
+                <h2>Coach HRTechify</h2>
+                <p>Every organisation has its own identity. We'll begin with a few foundational questions that help us understand the environment in which your people and business operate.</p>
+                <div class="exec-buffer"><i></i></div>
+            </article>
+        `;
 
         this.backButton.hidden =
             true;
@@ -2255,9 +2250,9 @@ resetAssessment() {
 
         this.bindBeforeUnload();
 
-        this.hideAll();   
+        this.hideAll();
 
-       this.startAssessment();
+        this.showLanding();
 
 
     }

@@ -932,3 +932,47 @@
         min-height: min(560px, calc(100vh - 170px));
     }
 }
+.intro-screen {
+    perspective: 1400px;
+}
+
+.intro-scene {
+    width: min(760px, 92vw);
+    min-height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(28px, 5vw, 56px);
+    border-radius: 28px;
+    background:
+        linear-gradient(135deg, rgba(247,166,0,.14), rgba(255,255,255,.055)),
+        rgba(7,13,26,.94);
+    border: 1px solid rgba(247,166,0,.28);
+    box-shadow:
+        0 28px 80px rgba(0,0,0,.32),
+        inset 4px 0 0 rgba(247,166,0,.76);
+}
+
+.intro-card,
+.intro-scene.active,
+.intro-card.active {
+    transform-origin: left center;
+}
+
+.intro-screen.fade-in .intro-scene.active,
+.intro-screen.fade-in .intro-card.active {
+    animation: introPageTurnIn .72s cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes introPageTurnIn {
+    from {
+        opacity: 0;
+        transform: rotateY(-13deg) translateX(20px) scale(.985);
+        filter: blur(4px);
+    }
+    to {
+        opacity: 1;
+        transform: rotateY(0) translateX(0) scale(1);
+        filter: blur(0);
+    }
+}

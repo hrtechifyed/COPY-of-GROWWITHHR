@@ -57,7 +57,8 @@
         <h2>Official references used by GrowWithHR</h2>
         <p>These links point to government and statutory resources. Always verify final obligations with current official notifications and qualified counsel.</p>
       </div>
-      <div id="officialResourcesContainer" class="updates-grid" aria-live="polite">
+      <div id="sourceGuidance" class="source-guidance"><span></span><p>Use these official links as starting points for verification. Final compliance decisions should be checked against current notifications and qualified professional advice.</p></div>
+      <div id="officialResourcesContainer" class="updates-grid resource-line-grid" aria-live="polite">
         <div class="update-card">Loading official resources...</div>
       </div>
     </div>
@@ -73,11 +74,13 @@ fetch('data/official-resources.json')
   .then((data) => {
     const resources = data.resources || [];
     container.innerHTML = resources.map((resource) => `
-      <article class="update-card">
-        <div class="update-type">${resource.type || 'Official Source'}</div>
-        <h3>${resource.name || 'Official Resource'}</h3>
-        <p>${resource.description || ''}</p>
-        <a href="${resource.url}" target="_blank" rel="noopener noreferrer" class="secondary-btn">Visit Official Website →</a>
+      <article class="update-card resource-line-card">
+        <div class="resource-line-marker"></div>
+        <div>
+          <div class="update-type">${resource.type || 'Official Source'}</div>
+          <h3>${resource.name || 'Official Resource'}</h3>
+        </div>
+        <a href="${resource.url}" target="_blank" rel="noopener noreferrer" class="secondary-btn">Visit →</a>
       </article>
     `).join('');
     if (data.lastVerified) {
