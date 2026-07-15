@@ -24,23 +24,13 @@
    Logo
 ---------------------------------------------------------- */
 
-.intro-logo{
-
-    width:140px;
-
-    height:140px;
-
-    object-fit:contain;
-
-    margin-bottom:32px;
-
-}
-
 /* ----------------------------------------------------------
    Typography
 ---------------------------------------------------------- */
 
 .intro-title{
+
+    margin:0;
 
     font-size:3rem;
 
@@ -48,9 +38,7 @@
 
     line-height:1.15;
 
-    margin-bottom:16px;
-
-    color:#ffffff;
+    color:#fff;
 
 }
 
@@ -60,7 +48,9 @@
 
     color:rgba(255,255,255,.72);
 
-    margin-bottom:72px;
+    margin-top:20px;
+
+    margin-bottom:0;
 
 }
 
@@ -167,20 +157,6 @@
     display:block;
 
     margin:0 auto 40px auto;
-
-}
-
-.intro-title{
-
-    margin:0;
-
-}
-
-.intro-subtitle{
-
-    margin-top:20px;
-
-    margin-bottom:0;
 
 }
 
