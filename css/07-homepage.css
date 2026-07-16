@@ -1189,6 +1189,21 @@
     text-align: center;
 }
 
+/* Keep the Executive Intelligence cards centered in the preview window.
+   A later desktop breakpoint creates a two-column dashboard shell for the
+   legacy graph, which leaves an empty right rail when the home cards use the
+   stacked-card presentation. */
+.hero-v2 .hero-dashboard-layout {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+        "top"
+        "graph" !important;
+}
+
+.hero-v2 .hero-sidebar.home-stack-section {
+    max-width: 760px;
+}
+
 @media (max-width: 760px) {
     .home-stack-section {
         min-height: var(--home-stack-height-mobile, var(--home-stack-height, 320px));
