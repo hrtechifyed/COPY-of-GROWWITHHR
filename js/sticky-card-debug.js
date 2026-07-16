@@ -1,64 +1,104 @@
 /* ==========================================================
-   GrowWithHR sticky 3D card validation logs
+   GrowWithHR shared rolling-card initializer
 ========================================================== */
 
-document.addEventListener("DOMContentLoaded", () => {
+(() => {
     "use strict";
 
-    const stackSelector = ".home-stack-section, .gwhr-peel-stack";
-    const cardSelector = ".home-stack-card, .gwhr-peel-card";
-    const stacks = Array.from(document.querySelectorAll(stackSelector));
-    const supportsViewTimeline = CSS.supports("animation-timeline: view()");
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const groupSelectors = [
+        ".home-stack-section",
+        ".gwhr-peel-stack",
+        ".trust-grid",
+        ".how-grid",
+        ".carousel-track",
+        ".executive-card-grid",
+        ".summary-cards",
+        ".metrics-grid",
+        ".services-grid",
+        ".features-grid",
+        ".benefits-grid",
+        ".process-grid",
+        ".update-grid"
+    ];
 
-    console.groupCollapsed("[GrowWithHR] 3D sticky card animation validation");
-    console.log("Stacks found:", stacks.length);
-    console.log("Supports scroll-driven view timeline:", supportsViewTimeline);
-    console.log("Reduced motion enabled:", reducedMotion);
+    const cardSelectors = [
+        ".home-stack-card",
+        ".gwhr-peel-card",
+        ".workspace-card",
+        ".how-card",
+        ".capability-slide",
+        ".trust-card",
+        ".exec-card",
+        ".executive-card",
+        ".summary-card",
+        ".metric-card",
+        ".service-card",
+        ".feature-card",
+        ".benefit-card",
+        ".process-card",
+        ".info-card",
+        ".update-card",
+        ".rule-card",
+        ".expansion-card",
+        ".comparison-card"
+    ];
 
-    const executiveStack = document.querySelector("[data-testid='home-executive-stack']");
+    const excluded = [
+        "form",
+        ".exec-conversation-container",
+        ".exec-review-card",
+        ".exec-modal-card",
+        ".modal",
+        ".modal-footer",
+        ".navbar",
+        "footer",
+        ".report-page",
+        ".print-page",
+        "table"
+    ];
 
-    if (executiveStack) {
-        const executiveLayout = executiveStack.closest(".hero-dashboard-layout");
-        const executiveStackStyle = window.getComputedStyle(executiveStack);
-        const executiveLayoutStyle = executiveLayout
-            ? window.getComputedStyle(executiveLayout)
-            : null;
+    const groupSelector = groupSelectors.join(",");
+    const cardSelector = cardSelectors.join(",");
+    const isExcluded = (element) => excluded.some((selector) => element.closest(selector));
 
-        console.log("Executive Intelligence centered stack active", {
-            cards: executiveStack.querySelectorAll(".home-stack-card").length,
-            gridTemplateColumns: executiveLayoutStyle
-                ? executiveLayoutStyle.gridTemplateColumns
-                : "layout not found",
-            justifyContent: executiveStackStyle.justifyContent,
-            maxWidth: executiveStackStyle.maxWidth
+    function applyRollingCards(root = document) {
+        root.querySelectorAll(groupSelector).forEach((group) => {
+            if (isExcluded(group)) return;
+
+            const cards = Array.from(group.children).filter((child) =>
+                child.matches(cardSelector) && !isExcluded(child)
+            );
+
+            if (cards.length < 2) return;
+
+            group.classList.add("rolling-card-group");
+            group.style.setProperty("--rolling-card-count", String(cards.length));
+
+            cards.forEach((card, index) => {
+                card.classList.add("rolling-card");
+                card.style.setProperty("--rolling-card-index", String(index));
+            });
         });
     }
 
-    stacks.forEach((stack, stackIndex) => {
-        const cards = Array.from(stack.querySelectorAll(cardSelector));
-        const stackStyle = window.getComputedStyle(stack);
+    function initRollingCards() {
+        applyRollingCards();
 
-        console.log(`Stack ${stackIndex + 1}`, {
-            testId: stack.dataset.testid || null,
-            cards: cards.length,
-            perspective: stackStyle.perspective,
-            overflow: stackStyle.overflow,
-            contain: stackStyle.contain
-        });
-
-        cards.forEach((card, cardIndex) => {
-            const cardStyle = window.getComputedStyle(card);
-            console.log(`Stack ${stackIndex + 1} card ${cardIndex + 1}`, {
-                position: cardStyle.position,
-                top: cardStyle.top,
-                transform: cardStyle.transform,
-                animationName: cardStyle.animationName,
-                animationTimeline: cardStyle.animationTimeline || "not reported",
-                zIndex: cardStyle.zIndex
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                mutation.addedNodes.forEach((node) => {
+                    if (node.nodeType !== Node.ELEMENT_NODE) return;
+                    applyRollingCards(node.matches(groupSelector) ? node.parentElement || document : node);
+                });
             });
         });
-    });
 
-    console.groupEnd();
-});
+        observer.observe(document.body, { childList: true, subtree: true });
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initRollingCards, { once: true });
+    } else {
+        initRollingCards();
+    }
+})();
