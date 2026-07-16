@@ -1453,3 +1453,64 @@
         width: 100%;
     }
 }
+
+/* v0.16 scoped assessment typography and shared Advisory stage alignment */
+.exec-page,
+.exec-page button,
+.exec-page input,
+.exec-page select,
+.exec-page textarea,
+.exec-question-category,
+#questionTitle,
+.exec-coach-context,
+.exec-question-text,
+.exec-question-explanation,
+.exec-question-response,
+.exec-question-response :where(label, button, input, select, textarea),
+.exec-validation-message,
+.exec-footer-message {
+    font-family: "Inter","Segoe UI",sans-serif;
+}
+
+.exec-question-category,
+.exec-coach-intro-card span {
+    font-weight: 800;
+}
+
+#questionTitle,
+.exec-question-text,
+.exec-question-response :where(label, .exec-option-label) {
+    font-weight: 700;
+}
+
+.exec-question-response :where(button, input, select, textarea),
+.exec-validation-message,
+.exec-footer-message {
+    font-weight: 500;
+}
+
+.exec-conversation-container {
+    width: 100%;
+    min-height: 0;
+}
+
+.exec-conversation-container.is-replacing .exec-coach-intro-card {
+    animation: execCoachFadeOut .28s ease forwards;
+}
+
+.exec-conversation-card,
+.exec-coach-intro-card {
+    width: 100%;
+    margin-inline: auto;
+}
+
+@keyframes execCoachFadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+}
