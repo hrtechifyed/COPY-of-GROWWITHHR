@@ -1204,13 +1204,21 @@ showScreen(screen, stateName = "assessment") {
     this.nextButton.innerHTML =
         `Continue <i class="fa-solid fa-arrow-right"></i>`;
 
-    requestAnimationFrame(() => {
+    if (this.conversationContainer) {
+        this.conversationContainer.classList.add("is-replacing");
+    }
+
+    window.setTimeout(() => {
+
+        if (this.conversationContainer) {
+            this.conversationContainer.classList.remove("is-replacing");
+        }
 
         this.refreshUI();
 
         this.renderCurrentQuestion();
 
-    });
+    }, 300);
 
     return;
 
