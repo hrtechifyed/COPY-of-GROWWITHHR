@@ -35,6 +35,8 @@ class ExecutiveAssessment {
 
         this.onWelcome = false;
 
+        this.reportStage = "review";
+
 
         /* ==========================================
            STEP DEFINITIONS
@@ -1043,7 +1045,7 @@ showScreen(screen) {
             "";
 
         card.getElementById("questionExplanation").textContent =
-            question.helper;
+            "";
 
         const responseContainer =
             card.getElementById("questionResponse");
@@ -1399,8 +1401,15 @@ showScreen(screen) {
          
            this.reviewContainer.innerHTML = "";
 
-           this.renderContactCapture();
-         
+           this.reportStage = "review";
+
+           if (this.generateButton) {
+
+               this.generateButton.innerHTML =
+                   `Generate Advisory <i class="fa-solid fa-wand-magic-sparkles"></i>`;
+
+           }
+
            this.conversationContainer.innerHTML = "";
 
            this.questionBank.forEach(step => {
@@ -1473,14 +1482,152 @@ showScreen(screen) {
 
     generateReport() {
 
-        if (!this.saveContactCapture()) {
+        if (this.reportStage === "name") {
+            this.showEmailCapture();
             return;
         }
 
-        this.showScreen(this.loadingScreen);
+        if (this.reportStage === "email") {
+            this.showInputPreview();
+            return;
+        }
 
-        this.runLoadingSequence();
+        if (this.reportStage === "preview") {
+            this.downloadReport();
+            return;
+        }
 
+        this.showNameCapture();
+
+    }
+
+    showNameCapture() {
+        this.showScreen(this.reviewScreen);
+        this.reviewContainer.innerHTML = `
+            <div class="exec-review-item exec-contact-step">
+                <h3>Who should this advisory be prepared for?</h3>
+                <p>Enter the recipient name to personalise the advisory preview.</p>
+                <input id="recipientName" class="exec-input" type="text" placeholder="Full name" value="${this.responses.recipientName || ''}" required>
+            </div>`;
+        document.querySelector(".exec-review-card > h2").textContent = "Recipient name";
+        document.querySelector(".exec-review-intro").textContent = "This keeps the report clearly addressed to the right leader or founder.";
+        this.generateButton.innerHTML = `Continue <i class="fa-solid fa-arrow-right"></i>`;
+        this.reportStage = "name";
+    }
+
+    showEmailCapture() {
+        const name = document.getElementById("recipientName");
+        if (!name || !name.value.trim()) {
+            alert("Please enter your name before continuing.");
+            if (name) name.focus();
+            return;
+        }
+        this.responses.recipientName = name.value.trim();
+        this.reviewContainer.innerHTML = `
+            <div class="exec-review-item exec-contact-step">
+                <h3>Where should the advisory reference be sent?</h3>
+                <p>Enter the recipient email address for the report record.</p>
+                <input id="recipientEmail" class="exec-input" type="email" placeholder="Email address" value="${this.responses.recipientEmail || ''}" required>
+            </div>`;
+        document.querySelector(".exec-review-card > h2").textContent = "Recipient email";
+        document.querySelector(".exec-review-intro").textContent = "We use this only to label the downloadable advisory preview in this experience.";
+        this.generateButton.innerHTML = `Preview Advisory <i class="fa-solid fa-eye"></i>`;
+        this.reportStage = "email";
+    }
+
+    showInputPreview() {
+        const email = document.getElementById("recipientEmail");
+        if (!email || !/^\S+@\S+\.\S+$/.test(email.value.trim())) {
+            alert("Please enter a valid email address before continuing.");
+            if (email) email.focus();
+            return;
+        }
+        this.responses.recipientEmail = email.value.trim();
+        this.autoSave();
+        this.showScreen(this.reviewScreen);
+        document.querySelector(".exec-review-card > h2").textContent = "Input preview";
+        document.querySelector(".exec-review-intro").textContent = "Review the captured inputs below. Download your HRTechify-branded illustrative advisory when ready.";
+        this.reviewContainer.innerHTML = "";
+        this.questionBank.forEach(step => {
+            const section = document.createElement("div");
+            section.className = "exec-review-item";
+            section.innerHTML = `<h3>${step.title}</h3>`;
+            step.questions.forEach(question => {
+                const row = document.createElement("p");
+                row.innerHTML = `<strong>${question.label}</strong><br>${this.responses[question.id] || "Not Answered"}`;
+                section.appendChild(row);
+            });
+            this.reviewContainer.appendChild(section);
+        });
+        this.generateButton.innerHTML = `Download Report <i class="fa-solid fa-download"></i>`;
+        this.reportStage = "preview";
+    }
+
+    downloadReport() {
+        const pdf = this.buildDownloadablePdf();
+        const blob = new Blob([pdf], { type: "application/pdf" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "HRTechify-GrowWithHR-illustrative-advisory.pdf";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+    }
+
+    escapePdfText(value) {
+        return String(value || "")
+            .replace(/\\/g, "\\\\")
+            .replace(/\(/g, "\\(")
+            .replace(/\)/g, "\\)")
+            .replace(/[\r\n]+/g, " ");
+    }
+
+    buildDownloadablePdf() {
+        const lines = [
+            "HRTechify | GrowWithHR",
+            "Illustrative Executive Advisory",
+            `Prepared for ${this.responses.recipientName || "Recipient"}`,
+            `Email: ${this.responses.recipientEmail || "email not provided"}`,
+            "Brand palette: deep navy page, cyan highlights, white report text.",
+            "",
+            ...Object.entries(this.responses).map(([key, value]) => `${key}: ${value}`)
+        ].slice(0, 28);
+
+        const textCommands = lines
+            .map((line, index) => `BT /F1 11 Tf 56 ${690 - (index * 18)} Td (${this.escapePdfText(line)}) Tj ET`)
+            .join("\n");
+
+        const stream = [
+            "0.02 0.07 0.12 rg 0 0 612 792 re f",
+            "0.08 0.45 0.62 rg 40 40 532 712 re f",
+            "1 1 1 rg",
+            textCommands
+        ].join("\n");
+
+        const objects = [
+            "1 0 obj << /Type /Catalog /Pages 2 0 R >> endobj",
+            "2 0 obj << /Type /Pages /Kids [3 0 R] /Count 1 >> endobj",
+            "3 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >> endobj",
+            "4 0 obj << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> endobj",
+            `5 0 obj << /Length ${stream.length} >> stream\n${stream}\nendstream endobj`
+        ];
+
+        let pdf = "%PDF-1.4\n";
+        const offsets = [0];
+        objects.forEach(object => {
+            offsets.push(pdf.length);
+            pdf += `${object}\n`;
+        });
+
+        const xrefOffset = pdf.length;
+        pdf += `xref\n0 ${objects.length + 1}\n0000000000 65535 f \n`;
+        offsets.slice(1).forEach(offset => {
+            pdf += `${String(offset).padStart(10, "0")} 00000 n \n`;
+        });
+        pdf += `trailer << /Size ${objects.length + 1} /Root 1 0 R >>\nstartxref\n${xrefOffset}\n%%EOF`;
+        return pdf;
     }
 
 
@@ -1665,7 +1812,7 @@ openReport() {
 
             this.renderCurrentQuestion();
 
-        }, 1800);
+        }, 3200);
 
         return;
 
@@ -1700,11 +1847,6 @@ showStepIntroduction() {
         if (this.coachSection) {
             this.coachSection.hidden = true;
         }
-
-        this.renderSegmentTransitionCard(
-            this.steps[this.currentStep],
-            introductions[this.currentStep - 1]
-        );
 
         this.renderSegmentTransitionCard(
             this.steps[this.currentStep],
