@@ -906,3 +906,56 @@
         filter: none !important;
     }
 }
+
+/* v0.14 Advisory approved content timing and single-card transitions */
+.intro-screen > .intro-scene.active,
+.intro-screen > .intro-card.active {
+    animation: none;
+}
+
+.exec-intro :where(.intro-scene, .intro-card, .intro-transition-scene) {
+    width: min(100%, 560px);
+    min-height: clamp(260px, 42dvh, 360px);
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    gap: 16px;
+    text-align: center;
+}
+
+.exec-intro .intro-card {
+    width: min(100%, 560px);
+    min-height: clamp(320px, 48dvh, 380px);
+}
+
+body .exec-intro :where(.intro-scene.is-active, .intro-card.is-active, .intro-transition-scene.is-active, .coach-card.is-active) {
+    animation: advisorySingleCardIn .55s cubic-bezier(.2,.8,.2,1) both;
+}
+
+body .exec-intro :where(.intro-scene.is-behind, .intro-card.is-behind, .intro-transition-scene.is-behind, .coach-card.is-behind) {
+    display: none !important;
+    opacity: 0;
+    filter: none;
+    transform: none;
+}
+
+@keyframes advisorySingleCardIn {
+    from { opacity: 0; filter: blur(0); transform: translate3d(0, 22px, 0) scale(.98); }
+    to { opacity: 1; filter: blur(0); transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@media (max-width: 640px) {
+    .exec-intro :where(.intro-scene, .intro-card, .intro-transition-scene) {
+        width: min(100%, calc(100vw - 28px));
+        min-height: 300px;
+        padding: 22px 16px;
+    }
+
+    .exec-intro .intro-card {
+        min-height: 340px;
+    }
+
+    .exec-intro :where(.intro-scene h2, .intro-card h2, .intro-transition-scene h2) {
+        font-size: clamp(1.35rem, 7vw, 1.9rem);
+    }
+}
