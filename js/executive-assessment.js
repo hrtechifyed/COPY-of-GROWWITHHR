@@ -1491,6 +1491,39 @@ showScreen(screen) {
             this.showInputPreview();
             return;
         }
+        this.responses.recipientEmail = email.value.trim();
+        this.autoSave();
+        this.showScreen(this.reviewScreen);
+        document.querySelector(".exec-review-card > h2").textContent = "Input preview";
+        document.querySelector(".exec-review-intro").textContent = "Review the captured inputs below. Download your HRTechify-branded illustrative advisory when ready.";
+        this.reviewContainer.innerHTML = "";
+        this.questionBank.forEach(step => {
+            const section = document.createElement("div");
+            section.className = "exec-review-item";
+            section.innerHTML = `<h3>${step.title}</h3>`;
+            step.questions.forEach(question => {
+                const row = document.createElement("p");
+                row.innerHTML = `<strong>${question.label}</strong><br>${this.responses[question.id] || "Not Answered"}`;
+                section.appendChild(row);
+            });
+            this.reviewContainer.appendChild(section);
+        });
+        this.generateButton.innerHTML = `Download Report <i class="fa-solid fa-download"></i>`;
+        this.reportStage = "preview";
+    }
+
+    downloadReport() {
+        const pdf = this.buildDownloadablePdf();
+        const blob = new Blob([pdf], { type: "application/pdf" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "HRTechify-GrowWithHR-illustrative-advisory.pdf";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+    }
 
         if (this.reportStage === "preview") {
             this.downloadReport();
@@ -1499,6 +1532,13 @@ showScreen(screen) {
 
         this.showNameCapture();
 
+        const xrefOffset = pdf.length;
+        pdf += `xref\n0 ${objects.length + 1}\n0000000000 65535 f \n`;
+        offsets.slice(1).forEach(offset => {
+            pdf += `${String(offset).padStart(10, "0")} 00000 n \n`;
+        });
+        pdf += `trailer << /Size ${objects.length + 1} /Root 1 0 R >>\nstartxref\n${xrefOffset}\n%%EOF`;
+        return pdf;
     }
 
     showNameCapture() {
@@ -1564,70 +1604,21 @@ showScreen(screen) {
     }
 
     downloadReport() {
-        const pdf = this.buildDownloadablePdf();
-        const blob = new Blob([pdf], { type: "application/pdf" });
+        const html = this.buildDownloadableReport();
+        const blob = new Blob([html], { type: "text/html" });
         const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
         link.href = url;
-        link.download = "HRTechify-GrowWithHR-illustrative-advisory.pdf";
+        link.download = "HRTechify-GrowWithHR-illustrative-advisory.html";
         document.body.appendChild(link);
         link.click();
         link.remove();
         URL.revokeObjectURL(url);
     }
 
-    escapePdfText(value) {
-        return String(value || "")
-            .replace(/\\/g, "\\\\")
-            .replace(/\(/g, "\\(")
-            .replace(/\)/g, "\\)")
-            .replace(/[\r\n]+/g, " ");
-    }
-
-    buildDownloadablePdf() {
-        const lines = [
-            "HRTechify | GrowWithHR",
-            "Illustrative Executive Advisory",
-            `Prepared for ${this.responses.recipientName || "Recipient"}`,
-            `Email: ${this.responses.recipientEmail || "email not provided"}`,
-            "Brand palette: deep navy page, cyan highlights, white report text.",
-            "",
-            ...Object.entries(this.responses).map(([key, value]) => `${key}: ${value}`)
-        ].slice(0, 28);
-
-        const textCommands = lines
-            .map((line, index) => `BT /F1 11 Tf 56 ${690 - (index * 18)} Td (${this.escapePdfText(line)}) Tj ET`)
-            .join("\n");
-
-        const stream = [
-            "0.02 0.07 0.12 rg 0 0 612 792 re f",
-            "0.08 0.45 0.62 rg 40 40 532 712 re f",
-            "1 1 1 rg",
-            textCommands
-        ].join("\n");
-
-        const objects = [
-            "1 0 obj << /Type /Catalog /Pages 2 0 R >> endobj",
-            "2 0 obj << /Type /Pages /Kids [3 0 R] /Count 1 >> endobj",
-            "3 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >> endobj",
-            "4 0 obj << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> endobj",
-            `5 0 obj << /Length ${stream.length} >> stream\n${stream}\nendstream endobj`
-        ];
-
-        let pdf = "%PDF-1.4\n";
-        const offsets = [0];
-        objects.forEach(object => {
-            offsets.push(pdf.length);
-            pdf += `${object}\n`;
-        });
-
-        const xrefOffset = pdf.length;
-        pdf += `xref\n0 ${objects.length + 1}\n0000000000 65535 f \n`;
-        offsets.slice(1).forEach(offset => {
-            pdf += `${String(offset).padStart(10, "0")} 00000 n \n`;
-        });
-        pdf += `trailer << /Size ${objects.length + 1} /Root 1 0 R >>\nstartxref\n${xrefOffset}\n%%EOF`;
-        return pdf;
+    buildDownloadableReport() {
+        const rows = Object.entries(this.responses).map(([key, value]) => `<tr><th>${key}</th><td>${value}</td></tr>`).join("");
+        return `<!doctype html><html><head><meta charset="utf-8"><title>HRTechify GrowWithHR Advisory</title><style>body{margin:0;font-family:Inter,Arial,sans-serif;background:#07111f;color:#eaf4ff}.page{max-width:980px;margin:0 auto;padding:48px}.brand{display:flex;align-items:center;gap:14px;color:#7dd3fc}.card{background:linear-gradient(135deg,rgba(14,165,233,.18),rgba(20,184,166,.12));border:1px solid rgba(125,211,252,.28);border-radius:28px;padding:32px}h1{color:#fff}table{width:100%;border-collapse:collapse;margin-top:24px}th,td{padding:14px;border-bottom:1px solid rgba(255,255,255,.14);text-align:left}th{color:#7dd3fc;text-transform:capitalize}</style></head><body><main class="page"><section class="card"><div class="brand"><strong>HRTechify</strong><span>GrowWithHR</span></div><h1>Illustrative Executive Advisory</h1><p>Prepared for ${this.responses.recipientName || "Recipient"} (${this.responses.recipientEmail || "email not provided"}). This sample uses HRTechify branding, page colour and font colours for preview purposes.</p><table>${rows}</table></section></main></body></html>`;
     }
 
 
