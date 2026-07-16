@@ -30,19 +30,19 @@ document.addEventListener("DOMContentLoaded", () => {
         hero: 250,
         scene: 220,
         card: 220,
-        transition: 120,
+        transition: 0,
         welcome: 220
     } : prefersReducedMotion.matches ? {
         hero: 700,
         scene: 800,
         card: 800,
-        transition: 120,
+        transition: 0,
         welcome: 900
     } : {
         hero: 2000,
         scene: 2700,
         card: 2700,
-        transition: 650,
+        transition: 0,
         welcome: 1750
     };
 
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
         { advisoryState: "brand", section: "hero", item: sections.hero, duration: TIMING.hero },
         ...messageScenes.map((item, index) => ({ advisoryState: "story", section: "messages", item, duration: TIMING.scene, index })),
         ...briefingCards.map((item, index) => ({ advisoryState: "briefing", section: "cards", item, duration: TIMING.card, index })),
-        { advisoryState: "invitation", section: "transition", item: transitionScenes[0], duration: Infinity }
+        { advisoryState: "invitation", section: "transition", item: transitionScenes[0], duration: e2eMode ? 220 : 1600 }
     ].filter(step => step.item);
 
     function clearTimers() {
@@ -127,10 +127,8 @@ document.addEventListener("DOMContentLoaded", () => {
             previous.classList.remove("is-active", "is-entering", "active");
             previous.classList.add("is-behind");
             setHidden(previous, false);
-            state.transitionTimer = setTimeout(() => {
-                previous.classList.remove("is-behind", "is-leaving");
-                setHidden(previous, true);
-            }, TIMING.transition);
+            previous.classList.remove("is-behind", "is-leaving");
+            setHidden(previous, true);
         }
 
         nextItem.hidden = false;
@@ -158,8 +156,10 @@ document.addEventListener("DOMContentLoaded", () => {
         setActionsVisible(step.advisoryState === "invitation");
 
         if (step.advisoryState === "invitation") {
-            state.running = false;
-            if (beginButton) beginButton.focus({ preventScroll: true });
+            state.timer = setTimeout(() => {
+                if (!state.running) return;
+                beginAssessment();
+            }, step.duration);
             return;
         }
 
@@ -184,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
         clearTimers();
         resetItems();
         state.index = steps.length - 1;
-        state.running = false;
+        state.running = true;
         state.paused = false;
         const finalStep = steps[state.index];
         if (!finalStep) return;

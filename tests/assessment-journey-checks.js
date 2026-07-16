@@ -42,10 +42,10 @@ includes(homeCss, '@media (max-width: 760px)', 'Mobile homepage breakpoint must 
 
 // Executive advisory intro.
 ordered(analyze, ['id="introHero"', 'id="introMessages"', 'id="introCards"', 'id="coachIntroduction"', 'id="conversationWorkspace"'], 'Intro journey');
-assert(!analyze.includes('Every decision shapes its future.'), 'Scene 1 second statement should be removed.');
-assert(!analyze.includes('<span>Structure</span><span>People</span><span>Responsibilities</span>'), 'Scene 2 second statement keywords should be removed.');
-assert(!analyze.includes('They prepare.</p>'), 'Scene 3 second statement should be removed.');
-includes(introCss, 'introStackCardExit', 'Intro scenes/cards must use stacked card exit animation.');
+includes(analyze, 'Every decision shapes its future.', 'Scene 1 second statement must match approved content.');
+includes(analyze, '<span>Structure</span><span>People</span><span>Responsibilities</span>', 'Scene 2 keywords must match approved content.');
+includes(analyze, 'They prepare.</p>', 'Scene 3 second statement must match approved content.');
+includes(introCss, 'advisorySingleCardIn', 'Intro scenes/cards must use single-card advisory transition animation.');
 includes(introJs, 'skipIntroduction', 'Skip button journey must be wired.');
 includes(introJs, 'beginTarget.scrollIntoView', 'Skip must take users to Begin Assessment.');
 
