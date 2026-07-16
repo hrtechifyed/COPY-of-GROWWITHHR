@@ -960,3 +960,27 @@
     .capability-slide{flex:0 0 calc(100vw - 40px);width:calc(100vw - 40px);max-width:calc(100vw - 40px);min-height:280px;padding:24px 20px;border-radius:22px;scroll-snap-align:center;}
     .capability-icon{width:58px;height:58px;font-size:1.45rem;border-radius:18px;}
 }
+
+/* v0.12.3 More/info and official-source interaction fixes */
+.official-resources-page .hero-actions { display: none; }
+.official-resources-page .hero-sidebar .workspace-card {
+    transform-style: preserve-3d;
+    transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+}
+.official-resources-page .hero-sidebar .workspace-card:hover {
+    transform: perspective(900px) rotateX(7deg) rotateY(-7deg) translateY(-8px) scale(1.025);
+    border-color: rgba(247,166,0,.55);
+    box-shadow: 0 30px 80px rgba(0,0,0,.34), 0 18px 36px rgba(247,166,0,.16);
+}
+.more-info-page .compact-hero { padding-top: 112px; padding-bottom: 32px; min-height: 0; }
+.more-info-page .compact-hero h1 { font-size: clamp(1.8rem, 4vw, 3rem); }
+.more-info-page .compact-hero .hero-description { font-size: clamp(.92rem, 1.4vw, 1.05rem); }
+.more-info-page .trust-section.compact-section { padding-top: 34px; }
+.more-info-page .primary-btn { color: #000 !important; }
+@media (max-width:767px){
+    .more-info-page .compact-hero { padding-top: 92px; padding-bottom: 20px; }
+    .more-info-page .trust-section.compact-section { padding-top: 24px; }
+    .capability-carousel { overflow: visible; }
+    .carousel-track { overflow-x: auto !important; }
+    .capability-slide { flex-basis: min(82vw, 320px); width: min(82vw, 320px); max-width: min(82vw, 320px); }
+}
