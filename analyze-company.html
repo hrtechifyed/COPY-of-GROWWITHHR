@@ -104,9 +104,10 @@
 
           <!-- ==========================================================
      LANDING SCREEN
-     (Kept intentionally light — just the entry point.
-     Everything else is delivered by Coach HRTechify
-     once the conversation begins.)
+     One story stage only. Hero is Scene 0. Every scene after
+     it (story beats, briefing cards, coach + Begin button) is
+     rendered into #storyStage by js/intro-sequence.js — there
+     is no other markup here for the JS to switch between.
 ========================================================== -->
 
 <section
@@ -115,316 +116,48 @@
 
     <div class="exec-intro">
 
-    <button
-        id="skipIntro"
-        class="intro-skip-btn">
-
-        Skip Introduction →
-
-    </button>
-
-        <!-- STORY STAGE -->
-
-<div class="intro-stage" aria-live="polite">
-
-<div class="intro-header">
-
-<section
-    id="introHero"
-    class="intro-hero"
-    aria-label="Executive Advisory Intelligence">
-
-    <img
-        src="assets/hrtechify-logo.png"
-        alt="HRTechify"
-        class="intro-logo">
-
-    <h1 class="intro-title">
-
-        Executive Advisory Intelligence
-
-    </h1>
-
-    <p class="intro-subtitle">
-
-        Powered by HRTechify
-
-    </p>
-
-</section>
-
-</div>
-
-<div class="intro-stage" aria-live="polite">
-
-       <!-- ==========================================================
-     INTRO MESSAGE SCENES
-========================================================== -->
-
-<section
-    id="introMessages"
-    class="intro-screen">
-
-    <article
-        class="intro-scene active"
-        data-scene="1">
-
-        <h2>
-
-            Every organisation has a story.
-
-        </h2>
-
-    </article>
-
-    <article
-        class="intro-scene"
-        data-scene="2">
-
-        <h2>
-
-            Every stage of growth brings new responsibilities.
-
-        </h2>
-
-    </article>
-
-    <article
-        class="intro-scene"
-        data-scene="3">
-
-        <h2>
-
-            The decisions you make about people today shape the organisation you become tomorrow.
-
-        </h2>
-
-    </article>
-
-</section>
-   
-<!-- ==========================================================
-     EXECUTIVE BRIEFING CARDS
-========================================================== -->
-
-<section
-    id="introCards"
-    class="intro-screen">
-
-    <!-- CARD 1 -->
-
-    <article
-        class="intro-card active"
-        data-card="1">
-
-        <div class="intro-card-icon">🧬</div>
-
-        <h2>Company DNA</h2>
-
-        <p>
-
-            We begin by understanding what makes your organisation distinct.
-
-        </p>
-
-        <span>
-
-            Industry • Size • Structure • Operating Model
-
-        </span>
-
-    </article>
-
-    <!-- CARD 2 -->
-
-    <article
-        class="intro-card"
-        data-card="2">
-
-        <div class="intro-card-icon">📈</div>
-
-        <h2>Growth Stage</h2>
-
-        <p>
-
-            Every stage of growth introduces new people, compliance and leadership responsibilities.
-
-        </p>
-
-        <span>
-
-            Startup • Scaling • Established • Expanding
-
-        </span>
-
-    </article>
-
-    <!-- CARD 3 -->
-
-    <article
-        class="intro-card"
-        data-card="3">
-
-        <div class="intro-card-icon">🏢</div>
-
-        <h2>Organisation Story</h2>
-
-        <p>
-
-            Your answers help Coach HRTechify prepare recommendations that fit your organisation, not generic best practices.
-
-        </p>
-
-        <span>
-
-            Context • Responsibilities • Next Actions
-
-        </span>
-
-    </article>
-
-</section>
-
-        <!-- TRANSITION -->
-
-        <section
-            id="introTransition"
-            class="intro-screen">
-
-            <div
-                id="transitionMessage"
-                class="intro-message">
-
-            </div>
-
-        </section>
-
-        <!-- COACH -->
-
-<!-- ==========================================================
-     COACH INTRODUCTION
-========================================================== -->
-
-<section
-    id="coachIntroduction"
-    class="intro-screen">
-
-    <div class="coach-card">
-
-        <div class="coach-avatar">
-
-            <div class="coach-avatar-circle">
-
-                GH
-
-            </div>
-
-        </div>
-
-        <div class="coach-dialogue">
-
-            <div
-                id="coachTyping"
-                class="coach-typing">
-
-                ● ● ●
-
-            </div>
-
-            <div
-                id="coachMessageContainer">
-
-                <p class="coach-line active">
-
-                    Hello.
-
-                </p>
-
-                <p class="coach-line">
-
-                    I'm Coach HRTechify.
-
-                </p>
-
-                <p class="coach-line">
-
-                    Thank you for taking the time to meet with us.
-
-                </p>
-
-                <p class="coach-line">
-
-                    Before we provide recommendations, we would like to understand your organisation.
-
-                </p>
-
-                <p class="coach-line">
-
-                    Let's talk about your business...
-
-                </p>
-
-                <p class="coach-line">
-
-                    your people...
-
-                </p>
-
-                <p class="coach-line">
-
-                    your organzation's growth stage...
-
-                </p>
-
-                <p class="coach-line">
-
-                    and the responsibilities that come with it.
-
-                </p>
-
-                <p class="coach-line">
-
-                    Every response will help us prepare recommendations that are specific to your organisation—not generic best practices.
-
-                </p>
-
-                <p class="coach-line">
-
-                    When you're ready...
-
-                </p>
-
-                <p class="coach-line">
-
-                    let's begin.
-
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <div id="introActions" class="intro-actions" aria-hidden="true">
         <button
-            id="startAssessment"
-            type="button"
-            class="exec-primary-btn intro-begin-btn">
-            Begin Assessment
+            id="skipIntro"
+            class="intro-skip-btn">
+
+            Skip Introduction →
+
         </button>
+
+        <div
+            id="storyStage"
+            aria-live="polite">
+
+            <section
+                id="introHero"
+                class="intro-hero"
+                aria-label="Executive Advisory Intelligence">
+
+                <img
+                    src="assets/hrtechify-logo.png"
+                    alt="HRTechify"
+                    class="intro-logo">
+
+                <h1 class="intro-title">
+
+                    Executive Advisory Intelligence
+
+                </h1>
+
+                <p class="intro-subtitle">
+
+                    Powered by HRTechify
+
+                </p>
+
+            </section>
+
+        </div>
+
     </div>
 
 </section>
 
-        </div>
-
-        </div>
-
-    </div>
-
-</section>
-            
 
 <!-- ==========================================================
      CONVERSATION WORKSPACE
