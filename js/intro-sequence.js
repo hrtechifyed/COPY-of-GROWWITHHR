@@ -254,7 +254,18 @@ document.addEventListener("DOMContentLoaded", () => {
         state.skipped = true;
         clearTimer();
         stopTimeline();
-        startAssessment();
+        showSection("coach");
+        activate(coachLines, Math.max(0, coachLines.length - 1));
+        completeIntro();
+
+        const beginTarget = beginButton || introActions;
+        if (beginTarget && typeof beginTarget.scrollIntoView === "function") {
+            beginTarget.scrollIntoView({ block: "center", inline: "center" });
+        }
+
+        if (beginButton && typeof beginButton.focus === "function") {
+            beginButton.focus({ preventScroll: true });
+        }
     }
 
     if (skipButton) skipButton.addEventListener("click", skipIntroduction);
