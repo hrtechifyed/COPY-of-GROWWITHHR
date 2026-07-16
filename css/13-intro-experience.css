@@ -567,6 +567,7 @@
         animation: none;
         transition: none;
     }
+}
 
 .intro-transition-scene {
     display: none;
@@ -632,4 +633,74 @@
     margin: 10px 0 0;
     color: rgba(255,255,255,.68);
     font-size: .9rem;
+}
+
+/* v0.12.3 UX correction pass */
+:root { --hrtechify-orange: #f7a600; --hrtechify-deep: #070a12; }
+
+.intro-scene,
+.intro-card,
+.intro-message,
+.coach-card,
+.intro-transition-scene {
+    background:
+        radial-gradient(circle at 18% 12%, rgba(247, 166, 0, .30), transparent 34%),
+        linear-gradient(145deg, rgba(247, 166, 0, .18), rgba(7, 10, 18, .92) 46%, rgba(247, 92, 0, .16));
+    border-color: rgba(247, 166, 0, .46);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, .34), 0 0 34px rgba(247, 166, 0, .14);
+}
+
+.intro-card h2,
+.intro-card p,
+.intro-card span,
+.intro-keywords span,
+.intro-stage-label {
+    font-family: "Brush Script MT", "Segoe Script", "Lucida Handwriting", cursive;
+    font-weight: 400 !important;
+}
+
+.intro-card :where(h2) { font-size: clamp(1.55rem, 3vw, 2.35rem); }
+.intro-card :where(p) { font-size: clamp(.88rem, 1.35vw, 1.02rem); }
+.intro-card span,
+.intro-keywords span,
+.intro-stage-label { font-size: clamp(.76rem, 1.1vw, .88rem); }
+
+.intro-actions.is-visible:is(.intro-actions) {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 8;
+    margin-top: clamp(90px, 16vh, 132px);
+    transform: translate(-50%, -50%);
+}
+
+.official-resources-page .hero-sidebar .workspace-card {
+    transform-style: preserve-3d;
+    transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+}
+.official-resources-page .hero-sidebar .workspace-card:hover {
+    transform: perspective(900px) rotateX(7deg) rotateY(-7deg) translateY(-8px) scale(1.025);
+    border-color: rgba(247, 166, 0, .55);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, .34), 0 18px 36px rgba(247, 166, 0, .16);
+}
+
+.more-info-page .compact-hero { padding-top: 112px; padding-bottom: 32px; min-height: 0; }
+.more-info-page .compact-hero h1 { font-size: clamp(1.8rem, 4vw, 3rem); }
+.more-info-page .compact-hero .hero-description { font-size: clamp(.92rem, 1.4vw, 1.05rem); }
+.more-info-page .trust-section.compact-section { padding-top: 34px; }
+.more-info-page .primary-btn { color: #000 !important; }
+
+@media (max-width: 767px) {
+    .exec-landing { min-height: calc(100dvh - 66px); overflow: hidden; }
+    .intro-stage { height: min(100%, 470px); }
+    .intro-card { max-width: calc(100vw - 32px); padding: 22px 16px; }
+    .intro-card h2 { font-size: clamp(1.4rem, 8vw, 1.9rem); }
+    .intro-card p { font-size: .86rem; line-height: 1.45; }
+    .intro-actions.is-visible { margin-top: 112px; width: 100%; }
+    .intro-begin-btn { width: min(100%, 280px); }
+    .capability-carousel { overflow: visible; }
+    .carousel-track { overflow-x: auto !important; padding-left: 0; padding-right: 0; }
+    .capability-slide { flex-basis: min(82vw, 320px); width: min(82vw, 320px); max-width: min(82vw, 320px); }
+    .more-info-page .compact-hero { padding-top: 92px; padding-bottom: 20px; }
+    .more-info-page .trust-section.compact-section { padding-top: 24px; }
 }
