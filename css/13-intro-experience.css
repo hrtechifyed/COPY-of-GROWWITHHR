@@ -1,54 +1,19 @@
 /* ==========================================================
-   GrowWithHR Executive Intro Experience v2.1
-   1. Fixed Intro Layout
-   2. Story Stage & Executive Cards
-   3. Coach & Begin Assessment
+   GrowWithHR Executive Intro Experience v2.0
+   1. Layout & Header
+   2. Story Stage
+   3. Coach
    4. Engine & Animations
    5. Responsive
    6. Utilities & Polish
 ========================================================== */
 
 /* ==========================================================
-   1. Fixed Intro Layout
+   1. Layout & Header
 ========================================================== */
 
 .exec-landing {
     display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    height: calc(100vh - 90px);
-    height: calc(100dvh - 90px);
-    min-height: 620px;
-    padding: clamp(20px, 4vh, 44px) 24px !important;
-    overflow: hidden;
-}
-
-.exec-intro {
-    position: relative;
-    width: min(100%, 1100px);
-    height: 100%;
-    margin: 0 auto;
-    display: grid;
-    place-items: center;
-    color: #ffffff;
-    text-align: center;
-    overflow: hidden;
-}
-
-.intro-stage {
-    position: relative;
-    width: min(100%, 900px);
-    height: min(100%, 560px);
-    display: grid;
-    grid-template-areas: "stage";
-    align-items: center;
-    justify-items: center;
-    overflow: hidden;
-}
-
-/* ==========================================================
-   2. Story Stage & Executive Cards
-========================================================== */
 
 .intro-screen {
     grid-area: stage;
@@ -79,80 +44,161 @@
     display: block;
     object-fit: contain;
     margin: 0 auto clamp(18px, 3vw, 30px);
+    align-items: stretch !important;
+    justify-content: center !important;
+    min-height: calc(100vh - 90px);
+    min-height: calc(100dvh - 90px);
+    padding: clamp(24px, 5vw, 56px) 24px !important;
+    overflow-x: hidden;
+}
+
+.exec-intro {
+    position: relative;
+    width: min(100%, 1100px);
+    min-height: calc(100vh - 180px);
+    min-height: calc(100dvh - 180px);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+.intro-header {
+    width: min(100%, 900px);
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    padding-top: clamp(8px, 2vh, 28px);
+}
+
+.intro-hero {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.intro-logo {
+    width: clamp(84px, 10vw, 120px);
+    height: clamp(84px, 10vw, 120px);
+    display: block;
+    object-fit: contain;
+    margin: 0 auto clamp(18px, 3vw, 32px);
 }
 
 .intro-title {
     max-width: 900px;
     margin: 0;
-    font-size: clamp(2.2rem, 4vw, 3.25rem);
+    font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 700;
-    line-height: 1.12;
+    line-height: 1.15;
     color: #ffffff;
 }
 
 .intro-subtitle {
     margin: 16px 0 0;
-    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    font-size: clamp(.95rem, 1.5vw, 1.15rem);
     line-height: 1.45;
     color: rgba(255, 255, 255, .72);
 }
 
-.intro-scene,
-.intro-card,
+/* ==========================================================
+   2. Story Stage
+
+.intro-stage {
+    width: min(100%, 900px);
+    flex: 1 1 auto;
+    display: grid;
+    grid-template-areas: "stage";
+    align-items: start;
+    justify-items: center;
+    padding-top: clamp(36px, 7vh, 72px);
+    padding-bottom: clamp(20px, 5vh, 48px);
+}
+
+.intro-screen {
+    grid-area: stage;
+    width: min(100%, 820px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.intro-screen.is-active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.intro-scene {
+    display: none;
+    width: min(100%, 760px);
+}
+
+.intro-scene.active {
+    display: block;
+}
+
+.intro-scene h2 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 600;
+    line-height: 1.35;
+    color: #ffffff;
+}
+
 .intro-message {
     width: min(100%, 760px);
-    padding: clamp(30px, 5vw, 52px);
-    border: 1px solid rgba(246, 176, 77, .22);
-    border-radius: 30px;
-    background:
-        linear-gradient(135deg, rgba(246, 176, 77, .09), rgba(255, 255, 255, .035) 42%),
-        rgba(255, 255, 255, .045);
-    box-shadow: 0 28px 90px rgba(0, 0, 0, .28);
-    backdrop-filter: blur(22px);
+    margin: 0;
+    font-size: clamp(1.75rem, 3.5vw, 2.8rem);
+    font-weight: 600;
+    line-height: 1.35;
+    color: #ffffff;
+}
+
+.intro-card {
+    display: none;
+    width: min(100%, 760px);
+    padding: clamp(28px, 5vw, 48px);
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 28px;
+    background: rgba(255, 255, 255, .04);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, .22);
+    backdrop-filter: blur(20px);
     text-align: center;
 }
 
-.intro-scene,
-.intro-card {
-    display: none;
-}
-
-.intro-scene.active,
 .intro-card.active {
     display: block;
 }
 
-.intro-scene h2,
-.intro-card h2 {
-    margin: 0;
-    font-size: clamp(2rem, 4vw, 3.15rem);
-    font-weight: 700;
-    line-height: 1.22;
-    color: #ffffff;
-}
-
-.intro-card h2 {
-    margin-bottom: 18px;
-}
-
 .intro-card-icon {
-    width: 62px;
-    height: 62px;
-    display: grid;
-    place-items: center;
-    margin: 0 auto 22px;
-    border: 1px solid rgba(246, 176, 77, .28);
-    border-radius: 20px;
-    background: rgba(246, 176, 77, .12);
-    font-size: 2rem;
+    margin-bottom: 22px;
+    font-size: clamp(2.1rem, 4vw, 3rem);
+}
+
+.intro-card h2 {
+    margin: 0 0 18px;
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: #ffffff;
 }
 
 .intro-card p {
     margin: 0 auto 20px;
     max-width: 620px;
     font-size: clamp(1rem, 1.8vw, 1.2rem);
-    line-height: 1.62;
-    color: rgba(255, 255, 255, .8);
+    line-height: 1.65;
+    color: rgba(255, 255, 255, .78);
 }
 
 .intro-card span {
@@ -161,24 +207,16 @@
     align-items: center;
     justify-content: center;
     padding: 10px 18px;
-    border: 1px solid rgba(246, 176, 77, .22);
+    border: 1px solid rgba(255, 255, 255, .09);
     border-radius: 999px;
-    background: rgba(246, 176, 77, .09);
-    color: rgba(255, 255, 255, .72);
+    background: rgba(255, 255, 255, .06);
+    color: rgba(255, 255, 255, .68);
     font-size: .9rem;
     line-height: 1.4;
 }
 
-.intro-message {
-    margin: 0;
-    font-size: clamp(1.8rem, 3.5vw, 2.7rem);
-    font-weight: 700;
-    line-height: 1.28;
-    color: #ffffff;
-}
-
 /* ==========================================================
-   3. Coach & Begin Assessment
+   3. Coach
 ========================================================== */
 
 .coach-card {
@@ -188,12 +226,10 @@
     gap: 24px;
     align-items: flex-start;
     padding: clamp(26px, 4vw, 42px);
-    border: 1px solid rgba(246, 176, 77, .22);
+    border: 1px solid rgba(255, 255, 255, .08);
     border-radius: 30px;
-    background:
-        linear-gradient(135deg, rgba(246, 176, 77, .08), rgba(255, 255, 255, .035) 46%),
-        rgba(255, 255, 255, .045);
-    box-shadow: 0 28px 90px rgba(0, 0, 0, .28);
+    background: rgba(255, 255, 255, .045);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, .22);
     backdrop-filter: blur(22px);
     text-align: left;
 }
@@ -234,9 +270,9 @@
 .coach-line {
     display: none;
     margin: 0;
-    font-size: clamp(1.1rem, 2vw, 1.55rem);
+    font-size: clamp(1.15rem, 2.2vw, 1.65rem);
     font-weight: 500;
-    line-height: 1.5;
+    line-height: 1.55;
     color: #ffffff;
 }
 
@@ -244,44 +280,23 @@
     display: block;
 }
 
-.intro-actions {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(8px);
-    transition: opacity .28s ease, transform .28s ease, visibility .28s ease;
-}
-
-.intro-actions.is-visible {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.intro-begin-btn {
-    min-height: 48px;
-    padding-inline: 26px;
-}
-
 /* ==========================================================
    4. Engine & Animations
 ========================================================== */
 
 .fade-in {
-    animation: introFadeIn .5s ease both;
+    animation: introFadeIn .48s ease both;
 }
 
 .fade-out {
-    animation: introFadeOut .32s ease both;
+    animation: introFadeOut .22s ease both;
 }
 
 .intro-scene.active,
 .intro-card.active,
 .coach-line.active,
 .intro-message {
-    animation: introContentIn .6s cubic-bezier(.2, .8, .2, 1) both;
+    animation: introContentIn .58s cubic-bezier(.2, .8, .2, 1) both;
 }
 
 @keyframes introFadeIn {
@@ -322,39 +337,46 @@
 
 @media (max-width: 992px) {
     .exec-landing {
-        height: calc(100vh - 72px);
-        height: calc(100dvh - 72px);
-        min-height: 560px;
-        padding: 24px 18px !important;
+        min-height: calc(100vh - 72px);
+        min-height: calc(100dvh - 72px);
+        padding: 28px 18px !important;
+    }
+
+    .exec-intro {
+        min-height: calc(100vh - 128px);
+        min-height: calc(100dvh - 128px);
     }
 
     .intro-stage {
-        height: min(100%, 520px);
+        padding-top: clamp(30px, 6vh, 56px);
     }
 }
 
 @media (max-width: 720px) {
     .exec-landing {
-        align-items: center !important;
-        height: calc(100vh - 66px);
-        height: calc(100dvh - 66px);
-        min-height: 520px;
-        padding: 16px !important;
+        align-items: flex-start !important;
+        padding: 18px 16px 28px !important;
     }
 
-    .intro-stage {
+    .exec-intro {
         width: 100%;
-        height: min(100%, 500px);
+        min-height: calc(100vh - 88px);
+        min-height: calc(100dvh - 88px);
+        overflow: visible;
+    }
+
+    .intro-header {
+        padding-top: 4px;
     }
 
     .intro-logo {
-        width: clamp(74px, 22vw, 92px);
-        height: clamp(74px, 22vw, 92px);
+        width: clamp(70px, 22vw, 92px);
+        height: clamp(70px, 22vw, 92px);
         margin-bottom: 14px;
     }
 
     .intro-title {
-        font-size: clamp(1.65rem, 8vw, 2.1rem);
+        font-size: clamp(1.55rem, 8vw, 2.05rem);
     }
 
     .intro-subtitle {
@@ -362,31 +384,19 @@
         font-size: .92rem;
     }
 
-    .intro-scene,
-    .intro-card,
-    .intro-message {
+    .intro-stage {
+        padding-top: 30px;
+        padding-bottom: 18px;
+    }
+
+    .intro-scene h2 {
+        font-size: clamp(1.55rem, 8vw, 2.35rem);
+        line-height: 1.28;
+    }
+
+    .intro-card {
         padding: 24px 18px;
-        border-radius: 24px;
-    }
-
-    .intro-scene h2,
-    .intro-card h2,
-    .intro-message {
-        font-size: clamp(1.45rem, 7vw, 2.05rem);
-        line-height: 1.25;
-    }
-
-    .intro-card-icon {
-        width: 54px;
-        height: 54px;
-        margin-bottom: 16px;
-        border-radius: 18px;
-        font-size: 1.7rem;
-    }
-
-    .intro-card p {
-        font-size: .98rem;
-        line-height: 1.5;
+        border-radius: 22px;
     }
 
     .intro-card span {
@@ -395,9 +405,9 @@
 
     .coach-card {
         grid-template-columns: 1fr;
-        gap: 16px;
-        padding: 22px 18px;
-        border-radius: 24px;
+        gap: 18px;
+        padding: 24px 18px;
+        border-radius: 22px;
         text-align: center;
     }
 
@@ -407,54 +417,43 @@
     }
 
     .coach-avatar-circle {
-        width: 54px;
-        height: 54px;
-    }
-
-    .coach-line {
-        font-size: clamp(1rem, 5vw, 1.25rem);
-    }
-
-    .intro-actions {
-        margin-top: 16px;
+        width: 56px;
+        height: 56px;
     }
 }
 
 @media (max-width: 420px) {
     .exec-landing {
-        min-height: 500px;
         padding-inline: 12px !important;
     }
 
     .intro-stage {
-        height: min(100%, 480px);
+        padding-top: 24px;
     }
 
     .intro-card p {
-        margin-bottom: 14px;
+        line-height: 1.55;
     }
 }
 
 @media (max-height: 560px) and (orientation: landscape) {
     .exec-landing {
-        height: calc(100vh - 56px);
-        height: calc(100dvh - 56px);
-        min-height: 0;
-        padding: 10px 16px !important;
+        padding-block: 12px !important;
     }
 
-    .intro-stage {
-        height: 100%;
+    .exec-intro {
+        min-height: auto;
+        overflow: visible;
     }
 
     .intro-logo {
-        width: 54px;
-        height: 54px;
+        width: 56px;
+        height: 56px;
         margin-bottom: 8px;
     }
 
     .intro-title {
-        font-size: clamp(1.25rem, 4vw, 1.75rem);
+        font-size: clamp(1.35rem, 4vw, 1.8rem);
     }
 
     .intro-subtitle {
@@ -462,36 +461,18 @@
         font-size: .82rem;
     }
 
-    .intro-scene,
+    .intro-stage {
+        padding-top: 18px;
+        padding-bottom: 12px;
+    }
+
+    .intro-scene h2 {
+        font-size: clamp(1.4rem, 4vw, 2rem);
+    }
+
     .intro-card,
-    .intro-message,
     .coach-card {
-        padding: 16px;
-        border-radius: 20px;
-    }
-
-    .intro-card-icon,
-    .coach-avatar-circle {
-        width: 44px;
-        height: 44px;
-        margin-bottom: 10px;
-        font-size: 1.35rem;
-    }
-
-    .intro-scene h2,
-    .intro-card h2,
-    .intro-message {
-        font-size: clamp(1.2rem, 4vw, 1.65rem);
-    }
-
-    .intro-card p,
-    .coach-line {
-        font-size: .9rem;
-        line-height: 1.38;
-    }
-
-    .intro-actions {
-        margin-top: 10px;
+        padding: 18px;
     }
 }
 
@@ -524,12 +505,17 @@
     outline: none;
 }
 
+#introActions {
+    min-height: 44px;
+}
+
 @media (max-width: 720px) {
     .intro-skip-btn {
-        top: 0;
-        right: 0;
+        position: relative;
+        align-self: flex-end;
+        margin-bottom: 12px;
         padding-inline: 14px;
-        font-size: .82rem;
+        font-size: .85rem;
     }
 }
 
@@ -539,9 +525,7 @@
     .intro-scene.active,
     .intro-card.active,
     .coach-line.active,
-    .intro-message,
-    .intro-actions {
+    .intro-message {
         animation: none;
-        transition: none;
     }
 }

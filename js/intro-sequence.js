@@ -1,26 +1,27 @@
 /* ==========================================================
    GrowWithHR Executive Introduction Engine
-   Version 2.1
+   Version 2.0
    ----------------------------------------------------------
-   Single fixed Story Stage: Hero → story cards → briefing cards → Coach.
+   Persistent hero + anchored story stage.
+   The hero is not part of the animated timeline.
 ========================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
     "use strict";
 
     const sections = {
-        hero: document.getElementById("introHero"),
         messages: document.getElementById("introMessages"),
         cards: document.getElementById("introCards"),
         transition: document.getElementById("introTransition"),
-        coach: document.getElementById("coachIntroduction")
+        coach: document.getElementById("coachIntroduction"),
+        actions: document.getElementById("introActions")
     };
 
+    const hero = document.getElementById("introHero");
     const messageScenes = Array.from(document.querySelectorAll(".intro-scene"));
     const briefingCards = Array.from(document.querySelectorAll(".intro-card"));
     const coachLines = Array.from(document.querySelectorAll(".coach-line"));
     const coachTyping = document.getElementById("coachTyping");
-    const introActions = document.getElementById("introActions");
     const skipButton = document.getElementById("skipIntro");
     const beginButton = document.getElementById("startAssessment");
 
@@ -28,30 +29,29 @@ document.addEventListener("DOMContentLoaded", () => {
         stepIndex: 0,
         timer: null,
         running: false,
-        skipped: false,
-        complete: false
+        skipped: false
     };
 
     const TIMING = {
-        hero: 2800,
-        message: 2300,
-        lastMessage: 2600,
-        card: 2400,
-        transition: 2200,
-        typing: 550,
-        coach: 1450
+        message: 2000,
+        lastMessage: 2500,
+        card: 2250,
+        transition: 3500,
+        typing: 700,
+        coach: 1900,
+        cta: 800
     };
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     if (prefersReducedMotion.matches) {
-        TIMING.hero = 900;
-        TIMING.message = 700;
-        TIMING.lastMessage = 900;
-        TIMING.card = 900;
-        TIMING.transition = 700;
-        TIMING.typing = 150;
-        TIMING.coach = 650;
+        TIMING.message = 500;
+        TIMING.lastMessage = 700;
+        TIMING.card = 700;
+        TIMING.transition = 500;
+        TIMING.typing = 250;
+        TIMING.coach = 700;
+        TIMING.cta = 300;
     }
 
     function clearTimer() {
@@ -61,17 +61,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    function setActionsVisible(visible) {
-        if (!introActions) return;
-
-        introActions.classList.toggle("is-visible", visible);
-        introActions.setAttribute("aria-hidden", visible ? "false" : "true");
+    function setHeroVisible() {
+        if (!hero) return;
+        hero.classList.add("is-visible");
+        hero.setAttribute("aria-hidden", "false");
     }
 
-    function hideAllSections() {
+    function hideAllStageSections() {
         Object.values(sections).forEach(section => {
             if (!section) return;
-
             section.classList.remove("is-active", "fade-in");
             section.classList.add("fade-out");
             section.setAttribute("aria-hidden", "true");
@@ -81,8 +79,6 @@ document.addEventListener("DOMContentLoaded", () => {
             coachTyping.classList.remove("active");
             coachTyping.setAttribute("aria-hidden", "true");
         }
-
-        setActionsVisible(false);
     }
 
     function showSection(name) {
@@ -121,44 +117,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!transitionMessage) return;
 
-        transitionMessage.textContent = "Coach HRTechify is ready to guide your assessment.";
+        transitionMessage.textContent =
+            "Every recommendation begins with understanding your organisation.";
     }
 
     const timeline = [
-        { section: "hero", duration: TIMING.hero, action: () => {} },
         { section: "messages", duration: TIMING.message, action: () => activate(messageScenes, 0) },
         { section: "messages", duration: TIMING.message, action: () => activate(messageScenes, 1) },
         { section: "messages", duration: TIMING.lastMessage, action: () => activate(messageScenes, 2) },
         { section: "cards", duration: TIMING.card, action: () => activate(briefingCards, 0) },
         { section: "cards", duration: TIMING.card, action: () => activate(briefingCards, 1) },
         { section: "cards", duration: TIMING.card, action: () => activate(briefingCards, 2) },
+        { section: "cards", duration: TIMING.card, action: () => activate(briefingCards, 3) },
+        { section: "cards", duration: TIMING.card, action: () => activate(briefingCards, 4) },
+        { section: "cards", duration: TIMING.card, action: () => activate(briefingCards, 5) },
         { section: "transition", duration: TIMING.transition, action: setTransitionMessage },
         ...coachLines.map((line, index) => ({
             section: "coach",
             duration: TIMING.coach,
             action: () => activate(coachLines, index)
-        }))
+        })),
+        { section: "actions", duration: TIMING.cta, action: () => sections.actions?.classList.add("is-active") }
     ];
 
     function next(delay) {
         clearTimer();
 
-        if (!state.running || state.skipped || state.complete) return;
+        if (!state.running || state.skipped) return;
 
         state.timer = setTimeout(runTimeline, Math.max(0, delay));
     }
 
-    function completeIntro() {
-        state.running = false;
-        state.complete = true;
-        setActionsVisible(true);
-    }
-
     function runTimeline() {
-        if (state.skipped || state.complete) return;
+        if (state.skipped) return;
 
         if (state.stepIndex >= timeline.length) {
-            completeIntro();
+            startAssessment();
             return;
         }
 
@@ -196,10 +190,10 @@ document.addEventListener("DOMContentLoaded", () => {
         clearTimer();
         state.running = true;
         state.skipped = false;
-        state.complete = false;
         state.stepIndex = 0;
 
-        hideAllSections();
+        setHeroVisible();
+        hideAllStageSections();
         activate(messageScenes, -1);
         activate(briefingCards, -1);
         activate(coachLines, -1);
@@ -221,10 +215,10 @@ document.addEventListener("DOMContentLoaded", () => {
         clearTimer();
         state.running = false;
         state.skipped = false;
-        state.complete = false;
         state.stepIndex = 0;
 
-        hideAllSections();
+        setHeroVisible();
+        hideAllStageSections();
         activate(messageScenes, -1);
         activate(briefingCards, -1);
         activate(coachLines, -1);
@@ -282,25 +276,24 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     window.introDebug = {
-        hero() {
-            showSection("hero");
-        },
-        messages(index = 0) {
+        messages() {
             showSection("messages");
-            activate(messageScenes, index);
+            activate(messageScenes, 0);
         },
-        cards(index = 0) {
+        cards() {
             showSection("cards");
-            activate(briefingCards, index);
+            activate(briefingCards, 0);
         },
         transition() {
             showSection("transition");
             setTransitionMessage();
         },
-        coach(index = 0) {
+        coach() {
             showSection("coach");
-            activate(coachLines, index);
-            setActionsVisible(index >= coachLines.length - 1);
+            activate(coachLines, 0);
+        },
+        actions() {
+            showSection("actions");
         },
         restart() {
             startTimeline();
@@ -310,7 +303,6 @@ document.addEventListener("DOMContentLoaded", () => {
     messageScenes.forEach(scene => scene.setAttribute("aria-hidden", "true"));
     briefingCards.forEach(card => card.setAttribute("aria-hidden", "true"));
     coachLines.forEach(line => line.setAttribute("aria-hidden", "true"));
-    setActionsVisible(false);
 
     startTimeline();
     window.startAssessment = startAssessment;
