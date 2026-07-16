@@ -1122,3 +1122,84 @@
         margin-top: 36px;
     }
 }
+
+/* v0.14 Time-driven rolling stack cards shared with advisory intro */
+.home-stack-section {
+    --home-card-count: 3;
+    --home-card-duration: 12s;
+    position: relative;
+    display: grid !important;
+    grid-template-columns: minmax(0, min(100%, 760px)) !important;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: var(--home-stack-height, 320px);
+    margin-inline: auto;
+    overflow: hidden !important;
+}
+
+.home-stack-section .home-stack-card {
+    grid-area: 1 / 1;
+    position: relative !important;
+    top: auto !important;
+    z-index: 1;
+    width: min(100%, 760px) !important;
+    max-width: 760px;
+    min-height: var(--home-card-height, 260px);
+    margin-inline: auto;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate3d(0, 26px, 0) scale(.98) !important;
+    animation: homeTimeStack var(--home-card-duration) cubic-bezier(.2,.8,.2,1) infinite both !important;
+}
+
+.hero-sidebar.home-stack-section { --home-stack-height: 300px; --home-card-height: 240px; }
+.how-grid.home-stack-section { --home-stack-height: 300px; --home-card-height: 240px; }
+.carousel-track.home-stack-section { --home-card-count: 8; --home-card-duration: 32s; --home-stack-height: 390px; --home-card-height: 340px; }
+
+.home-stack-section .home-stack-card:nth-child(1) { animation-delay: 0s !important; }
+.home-stack-section .home-stack-card:nth-child(2) { animation-delay: calc(var(--home-card-duration) / var(--home-card-count) * 1) !important; }
+.home-stack-section .home-stack-card:nth-child(3) { animation-delay: calc(var(--home-card-duration) / var(--home-card-count) * 2) !important; }
+.home-stack-section .home-stack-card:nth-child(4) { animation-delay: calc(var(--home-card-duration) / var(--home-card-count) * 3) !important; }
+.home-stack-section .home-stack-card:nth-child(5) { animation-delay: calc(var(--home-card-duration) / var(--home-card-count) * 4) !important; }
+.home-stack-section .home-stack-card:nth-child(6) { animation-delay: calc(var(--home-card-duration) / var(--home-card-count) * 5) !important; }
+.home-stack-section .home-stack-card:nth-child(7) { animation-delay: calc(var(--home-card-duration) / var(--home-card-count) * 6) !important; }
+.home-stack-section .home-stack-card:nth-child(8) { animation-delay: calc(var(--home-card-duration) / var(--home-card-count) * 7) !important; }
+
+@keyframes homeTimeStack {
+    0%, 6% { opacity: 0; transform: translate3d(0, 26px, 0) scale(.98); z-index: 1; }
+    10%, 28% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); z-index: 3; pointer-events: auto; }
+    34%, 100% { opacity: 0; transform: translate3d(0, -22px, 0) scale(.98); z-index: 1; pointer-events: none; }
+}
+
+.hero-v2 .workspace-window,
+.hero-v2 .hero-workspace,
+.hero-v2 .hero-dashboard-layout,
+.hero-v2 .hero-graph,
+.hero-v2 .hero-sidebar,
+.hero-v2 .recommendation-card {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-v2 .hero-dashboard-layout,
+.hero-v2 .hero-graph {
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+}
+
+@media (max-width: 760px) {
+    .home-stack-section {
+        min-height: var(--home-stack-height-mobile, var(--home-stack-height, 320px));
+    }
+
+    .hero-sidebar.home-stack-section { --home-stack-height-mobile: 300px; }
+    .how-grid.home-stack-section { --home-stack-height-mobile: 270px; }
+    .carousel-track.home-stack-section { --home-stack-height-mobile: 360px; }
+
+    .home-stack-section .home-stack-card {
+        width: min(100%, calc(100vw - 32px)) !important;
+        max-width: calc(100vw - 32px) !important;
+    }
+}
