@@ -1,8 +1,15 @@
-# GrowWithHRV2
+# GrowWithHR v0.12.2-beta
 
 **GrowWithHR** is an executive HR intelligence and advisory prototype by HRTechify. It helps founders, business leaders, and HR professionals explore company context, statutory compliance, growth readiness, and people-governance priorities through explainable recommendations.
 
 The repository currently contains the original static HTML/CSS/JavaScript experience plus a new React/Next.js-ready assessment UX layer under `apps/web/src`.
+
+---
+
+
+## Executive Advisory Experience v3
+
+The current intro experience uses a one-time brand reveal followed by concise executive story scenes, briefing cards, Coach HRTechify, and an explicit Begin Executive Assessment action. Homepage mobile compatibility has been hardened for the intelligence and carousel sections with dedicated desktop, laptop, tablet, and mobile breakpoints.
 
 ---
 
@@ -88,7 +95,7 @@ apps/web/src/
 
 ## Current Status
 
-Version: `v0.12.0-beta`
+Version: `v0.12.2-beta`
 
 The platform is still a prototype/beta. The new assessment UX layer is modular and typed, but it is not yet wired into a full deployed Next.js application shell in this repository.
 
@@ -116,3 +123,10 @@ This build does **not** include:
 Copyright © HRTechify.
 
 All Rights Reserved.
+---
+
+## Intro Experience v2.0 and Production Readiness Alignment
+
+Version: `v0.12.2-beta`
+
+This document is aligned with the GrowWithHR Intro Experience v2.0 and production-readiness plan. The current product direction is an AI-powered Executive Advisory Platform with a premium, persistent-hero introduction, deterministic compliance advisory foundations, stronger recommendation traceability, and responsive validation across mobile, tablet, laptop, and desktop breakpoints.
