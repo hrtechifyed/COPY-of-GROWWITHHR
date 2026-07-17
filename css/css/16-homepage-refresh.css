@@ -1,0 +1,521 @@
+/* ==========================================================
+   GrowWithHR homepage refresh
+   A homepage-only layout layer that removes the legacy rolling
+   card behaviour and defines one responsive source of truth.
+========================================================== */
+
+body.home-page {
+  --home-content-width: 1280px;
+  --home-panel-width: 1180px;
+  --home-gap: clamp(16px, 2.2vw, 28px);
+}
+
+body.home-page .container {
+  width: min(calc(100% - 48px), var(--home-content-width));
+  max-width: var(--home-content-width);
+  padding-inline: 0;
+}
+
+/* -------------------------- Hero -------------------------- */
+
+body.home-page .hero-v2 {
+  min-height: auto;
+  padding: clamp(124px, 12vw, 156px) 0 clamp(64px, 7vw, 92px);
+}
+
+body.home-page .hero-v2 .hero-layout {
+  display: flex !important;
+  width: 100%;
+  gap: clamp(32px, 5vw, 58px);
+}
+
+body.home-page .hero-v2 .hero-content.hero-home {
+  width: min(100%, 1080px);
+  text-align: center;
+}
+
+body.home-page .hero-v2 .hero-home h1 {
+  max-width: 1050px;
+  margin-inline: auto;
+  font-size: clamp(2.55rem, 6vw, 5.35rem);
+  text-wrap: balance;
+}
+
+body.home-page .hero-v2 .hero-actions {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0;
+}
+
+body.home-page .hero-v2 .hero-workspace,
+body.home-page .hero-v2 .workspace-window {
+  width: min(100%, var(--home-panel-width));
+  max-width: var(--home-panel-width);
+  margin-inline: auto;
+}
+
+body.home-page .hero-v2 .workspace-window {
+  overflow: hidden;
+}
+
+body.home-page .hero-v2 .hero-dashboard-layout {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  grid-template-areas:
+    "controls"
+    "graph"
+    "footer" !important;
+  gap: clamp(24px, 3vw, 38px);
+  padding: clamp(18px, 3vw, 34px);
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* Three separate executive cards at laptop and desktop sizes. */
+
+body.home-page .hero-v2 .hero-sidebar {
+  grid-area: controls;
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: var(--home-gap) !important;
+  width: 100%;
+  max-width: 1100px !important;
+  min-height: 0 !important;
+  margin-inline: auto !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  perspective: none !important;
+}
+
+body.home-page .hero-v2 .hero-sidebar > .workspace-card {
+  position: relative !important;
+  inset: auto !important;
+  z-index: auto !important;
+  display: flex;
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  min-height: 390px;
+  margin: 0 !important;
+  padding: clamp(18px, 2vw, 24px);
+  transform: none !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  animation: none !important;
+  overflow: hidden;
+}
+
+body.home-page .hero-v2 .hero-sidebar > .workspace-card:hover {
+  transform: translateY(-4px) !important;
+}
+
+body.home-page .hero-v2 .workspace-card .card-header h3 {
+  margin: 0;
+  font-size: clamp(1.15rem, 1.5vw, 1.5rem);
+  text-wrap: balance;
+}
+
+body.home-page .hero-v2 .dna-pillars,
+body.home-page .hero-v2 .growth-stage-list,
+body.home-page .hero-v2 .recommendation-list {
+  gap: 10px;
+}
+
+body.home-page .hero-v2 .dna-item,
+body.home-page .hero-v2 .stage-item,
+body.home-page .hero-v2 .recommendation-item {
+  min-height: 54px;
+  padding: 10px 14px;
+  gap: 12px;
+  border-radius: 14px;
+}
+
+body.home-page .hero-v2 .workspace-card span {
+  margin-bottom: 0;
+  font-size: 0.86rem;
+}
+
+/* Center the animated intelligence graph beneath the three cards. */
+
+body.home-page .hero-v2 .hero-graph {
+  grid-area: graph;
+  display: grid !important;
+  place-items: center !important;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  margin-inline: auto !important;
+  overflow: visible !important;
+}
+
+body.home-page .hero-v2 .dna-core-wrapper {
+  position: relative;
+  width: min(100%, 720px) !important;
+  max-width: 720px !important;
+  height: auto !important;
+  min-height: 340px;
+  aspect-ratio: 4 / 3;
+  margin-inline: auto !important;
+  overflow: visible !important;
+}
+
+body.home-page .hero-v2 #dnaCoreCanvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  overflow: visible !important;
+}
+
+body.home-page .hero-v2 #dnaCoreCanvas canvas {
+  display: block;
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+body.home-page .hero-v2 .hero-footer {
+  grid-area: footer;
+  width: 100%;
+  padding-bottom: 4px;
+  border-top: 0;
+}
+
+/* ---------------- Understand / Analyze / Advise ---------------- */
+
+body.home-page .how-section .section-heading,
+body.home-page .capabilities-section .section-heading {
+  margin-bottom: 0;
+}
+
+body.home-page .how-grid {
+  position: relative;
+  z-index: 2;
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  align-items: stretch !important;
+  justify-content: stretch !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 0 !important;
+  margin: clamp(38px, 5vw, 60px) auto 0 !important;
+  padding: 0 !important;
+  gap: var(--home-gap) !important;
+  overflow: visible !important;
+  perspective: none !important;
+}
+
+body.home-page .how-grid > .how-card {
+  position: relative !important;
+  inset: auto !important;
+  grid-area: auto !important;
+  z-index: auto !important;
+  display: flex;
+  flex-direction: column;
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  min-height: 300px;
+  margin: 0 !important;
+  padding: clamp(26px, 3vw, 40px);
+  transform: none !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  animation: none !important;
+}
+
+body.home-page .how-grid > .how-card:hover {
+  transform: translateY(-8px) !important;
+}
+
+body.home-page .how-card p {
+  margin-top: auto;
+}
+
+/* ---------------------- Capability carousel ---------------------- */
+
+body.home-page .capability-carousel {
+  grid-template-columns: 56px minmax(0, 1fr) 56px;
+  gap: clamp(12px, 2vw, 24px);
+  width: 100%;
+  margin-top: clamp(38px, 5vw, 60px);
+}
+
+body.home-page .carousel-track {
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: stretch !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 12px 4px 22px !important;
+  gap: 22px !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  perspective: none !important;
+}
+
+body.home-page .carousel-track > .capability-slide {
+  position: relative !important;
+  inset: auto !important;
+  z-index: auto !important;
+  flex: 0 0 clamp(300px, 34vw, 390px);
+  width: clamp(300px, 34vw, 390px) !important;
+  max-width: 390px !important;
+  min-width: 300px !important;
+  min-height: 340px;
+  margin: 0 !important;
+  transform: none !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  animation: none !important;
+}
+
+body.home-page .carousel-track > .capability-slide:hover {
+  transform: translateY(-8px) !important;
+}
+
+body.home-page .carousel-arrow {
+  flex: 0 0 auto;
+}
+
+/* ----------------------- Responsive behaviour ----------------------- */
+
+@media (max-width: 1023px) {
+  body.home-page .container {
+    width: min(calc(100% - 36px), var(--home-content-width));
+  }
+
+  body.home-page .hero-v2 .hero-dashboard-layout {
+    padding: 22px;
+  }
+
+  body.home-page .hero-v2 .hero-sidebar {
+    gap: 14px !important;
+  }
+
+  body.home-page .hero-v2 .hero-sidebar > .workspace-card {
+    min-height: 360px;
+    padding: 18px;
+  }
+
+  body.home-page .hero-v2 .dna-item,
+  body.home-page .hero-v2 .stage-item,
+  body.home-page .hero-v2 .recommendation-item {
+    min-height: 50px;
+    padding-inline: 10px;
+  }
+
+  body.home-page .how-grid > .how-card {
+    min-height: 280px;
+    padding: 28px 24px;
+  }
+}
+
+@media (max-width: 767px) {
+  body.home-page .container {
+    width: min(calc(100% - 28px), var(--home-content-width));
+  }
+
+  body.home-page .navbar {
+    top: 10px;
+    width: calc(100% - 20px);
+    min-height: 64px;
+    height: auto;
+  }
+
+  body.home-page .nav-container {
+    width: 100%;
+    padding: 8px 12px;
+  }
+
+  body.home-page .nav-logo {
+    width: 44px;
+    height: 44px;
+  }
+
+  body.home-page .brand-name {
+    font-size: 0.95rem;
+  }
+
+  body.home-page .product-name {
+    font-size: 0.68rem;
+  }
+
+  body.home-page .hero-v2 {
+    padding-top: 104px;
+    padding-bottom: 54px;
+  }
+
+  body.home-page .hero-v2 .hero-home h1 {
+    font-size: clamp(2.1rem, 11vw, 3.1rem);
+  }
+
+  body.home-page .hero-v2 .hero-badge {
+    justify-content: center;
+    text-align: center;
+  }
+
+  body.home-page .hero-v2 .secondary-btn {
+    width: 100%;
+  }
+
+  body.home-page .hero-v2 .workspace-header {
+    padding: 14px 16px;
+  }
+
+  body.home-page .hero-v2 .workspace-title {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  body.home-page .hero-v2 .hero-dashboard-layout {
+    gap: 24px;
+    padding: 14px;
+  }
+
+  body.home-page .hero-v2 .hero-sidebar {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 16px !important;
+  }
+
+  body.home-page .hero-v2 .hero-sidebar > .workspace-card {
+    min-height: 0;
+    padding: 18px;
+  }
+
+  body.home-page .hero-v2 .dna-core-wrapper {
+    width: min(100%, 520px) !important;
+    min-height: 280px;
+    aspect-ratio: 1 / 1;
+  }
+
+  body.home-page .hero-v2 .core-title {
+    white-space: normal;
+    font-size: 1.2rem;
+  }
+
+  body.home-page .how-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 18px !important;
+    margin-top: 34px !important;
+  }
+
+  body.home-page .how-grid > .how-card {
+    min-height: 0;
+    padding: 26px 24px;
+  }
+
+  body.home-page .how-card p {
+    margin-top: 0;
+  }
+
+  body.home-page .capability-carousel {
+    display: block;
+    margin-top: 34px;
+  }
+
+  body.home-page .carousel-arrow {
+    display: none !important;
+  }
+
+  body.home-page .carousel-track {
+    gap: 16px !important;
+    padding: 8px 2px 18px !important;
+    scroll-padding-inline: 2px;
+  }
+
+  body.home-page .carousel-track > .capability-slide {
+    flex-basis: min(86vw, 340px);
+    width: min(86vw, 340px) !important;
+    min-width: min(86vw, 340px) !important;
+    min-height: 300px;
+    padding: 24px 20px;
+  }
+
+  body.home-page .compact-section {
+    padding-block: 64px;
+  }
+
+  body.home-page .section-heading {
+    margin-bottom: 0;
+  }
+
+  body.home-page .section-heading h2 {
+    font-size: clamp(1.9rem, 8vw, 2.7rem);
+  }
+
+  body.home-page .analyze-redirect-section .summary-card {
+    padding: 28px 22px;
+  }
+}
+
+@media (max-width: 389px) {
+  body.home-page .container {
+    width: min(calc(100% - 20px), var(--home-content-width));
+  }
+
+  body.home-page .hero-v2 .hero-dashboard-layout {
+    padding: 10px;
+  }
+
+  body.home-page .hero-v2 .hero-sidebar > .workspace-card {
+    padding: 16px 14px;
+  }
+
+  body.home-page .hero-v2 .dna-item,
+  body.home-page .hero-v2 .stage-item,
+  body.home-page .hero-v2 .recommendation-item {
+    gap: 10px;
+    padding: 9px 10px;
+  }
+
+  body.home-page .hero-v2 .dna-core-wrapper {
+    min-height: 260px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.home-page .workspace-card,
+  body.home-page .how-card,
+  body.home-page .capability-slide {
+    scroll-behavior: auto;
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Keep the animated graph centered and prevent its width from collapsing. */
+
+body.home-page .hero-v2 .dna-core-wrapper {
+  justify-self: center !important;
+  width: 100% !important;
+  max-width: 720px !important;
+  height: clamp(340px, 46vw, 520px) !important;
+  min-height: 0 !important;
+  aspect-ratio: auto !important;
+}
+
+@media (max-width: 767px) {
+  body.home-page .hero-v2 .dna-core-wrapper {
+    width: 100% !important;
+    max-width: 520px !important;
+    height: clamp(280px, 82vw, 390px) !important;
+  }
+}
+
+@media (max-width: 389px) {
+  body.home-page .hero-v2 .dna-core-wrapper {
+    height: 270px !important;
+  }
+}
+
+body.home-page .hero-v2 .hero-graph {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
