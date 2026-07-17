@@ -11,9 +11,9 @@ const APP_CONFIG = Object.freeze({
 
     companyName: "HRTechify",
 
-    version: "0.12.1-beta",
+    version: "0.14.1-beta",
 
-    releaseName: "Public Beta",
+    releaseName: "Public",
 
     website:
         "https://hrtechifyed.github.io/GrowwithHR/",
