@@ -2,7 +2,7 @@
    GrowWithHR
    Executive Advisory Briefing
    Story-led assessment engine
-   Version: 2.0.0
+   Version: 2.1.0
 ========================================================== */
 
 (() => {
@@ -12,19 +12,69 @@
     const REPORT_KEY = "growwithhr-report";
     const LEAD_KEY = "growwithhr-lead";
     const DEFAULT_REPORT_URL = "executive-advisory-report.html";
+    const INDUSTRY_DATA_URL = "data/industries.json";
+    const INDUSTRY_CACHE_KEY = "growwithhr-industry-catalog-v1";
+    const DELIVERY_KEY = "growwithhr-advisory-delivery-v1";
 
-    const INDUSTRIES = [
-        "Information Technology / SaaS",
-        "Consulting & Professional Services",
-        "Manufacturing",
-        "Retail",
-        "Healthcare",
-        "Education",
-        "Financial Services",
-        "Logistics",
-        "Hospitality",
-        "Construction",
-        "Other"
+    // This fallback is used only when the JSON catalogue cannot be loaded.
+    // data/industries.json remains the canonical source of truth.
+    const INDUSTRY_FALLBACK = [
+        {
+            id: "information_technology",
+            name: "Information Technology / SaaS",
+            displayLabel: "Information Technology / SaaS",
+            category: "Technology & Digital",
+            aliases: ["IT services", "software company", "software services", "SaaS"],
+            ruleProfile: "Information Technology / SaaS"
+        },
+        {
+            id: "semiconductor",
+            name: "Semiconductor",
+            displayLabel: "Semiconductor",
+            category: "Technology & Digital",
+            aliases: ["chips", "chip design", "chip manufacturing", "VLSI", "microelectronics"],
+            ruleProfile: "Semiconductor"
+        },
+        {
+            id: "consulting_professional_services",
+            name: "Consulting & Professional Services",
+            displayLabel: "Consulting & Professional Services",
+            category: "Professional & Business Services",
+            aliases: ["consulting", "professional services", "advisory"],
+            ruleProfile: "Consulting & Professional Services"
+        },
+        {
+            id: "manufacturing",
+            name: "Manufacturing",
+            displayLabel: "Manufacturing",
+            category: "Industrial & Manufacturing",
+            aliases: ["factory", "industrial manufacturing", "production"],
+            ruleProfile: "Manufacturing"
+        },
+        {
+            id: "healthcare",
+            name: "Healthcare",
+            displayLabel: "Healthcare",
+            category: "Healthcare & Life Sciences",
+            aliases: ["hospital", "clinic", "health services"],
+            ruleProfile: "Healthcare"
+        },
+        {
+            id: "financial_services",
+            name: "Financial Services",
+            displayLabel: "Financial Services",
+            category: "Financial Services",
+            aliases: ["finance", "banking", "NBFC"],
+            ruleProfile: "Financial Services"
+        },
+        {
+            id: "other",
+            name: "Other",
+            displayLabel: "Other / Not listed",
+            category: "Other",
+            aliases: ["other", "not listed", "none of these"],
+            ruleProfile: "Other"
+        }
     ];
 
     const STATES = [
@@ -250,11 +300,19 @@
             this.generationTimers = [];
             this.saveTimer = null;
             this.lastFocusedElement = null;
+            this.isSubmitting = false;
+            this.lastPdfDocument = null;
+            this.delivery = this.readDeliveryRecord();
+            this.industryCatalog = this.readCachedIndustryCatalog();
+            this.industryLookup = new Map();
+            this.industrySearchOptions = [];
+            this.prepareIndustryCatalog(this.industryCatalog);
 
             this.cacheElements();
             this.bindEvents();
             this.restoreState();
             this.initialiseView();
+            this.loadIndustries();
         }
 
         readConfig() {
@@ -282,6 +340,196 @@
             }
 
             return configured;
+        }
+
+        readCachedIndustryCatalog() {
+            try {
+                const cached = JSON.parse(localStorage.getItem(INDUSTRY_CACHE_KEY) || "null");
+                return Array.isArray(cached) && cached.length ? cached : INDUSTRY_FALLBACK;
+            } catch (error) {
+                console.warn("GrowWithHR: cached industry catalogue could not be read.", error);
+                return INDUSTRY_FALLBACK;
+            }
+        }
+
+        async loadIndustries() {
+            try {
+                const response = await fetch(INDUSTRY_DATA_URL, {
+                    cache: "no-cache",
+                    headers: { "Accept": "application/json" }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Industry catalogue returned ${response.status}.`);
+                }
+
+                const payload = await response.json();
+                const industries = Array.isArray(payload) ? payload : payload?.industries;
+
+                if (!Array.isArray(industries) || industries.length === 0) {
+                    throw new Error("Industry catalogue did not contain any industries.");
+                }
+
+                this.prepareIndustryCatalog(industries);
+
+                try {
+                    localStorage.setItem(INDUSTRY_CACHE_KEY, JSON.stringify(this.industryCatalog));
+                } catch (error) {
+                    console.warn("GrowWithHR: industry catalogue could not be cached.", error);
+                }
+
+                this.refreshIndustryDatalist();
+            } catch (error) {
+                console.warn(
+                    "GrowWithHR: data/industries.json could not be loaded. Using the local fallback catalogue.",
+                    error
+                );
+            }
+        }
+
+        prepareIndustryCatalog(industries) {
+            const seenIds = new Set();
+
+            this.industryCatalog = (Array.isArray(industries) ? industries : [])
+                .map((industry, index) => {
+                    const name = String(industry?.name || "").trim();
+                    const id = String(industry?.id || `industry-${index}`).trim();
+
+                    if (!name || seenIds.has(id)) {
+                        return null;
+                    }
+
+                    seenIds.add(id);
+
+                    return {
+                        id,
+                        name,
+                        displayLabel: String(industry?.displayLabel || name).trim(),
+                        category: String(industry?.category || "Other").trim(),
+                        aliases: Array.isArray(industry?.aliases)
+                            ? industry.aliases.map((alias) => String(alias).trim()).filter(Boolean)
+                            : [],
+                        ruleProfile: String(industry?.ruleProfile || name).trim(),
+                        riskLevel: String(industry?.riskLevel || "").trim(),
+                        recommendedFocus: Array.isArray(industry?.recommendedFocus)
+                            ? industry.recommendedFocus.map((item) => String(item).trim()).filter(Boolean)
+                            : []
+                    };
+                })
+                .filter(Boolean);
+
+            if (!this.industryCatalog.length) {
+                this.industryCatalog = INDUSTRY_FALLBACK;
+            }
+
+            this.industryLookup = new Map();
+            this.industrySearchOptions = [];
+            const optionKeys = new Set();
+
+            this.industryCatalog.forEach((industry) => {
+                const searchableValues = [industry.name, industry.displayLabel, ...industry.aliases];
+
+                searchableValues.forEach((value) => {
+                    const key = this.normaliseSearchText(value);
+                    if (key && !this.industryLookup.has(key)) {
+                        this.industryLookup.set(key, industry);
+                    }
+                });
+
+                const canonicalKey = this.normaliseSearchText(industry.name);
+                if (!optionKeys.has(canonicalKey)) {
+                    optionKeys.add(canonicalKey);
+                    this.industrySearchOptions.push({
+                        value: industry.name,
+                        label: `${industry.displayLabel} · ${industry.category}`
+                    });
+                }
+
+                industry.aliases.forEach((alias) => {
+                    const aliasKey = this.normaliseSearchText(alias);
+                    if (!aliasKey || optionKeys.has(aliasKey)) {
+                        return;
+                    }
+
+                    optionKeys.add(aliasKey);
+                    this.industrySearchOptions.push({
+                        value: alias,
+                        label: `${industry.displayLabel} · ${industry.category}`
+                    });
+                });
+            });
+        }
+
+        refreshIndustryDatalist() {
+            const datalist = document.getElementById("industryOptions");
+
+            if (!datalist) {
+                return;
+            }
+
+            datalist.innerHTML = this.renderDatalistOptions(this.industrySearchOptions);
+            this.updateDynamicVisibility();
+        }
+
+        resolveIndustry(value) {
+            return this.industryLookup.get(this.normaliseSearchText(value)) || null;
+        }
+
+        applyResolvedIndustry(input = null) {
+            const rawValue = String(input?.value ?? this.answers.industry ?? "").trim();
+            const industry = this.resolveIndustry(rawValue);
+
+            if (!industry) {
+                this.answers.industry = rawValue;
+                this.answers.industryId = "";
+                this.answers.industryCategory = "";
+                this.answers.industryRuleProfile = "";
+                return null;
+            }
+
+            this.answers.industry = industry.name;
+            this.answers.industryId = industry.id;
+            this.answers.industryCategory = industry.category;
+            this.answers.industryRuleProfile = industry.ruleProfile;
+
+            if (input) {
+                input.value = industry.name;
+            }
+
+            return industry;
+        }
+
+        isOtherIndustrySelected() {
+            const industry = this.resolveIndustry(this.answers.industry);
+            return industry?.id === "other" || this.normaliseSearchText(this.answers.industry) === "other";
+        }
+
+        effectiveIndustryName() {
+            if (this.isOtherIndustrySelected()) {
+                return String(this.answers.customIndustry || "Other").trim() || "Other";
+            }
+
+            return this.resolveIndustry(this.answers.industry)?.name || String(this.answers.industry || "").trim();
+        }
+
+        normaliseSearchText(value) {
+            return String(value || "")
+                .toLowerCase()
+                .normalize("NFKD")
+                .replace(/[&]/g, " and ")
+                .replace(/[^a-z0-9]+/g, " ")
+                .trim()
+                .replace(/\s+/g, " ");
+        }
+
+        readDeliveryRecord() {
+            try {
+                const record = JSON.parse(localStorage.getItem(DELIVERY_KEY) || "null");
+                return record && typeof record === "object" ? record : {};
+            } catch (error) {
+                console.warn("GrowWithHR: delivery record could not be read.", error);
+                return {};
+            }
         }
 
         cacheElements() {
@@ -714,11 +962,35 @@
                     ${this.datalistField({
                         id: "industry",
                         label: "Which industry comes closest?",
-                        helper: "Choose the nearest match. Enter Other when none fits exactly.",
+                        helper: "Search by sector or a familiar term—for example, chips, VLSI, NBFC or hospital.",
                         placeholder: "Start typing an industry",
-                        options: INDUSTRIES,
+                        options: this.industrySearchOptions,
                         required: true
                     })}
+
+                    <div
+                        id="customIndustryField"
+                        class="advisory-field advisory-field--nested"
+                        data-field-wrapper="customIndustry"
+                        ${this.isOtherIndustrySelected() ? "" : "hidden"}>
+                        <label for="customIndustry">
+                            Tell us your industry
+                            <span aria-hidden="true">*</span>
+                        </label>
+                        <input
+                            id="customIndustry"
+                            name="customIndustry"
+                            type="text"
+                            autocomplete="organization-title"
+                            maxlength="100"
+                            placeholder="Example: Space technology"
+                            value="${this.escapeAttribute(this.answers.customIndustry || "")}"
+                            aria-describedby="customIndustryHelp customIndustryError">
+                        <p id="customIndustryHelp" class="advisory-field-help">
+                            Enter the sector that best describes your organisation.
+                        </p>
+                        <p id="customIndustryError" class="advisory-field-error" hidden></p>
+                    </div>
 
                     ${this.textareaField({
                         id: "nature",
@@ -1064,17 +1336,31 @@
                         type="search"
                         list="${id}Options"
                         autocomplete="off"
+                        spellcheck="false"
                         placeholder="${this.escapeAttribute(placeholder)}"
                         value="${this.escapeAttribute(this.answers[id] || "")}"
                         aria-describedby="${helper ? `${id}Help ` : ""}${id}Error"
                         ${required ? "required" : ""}>
                     <datalist id="${id}Options">
-                        ${options.map((option) => `<option value="${this.escapeAttribute(option)}"></option>`).join("")}
+                        ${this.renderDatalistOptions(options)}
                     </datalist>
                     ${helper ? `<p id="${id}Help" class="advisory-field-help">${helper}</p>` : ""}
                     <p id="${id}Error" class="advisory-field-error" hidden></p>
                 </div>
             `;
+        }
+
+        renderDatalistOptions(options) {
+            return (Array.isArray(options) ? options : []).map((option) => {
+                const value = typeof option === "string" ? option : option?.value;
+                const label = typeof option === "string" ? "" : option?.label;
+
+                if (!value) {
+                    return "";
+                }
+
+                return `<option value="${this.escapeAttribute(value)}"${label ? ` label="${this.escapeAttribute(label)}"` : ""}></option>`;
+            }).join("");
         }
 
         selectField({ id, label, helper = "", options = [], placeholder = "Please select", required = false, optional = false }) {
@@ -1252,6 +1538,14 @@
         }
 
         handleDynamicControl(target) {
+            if (target.name === "industry") {
+                this.applyResolvedIndustry(target);
+                this.clearFieldError("industry");
+                this.updateDynamicVisibility();
+                this.queueSave();
+                return;
+            }
+
             if (target.name === "foundedNotSure" || target.name === "remoteBand") {
                 this.updateDynamicVisibility();
             }
@@ -1270,13 +1564,45 @@
             if (remoteExactField) {
                 remoteExactField.hidden = this.answers.remoteBand !== "exact";
             }
+
+            const customIndustryField = document.getElementById("customIndustryField");
+
+            if (customIndustryField) {
+                customIndustryField.hidden = !this.isOtherIndustrySelected();
+            }
         }
 
         validateBusinessBasics() {
             let valid = true;
 
             valid = this.requireText("companyName", "Enter your organisation’s name.") && valid;
-            valid = this.requireText("industry", "Choose or enter the closest industry.") && valid;
+
+            const industryInput = document.getElementById("industry");
+            const industry = this.applyResolvedIndustry(industryInput);
+            this.updateDynamicVisibility();
+
+            if (!String(this.answers.industry || "").trim()) {
+                this.setFieldError("industry", "Choose the industry that comes closest.");
+                valid = false;
+            } else if (!industry) {
+                this.setFieldError(
+                    "industry",
+                    "Choose an industry from the suggestions, or select Other / Not listed."
+                );
+                valid = false;
+            } else {
+                this.clearFieldError("industry");
+            }
+
+            if (industry?.id === "other") {
+                valid = this.requireText(
+                    "customIndustry",
+                    "Enter the industry that best describes your organisation."
+                ) && valid;
+            } else {
+                this.clearFieldError("customIndustry");
+            }
+
             valid = this.requireText("nature", "Describe what your organisation does in one sentence.") && valid;
 
             return this.finishMomentValidation(valid);
@@ -1495,7 +1821,7 @@
 
         buildReviewSummaries() {
             const company = this.answerText("companyName", "Your organisation");
-            const industry = this.answerText("industry", "the selected industry");
+            const industry = this.effectiveIndustryName() || "the selected industry";
             const founded = this.answers.foundedNotSure
                 ? "with its founding year not specified"
                 : this.answers.founded
@@ -1638,55 +1964,165 @@
         }
 
         async submitLeadAndGenerate() {
-            if (!this.validateLead()) {
+            if (this.isSubmitting || !this.validateLead()) {
                 return;
             }
 
+            this.isSubmitting = true;
+            this.setGenerateButtonState(true);
             this.saveNow();
-            this.writeLeadRecord();
-            this.writeReportData();
+
+            const leadRecord = this.writeLeadRecord();
+            const reportData = this.writeReportData();
+
+            this.beginGeneration();
 
             try {
-                await this.submitLeadToEndpoint("capture");
-                this.generateAdvisory();
+                this.setGenerationStep(0, "Organising your context…");
+                await this.allowInterfacePaint();
+
+                this.setGenerationStep(1, "Building your advisory document…");
+                this.lastPdfDocument = await this.prepareAdvisoryPdf(reportData, leadRecord);
+
+                this.setGenerationStep(2, "Sending your advisory…");
+                const delivery = await this.deliverAdvisory({
+                    action: "capture",
+                    leadRecord,
+                    reportData,
+                    pdfDocument: this.lastPdfDocument
+                });
+
+                this.writeDeliveryRecord(delivery);
+                this.completeGenerationSteps();
+                this.configureSuccessMessage(delivery);
+                this.showSuccess();
             } catch (error) {
-                console.error("GrowWithHR: lead submission failed.", error);
+                console.error("GrowWithHR: advisory generation or delivery failed.", error);
                 this.showGenerationError(
-                    "We couldn’t securely save your advisory details. Your answers remain saved on this device."
+                    "Your answers are safe, but we couldn’t finish the advisory delivery. Try again without completing the briefing again."
                 );
+            } finally {
+                this.isSubmitting = false;
+                this.setGenerateButtonState(false);
             }
         }
 
-        generateAdvisory() {
+        beginGeneration() {
             this.clearGenerationTimers();
             this.showOnly("loading");
             this.elements.generationError.hidden = true;
             this.elements.generationSteps.hidden = false;
             this.elements.loadingMessage.hidden = false;
+            this.configureGenerationLabels([
+                "Organising your context",
+                "Building your advisory document",
+                "Sending your advisory"
+            ]);
             this.resetGenerationSteps();
             this.focusScreen(this.elements.loading);
+        }
 
-            const messages = [
-                "Organising your context…",
-                "Identifying people priorities…",
-                "Preparing recommended next steps…"
-            ];
-            const delay = this.prefersReducedMotion() ? 80 : 360;
+        configureGenerationLabels(labels) {
+            this.elements.generationSteps?.querySelectorAll("[data-generation-step]").forEach((item, index) => {
+                const icon = item.querySelector("i");
+                item.replaceChildren();
 
-            messages.forEach((message, index) => {
-                const timer = window.setTimeout(() => {
-                    this.setGenerationStep(index, message);
-                }, delay * index);
+                if (icon) {
+                    item.appendChild(icon);
+                }
 
-                this.generationTimers.push(timer);
+                item.append(document.createTextNode(labels[index] || `Step ${index + 1}`));
+            });
+        }
+
+        completeGenerationSteps() {
+            this.elements.generationSteps?.querySelectorAll("[data-generation-step]").forEach((item) => {
+                item.classList.remove("is-active");
+                item.classList.add("is-complete");
+                const icon = item.querySelector("i");
+                if (icon) {
+                    icon.className = "fa-solid fa-circle-check";
+                }
             });
 
-            const completionTimer = window.setTimeout(() => {
-                this.writeReportData();
-                this.showSuccess();
-            }, delay * messages.length + (this.prefersReducedMotion() ? 80 : 220));
+            if (this.elements.loadingMessage) {
+                this.elements.loadingMessage.textContent = "Your advisory is ready.";
+            }
+        }
 
-            this.generationTimers.push(completionTimer);
+        setGenerateButtonState(isBusy) {
+            const button = this.elements.generateButton;
+
+            if (!button) {
+                return;
+            }
+
+            if (isBusy) {
+                button.dataset.originalHtml = button.innerHTML;
+                button.disabled = true;
+                button.setAttribute("aria-busy", "true");
+                button.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin" aria-hidden="true"></i> Preparing advisory';
+            } else {
+                button.disabled = false;
+                button.removeAttribute("aria-busy");
+                if (button.dataset.originalHtml) {
+                    button.innerHTML = button.dataset.originalHtml;
+                    delete button.dataset.originalHtml;
+                }
+            }
+        }
+
+        async prepareAdvisoryPdf(reportData, leadRecord) {
+            const service = window.GrowWithHRPDF;
+
+            if (!service || typeof service.buildAdvisoryPdf !== "function") {
+                return null;
+            }
+
+            return service.buildAdvisoryPdf({
+                report: reportData,
+                lead: leadRecord,
+                answers: { ...this.answers }
+            });
+        }
+
+        async deliverAdvisory({ action, leadRecord, reportData, pdfDocument }) {
+            const emailService = window.GrowWithHREmail;
+
+            if (emailService && typeof emailService.sendAdvisory === "function") {
+                return emailService.sendAdvisory({
+                    action,
+                    lead: leadRecord,
+                    report: reportData,
+                    answers: { ...this.answers },
+                    pdf: pdfDocument
+                });
+            }
+
+            return this.submitLeadToEndpoint(action, {
+                lead: leadRecord,
+                advisory: reportData
+            });
+        }
+
+        configureSuccessMessage(delivery) {
+            const paragraph = this.elements.success?.querySelector(".advisory-panel-heading p");
+
+            if (!paragraph) {
+                return;
+            }
+
+            const customerSent = delivery?.customerStatus === "sent" || delivery?.customerSent === true;
+
+            paragraph.textContent = customerSent
+                ? `Built around your organisation’s current stage and sent to ${this.lead.email}.`
+                : "Built around your organisation’s current stage—not a generic score or checklist.";
+        }
+
+        allowInterfacePaint() {
+            return new Promise((resolve) => {
+                window.requestAnimationFrame(() => window.setTimeout(resolve, 20));
+            });
         }
 
         resetGenerationSteps() {
@@ -1753,51 +2189,105 @@
             this.elements.preparedDate.dateTime = new Date().toISOString().slice(0, 10);
         }
 
-        downloadReport() {
-            this.writeReportData();
-            const reportWindow = window.open(this.reportUrl, "_blank");
+        async downloadReport() {
+            const button = this.elements.downloadReportButton;
+            const reportData = this.writeReportData();
+            const leadRecord = this.writeLeadRecord();
 
-            if (!reportWindow) {
-                this.announce("Allow pop-ups to open the printable advisory.", true);
-                return;
+            if (button) {
+                button.disabled = true;
             }
 
             try {
-                reportWindow.opener = null;
-            } catch (error) {
-                // Some browsers protect the opener property. Printing can continue.
-            }
+                const pdfService = window.GrowWithHRPDF;
+                const pdfDocument = this.lastPdfDocument || await this.prepareAdvisoryPdf(reportData, leadRecord);
 
-            const requestPrint = () => {
-                try {
-                    reportWindow.focus();
-                    reportWindow.print();
-                } catch (error) {
-                    console.warn("GrowWithHR: automatic print could not start.", error);
+                if (pdfService && typeof pdfService.downloadAdvisoryPdf === "function") {
+                    await pdfService.downloadAdvisoryPdf({
+                        document: pdfDocument,
+                        report: reportData,
+                        lead: leadRecord,
+                        answers: { ...this.answers }
+                    });
+                    this.lastPdfDocument = pdfDocument;
+                    return;
                 }
-            };
 
-            reportWindow.addEventListener("load", () => window.setTimeout(requestPrint, 500), { once: true });
+                const reportWindow = window.open(this.reportUrl, "_blank");
+
+                if (!reportWindow) {
+                    this.announce("Allow pop-ups to open the printable advisory.", true);
+                    return;
+                }
+
+                try {
+                    reportWindow.opener = null;
+                } catch (error) {
+                    // Some browsers protect the opener property. Printing can continue.
+                }
+
+                const requestPrint = () => {
+                    try {
+                        reportWindow.focus();
+                        reportWindow.print();
+                    } catch (error) {
+                        console.warn("GrowWithHR: automatic print could not start.", error);
+                    }
+                };
+
+                reportWindow.addEventListener("load", () => window.setTimeout(requestPrint, 500), { once: true });
+            } catch (error) {
+                console.error("GrowWithHR: PDF download failed.", error);
+                this.announce("We could not download the PDF just yet. Open the advisory and use Print instead.", true);
+            } finally {
+                if (button) {
+                    button.disabled = false;
+                }
+            }
         }
 
         async requestAnotherEmail() {
             const button = this.elements.emailAgainButton;
 
-            if (!button) {
+            if (!button || button.disabled) {
                 return;
             }
 
             const originalText = button.textContent;
             button.disabled = true;
-            button.textContent = "Requesting another copy…";
+            button.textContent = "Sending another copy…";
 
             try {
-                await this.submitLeadToEndpoint("resend");
-                button.textContent = "Copy requested";
-                this.announce(`Another advisory copy has been requested for ${this.lead.email}.`);
+                const leadRecord = this.writeLeadRecord();
+                const reportData = this.writeReportData();
+                const pdfDocument = this.lastPdfDocument || await this.prepareAdvisoryPdf(reportData, leadRecord);
+                const emailService = window.GrowWithHREmail;
+                let delivery;
+
+                if (emailService && typeof emailService.resendCustomer === "function") {
+                    delivery = await emailService.resendCustomer({
+                        lead: leadRecord,
+                        report: reportData,
+                        answers: { ...this.answers },
+                        pdf: pdfDocument
+                    });
+                } else {
+                    delivery = await this.deliverAdvisory({
+                        action: "resend-customer",
+                        leadRecord,
+                        reportData,
+                        pdfDocument
+                    });
+                }
+
+                this.lastPdfDocument = pdfDocument;
+                this.writeDeliveryRecord({ ...this.delivery, ...delivery });
+                button.textContent = "Copy sent";
+                this.announce(`Another advisory copy has been sent to ${this.lead.email}.`);
             } catch (error) {
-                button.textContent = "Couldn’t request copy";
-                this.announce("We could not request another email copy just yet.", true);
+                console.error("GrowWithHR: advisory resend failed.", error);
+                button.textContent = "Couldn’t send copy";
+                this.announce("We could not send another email copy just yet.", true);
             } finally {
                 window.setTimeout(() => {
                     button.disabled = false;
@@ -1809,7 +2299,11 @@
         writeReportData() {
             const reportData = {
                 companyName: this.answers.companyName || "",
-                industry: this.answers.industry || "",
+                industry: this.effectiveIndustryName(),
+                industryId: this.answers.industryId || "",
+                industryCategory: this.answers.industryCategory || "",
+                industryRuleProfile: this.answers.industryRuleProfile || "",
+                customIndustry: this.answers.customIndustry || "",
                 nature: this.answers.nature || "",
                 founded: this.answers.foundedNotSure ? "Not Sure" : (this.answers.founded || ""),
                 entity: this.answers.entity || "",
@@ -1857,7 +2351,10 @@
                 serviceConsent: this.lead.serviceConsent,
                 marketingConsent: this.lead.marketingConsent,
                 companyName: this.answers.companyName || "",
-                industry: this.answers.industry || "",
+                industry: this.effectiveIndustryName(),
+                industryId: this.answers.industryId || "",
+                industryCategory: this.answers.industryCategory || "",
+                industryRuleProfile: this.answers.industryRuleProfile || "",
                 employees: this.normaliseNumber(this.answers.employees),
                 peopleFunction: this.answers.peopleFunction || "",
                 priorities: this.labelsFor(this.answers.priorities, PRIORITY_OPTIONS),
@@ -1878,18 +2375,23 @@
             return leadRecord;
         }
 
-        async submitLeadToEndpoint(action) {
+        async submitLeadToEndpoint(action, existingPayload = null) {
             const endpoint = document.body.dataset.leadEndpoint || window.GROWWITHHR_LEAD_ENDPOINT;
-            const payload = {
-                action,
+            const payload = existingPayload || {
                 lead: this.writeLeadRecord(),
                 advisory: this.writeReportData()
             };
+            payload.action = action;
 
             // The repository currently has no lead API. The event and local record
             // above keep the page functional and provide an integration point.
             if (!endpoint) {
-                return { ok: true, mode: "local-integration-hook" };
+                return {
+                    ok: true,
+                    mode: "local-integration-hook",
+                    customerStatus: "not-configured",
+                    internalStatus: "not-configured"
+                };
             }
 
             const response = await fetch(endpoint, {
@@ -1905,12 +2407,35 @@
                 throw new Error(`Lead endpoint returned ${response.status}.`);
             }
 
-            return response;
+            const result = await response.json().catch(() => ({}));
+            return {
+                ok: true,
+                mode: "endpoint",
+                ...result
+            };
+        }
+
+        writeDeliveryRecord(record = {}) {
+            const deliveryRecord = {
+                ...this.delivery,
+                ...record,
+                updatedAt: new Date().toISOString()
+            };
+
+            this.delivery = deliveryRecord;
+
+            try {
+                localStorage.setItem(DELIVERY_KEY, JSON.stringify(deliveryRecord));
+            } catch (error) {
+                console.warn("GrowWithHR: delivery status could not be saved.", error);
+            }
+
+            return deliveryRecord;
         }
 
         saveNow() {
             const state = {
-                version: "2.0.0",
+                version: "2.1.0",
                 started: this.started,
                 completed: this.completed,
                 currentMoment: this.currentMoment,
@@ -1978,6 +2503,7 @@
                 localStorage.removeItem(STORAGE_KEY);
                 localStorage.removeItem(REPORT_KEY);
                 localStorage.removeItem(LEAD_KEY);
+                localStorage.removeItem(DELIVERY_KEY);
             } catch (error) {
                 console.warn("GrowWithHR: saved data could not be cleared.", error);
             }
