@@ -30,7 +30,7 @@
     const NAV_ITEMS = Object.freeze([
         {
             key: "platform",
-            label: "Platform",
+            label: "Home",
             href: "index.html#platform"
         },
         {
