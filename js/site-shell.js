@@ -198,40 +198,47 @@
                         alt="HRTechify">
                 </a>
 
-                <nav
-                    class="site-nav-glass"
-                    aria-label="Primary navigation">
-
-                    <button
-                        class="site-nav-toggle"
-                        type="button"
-                        aria-label="Open navigation"
-                        aria-controls="siteNavLinks"
-                        aria-expanded="false">
-                        <span aria-hidden="true"></span>
-                        <span aria-hidden="true"></span>
-                        <span aria-hidden="true"></span>
-                    </button>
-
-                 <div
-    class="site-nav-links"
-    id="siteNavLinks">
+               <nav
+    class="site-nav-glass"
+    aria-label="Primary navigation">
 
     <a
-        class="site-nav-link"
         href="${escapeHtml(withRoot(prefix, "index.html#home"))}"
         aria-label="HRTechify home"
         style="
+            position: relative;
+            z-index: 2;
+            flex: 0 0 auto;
             margin-right: auto;
+            padding: 0 8px 0 18px;
             color: var(--site-shell-orange-bright);
+            font-size: clamp(0.82rem, 3.4vw, 1rem);
             font-weight: 800;
+            line-height: 1;
             letter-spacing: 0.04em;
+            white-space: nowrap;
+            text-decoration: none;
+            pointer-events: auto;
         ">
-        GrowWithHR
+        HRTechify
     </a>
 
-    ${primaryLinks}
+    <button
+        class="site-nav-toggle"
+        type="button"
+        aria-label="Open navigation"
+        aria-controls="siteNavLinks"
+        aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+    </button>
 
+    <div
+        class="site-nav-links"
+        id="siteNavLinks">
+
+        ${primaryLinks}
                         <div class="site-nav-more${activeKey === "more" ? " is-active" : ""}">
                             <button
                                 class="site-nav-more__toggle"
