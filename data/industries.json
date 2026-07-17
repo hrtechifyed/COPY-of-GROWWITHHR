@@ -1,161 +1,1435 @@
 {
+  "version": "2.1.0",
+  "lastUpdated": "2026-07-17",
+  "description": "Master searchable industry taxonomy for GrowWithHR. Canonical legacy names and ruleProfile mappings preserve compatibility with the existing industry knowledge base.",
   "industries": [
     {
-      "id": "it_saas",
+      "id": "information_technology",
       "name": "Information Technology / SaaS",
+      "category": "Technology & Digital",
+      "aliases": [
+        "IT services",
+        "software services",
+        "systems integration",
+        "managed services",
+        "technology consulting"
+      ],
       "riskLevel": "Medium",
       "recommendedFocus": [
         "Information Security",
-        "Remote Workforce Governance",
+        "Workforce Planning",
         "Performance Management",
-        "Employee Handbook"
-      ]
+        "Data Privacy"
+      ],
+      "ruleProfile": "Information Technology / SaaS"
     },
     {
-      "id": "consulting",
-      "name": "Consulting & Professional Services",
+      "id": "saas",
+      "name": "Software as a Service (SaaS)",
+      "category": "Technology & Digital",
+      "aliases": [
+        "cloud software",
+        "subscription software",
+        "B2B SaaS",
+        "B2C SaaS",
+        "software product"
+      ],
       "riskLevel": "Medium",
       "recommendedFocus": [
-        "Employment Contracts",
-        "Client Confidentiality",
-        "Performance Management",
+        "Remote Workforce Governance",
+        "Engineering Talent Retention",
+        "Information Security",
+        "Performance Management"
+      ],
+      "ruleProfile": "Information Technology / SaaS"
+    },
+    {
+      "id": "artificial_intelligence",
+      "name": "Artificial Intelligence & Machine Learning",
+      "category": "Technology & Digital",
+      "aliases": [
+        "AI",
+        "ML",
+        "generative AI",
+        "machine learning",
+        "data science"
+      ],
+      "riskLevel": "High",
+      "recommendedFocus": [
+        "Specialist Talent Retention",
+        "Responsible AI Governance",
+        "Information Security",
         "Workforce Planning"
-      ]
+      ],
+      "ruleProfile": "Information Technology / SaaS"
+    },
+    {
+      "id": "cybersecurity",
+      "name": "Cybersecurity",
+      "category": "Technology & Digital",
+      "aliases": [
+        "information security",
+        "network security",
+        "SOC",
+        "security services",
+        "cyber security"
+      ],
+      "riskLevel": "High",
+      "recommendedFocus": [
+        "Security Clearance and Access",
+        "Confidentiality",
+        "24x7 Workforce Governance",
+        "Skills Development"
+      ],
+      "ruleProfile": "Information Technology / SaaS"
+    },
+    {
+      "id": "semiconductor",
+      "name": "Semiconductor",
+      "category": "Technology & Digital",
+      "aliases": [
+        "chips",
+        "chip design",
+        "chip manufacturing",
+        "fab",
+        "foundry",
+        "VLSI",
+        "microelectronics"
+      ],
+      "riskLevel": "High",
+      "recommendedFocus": [
+        "Engineering Talent Retention",
+        "Shift Workforce Governance",
+        "Safety Compliance",
+        "Contractor Governance"
+      ],
+      "ruleProfile": "Semiconductor"
+    },
+    {
+      "id": "electronics_hardware",
+      "name": "Electronics & Hardware",
+      "category": "Technology & Digital",
+      "aliases": [
+        "consumer electronics",
+        "electronic equipment",
+        "hardware manufacturing",
+        "embedded systems"
+      ],
+      "riskLevel": "High",
+      "recommendedFocus": [
+        "Technical Skills Planning",
+        "Safety Compliance",
+        "Quality Governance",
+        "Contractor Management"
+      ],
+      "ruleProfile": "Information Technology / SaaS"
+    },
+    {
+      "id": "telecommunications",
+      "name": "Telecommunications",
+      "category": "Technology & Digital",
+      "aliases": [
+        "telecom",
+        "mobile network",
+        "internet service provider",
+        "ISP",
+        "network operator"
+      ],
+      "riskLevel": "High",
+      "recommendedFocus": [
+        "Field Workforce Safety",
+        "Shift Governance",
+        "Contractor Compliance",
+        "Skills Certification"
+      ],
+      "ruleProfile": "Information Technology / SaaS"
+    },
+    {
+      "id": "data_centres_cloud",
+      "name": "Data Centres & Cloud Infrastructure",
+      "category": "Technology & Digital",
+      "aliases": [
+        "data center",
+        "cloud infrastructure",
+        "hosting",
+        "colocation",
+        "server infrastructure"
+      ],
+      "riskLevel": "High",
+      "recommendedFocus": [
+        "24x7 Shift Governance",
+        "Critical Role Coverage",
+        "Safety Compliance",
+        "Information Security"
+      ],
+      "ruleProfile": "Information Technology / SaaS"
+    },
+    {
+      "id": "gaming_esports",
+      "name": "Gaming & Esports",
+      "category": "Technology & Digital",
+      "aliases": [
+        "video games",
+        "game studio",
+        "mobile gaming",
+        "esports"
+      ],
+      "riskLevel": "Medium",
+      "recommendedFocus": [
+        "Creative Talent Retention",
+        "Performance Management",
+        "Intellectual Property",
+        "Remote Work Governance"
+      ],
+      "ruleProfile": "Information Technology / SaaS"
     },
     {
       "id": "manufacturing",
       "name": "Manufacturing",
+      "category": "Manufacturing & Industrial",
+      "aliases": [
+        "industrial manufacturing",
+        "factory",
+        "production",
+        "assembly"
+      ],
       "riskLevel": "High",
       "recommendedFocus": [
         "Factory Compliance",
         "Safety Policies",
         "Contract Labour Compliance",
         "Industrial Relations"
-      ]
+      ],
+      "ruleProfile": "Manufacturing"
     },
     {
-      "id": "retail",
-      "name": "Retail",
-      "riskLevel": "Medium",
+      "id": "automotive",
+      "name": "Automotive & Auto Components",
+      "category": "Manufacturing & Industrial",
+      "aliases": [
+        "automobile",
+        "auto parts",
+        "vehicle manufacturing",
+        "EV manufacturing"
+      ],
+      "riskLevel": "High",
       "recommendedFocus": [
         "Shift Management",
-        "Attendance Compliance",
-        "POSH Compliance",
-        "Payroll Governance"
-      ]
+        "Industrial Relations",
+        "Safety Compliance",
+        "Technical Talent Planning"
+      ],
+      "ruleProfile": "Manufacturing"
     },
     {
-      "id": "healthcare",
+      "id": "aerospace_defence",
+      "name": "Aerospace & Defence",
+      "category": "Manufacturing & Industrial",
+      "aliases": [
+        "aviation manufacturing",
+        "defense",
+        "space technology",
+        "aerospace engineering"
+      ],
+      "riskLevel": "Very High",
+      "recommendedFocus": [
+        "Security and Access Controls",
+        "Specialist Talent Retention",
+        "Safety Compliance",
+        "Contractor Governance"
+      ],
+      "ruleProfile": "Manufacturing"
+    },
+    {
+      "id": "industrial_machinery",
+      "name": "Industrial Machinery & Equipment",
+      "category": "Manufacturing & Industrial",
+      "aliases": [
+        "capital equipment",
+        "machine tools",
+        "heavy machinery",
+        "industrial equipment"
+      ],
+      "riskLevel": "High",
+      "recommendedFocus": [
+        "Technical Skills Planning",
+        "Safety Compliance",
+        "Field Service Governance",
+        "Workforce Planning"
+      ],
+      "ruleProfile": "Manufacturing"
+    },
+    {
+      "id": "chemicals",
+      "name": "Chemicals",
+      "category": "Manufacturing & Industrial",
+      "aliases": [
+        "specialty chemicals",
+        "industrial chemicals",
+        "chemical manufacturing",
+        "petrochemicals"
+      ],
+      "riskLevel": "Very High",
+      "recommendedFocus": [
+        "Hazardous Work Safety",
+        "OSH Compliance",
+        "Shift Governance",
+        "Emergency Response"
+      ],
+      "ruleProfile": "Manufacturing"
+    },
+    {
+      "id": "pharmaceuticals",
+      "name": "Pharmaceuticals",
+      "category": "Manufacturing & Industrial",
+      "aliases": [
+        "pharma",
+        "drug manufacturing",
+        "formulations",
+        "API manufacturing"
+      ],
+      "riskLevel": "High",
+      "recommendedFocus": [
+        "Quality and Regulatory Training",
+        "Shift Governance",
+        "Safety Compliance",
+        "Critical Talent Retention"
+      ],
+      "ruleProfile": "Manufacturing"
+    },
+    {
+      "id": "biotechnology",
+      "name": "Biotechnology & Life Sciences",
+      "category": "Manufacturing & Industrial",
+      "aliases": [
+        "biotech",
+        "life sciences",
+        "genomics",
+        "research laboratory"
+      ],
+      "riskLevel": "High",
+      "recommendedFocus": [
+        "Specialist Talent Retention",
+        "Laboratory Safety",
+        "Research Governance",
+        "Confidentiality"
+      ],
+      "ruleProfile": "Manufacturing"
+    },
+    {
+      "id": "medical_devices",
+      "name": "Medical Devices",
+      "category": "Manufacturing & Industrial",
+      "aliases": [
+        "healthcare devices",
+        "diagnostic equipment",
+        "surgical equipment",
+        "medtech"
+      ],
+      "riskLevel": "High",
+      "recommendedFocus": [
+        "Quality Compliance",
+        "Technical Training",
+        "Safety Governance",
+        "Regulatory Readiness"
+      ],
+      "ruleProfile": "Manufacturing"
+    },
+    {
+      "id": "textiles_apparel",
+      "name": "Textiles, Apparel & Fashion",
+      "category": "Manufacturing & Industrial",
+      "aliases": [
+        "garments",
+        "clothing",
+        "fashion",
+        "textile manufacturing",
+        "footwear"
+      ],
+      "riskLevel": "High",
+      "recommendedFocus": [
+        "Factory Compliance",
+        "Contract Labour Governance",
+        "Wage and Hours Compliance",
+        "Safety"
+      ],
+      "ruleProfile": "Manufacturing"
+    },
+    {
+      "id": "packaging_paper",
+      "name": "Packaging, Paper & Printing",
+      "category": "Manufacturing & Industrial",
+      "aliases": [
+        "packaging",
+        "paper mill",
+        "printing press",
+        "labels"
+      ],
+      "riskLevel": "High",
+      "recommendedFocus": [
+        "Factory Safety",
+        "Shift Governance",
+        "Contract Labour Compliance",
+        "Skills Training"
+      ],
+      "ruleProfile": "Manufacturing"
+    },
+    {
+      "id": "metals_mining",
+      "name": "Metals, Mining & Minerals",
+      "category": "Manufacturing & Industrial",
+      "aliases": [
+        "steel",
+        "aluminium",
+        "mining",
+        "minerals",
+        "metallurgy"
+      ],
+      "riskLevel": "Very High",
+      "recommendedFocus": [
+        "High-Risk Safety",
+        "Industrial Relations",
+        "Contract Labour Compliance",
+        "Health Surveillance"
+      ],
+      "ruleProfile": "Manufacturing"
+    },
+    {
+      "id": "healthcare_hospitals",
       "name": "Healthcare",
+      "category": "Healthcare & Wellness",
+      "aliases": [
+        "hospital",
+        "clinic",
+        "health system",
+        "medical centre",
+        "diagnostic centre"
+      ],
       "riskLevel": "High",
       "recommendedFocus": [
         "Shift Workforce Governance",
         "Professional Licensing",
         "Patient Data Confidentiality",
-        "Compliance Monitoring"
-      ]
+        "Burnout Management"
+      ],
+      "ruleProfile": "Healthcare"
     },
     {
-      "id": "education",
-      "name": "Education",
+      "id": "healthtech",
+      "name": "HealthTech & Digital Health",
+      "category": "Healthcare & Wellness",
+      "aliases": [
+        "digital health",
+        "telemedicine",
+        "health software",
+        "medical app"
+      ],
+      "riskLevel": "High",
+      "recommendedFocus": [
+        "Patient Data Privacy",
+        "Clinical Governance",
+        "Specialist Talent",
+        "Information Security"
+      ],
+      "ruleProfile": "Healthcare"
+    },
+    {
+      "id": "wellness_fitness",
+      "name": "Wellness, Fitness & Personal Care",
+      "category": "Healthcare & Wellness",
+      "aliases": [
+        "gym",
+        "fitness",
+        "wellness",
+        "salon",
+        "spa",
+        "personal care"
+      ],
       "riskLevel": "Medium",
       "recommendedFocus": [
-        "Faculty Contracts",
-        "POSH Compliance",
-        "Background Verification",
-        "Policy Framework"
-      ]
+        "Shift Scheduling",
+        "Customer Safety",
+        "Employment Contracts",
+        "Performance Management"
+      ],
+      "ruleProfile": "Healthcare"
     },
     {
       "id": "financial_services",
       "name": "Financial Services",
+      "category": "Financial Services",
+      "aliases": [
+        "finance",
+        "financial institution",
+        "financial company",
+        "BFSI"
+      ],
       "riskLevel": "High",
       "recommendedFocus": [
         "Governance",
         "Audit Readiness",
         "Regulatory Compliance",
         "Employee Accountability"
-      ]
+      ],
+      "ruleProfile": "Financial Services"
+    },
+    {
+      "id": "banking",
+      "name": "Banking",
+      "category": "Financial Services",
+      "aliases": [
+        "bank",
+        "commercial banking",
+        "retail banking",
+        "corporate banking"
+      ],
+      "riskLevel": "High",
+      "recommendedFocus": [
+        "Regulatory Training",
+        "Audit Readiness",
+        "Employee Accountability",
+        "Information Security"
+      ],
+      "ruleProfile": "Financial Services"
+    },
+    {
+      "id": "nbfc_lending",
+      "name": "NBFC, Lending & Credit",
+      "category": "Financial Services",
+      "aliases": [
+        "NBFC",
+        "lending",
+        "credit company",
+        "microfinance",
+        "loan provider"
+      ],
+      "riskLevel": "High",
+      "recommendedFocus": [
+        "Regulatory Compliance",
+        "Sales Conduct",
+        "Audit Readiness",
+        "Performance Governance"
+      ],
+      "ruleProfile": "Financial Services"
+    },
+    {
+      "id": "insurance",
+      "name": "Insurance",
+      "category": "Financial Services",
+      "aliases": [
+        "life insurance",
+        "general insurance",
+        "insurtech",
+        "brokerage"
+      ],
+      "riskLevel": "High",
+      "recommendedFocus": [
+        "Regulatory Training",
+        "Sales Conduct",
+        "Performance Governance",
+        "Data Privacy"
+      ],
+      "ruleProfile": "Financial Services"
+    },
+    {
+      "id": "fintech",
+      "name": "FinTech & Payments",
+      "category": "Financial Services",
+      "aliases": [
+        "payments",
+        "payment gateway",
+        "digital finance",
+        "neobank",
+        "wallet"
+      ],
+      "riskLevel": "High",
+      "recommendedFocus": [
+        "Information Security",
+        "Regulatory Readiness",
+        "Critical Talent Retention",
+        "Audit Governance"
+      ],
+      "ruleProfile": "Financial Services"
+    },
+    {
+      "id": "investment_capital_markets",
+      "name": "Investment, Wealth & Capital Markets",
+      "category": "Financial Services",
+      "aliases": [
+        "asset management",
+        "wealth management",
+        "broker",
+        "stock market",
+        "private equity",
+        "venture capital"
+      ],
+      "riskLevel": "High",
+      "recommendedFocus": [
+        "Conduct and Ethics",
+        "Regulatory Training",
+        "Confidentiality",
+        "Performance Governance"
+      ],
+      "ruleProfile": "Financial Services"
+    },
+    {
+      "id": "accounting_audit",
+      "name": "Accounting, Audit & Tax",
+      "category": "Financial Services",
+      "aliases": [
+        "chartered accountant",
+        "CA firm",
+        "audit firm",
+        "tax advisory",
+        "bookkeeping"
+      ],
+      "riskLevel": "Medium",
+      "recommendedFocus": [
+        "Professional Standards",
+        "Peak-Period Workload",
+        "Client Confidentiality",
+        "Talent Development"
+      ],
+      "ruleProfile": "Financial Services"
+    },
+    {
+      "id": "consulting",
+      "name": "Consulting & Professional Services",
+      "category": "Professional Services",
+      "aliases": [
+        "management consulting",
+        "business consulting",
+        "advisory firm",
+        "strategy consulting"
+      ],
+      "riskLevel": "Medium",
+      "recommendedFocus": [
+        "Employment Contracts",
+        "Client Confidentiality",
+        "Performance Management",
+        "Knowledge Management"
+      ],
+      "ruleProfile": "Consulting & Professional Services"
+    },
+    {
+      "id": "legal_services",
+      "name": "Legal Services",
+      "category": "Professional Services",
+      "aliases": [
+        "law firm",
+        "legal practice",
+        "legal consultancy",
+        "corporate law"
+      ],
+      "riskLevel": "Medium",
+      "recommendedFocus": [
+        "Professional Ethics",
+        "Client Confidentiality",
+        "Workload Governance",
+        "Career Progression"
+      ],
+      "ruleProfile": "Consulting & Professional Services"
+    },
+    {
+      "id": "staffing_recruitment",
+      "name": "Staffing, Recruitment & Executive Search",
+      "category": "Professional Services",
+      "aliases": [
+        "recruitment agency",
+        "staffing firm",
+        "manpower",
+        "headhunting",
+        "RPO"
+      ],
+      "riskLevel": "High",
+      "recommendedFocus": [
+        "Contract Workforce Governance",
+        "Data Privacy",
+        "Recruiter Incentives",
+        "Client Compliance"
+      ],
+      "ruleProfile": "Consulting & Professional Services"
+    },
+    {
+      "id": "architecture_design",
+      "name": "Architecture, Design & Engineering Services",
+      "category": "Professional Services",
+      "aliases": [
+        "architecture firm",
+        "engineering consultancy",
+        "design studio",
+        "EPC design"
+      ],
+      "riskLevel": "Medium",
+      "recommendedFocus": [
+        "Project Staffing",
+        "Professional Development",
+        "Workload Governance",
+        "Client Confidentiality"
+      ],
+      "ruleProfile": "Consulting & Professional Services"
+    },
+    {
+      "id": "research_testing",
+      "name": "Research, Testing & Certification",
+      "category": "Professional Services",
+      "aliases": [
+        "laboratory testing",
+        "inspection",
+        "certification",
+        "R&D services"
+      ],
+      "riskLevel": "High",
+      "recommendedFocus": [
+        "Technical Competency",
+        "Laboratory Safety",
+        "Quality Governance",
+        "Accreditation Readiness"
+      ],
+      "ruleProfile": "Consulting & Professional Services"
+    },
+    {
+      "id": "retail",
+      "name": "Retail",
+      "category": "Consumer & Retail",
+      "aliases": [
+        "stores",
+        "brick and mortar retail",
+        "retail chain",
+        "department store"
+      ],
+      "riskLevel": "Medium",
+      "recommendedFocus": [
+        "Shift Management",
+        "Attendance Compliance",
+        "POSH Compliance",
+        "Payroll Governance"
+      ],
+      "ruleProfile": "Retail"
+    },
+    {
+      "id": "ecommerce",
+      "name": "E-Commerce",
+      "category": "Consumer & Retail",
+      "aliases": [
+        "online retail",
+        "marketplace",
+        "D2C",
+        "direct to consumer",
+        "internet commerce"
+      ],
+      "riskLevel": "Medium",
+      "recommendedFocus": [
+        "Warehouse Workforce Compliance",
+        "Contractor Governance",
+        "Performance Management",
+        "Information Security"
+      ],
+      "ruleProfile": "E-Commerce"
+    },
+    {
+      "id": "fmcg",
+      "name": "FMCG & Consumer Goods",
+      "category": "Consumer & Retail",
+      "aliases": [
+        "consumer packaged goods",
+        "CPG",
+        "fast moving consumer goods",
+        "household products"
+      ],
+      "riskLevel": "High",
+      "recommendedFocus": [
+        "Sales Workforce Governance",
+        "Factory Compliance",
+        "Distribution Workforce",
+        "Performance Management"
+      ],
+      "ruleProfile": "Retail"
+    },
+    {
+      "id": "food_beverage",
+      "name": "Food & Beverage Manufacturing",
+      "category": "Consumer & Retail",
+      "aliases": [
+        "food processing",
+        "beverage company",
+        "dairy",
+        "bakery",
+        "packaged food"
+      ],
+      "riskLevel": "High",
+      "recommendedFocus": [
+        "Food Safety Training",
+        "Factory Compliance",
+        "Shift Management",
+        "Contract Labour Governance"
+      ],
+      "ruleProfile": "Retail"
+    },
+    {
+      "id": "restaurants_food_service",
+      "name": "Restaurants, QSR & Food Service",
+      "category": "Consumer & Retail",
+      "aliases": [
+        "restaurant",
+        "QSR",
+        "cafe",
+        "cloud kitchen",
+        "catering"
+      ],
+      "riskLevel": "High",
+      "recommendedFocus": [
+        "Shift Scheduling",
+        "Wage and Hours Compliance",
+        "Food Safety Training",
+        "Attrition Management"
+      ],
+      "ruleProfile": "Retail"
+    },
+    {
+      "id": "beauty_cosmetics",
+      "name": "Beauty, Cosmetics & Personal Care Products",
+      "category": "Consumer & Retail",
+      "aliases": [
+        "cosmetics",
+        "skincare",
+        "beauty products",
+        "personal care products"
+      ],
+      "riskLevel": "Medium",
+      "recommendedFocus": [
+        "Sales Workforce Governance",
+        "Product Training",
+        "Retail Staffing",
+        "Performance Management"
+      ],
+      "ruleProfile": "Retail"
+    },
+    {
+      "id": "jewellery_luxury",
+      "name": "Jewellery, Luxury & Lifestyle",
+      "category": "Consumer & Retail",
+      "aliases": [
+        "jewelry",
+        "luxury goods",
+        "watches",
+        "lifestyle brand"
+      ],
+      "riskLevel": "Medium",
+      "recommendedFocus": [
+        "Retail Staffing",
+        "Loss Prevention",
+        "Sales Incentives",
+        "Background Verification"
+      ],
+      "ruleProfile": "Retail"
+    },
+    {
+      "id": "education",
+      "name": "Education",
+      "category": "Education",
+      "aliases": [
+        "school",
+        "college",
+        "university",
+        "training institute",
+        "coaching centre"
+      ],
+      "riskLevel": "Medium",
+      "recommendedFocus": [
+        "Faculty Contracts",
+        "POSH Compliance",
+        "Background Verification",
+        "Policy Framework"
+      ],
+      "ruleProfile": "Education"
+    },
+    {
+      "id": "edtech",
+      "name": "EdTech",
+      "category": "Education",
+      "aliases": [
+        "education technology",
+        "online learning",
+        "e-learning",
+        "learning platform"
+      ],
+      "riskLevel": "Medium",
+      "recommendedFocus": [
+        "Faculty and Content Workforce",
+        "Remote Work Governance",
+        "Data Privacy",
+        "Performance Management"
+      ],
+      "ruleProfile": "Education"
     },
     {
       "id": "logistics",
       "name": "Logistics & Transportation",
+      "category": "Travel, Logistics & Hospitality",
+      "aliases": [
+        "transport",
+        "freight",
+        "supply chain",
+        "3PL",
+        "courier",
+        "delivery"
+      ],
       "riskLevel": "High",
       "recommendedFocus": [
         "Contract Labour Compliance",
         "Shift Management",
-        "Safety Governance",
+        "Driver Safety",
         "Payroll Compliance"
-      ]
+      ],
+      "ruleProfile": "Logistics & Transportation"
     },
     {
-      "id": "construction",
-      "name": "Construction",
+      "id": "warehousing",
+      "name": "Warehousing & Fulfilment",
+      "category": "Travel, Logistics & Hospitality",
+      "aliases": [
+        "warehouse",
+        "fulfillment centre",
+        "distribution centre",
+        "cold storage"
+      ],
+      "riskLevel": "High",
+      "recommendedFocus": [
+        "Shift Governance",
+        "Safety Compliance",
+        "Contract Labour",
+        "Productivity Management"
+      ],
+      "ruleProfile": "Logistics & Transportation"
+    },
+    {
+      "id": "aviation",
+      "name": "Aviation & Airlines",
+      "category": "Travel, Logistics & Hospitality",
+      "aliases": [
+        "airline",
+        "airport services",
+        "aviation services",
+        "ground handling"
+      ],
       "riskLevel": "Very High",
       "recommendedFocus": [
-        "Contract Labour Compliance",
-        "Worker Safety",
-        "Site Compliance",
-        "Statutory Registrations"
-      ]
+        "Safety-Critical Training",
+        "Shift Governance",
+        "Licensing",
+        "Fatigue Management"
+      ],
+      "ruleProfile": "Logistics & Transportation"
+    },
+    {
+      "id": "shipping_maritime",
+      "name": "Shipping, Ports & Maritime",
+      "category": "Travel, Logistics & Hospitality",
+      "aliases": [
+        "shipping",
+        "port",
+        "maritime",
+        "marine services",
+        "ship management"
+      ],
+      "riskLevel": "Very High",
+      "recommendedFocus": [
+        "Safety Governance",
+        "Contract Workforce",
+        "Rotation Management",
+        "Regulatory Training"
+      ],
+      "ruleProfile": "Logistics & Transportation"
     },
     {
       "id": "hospitality",
       "name": "Hospitality",
+      "category": "Travel, Logistics & Hospitality",
+      "aliases": [
+        "hotel",
+        "resort",
+        "lodging",
+        "hospitality services"
+      ],
       "riskLevel": "High",
       "recommendedFocus": [
         "Shift Workforce Governance",
         "POSH Compliance",
         "Attendance Controls",
         "Payroll Compliance"
-      ]
+      ],
+      "ruleProfile": "Hospitality"
     },
     {
-      "id": "ecommerce",
-      "name": "E-Commerce",
+      "id": "travel_tourism",
+      "name": "Travel & Tourism",
+      "category": "Travel, Logistics & Hospitality",
+      "aliases": [
+        "travel agency",
+        "tour operator",
+        "tourism",
+        "destination management"
+      ],
       "riskLevel": "Medium",
       "recommendedFocus": [
-        "Warehouse Workforce Compliance",
-        "Contractor Governance",
-        "Performance Management",
-        "Payroll Compliance"
-      ]
+        "Seasonal Workforce Planning",
+        "Customer Service Training",
+        "Incentive Governance",
+        "Crisis Preparedness"
+      ],
+      "ruleProfile": "Logistics & Transportation"
     },
     {
-      "id": "startup",
+      "id": "construction",
+      "name": "Construction",
+      "category": "Construction & Real Estate",
+      "aliases": [
+        "civil construction",
+        "builder",
+        "contractor",
+        "EPC",
+        "infrastructure construction"
+      ],
+      "riskLevel": "Very High",
+      "recommendedFocus": [
+        "Contract Labour Compliance",
+        "Worker Safety",
+        "Site Compliance",
+        "Statutory Registrations"
+      ],
+      "ruleProfile": "Construction"
+    },
+    {
+      "id": "real_estate",
+      "name": "Real Estate & Property Services",
+      "category": "Construction & Real Estate",
+      "aliases": [
+        "property developer",
+        "realty",
+        "property management",
+        "real estate brokerage"
+      ],
+      "riskLevel": "Medium",
+      "recommendedFocus": [
+        "Sales Incentives",
+        "Contract Workforce",
+        "Site Safety",
+        "Performance Management"
+      ],
+      "ruleProfile": "Construction"
+    },
+    {
+      "id": "facilities_management",
+      "name": "Facilities Management & Security Services",
+      "category": "Construction & Real Estate",
+      "aliases": [
+        "facility management",
+        "housekeeping services",
+        "security agency",
+        "building maintenance"
+      ],
+      "riskLevel": "High",
+      "recommendedFocus": [
+        "Contract Labour Compliance",
+        "Deployment Governance",
+        "Attendance and Wages",
+        "Safety Training"
+      ],
+      "ruleProfile": "Construction"
+    },
+    {
+      "id": "infrastructure",
+      "name": "Infrastructure",
+      "category": "Construction & Real Estate",
+      "aliases": [
+        "roads",
+        "rail infrastructure",
+        "urban infrastructure",
+        "public infrastructure"
+      ],
+      "riskLevel": "Very High",
+      "recommendedFocus": [
+        "Project Workforce Planning",
+        "Site Safety",
+        "Contract Labour",
+        "Industrial Relations"
+      ],
+      "ruleProfile": "Construction"
+    },
+    {
+      "id": "energy_utilities",
+      "name": "Power, Energy & Utilities",
+      "category": "Energy & Natural Resources",
+      "aliases": [
+        "power generation",
+        "electric utility",
+        "water utility",
+        "electricity distribution"
+      ],
+      "riskLevel": "Very High",
+      "recommendedFocus": [
+        "Safety-Critical Roles",
+        "Shift Governance",
+        "Emergency Preparedness",
+        "Technical Skills Planning"
+      ],
+      "ruleProfile": "Manufacturing"
+    },
+    {
+      "id": "renewable_energy",
+      "name": "Renewable Energy & Cleantech",
+      "category": "Energy & Natural Resources",
+      "aliases": [
+        "solar",
+        "wind",
+        "clean energy",
+        "green energy",
+        "climate tech"
+      ],
+      "riskLevel": "High",
+      "recommendedFocus": [
+        "Field Workforce Safety",
+        "Project Staffing",
+        "Technical Talent",
+        "Contractor Governance"
+      ],
+      "ruleProfile": "Manufacturing"
+    },
+    {
+      "id": "oil_gas",
+      "name": "Oil, Gas & Petrochemicals",
+      "category": "Energy & Natural Resources",
+      "aliases": [
+        "oil and gas",
+        "petroleum",
+        "refinery",
+        "upstream",
+        "downstream"
+      ],
+      "riskLevel": "Very High",
+      "recommendedFocus": [
+        "Process Safety",
+        "High-Risk Workforce",
+        "Shift Governance",
+        "Emergency Response"
+      ],
+      "ruleProfile": "Manufacturing"
+    },
+    {
+      "id": "waste_environment",
+      "name": "Waste Management & Environmental Services",
+      "category": "Energy & Natural Resources",
+      "aliases": [
+        "recycling",
+        "waste disposal",
+        "environmental services",
+        "pollution control"
+      ],
+      "riskLevel": "High",
+      "recommendedFocus": [
+        "Worker Safety",
+        "Hazardous Material Training",
+        "Contract Labour",
+        "Health Surveillance"
+      ],
+      "ruleProfile": "Manufacturing"
+    },
+    {
+      "id": "agriculture",
+      "name": "Agriculture & Agribusiness",
+      "category": "Agriculture & Food Systems",
+      "aliases": [
+        "farming",
+        "agri business",
+        "agtech",
+        "crop production",
+        "farm services"
+      ],
+      "riskLevel": "High",
+      "recommendedFocus": [
+        "Seasonal Workforce Governance",
+        "Field Safety",
+        "Contract Labour",
+        "Skills Training"
+      ],
+      "ruleProfile": "Manufacturing"
+    },
+    {
+      "id": "fisheries_aquaculture",
+      "name": "Fisheries, Aquaculture & Animal Husbandry",
+      "category": "Agriculture & Food Systems",
+      "aliases": [
+        "fishing",
+        "aquaculture",
+        "dairy farming",
+        "poultry",
+        "livestock"
+      ],
+      "riskLevel": "High",
+      "recommendedFocus": [
+        "Field Safety",
+        "Seasonal Staffing",
+        "Health and Hygiene",
+        "Worker Accommodation"
+      ],
+      "ruleProfile": "Manufacturing"
+    },
+    {
+      "id": "media_entertainment",
+      "name": "Media & Entertainment",
+      "category": "Media, Creative & Communications",
+      "aliases": [
+        "film",
+        "television",
+        "music",
+        "broadcast",
+        "content production"
+      ],
+      "riskLevel": "Medium",
+      "recommendedFocus": [
+        "Freelancer Governance",
+        "Intellectual Property",
+        "POSH Compliance",
+        "Project Workforce Planning"
+      ],
+      "ruleProfile": "Consulting & Professional Services"
+    },
+    {
+      "id": "advertising_marketing",
+      "name": "Advertising, Marketing & Public Relations",
+      "category": "Media, Creative & Communications",
+      "aliases": [
+        "advertising agency",
+        "digital marketing",
+        "PR agency",
+        "creative agency",
+        "branding"
+      ],
+      "riskLevel": "Medium",
+      "recommendedFocus": [
+        "Client Confidentiality",
+        "Creative Talent Retention",
+        "Workload Governance",
+        "Performance Management"
+      ],
+      "ruleProfile": "Consulting & Professional Services"
+    },
+    {
+      "id": "publishing",
+      "name": "Publishing & News Media",
+      "category": "Media, Creative & Communications",
+      "aliases": [
+        "newspaper",
+        "magazine",
+        "book publishing",
+        "digital news",
+        "journalism"
+      ],
+      "riskLevel": "Medium",
+      "recommendedFocus": [
+        "Editorial Independence",
+        "Freelancer Governance",
+        "POSH Compliance",
+        "Digital Skills"
+      ],
+      "ruleProfile": "Consulting & Professional Services"
+    },
+    {
+      "id": "sports_recreation",
+      "name": "Sports, Recreation & Events",
+      "category": "Media, Creative & Communications",
+      "aliases": [
+        "sports club",
+        "event management",
+        "sports league",
+        "recreation",
+        "live events"
+      ],
+      "riskLevel": "Medium",
+      "recommendedFocus": [
+        "Event Workforce Governance",
+        "Safeguarding",
+        "Seasonal Staffing",
+        "Contractor Management"
+      ],
+      "ruleProfile": "Consulting & Professional Services"
+    },
+    {
+      "id": "government_public_sector",
+      "name": "Government, Public Sector & PSU",
+      "category": "Public & Social Sector",
+      "aliases": [
+        "government department",
+        "public sector",
+        "PSU",
+        "municipality",
+        "state enterprise"
+      ],
+      "riskLevel": "High",
+      "recommendedFocus": [
+        "Service Rules",
+        "Workforce Governance",
+        "Industrial Relations",
+        "Compliance Monitoring"
+      ],
+      "ruleProfile": "Other"
+    },
+    {
+      "id": "nonprofit",
+      "name": "Nonprofit, NGO & Social Enterprise",
+      "category": "Public & Social Sector",
+      "aliases": [
+        "NGO",
+        "charity",
+        "foundation",
+        "social impact",
+        "not for profit"
+      ],
+      "riskLevel": "Medium",
+      "recommendedFocus": [
+        "Safeguarding",
+        "Grant Workforce Governance",
+        "Volunteer Management",
+        "Policy Framework"
+      ],
+      "ruleProfile": "Other"
+    },
+    {
+      "id": "religious_cultural",
+      "name": "Religious, Cultural & Membership Organisations",
+      "category": "Public & Social Sector",
+      "aliases": [
+        "religious organisation",
+        "association",
+        "society",
+        "club",
+        "membership body"
+      ],
+      "riskLevel": "Medium",
+      "recommendedFocus": [
+        "Volunteer Governance",
+        "Safeguarding",
+        "Policy Framework",
+        "Role Clarity"
+      ],
+      "ruleProfile": "Other"
+    },
+    {
+      "id": "bpo_kpo",
+      "name": "BPO, KPO & Shared Services",
+      "category": "Business Operations",
+      "aliases": [
+        "business process outsourcing",
+        "knowledge process outsourcing",
+        "call centre",
+        "shared service centre",
+        "GCC"
+      ],
+      "riskLevel": "High",
+      "recommendedFocus": [
+        "Shift Governance",
+        "Data Security",
+        "Attrition Management",
+        "Performance and Incentives"
+      ],
+      "ruleProfile": "Consulting & Professional Services"
+    },
+    {
+      "id": "customer_support",
+      "name": "Customer Support & Contact Centres",
+      "category": "Business Operations",
+      "aliases": [
+        "call center",
+        "contact centre",
+        "customer service",
+        "support centre"
+      ],
+      "riskLevel": "High",
+      "recommendedFocus": [
+        "Shift Governance",
+        "Workload and Wellbeing",
+        "Performance Quality",
+        "Attrition Management"
+      ],
+      "ruleProfile": "Consulting & Professional Services"
+    },
+    {
+      "id": "procurement_trading",
+      "name": "Trading, Distribution & Wholesale",
+      "category": "Business Operations",
+      "aliases": [
+        "wholesale",
+        "distributor",
+        "trading company",
+        "import export",
+        "channel distribution"
+      ],
+      "riskLevel": "Medium",
+      "recommendedFocus": [
+        "Sales Incentives",
+        "Warehouse Workforce",
+        "Code of Conduct",
+        "Performance Management"
+      ],
+      "ruleProfile": "Consulting & Professional Services"
+    },
+    {
+      "id": "startup_cross_industry",
       "name": "Startup",
+      "category": "Other",
+      "aliases": [
+        "startup",
+        "early stage company",
+        "new venture",
+        "DPIIT startup"
+      ],
       "riskLevel": "Medium",
       "recommendedFocus": [
         "Foundational Compliance",
         "Policy Framework",
         "Workforce Planning",
-        "Manager Capability Building"
-      ]
+        "Manager Capability"
+      ],
+      "ruleProfile": "Startup"
     },
     {
-    "id": "semiconductor",
-    "name": "Semiconductor",
-    "riskLevel": "High",
-    "recommendedFocus": [
-      "Workforce Planning",
-      "Shift Workforce Governance",
-      "Engineering Talent Retention",
-      "Safety Compliance",
-      "Contractor Governance",
-      "Information Security"
-    ]
-  },
+      "id": "conglomerate",
+      "name": "Conglomerate / Diversified Group",
+      "category": "Other",
+      "aliases": [
+        "business group",
+        "diversified company",
+        "holding company",
+        "multi-industry group"
+      ],
+      "riskLevel": "High",
+      "recommendedFocus": [
+        "Group Governance",
+        "Organisation Design",
+        "Leadership Succession",
+        "Policy Harmonisation"
+      ],
+      "ruleProfile": "Other"
+    },
     {
       "id": "other",
       "name": "Other",
+      "category": "Other",
+      "aliases": [
+        "other",
+        "not listed",
+        "none of these"
+      ],
       "riskLevel": "Medium",
       "recommendedFocus": [
         "Compliance Monitoring",
         "HR Governance",
         "Policy Framework",
         "Workforce Planning"
-      ]
+      ],
+      "ruleProfile": "Other",
+      "displayLabel": "Other / Not listed"
     }
   ]
 }
-
