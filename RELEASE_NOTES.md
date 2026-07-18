@@ -1,117 +1,381 @@
-# GrowWithHR v0.12.1-beta
+# GrowWithHR v0.15.0-beta
 
-Codename: Intro Experience v2.0 & Production Readiness
+Codename: Gmail Advisory Delivery & HRTechify Brand Alignment
 
 ---
 
 ## Overview
 
-This release updates GrowWithHR documentation around the Executive Intro Experience v2.0, production-readiness planning, commercial compliance-advisory roadmap, recommendation traceability, and responsive device-layout QA.
+This release moves GrowWithHR from a browser-only advisory prototype toward a working end-to-end assessment and report-delivery experience.
 
-The most important product decision in this release is that the intro should become a persistent executive briefing header with a fixed content anchor, while the broader product roadmap moves GrowWithHR toward a traceable AI Executive Advisory Platform.
+Users can now complete the GrowWithHR Executive Advisory assessment, generate a personalised PDF report and receive it by email through the Gmail API.
+
+The release also introduces a branded HRTechify customer email, internal assessment notifications, improved backend validation, shared website branding and consistent footer styling across public pages.
+
+GrowWithHR remains a beta-stage, rules-based executive advisory prototype. The current delivered report primarily focuses on the compliance pillar while the wider people, growth and governance framework continues to develop.
 
 ---
 
 ## Highlights
 
-### Persistent-Hero Executive Intro v2.0
+### Gmail API Advisory Delivery
 
-The intro direction is now a persistent executive briefing header. The hero appears immediately, Message 1 appears immediately, and messages, cards, coach content, and actions all start from the same fixed content anchor below the header.
+GrowWithHR now sends advisory reports through the Gmail API over HTTPS.
 
+The backend uses Google OAuth 2.0 credentials rather than SMTP or Gmail App Passwords.
 
-### Production Readiness Roadmap
+The email-delivery flow now includes:
 
-The roadmap now identifies compliance knowledge, explainability, security, auditability, multi-tenancy, and production infrastructure as key readiness workstreams. The current readiness estimate remains approximately 65–70% until these workstreams mature.
+1. The user completes the Executive Advisory assessment.
+2. GrowWithHR generates the advisory report as a PDF.
+3. The browser sends the recipient details and PDF securely to the backend.
+4. The backend validates the request and attachment.
+5. The customer receives the branded email with the PDF attached.
+6. An internal notification may be sent to the configured HRTechify inbox.
 
-### Traceability as the Next Major Investment
+---
 
-Every recommendation should eventually explain why it appears, which assessment answers triggered it, which regulation or recognised HR principle it relates to, and what the user should do next.
+### Branded Customer Email
 
-### Device Layout Test Cases
+Customers now receive a responsive HRTechify-branded email containing:
 
-The testing checklist now includes explicit layout checks for mobile portrait, mobile landscape, tablet portrait, tablet landscape, laptop, and desktop viewports.
+- A personalised greeting.
+- The organisation name.
+- A clear PDF attachment notice.
+- A summary of what the advisory contains.
+- Practical next-step guidance.
+- A reply-to contact option.
+- A founder signature.
+- A compact HRTechify footer bar.
+- A centred HRTechify logo.
+- The centred tagline:
 
-### Wizard-Style Assessment Flow
+  People • Technology • Growth
 
-The new `WizardForm` component separates the flow into scenes:
+A plain-text fallback is also included for email applications that do not support or display HTML content.
 
-1. Welcome and animated introduction.
-2. Company context questions.
-3. Contact capture for the open tab only.
-4. Personalized advisory report.
+---
 
-### No-Storage Data Policy
+### PDF Advisory Attachment
 
-The current build uses open-tab memory only.
+The generated advisory report is now delivered as a PDF attachment.
 
-- No localStorage.
-- No sessionStorage.
-- No cookies.
-- No backend database.
-- No Google Drive upload.
-- No CRM export.
-- No HRTechify admin dashboard.
-- No email delivery.
-- No cross-device resume link.
+The backend checks that:
 
-If a user leaves midway, refreshes, closes the tab, or switches devices, they must start fresh.
+- A PDF was supplied.
+- The attachment contains valid Base64 data.
+- The file begins with a valid PDF signature.
+- The attachment does not exceed the configured size limit.
+- The filename is converted into a safe format.
 
-### Personalized Report Generator
+The current customer-facing report primarily covers the compliance pillar, even when the assessment captures information relating to wider people or growth priorities.
 
-The report generator creates a rules-based advisory using the user's company context. It includes:
+---
 
-- Company-specific summary.
-- Risk level.
-- Maturity score.
-- Operating archetype.
-- Directional benchmark language.
-- CFO and HR viewpoints.
-- Priority actions.
+### Internal Assessment Notifications
 
-### Privacy and Trust Signaling
+GrowWithHR can now send an internal notification when a user completes an assessment.
 
-Privacy notices now appear directly near sensitive assessment areas and in a dedicated privacy component. The copy clearly explains what is and is not stored.
+The internal notification may include:
 
-### Visual Consistency
+- Name.
+- Email address.
+- Organisation.
+- Role.
+- Industry.
+- Employee count.
+- Hiring plans.
+- Selected priorities.
+- Submission time.
 
-The new UX components use the same font family as the advisory dashboard: `Inter`, `Segoe UI`, `sans-serif`.
+The internal notification is separate from the customer’s advisory email.
+
+---
+
+### Backend and Deployment Improvements
+
+The release introduces a Node.js and Express backend with:
+
+- Gmail API integration.
+- Google OAuth 2.0 authentication.
+- Request validation.
+- Email-address validation.
+- PDF validation.
+- Rate limiting.
+- Plain-text and HTML MIME email generation.
+- Customer and internal email handling.
+- Protected server and environment-file paths.
+- Deployment health reporting.
+- Render deployment support.
+
+The application exposes a health endpoint:
+
+GET /api/health
+
+A configured deployment reports:
+
+{
+  "ok": true,
+  "version": "gmail-api-v1",
+  "provider": "gmail-api",
+  "gmailConfigured": true,
+  "missingVariables": []
+}
+
+---
+
+### Shared HRTechify Branding
+
+The website and customer email now use a more consistent HRTechify identity.
+
+The shared website footer is:
+
+© 2026 HRTechify. All Rights Reserved. People • Technology • Growth
+
+The footer now uses the same shared font sizing and styling across supported public pages.
+
+The Analyze Company page was also corrected so that its page-level paragraph styling does not enlarge the shared footer text.
+
+---
+
+### Executive Advisory Assessment
+
+The current assessment guides users through structured company context, including:
+
+1. Business and organisation details.
+2. Workforce and headcount context.
+3. Operating footprint and working model.
+4. Hiring, expansion and leadership priorities.
+5. Review and recipient confirmation.
+6. PDF generation and email delivery.
+
+The recommendations remain deterministic and rules-based.
+
+GrowWithHR does not present the output as a replacement for professional legal, financial, tax, compliance or HR advice.
+
+---
+
+### Browser Progress and Data Handling
+
+The previous open-tab-only policy has changed.
+
+The current assessment experience may retain limited progress in the user’s browser to support resume behaviour.
+
+Current data handling includes:
+
+- Assessment information is entered and processed in the browser.
+- Limited browser-based progress may be retained locally.
+- Report-delivery information is sent to the GrowWithHR backend when the user requests the advisory.
+- The backend processes the information for email delivery.
+- Assessment answers are not intentionally stored in a dedicated GrowWithHR database.
+- Sent emails and PDF attachments are retained by the connected Gmail account according to its settings.
+- Non-sensitive delivery and error information may appear in Render application logs.
+
+The current release does not provide cloud-based saved assessments or cross-device continuation.
 
 ---
 
 ## Current Beta Scope
 
-Included:
+### Included
 
-- Static landing and advisory pages from the existing prototype.
-- New React/TypeScript assessment UX components.
-- Current-tab-only state management.
-- No-storage privacy messaging.
-- Rules-based personalized report generation.
-- Unit-test examples for key UX behavior.
+- Static HRTechify landing and information pages.
+- Guided Executive Advisory assessment.
+- Company and workforce context capture.
+- Browser-based progress and resume behaviour.
+- Assessment review before report generation.
+- Deterministic advisory recommendations.
+- Compliance-focused PDF report generation.
+- Gmail API customer email delivery.
+- PDF email attachments.
+- Branded HTML email.
+- Plain-text email fallback.
+- Internal assessment notifications.
+- Reply-to email support.
+- Backend request rate limiting.
+- Gmail API health checks.
+- Render deployment.
+- Shared header and footer branding.
+- Responsive desktop, laptop, tablet and mobile layouts.
+- Experimental React and TypeScript UX components.
 
-Not included:
+### Not included
 
-- Production backend.
-- Persistent user accounts.
-- Saved reports.
-- Save-and-resume.
-- Admin dashboards.
-- CRM/email/Google Drive integrations.
+- Customer accounts.
+- User authentication.
+- Role-based authorization.
+- A persistent assessment database.
+- Cloud-based saved reports.
+- Cross-device resume links.
+- HRTechify administration dashboard.
+- CRM integration.
+- Google Drive report storage.
+- Subscription billing.
+- Automated marketing campaigns.
+- Full production analytics and observability.
+- Automated compliance certification.
+- Complete advisory coverage across every people and growth pillar.
+
+---
+
+## Technology Updates
+
+### Frontend
+
+- HTML5.
+- CSS3.
+- JavaScript.
+- Static JSON data.
+- Browser-based PDF generation.
+- Responsive HRTechify design system.
+
+### Backend
+
+- Node.js.
+- Express.
+- Gmail API.
+- Google OAuth 2.0.
+- googleapis.
+- express-rate-limit.
+- Environment-variable configuration.
+
+### Deployment
+
+- GitHub.
+- Render.
+- HTTPS API delivery.
+- Private deployment environment variables.
+
+### Experimental UX Layer
+
+- React/Next.js-ready TypeScript components.
+- Zustand state management.
+- Component-scoped responsive CSS.
+- Jest and Testing Library examples.
+
+The experimental React layer remains separate from the main deployed static experience.
+
+---
+
+## Required Environment Variables
+
+The deployed backend uses:
+
+GMAIL_USER
+GOOGLE_CLIENT_ID
+GOOGLE_CLIENT_SECRET
+GOOGLE_REFRESH_TOKEN
+INTERNAL_NOTIFICATION_EMAIL
+REPLY_TO_EMAIL
+
+These values must be stored privately in the deployment platform.
+
+OAuth credentials, Client Secrets and Refresh Tokens must never be committed to GitHub or included in public documentation.
+
+---
+
+## Security and Reliability Notes
+
+This release includes:
+
+- OAuth-based Gmail authorization.
+- No Gmail App Password requirement.
+- Recipient email validation.
+- PDF structure and size validation.
+- Request rate limiting.
+- Safe attachment filenames.
+- Protected server and environment paths.
+- Non-secret health-check output.
+- Customer and internal email error handling.
+
+Gmail Refresh Tokens must be treated like passwords and revoked immediately if exposed.
+
+---
+
+## Known Limitations
+
+- The product remains in beta.
+- The current report primarily focuses on compliance.
+- External email images may be hidden by some email applications.
+- Gmail API delivery depends on the connected Google account and OAuth authorization remaining active.
+- Free Render services may take time to wake after inactivity.
+- There is no dedicated customer report database.
+- There is no customer account or report history.
+- Browser resume behaviour is limited to the same browser environment.
+- The advisory does not replace qualified professional advice.
+- The React/Next.js-ready layer is not yet the primary deployed application.
 
 ---
 
 ## Next Release Focus
 
-The next release should focus on integration quality:
+The next release should focus on:
 
-- Wire the React UX layer into a runnable application shell.
-- Add a confirmed test/build toolchain with lockfile.
-- Replace static examples with live routes.
-- Decide whether future storage is required and document consent requirements before implementation.
+- Expanding advisory coverage beyond the compliance pillar.
+- Improving recommendation traceability.
+- Connecting every recommendation to the assessment answers that triggered it.
+- Adding clearer official-source references.
+- Improving PDF layout and branding.
+- Strengthening privacy documentation.
+- Reviewing browser-storage and consent behaviour.
+- Adding automated Gmail API integration tests.
+- Adding stronger deployment monitoring.
+- Improving accessibility testing.
+- Continuing mobile and tablet validation.
+- Deciding whether secure report storage or customer accounts are required.
+- Planning CRM or partnership workflows only after consent and privacy requirements are defined.
+
 ---
 
-## Intro Experience v2.0 and Production Readiness Alignment
+## Product Direction
 
-Version: `v0.12.1-beta`
+GrowWithHR is progressing toward a traceable Executive Advisory Platform built around:
 
-This document is aligned with the GrowWithHR Intro Experience v2.0 and production-readiness plan. The current product direction is an AI-powered Executive Advisory Platform with a premium, persistent-hero introduction, deterministic compliance advisory foundations, stronger recommendation traceability, and responsive validation across mobile, tablet, laptop, and desktop breakpoints.
+- Explainable recommendations.
+- Deterministic compliance foundations.
+- Practical people-governance guidance.
+- Official-source mapping.
+- Clear recommendation triggers.
+- Leadership-ready advisory reports.
+- Secure customer communication.
+- Responsive executive experiences.
+
+Every recommendation should eventually explain:
+
+1. Why it appears.
+2. Which assessment answer triggered it.
+3. Which regulation, official source or recognised people principle supports it.
+4. What the organisation should do next.
+5. What requires confirmation from a qualified adviser.
+
+---
+
+## Disclaimer
+
+GrowWithHR provides general strategic guidance and structured advisory information.
+
+It does not replace legal, financial, tax, statutory, compliance, employment or other professional advice.
+
+Users should confirm applicable obligations with qualified advisers and the relevant official authorities.
+
+---
+
+## Release Information
+
+Version: v0.15.0-beta
+
+Release name: Gmail Advisory Delivery & HRTechify Brand Alignment
+
+Brand: HRTechify
+
+Tagline: People • Technology • Growth
+
+---
+
+## License
+
+Copyright © 2026 HRTechify.
+
+All Rights Reserved.
+
+People • Technology • Growth
