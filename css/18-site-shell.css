@@ -491,7 +491,8 @@ body > footer.site-footer {
     font-weight: 500;
     line-height: 1.45;
     letter-spacing: 0.005em;
-    white-space: nowrap;
+    white-space: normal;
+    overflow-wrap: anywhere;
 }
 
 /* Remove legacy footer visual content until site-shell.js replaces it. */
