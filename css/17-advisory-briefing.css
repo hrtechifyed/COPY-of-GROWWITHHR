@@ -80,7 +80,7 @@ body.analyze-company-page p {
     margin: 0;
 }
 
-body.analyze-company-page p {
+body.analyze-company-page .advisory-main p {
     font-size: 1rem;
     line-height: 1.7;
 }
