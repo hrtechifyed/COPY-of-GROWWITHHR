@@ -2,17 +2,12 @@
    GrowWithHR Gmail delivery client
    File: js/gmail-service.js
 
-   This file does not contain Gmail credentials.
-
-   It sends the generated PDF and advisory data to the
-   server-side Gmail endpoint at /api/send-advisory.
+   Gmail credentials must never be placed in this file.
+   This client sends the generated PDF to the Node server.
 ========================================================== */
 
-(function initialiseGrowWithHRGmailService(window) {
+(function initialiseGmailService(window) {
     "use strict";
-
-    const STORAGE_KEY =
-        "growwithhr-gmail-delivery-v1";
 
     const DEFAULT_ENDPOINT =
         "/api/send-advisory";
@@ -21,6 +16,7 @@
         8 * 1024 * 1024;
 
     let activeRequest = null;
+    let lastStatus = null;
 
     function cleanText(
         value,
@@ -37,6 +33,12 @@
             fallback;
     }
 
+    function isValidEmail(value) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+            cleanText(value)
+        );
+    }
+
     function getEndpoint() {
         return (
             document.body?.dataset
@@ -47,13 +49,7 @@
         );
     }
 
-    function isEmail(value) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
-            cleanText(value)
-        );
-    }
-
-    function normaliseBase64(value) {
+    function removeDataUriPrefix(value) {
         const source =
             cleanText(value);
 
@@ -76,9 +72,7 @@
         return source;
     }
 
-    function estimateBase64Bytes(
-        base64
-    ) {
+    function estimateBase64Size(base64) {
         const source =
             cleanText(base64)
                 .replace(/\s/g, "");
@@ -97,24 +91,17 @@
         return Math.max(
             0,
             Math.floor(
-                (source.length * 3) / 4
+                source.length * 3 / 4
             ) - padding
         );
     }
 
-    function serialisePdf(pdf) {
-        if (!pdf) {
-            throw new Error(
-                "The advisory PDF was not generated."
-            );
-        }
-
+    function serialisePdf(pdf = {}) {
         const base64 =
-            normaliseBase64(
+            removeDataUriPrefix(
                 pdf.base64 ||
                 pdf.dataUri ||
-                pdf.data ||
-                pdf.attachment
+                pdf.data
             );
 
         const filename =
@@ -125,17 +112,17 @@
 
         const sizeBytes =
             Number(pdf.sizeBytes) ||
-            estimateBase64Bytes(base64);
+            estimateBase64Size(base64);
 
         if (!base64) {
             throw new Error(
-                "The generated PDF does not contain attachment data."
+                "The advisory PDF was not generated."
             );
         }
 
         if (!sizeBytes) {
             throw new Error(
-                "The generated PDF is empty."
+                "The advisory PDF is empty."
             );
         }
 
@@ -144,7 +131,7 @@
             MAX_PDF_BYTES
         ) {
             throw new Error(
-                "The generated PDF is too large to email."
+                "The advisory PDF is too large to email."
             );
         }
 
@@ -155,65 +142,33 @@
         };
     }
 
-    function saveStatus(record) {
-        const saved = {
-            ...record,
+    function saveStatus(status) {
+        lastStatus = {
+            ...status,
             updatedAt:
                 new Date().toISOString()
         };
-
-        try {
-            window.localStorage.setItem(
-                STORAGE_KEY,
-                JSON.stringify(saved)
-            );
-        } catch (error) {
-            console.warn(
-                "GrowWithHR Gmail: delivery status could not be saved.",
-                error
-            );
-        }
 
         try {
             window.dispatchEvent(
                 new CustomEvent(
                     "growwithhr:email-delivery",
                     {
-                        detail: saved
+                        detail: lastStatus
                     }
                 )
             );
         } catch (error) {
             console.warn(
-                "GrowWithHR Gmail: delivery event could not be dispatched.",
+                "Could not dispatch email status event.",
                 error
             );
         }
 
-        return saved;
+        return lastStatus;
     }
 
-    function saveFailure(
-        action,
-        error
-    ) {
-        return saveStatus({
-            ok: false,
-            mode: "gmail",
-            action,
-            customerStatus: "failed",
-            customerSent: false,
-            error:
-                cleanText(
-                    error?.message,
-                    "Email delivery failed."
-                )
-        });
-    }
-
-    async function readJsonResponse(
-        response
-    ) {
+    async function readJson(response) {
         try {
             return await response.json();
         } catch (error) {
@@ -225,27 +180,33 @@
         action,
         payload = {}
     ) {
-        const email =
-            cleanText(
-                payload.lead?.email ||
-                payload.report
-                    ?.recipientEmail
-            ).toLowerCase();
+        const lead = {
+            ...(payload.lead || {})
+        };
 
-        if (!email) {
-            throw new Error(
-                "A recipient email address is required."
-            );
-        }
+        const report =
+            payload.report || {};
 
-        if (!isEmail(email)) {
+        const answers =
+            payload.answers || {};
+
+        const recipient = cleanText(
+            lead.email ||
+            report.recipientEmail
+        ).toLowerCase();
+
+        if (!isValidEmail(recipient)) {
             throw new Error(
                 "Please enter a valid recipient email address."
             );
         }
 
+        lead.email = recipient;
+
         const pdf =
-            serialisePdf(payload.pdf);
+            serialisePdf(
+                payload.pdf
+            );
 
         try {
             const response =
@@ -265,37 +226,23 @@
                         body:
                             JSON.stringify({
                                 action,
-
-                                lead: {
-                                    ...(
-                                        payload.lead ||
-                                        {}
-                                    ),
-                                    email
-                                },
-
-                                report:
-                                    payload.report ||
-                                    {},
-
-                                answers:
-                                    payload.answers ||
-                                    {},
-
+                                lead,
+                                report,
+                                answers,
                                 pdf
                             })
                     }
                 );
 
             const result =
-                await readJsonResponse(
+                await readJson(
                     response
                 );
 
             if (!response.ok) {
                 throw new Error(
                     result.error ||
-                    `Gmail endpoint returned status ${response.status}.`
+                    `Email server returned status ${response.status}.`
                 );
             }
 
@@ -307,10 +254,20 @@
             });
         } catch (error) {
             const failure =
-                saveFailure(
+                saveStatus({
+                    ok: false,
+                    mode: "gmail",
                     action,
-                    error
-                );
+                    customerStatus:
+                        "failed",
+                    customerSent:
+                        false,
+                    error:
+                        cleanText(
+                            error.message,
+                            "Email delivery failed."
+                        )
+                });
 
             const deliveryError =
                 new Error(
@@ -324,20 +281,17 @@
         }
     }
 
-    async function sendAdvisory(
+    function sendAdvisory(
         payload = {}
     ) {
         if (activeRequest) {
             return activeRequest;
         }
 
-        const action =
-            payload.action ||
-            "capture";
-
         activeRequest =
             postDelivery(
-                action,
+                payload.action ||
+                "capture",
                 payload
             )
                 .finally(() => {
@@ -347,7 +301,7 @@
         return activeRequest;
     }
 
-    async function resendCustomer(
+    function resendCustomer(
         payload = {}
     ) {
         return postDelivery(
@@ -357,36 +311,11 @@
     }
 
     function getStatus() {
-        try {
-            const raw =
-                window.localStorage.getItem(
-                    STORAGE_KEY
-                );
-
-            return raw
-                ? JSON.parse(raw)
-                : null;
-        } catch (error) {
-            console.warn(
-                "GrowWithHR Gmail: delivery status could not be read.",
-                error
-            );
-
-            return null;
-        }
+        return lastStatus;
     }
 
     function clearStatus() {
-        try {
-            window.localStorage.removeItem(
-                STORAGE_KEY
-            );
-        } catch (error) {
-            console.warn(
-                "GrowWithHR Gmail: delivery status could not be cleared.",
-                error
-            );
-        }
+        lastStatus = null;
     }
 
     function initialise() {
