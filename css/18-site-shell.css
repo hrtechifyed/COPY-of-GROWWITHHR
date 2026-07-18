@@ -5,8 +5,8 @@
    Shared visual contract for every public page:
    [ LARGE HRTECHIFY LOGO ] [ GLASS NAVIGATION CAPSULE ]
 
-   Shared footer copy:
-   © 2026 HRTechify. People • Technology • Growth \n All Rights Reserved.
+   © 2026 HRTechify People • Technology • Growth
+   All Rights Reserved.
 
    Load after page-specific styles.
 ========================================================== */
@@ -480,19 +480,28 @@ body > footer.site-footer {
 }
 
 .site-footer__inner {
+    display: grid;
+    justify-items: center;
     width: min(100%, var(--site-shell-max-width));
     margin-inline: auto;
+    text-align: center;
 }
 
 .site-footer p {
+    width: 100%;
     margin: 0;
     color: inherit;
     font-size: clamp(0.72rem, 0.86vw, 0.84rem);
     font-weight: 500;
     line-height: 1.45;
     letter-spacing: 0.005em;
+    text-align: center;
     white-space: normal;
     overflow-wrap: anywhere;
+}
+
+.site-footer__rights-line {
+    margin-top: 4px !important;
 }
 
 /* Remove legacy footer visual content until site-shell.js replaces it. */
