@@ -6,8 +6,9 @@
  * Header layout:
  *   [ LARGE HRTECHIFY LOGO ] [ GLASS NAVIGATION CAPSULE ]
  *
- * Footer copy:
- *  © 2026 HRTechify. People • Technology • Growth \n All Rights Reserved.
+ *  Footer copy:
+ *   © 2026 HRTechify People • Technology • Growth
+ *   All Rights Reserved.
  *
  * Usage on root-level pages:
  *   <script src="js/site-shell.js" defer></script>
@@ -23,8 +24,11 @@
 (function siteShellBootstrap(window, document) {
     "use strict";
 
-    const FOOTER_TEXT =
-    "© 2026 HRTechify. People • Technology • Growth \n All Rights Reserved.";
+   const FOOTER_LINE_ONE =
+    "© 2026 HRTechify People • Technology • Growth";
+
+   const FOOTER_LINE_TWO =
+    "All Rights Reserved.";
 
     const NAV_ITEMS = Object.freeze([
         {
@@ -266,16 +270,25 @@
         return header;
     }
 
-    function buildFooter() {
-        const footer = document.createElement("footer");
-        footer.className = "site-footer";
-        footer.dataset.siteShellFooter = "";
-        footer.innerHTML = `
-            <div class="site-footer__inner">
-                <p>${escapeHtml(FOOTER_TEXT)}</p>
-            </div>`;
-        return footer;
-    }
+function buildFooter() {
+    const footer = document.createElement("footer");
+    footer.className = "site-footer";
+    footer.dataset.siteShellFooter = "";
+
+    footer.innerHTML = `
+        <div class="site-footer__inner">
+            <p class="site-footer__brand-line">
+                ${escapeHtml(FOOTER_LINE_ONE)}
+            </p>
+
+            <p class="site-footer__rights-line">
+                ${escapeHtml(FOOTER_LINE_TWO)}
+            </p>
+        </div>
+    `;
+
+    return footer;
+}
 
     function placeHeader(header) {
         const oldHeaders = Array.from(document.querySelectorAll(
@@ -447,11 +460,13 @@
         }));
     }
 
+    
     window.GrowWithHRSiteShell = Object.freeze({
-        render: renderSiteShell,
-        footerText: FOOTER_TEXT
+      render: renderSiteShell,
+      footerText: `${FOOTER_LINE_ONE}\n${FOOTER_LINE_TWO}`
     });
 
+    
     if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", renderSiteShell, {
             once: true
