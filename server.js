@@ -677,7 +677,7 @@ function createCustomerEmail({
                                                             uppercase;
                                                     "
                                                 >
-                                                    Need support?
+                                                    Need support or have suggestions?
                                                 </p>
 
                                                 <p
@@ -689,10 +689,7 @@ function createCustomerEmail({
                                                     "
                                                 >
                                                     Reply directly to this
-                                                    email if you would like
-                                                    help turning the
-                                                    recommendations into a
-                                                    practical action plan.
+                                                    email.
                                                 </p>
                                             </td>
                                         </tr>
@@ -729,13 +726,13 @@ function createCustomerEmail({
                                             color: #FF7A00;
                                             font-size: 14px;
                                             line-height: 1.6;
-                                            font-weight: 700;
+                                            font-weight: 500;
                                         "
                                     >
                                         Founder, HRTechify
                                     </p>
 
-                                    <!-- Logo after signature -->
+                                    <!-- Thin HRTechify brand bar -->
                                     <table
                                         role="presentation"
                                         width="100%"
@@ -744,52 +741,76 @@ function createCustomerEmail({
                                         border="0"
                                         style="
                                             width: 100%;
-                                            margin-top: 18px;
-                                            background-color: #05070B;
-                                            border-radius: 14px;
+                                            margin-top: 24px;
+                                            background-color: #0A1020;
+                                            border-top: 2px solid #FF7A00;
+                                            border-radius: 8px;
+                                            border-collapse: separate;
+                                            border-spacing: 0;
                                         "
                                     >
                                         <tr>
                                             <td
-                                                align="center"
                                                 style="
-                                                    padding: 24px;
+                                                    padding: 7px 12px;
                                                 "
                                             >
-                                                <img
-                                                    src="${logoUrl}"
-                                                    alt="HRTechify logo"
-                                                    width="150"
+                                                <table
+                                                    role="presentation"
+                                                    width="100%"
+                                                    cellspacing="0"
+                                                    cellpadding="0"
+                                                    border="0"
                                                     style="
-                                                        display: block;
-                                                        width: 150px;
-                                                        max-width: 100%;
-                                                        height: auto;
-                                                        margin: 0 auto;
-                                                        border: 0;
-                                                        outline: none;
-                                                        text-decoration:
-                                                            none;
+                                                        width: 100%;
+                                                        border-collapse: collapse;
                                                     "
                                                 >
+                                                    <tr>
+                                                        <td
+                                                            width="104"
+                                                            valign="middle"
+                                                            style="
+                                                                width: 104px;
+                                                                vertical-align: middle;
+                                                            "
+                                                        >
+                                                            <img
+                                                                src="${logoUrl}"
+                                                                alt="HRTechify"
+                                                                width="88"
+                                                                style="
+                                                                    display: block;
+                                                                    width: 88px;
+                                                                    max-width: 88px;
+                                                                    height: auto;
+                                                                    margin: 0;
+                                                                    border: 0;
+                                                                    outline: none;
+                                                                    text-decoration: none;
+                                                                "
+                                                            >
+                                                        </td>
 
-                                                <p
-                                                    style="
-                                                        margin:
-                                                            12px 0 0;
-                                                        color: #FFB000;
-                                                        font-size: 12px;
-                                                        line-height: 1.5;
-                                                        font-weight: 700;
-                                                        letter-spacing:
-                                                            0.12em;
-                                                        text-transform:
-                                                            uppercase;
-                                                    "
-                                                >
-                                                    People • Technology •
-                                                    Growth
-                                                </p>
+                                                        <td
+                                                            align="right"
+                                                            valign="middle"
+                                                            style="
+                                                                padding-left: 12px;
+                                                                color: #FFB000;
+                                                                font-size: 10px;
+                                                                line-height: 1.3;
+                                                                font-weight: 700;
+                                                                letter-spacing: 0.08em;
+                                                                text-transform: uppercase;
+                                                                vertical-align: middle;
+                                                                white-space: nowrap;
+                                                            "
+                                                        >
+                                                            People • Technology • Growth
+                                                        </td>
+                                                    </tr>
+                                                </table>
                                             </td>
                                         </tr>
                                     </table>
@@ -819,7 +840,7 @@ function createCustomerEmail({
                                         general strategic guidance and
                                         does not replace legal, financial,
                                         compliance or other professional
-                                        advice.
+                                        advice. (Prototype for demonstration... Real Engine is work in progress)
                                     </p>
 
                                     <p
