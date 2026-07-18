@@ -12,20 +12,12 @@ const app = express();
 const PORT = Number(process.env.PORT) || 3000;
 const MAX_PDF_BYTES = 8 * 1024 * 1024;
 
-const requiredEnvironmentVariables = [
-    "GMAIL_USER",
-    "GMAIL_APP_PASSWORD"
-];
-
-const missingEnvironmentVariables = requiredEnvironmentVariables.filter(
-    (name) => !process.env[name]
-);
-
-if (missingEnvironmentVariables.length > 0) {
-    console.warn(
-        `Missing Gmail environment variables: ${missingEnvironmentVariables.join(", ")}`
-    );
-}
+/*
+ * Render and similar services place the Express application
+ * behind a reverse proxy.
+ */
+app.set("trust proxy", 1);
+app.disable("x-powered-by");
 
 function cleanText(value, fallback = "") {
     if (value === null || value === undefined) {
@@ -39,8 +31,10 @@ function cleanAppPassword(value) {
     return cleanText(value).replace(/\s/g, "");
 }
 
-function isEmail(value) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanText(value));
+function isValidEmail(value) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+        cleanText(value)
+    );
 }
 
 function escapeHtml(value) {
@@ -53,7 +47,7 @@ function escapeHtml(value) {
 }
 
 function safeFilename(value) {
-    const filename = cleanText(
+    let filename = cleanText(
         value,
         "GrowWithHR-Advisory.pdf"
     )
@@ -61,9 +55,11 @@ function safeFilename(value) {
         .replace(/-+/g, "-")
         .slice(0, 120);
 
-    return filename.toLowerCase().endsWith(".pdf")
-        ? filename
-        : `${filename}.pdf`;
+    if (!filename.toLowerCase().endsWith(".pdf")) {
+        filename += ".pdf";
+    }
+
+    return filename;
 }
 
 function listText(value) {
@@ -77,8 +73,12 @@ function listText(value) {
     return cleanText(value);
 }
 
-function createPdfAttachment(pdf) {
-    const rawBase64 = cleanText(pdf?.base64)
+function createPdfAttachment(pdf = {}) {
+    const rawBase64 = cleanText(
+        pdf.base64 ||
+        pdf.dataUri ||
+        pdf.data
+    )
         .replace(
             /^data:application\/pdf;base64,/i,
             ""
@@ -93,7 +93,7 @@ function createPdfAttachment(pdf) {
 
     if (!/^[a-zA-Z0-9+/=]+$/.test(rawBase64)) {
         throw new Error(
-            "The PDF attachment contains invalid base64 data."
+            "The PDF attachment contains invalid data."
         );
     }
 
@@ -110,30 +110,30 @@ function createPdfAttachment(pdf) {
 
     if (content.length > MAX_PDF_BYTES) {
         throw new Error(
-            "The PDF attachment is too large."
+            "The PDF attachment is larger than 8 MB."
         );
     }
 
-    const pdfHeader = content
+    const header = content
         .subarray(0, 5)
         .toString("ascii");
 
-    if (pdfHeader !== "%PDF-") {
+    if (header !== "%PDF-") {
         throw new Error(
             "The attachment is not a valid PDF document."
         );
     }
 
     return {
-        filename: safeFilename(pdf?.filename),
+        filename: safeFilename(pdf.filename),
         content,
         contentType: "application/pdf"
     };
 }
 
-function createCustomerEmailContent({
-    lead,
-    report
+function createCustomerEmail({
+    lead = {},
+    report = {}
 }) {
     const recipientName = cleanText(
         lead.name,
@@ -141,7 +141,8 @@ function createCustomerEmailContent({
     );
 
     const companyName = cleanText(
-        report.companyName || lead.companyName,
+        report.companyName ||
+        lead.companyName,
         "your organisation"
     );
 
@@ -153,7 +154,7 @@ function createCustomerEmailContent({
         "",
         `Your GrowWithHR Executive Advisory for ${companyName} is attached as a PDF.`,
         "",
-        "This advisory has been prepared using the information you provided during the assessment.",
+        "This advisory was prepared using the information supplied during the assessment.",
         "",
         "Regards,",
         "GrowWithHR / HRTechify"
@@ -166,7 +167,7 @@ function createCustomerEmailContent({
             <meta charset="UTF-8">
             <meta
                 name="viewport"
-                content="width=device-width, initial-scale=1.0"
+                content="width=device-width, initial-scale=1"
             >
             <title>${escapeHtml(subject)}</title>
         </head>
@@ -175,7 +176,7 @@ function createCustomerEmailContent({
             style="
                 margin: 0;
                 padding: 0;
-                background: #f5f7fa;
+                background: #f3f4f6;
                 color: #1f2937;
                 font-family: Arial, Helvetica, sans-serif;
             "
@@ -186,7 +187,6 @@ function createCustomerEmailContent({
                 cellspacing="0"
                 cellpadding="0"
                 border="0"
-                style="background: #f5f7fa;"
             >
                 <tr>
                     <td
@@ -218,7 +218,6 @@ function createCustomerEmailContent({
                                         style="
                                             margin: 0;
                                             font-size: 24px;
-                                            line-height: 1.3;
                                         "
                                     >
                                         GrowWithHR
@@ -228,7 +227,6 @@ function createCustomerEmailContent({
                                         style="
                                             margin: 8px 0 0;
                                             color: #d1d5db;
-                                            font-size: 14px;
                                         "
                                     >
                                         Executive Advisory
@@ -240,51 +238,32 @@ function createCustomerEmailContent({
                                 <td
                                     style="
                                         padding: 30px 28px;
+                                        font-size: 16px;
+                                        line-height: 1.7;
                                     "
                                 >
-                                    <p
-                                        style="
-                                            margin: 0 0 18px;
-                                            font-size: 16px;
-                                            line-height: 1.7;
-                                        "
-                                    >
-                                        Hello ${escapeHtml(recipientName)},
+                                    <p>
+                                        Hello
+                                        ${escapeHtml(recipientName)},
                                     </p>
 
-                                    <p
-                                        style="
-                                            margin: 0 0 18px;
-                                            font-size: 16px;
-                                            line-height: 1.7;
-                                        "
-                                    >
-                                        Your GrowWithHR Executive Advisory for
+                                    <p>
+                                        Your GrowWithHR Executive
+                                        Advisory for
                                         <strong>
                                             ${escapeHtml(companyName)}
                                         </strong>
-                                        is attached to this email as a PDF.
+                                        is attached to this email
+                                        as a PDF.
                                     </p>
 
-                                    <p
-                                        style="
-                                            margin: 0 0 18px;
-                                            font-size: 16px;
-                                            line-height: 1.7;
-                                        "
-                                    >
-                                        This advisory has been prepared using
-                                        the information you provided during
-                                        the assessment.
+                                    <p>
+                                        This advisory was prepared
+                                        using the information supplied
+                                        during the assessment.
                                     </p>
 
-                                    <p
-                                        style="
-                                            margin: 28px 0 0;
-                                            font-size: 16px;
-                                            line-height: 1.7;
-                                        "
-                                    >
+                                    <p style="margin-top: 28px;">
                                         Regards,<br>
                                         <strong>
                                             GrowWithHR / HRTechify
@@ -307,13 +286,14 @@ function createCustomerEmailContent({
     };
 }
 
-function createInternalEmailContent({
-    lead,
-    report,
-    answers
+function createInternalEmail({
+    lead = {},
+    report = {},
+    answers = {}
 }) {
     const companyName = cleanText(
-        report.companyName || lead.companyName,
+        report.companyName ||
+        lead.companyName,
         "Not provided"
     );
 
@@ -335,19 +315,23 @@ function createInternalEmailContent({
         `Email: ${cleanText(lead.email, "Not provided")}`,
         `Company: ${companyName}`,
         `Role: ${cleanText(
-            lead.role || report.recipientRole,
+            lead.role ||
+            report.recipientRole,
             "Not provided"
         )}`,
         `Industry: ${cleanText(
-            report.industry || lead.industry,
+            report.industry ||
+            lead.industry,
             "Not provided"
         )}`,
         `Employees: ${cleanText(
-            report.employees || lead.employees,
+            report.employees ||
+            lead.employees,
             "Not provided"
         )}`,
         `Hiring plans: ${cleanText(
-            report.hiringPlans || answers.hiringPlans,
+            report.hiringPlans ||
+            answers.hiringPlans,
             "Not provided"
         )}`,
         `Priorities: ${priorities}`,
@@ -485,19 +469,30 @@ function createInternalEmailContent({
     };
 }
 
-const gmailTransporter =
-    nodemailer.createTransport({
-        service: "gmail",
+const requiredEnvironmentVariables = [
+    "GMAIL_USER",
+    "GMAIL_APP_PASSWORD"
+];
 
-        auth: {
-            user: process.env.GMAIL_USER,
-            pass: cleanAppPassword(
-                process.env.GMAIL_APP_PASSWORD
-            )
-        }
-    });
+function getMissingEnvironmentVariables() {
+    return requiredEnvironmentVariables.filter(
+        (name) => !cleanText(process.env[name])
+    );
+}
 
-app.disable("x-powered-by");
+const gmailTransporter = nodemailer.createTransport({
+    service: "gmail",
+
+    auth: {
+        user: cleanText(
+            process.env.GMAIL_USER
+        ),
+
+        pass: cleanAppPassword(
+            process.env.GMAIL_APP_PASSWORD
+        )
+    }
+});
 
 app.use(
     express.json({
@@ -508,7 +503,7 @@ app.use(
 const emailLimiter = rateLimit({
     windowMs: 15 * 60 * 1000,
     limit: 10,
-    standardHeaders: "draft-8",
+    standardHeaders: true,
     legacyHeaders: false,
 
     message: {
@@ -520,10 +515,13 @@ const emailLimiter = rateLimit({
 app.get(
     "/api/health",
     (request, response) => {
+        const missing =
+            getMissingEnvironmentVariables();
+
         response.json({
             ok: true,
             gmailConfigured:
-                missingEnvironmentVariables.length === 0
+                missing.length === 0
         });
     }
 );
@@ -533,9 +531,10 @@ app.post(
     emailLimiter,
     async (request, response) => {
         try {
-            if (
-                missingEnvironmentVariables.length > 0
-            ) {
+            const missing =
+                getMissingEnvironmentVariables();
+
+            if (missing.length > 0) {
                 return response
                     .status(503)
                     .json({
@@ -577,7 +576,7 @@ app.post(
                 report.recipientEmail
             ).toLowerCase();
 
-            if (!isEmail(recipient)) {
+            if (!isValidEmail(recipient)) {
                 return response
                     .status(400)
                     .json({
@@ -591,8 +590,8 @@ app.post(
                     request.body?.pdf
                 );
 
-            const customerContent =
-                createCustomerEmailContent({
+            const customerEmail =
+                createCustomerEmail({
                     lead,
                     report
                 });
@@ -605,17 +604,19 @@ app.post(
                     to: recipient,
 
                     replyTo:
-                        process.env.REPLY_TO_EMAIL ||
-                        process.env.GMAIL_USER,
+                        cleanText(
+                            process.env.REPLY_TO_EMAIL,
+                            process.env.GMAIL_USER
+                        ),
 
                     subject:
-                        customerContent.subject,
+                        customerEmail.subject,
 
                     text:
-                        customerContent.text,
+                        customerEmail.text,
 
                     html:
-                        customerContent.html,
+                        customerEmail.html,
 
                     attachments: [
                         attachment
@@ -627,20 +628,26 @@ app.post(
 
             let internalMessageId = "";
 
+            const internalRecipient =
+                cleanText(
+                    process.env
+                        .INTERNAL_NOTIFICATION_EMAIL
+                );
+
             if (
                 action !== "resend-customer" &&
-                process.env
-                    .INTERNAL_NOTIFICATION_EMAIL
+                internalRecipient
             ) {
-                const internalRecipient =
-                    cleanText(
-                        process.env
-                            .INTERNAL_NOTIFICATION_EMAIL
-                    );
-
-                if (isEmail(internalRecipient)) {
-                    const internalContent =
-                        createInternalEmailContent({
+                if (
+                    !isValidEmail(
+                        internalRecipient
+                    )
+                ) {
+                    internalStatus =
+                        "invalid-address";
+                } else {
+                    const internalEmail =
+                        createInternalEmail({
                             lead,
                             report,
                             answers
@@ -660,15 +667,15 @@ app.post(
                                         recipient,
 
                                     subject:
-                                        internalContent
+                                        internalEmail
                                             .subject,
 
                                     text:
-                                        internalContent
+                                        internalEmail
                                             .text,
 
                                     html:
-                                        internalContent
+                                        internalEmail
                                             .html
                                 });
 
@@ -681,13 +688,10 @@ app.post(
                         internalStatus = "failed";
 
                         console.error(
-                            "Internal lead notification failed:",
+                            "Internal notification failed:",
                             internalError
                         );
                     }
-                } else {
-                    internalStatus =
-                        "invalid-address";
                 }
             }
 
@@ -703,6 +707,7 @@ app.post(
                     "",
 
                 internalStatus,
+
                 internalSent:
                     internalStatus === "sent",
 
@@ -716,7 +721,7 @@ app.post(
             });
         } catch (error) {
             console.error(
-                "Gmail advisory delivery failed:",
+                "Gmail delivery failed:",
                 error
             );
 
@@ -732,9 +737,8 @@ app.post(
 );
 
 /*
-    Prevent the Express static server from exposing
-    server-side configuration and dependency files.
-*/
+ * Block access to server-side and secret files.
+ */
 app.use(
     (request, response, next) => {
         const blockedPaths = [
@@ -744,7 +748,7 @@ app.use(
             "/node_modules"
         ];
 
-        const isBlocked =
+        const blocked =
             blockedPaths.some(
                 (blockedPath) =>
                     request.path === blockedPath ||
@@ -753,14 +757,11 @@ app.use(
                     )
             );
 
-        const isEnvironmentFile =
+        const environmentFile =
             request.path === "/.env" ||
             request.path.startsWith("/.env.");
 
-        if (
-            isBlocked ||
-            isEnvironmentFile
-        ) {
+        if (blocked || environmentFile) {
             return response.sendStatus(404);
         }
 
@@ -768,6 +769,9 @@ app.use(
     }
 );
 
+/*
+ * Serve the existing HTML, CSS and JavaScript files.
+ */
 app.use(
     express.static(
         path.join(__dirname),
@@ -779,9 +783,11 @@ app.use(
 
 app.use(
     (request, response) => {
-        response.status(404).json({
-            error: "Resource not found."
-        });
+        response
+            .status(404)
+            .json({
+                error: "Resource not found."
+            });
     }
 );
 
@@ -789,7 +795,7 @@ app.listen(
     PORT,
     () => {
         console.log(
-            `GrowWithHR server running at http://localhost:${PORT}`
+            `GrowWithHR server running on port ${PORT}`
         );
     }
 );
