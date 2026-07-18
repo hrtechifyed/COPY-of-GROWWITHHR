@@ -629,7 +629,7 @@ app.post(
                     recipient
                 );
             
-            const customerResult =
+           const customerResult =
     await gmailTransporter.sendMail({
         from:
             `"GrowWithHR" <${process.env.GMAIL_USER}>`,
@@ -658,11 +658,7 @@ app.post(
 
 let internalStatus =
     "not-configured";
-
             
-            let internalStatus =
-                "not-configured";
-
             let internalMessageId = "";
 
             const internalRecipient =
