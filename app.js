@@ -779,17 +779,22 @@ if (
 
   }
 
-  if (
+const stateRecommendations =
+    Array.isArray(
+        stateData.recommendations
+    )
+        ? stateData.recommendations
+        : (
+            Array.isArray(
+                stateData.recommended
+            )
+                ? stateData.recommended
+                : []
+        );
 
-    Array.isArray(stateData.recommended)
-
-  ) {
-
-    recommended.push(
-
-      ...stateData.recommended
-
-    );
+recommended.push(
+    ...stateRecommendations
+);
 
   }
 
