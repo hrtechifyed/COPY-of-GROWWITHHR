@@ -605,12 +605,13 @@ test.describe(
                     )
                 ).toBeVisible();
 
-                await expect(
-                    page.getByText(
-                        "Your progress is saved."
-                    )
-                ).toBeVisible();
-
+             await expect(
+    page.locator(
+        "#resumeMessage"
+    )
+).toHaveText(
+    "Your progress is saved."
+);
                 const restoredState =
                     await page.evaluate(
                         () => {
