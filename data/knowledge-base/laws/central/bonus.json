@@ -1,268 +1,360 @@
 {
-  "lawId": "CENTRAL-BONUS",
-  "lawName": "Payment of Bonus Act, 1965",
+  "schemaVersion": "1.0",
+  "recordVersion": "1.0.0",
+  "id": "CENTRAL-BONUS",
+  "name": "Payment of Bonus Act, 1965",
   "shortName": "Bonus Act",
-  "authority": "Ministry of Labour & Employment",
-  "sourceId": "MOL",
-  "lastVerified": "2026-07-05",
-  "status": "Active",
-
+  "officialCitation": "Payment of Bonus Act, 1965",
   "overview": "Provides for payment of statutory bonus to eligible employees employed in establishments covered under the Act.",
-
+  "jurisdiction": {
+    "country": "IN",
+    "level": "central",
+    "code": "IN",
+    "stateCode": null
+  },
+  "authority": {
+    "name": "Ministry of Labour & Employment",
+    "department": "Government of India",
+    "sourceId": "MOL"
+  },
+  "status": "active",
+  "temporal": {
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "lastVerified": "2026-07-05",
+    "nextReviewDue": "2026-10-05",
+    "supersedes": [],
+    "supersededBy": []
+  },
   "definitions": [
-
     {
       "id": "BONUS-DEF-001",
       "term": "Employee",
       "definition": "Employee eligible under the Payment of Bonus Act."
     },
-
     {
       "id": "BONUS-DEF-002",
       "term": "Accounting Year",
       "definition": "Accounting year as defined under the Act."
     },
-
     {
       "id": "BONUS-DEF-003",
       "term": "Salary or Wage",
       "definition": "Salary or wage as defined under the Act."
     }
-
   ],
-
   "rules": [
-
     {
-
-      "id":"BONUS-001",
-
-      "title":"Review Bonus Applicability",
-
-      "priority":"Mandatory",
-
-      "category":"Bonus",
-
-      "applicability":{
-
-        "employeeCount":{
-
-          "min":20
-
+      "id": "BONUS-001",
+      "title": "Review Bonus Applicability",
+      "description": "Determine whether the establishment falls within the scope of the Payment of Bonus Act.",
+      "category": "Bonus",
+      "priority": "Mandatory",
+      "recommendation": "Review establishment coverage before calculating or processing statutory bonus.",
+      "applicability": {
+        "employeeCount": {
+          "min": 20,
+          "max": null
         },
-
-        "entityTypes":["*"],
-
-        "industries":["*"]
-
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "employee"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-
-      "description":"Determine whether the establishment falls within the scope of the Payment of Bonus Act.",
-
-      "sourceId":"MOL",
-
-      "citations":[
-
+      "evidence": [
         {
-
-          "reference":"Payment of Bonus Act, 1965"
-
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Payment of Bonus Act, 1965",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-
-      ]
-
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-05",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
-
-      "id":"BONUS-002",
-
-      "title":"Identify Eligible Employees",
-
-      "priority":"Mandatory",
-
-      "category":"Bonus",
-
-      "applicability":{
-
-        "employeeCount":{
-
-          "min":20
-
+      "id": "BONUS-002",
+      "title": "Identify Eligible Employees",
+      "description": "Determine employee eligibility for statutory bonus in accordance with applicable provisions.",
+      "category": "Bonus",
+      "priority": "Mandatory",
+      "recommendation": "Document the eligibility assessment for every employee included in or excluded from statutory bonus processing.",
+      "applicability": {
+        "employeeCount": {
+          "min": 20,
+          "max": null
         },
-
-        "entityTypes":["*"],
-
-        "industries":["*"]
-
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "employee"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-
-      "description":"Determine employee eligibility for statutory bonus in accordance with applicable provisions.",
-
-      "sourceId":"MOL",
-
-      "citations":[
-
+      "evidence": [
         {
-
-          "reference":"Payment of Bonus Act"
-
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Payment of Bonus Act, 1965",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-
-      ]
-
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-05",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
-
-      "id":"BONUS-003",
-
-      "title":"Calculate Statutory Bonus",
-
-      "priority":"Mandatory",
-
-      "category":"Payroll",
-
-      "applicability":{
-
-        "employeeCount":{
-
-          "min":20
-
+      "id": "BONUS-003",
+      "title": "Calculate Statutory Bonus",
+      "description": "Calculate bonus payable using the statutory formula and applicable limits.",
+      "category": "Payroll",
+      "priority": "Mandatory",
+      "recommendation": "Retain the calculation inputs, assumptions, approvals and employee-level computation records.",
+      "applicability": {
+        "employeeCount": {
+          "min": 20,
+          "max": null
         },
-
-        "entityTypes":["*"],
-
-        "industries":["*"]
-
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "employee"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-
-      "description":"Calculate bonus payable using the statutory formula and applicable limits.",
-
-      "sourceId":"MOL",
-
-      "citations":[
-
+      "evidence": [
         {
-
-          "reference":"Payment of Bonus Act"
-
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Payment of Bonus Act, 1965",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-
-      ]
-
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-05",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
-
-      "id":"BONUS-004",
-
-      "title":"Disburse Bonus Within Prescribed Timeline",
-
-      "priority":"Mandatory",
-
-      "category":"Payroll",
-
-      "applicability":{
-
-        "employeeCount":{
-
-          "min":20
-
+      "id": "BONUS-004",
+      "title": "Disburse Bonus Within Prescribed Timeline",
+      "description": "Ensure statutory bonus is paid within the prescribed timelines.",
+      "category": "Payroll",
+      "priority": "Mandatory",
+      "recommendation": "Track the applicable payment deadline and retain evidence of employee-level disbursement.",
+      "applicability": {
+        "employeeCount": {
+          "min": 20,
+          "max": null
         },
-
-        "entityTypes":["*"],
-
-        "industries":["*"]
-
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "employee"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-
-      "description":"Ensure statutory bonus is paid within the prescribed timelines.",
-
-      "sourceId":"MOL",
-
-      "citations":[
-
+      "evidence": [
         {
-
-          "reference":"Payment of Bonus Act"
-
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Payment of Bonus Act, 1965",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-
-      ]
-
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-05",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
-
-      "id":"BONUS-005",
-
-      "title":"Maintain Bonus Registers",
-
-      "priority":"Mandatory",
-
-      "category":"Documentation",
-
-      "applicability":{
-
-        "employeeCount":{
-
-          "min":20
-
+      "id": "BONUS-005",
+      "title": "Maintain Bonus Registers",
+      "description": "Maintain statutory records relating to bonus computation and payment.",
+      "category": "Documentation",
+      "priority": "Mandatory",
+      "recommendation": "Maintain the prescribed registers and supporting payroll records for the required retention period.",
+      "applicability": {
+        "employeeCount": {
+          "min": 20,
+          "max": null
         },
-
-        "entityTypes":["*"],
-
-        "industries":["*"]
-
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "employee"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-
-      "description":"Maintain statutory records relating to bonus computation and payment.",
-
-      "sourceId":"MOL",
-
-      "citations":[
-
+      "evidence": [
         {
-
-          "reference":"Payment of Bonus Rules"
-
+          "sourceId": "MOL",
+          "citation": {
+            "reference": "Payment of Bonus Rules",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-
-      ]
-
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-05",
+        "supersedes": [],
+        "supersededBy": []
+      }
     }
-
   ],
-
-  "exceptions":[
-
+  "exceptions": [
     {
-
-      "id":"BONUS-EX-001",
-
-      "title":"Eligibility Conditions",
-
-      "description":"Bonus eligibility depends upon the provisions of the Act including salary limits, qualifying service and other statutory conditions."
-
+      "id": "BONUS-EX-001",
+      "title": "Eligibility Conditions",
+      "description": "Bonus eligibility depends upon the provisions of the Act, including salary limits, qualifying service and other statutory conditions."
     }
-
   ],
-
-  "references":[
-
+  "sources": [
     {
-
-      "sourceId":"MOL"
-
+      "sourceId": "MOL",
+      "name": "Ministry of Labour & Employment",
+      "sourceType": "official_portal",
+      "url": "https://labour.gov.in",
+      "authority": "Ministry of Labour & Employment",
+      "publishedAt": null,
+      "accessedAt": "2026-07-05",
+      "verificationStatus": "partially_verified"
     },
-
     {
-
-      "sourceId":"INDIACODE"
-
+      "sourceId": "INDIACODE",
+      "name": "India Code",
+      "sourceType": "official_portal",
+      "url": "https://www.indiacode.nic.in",
+      "authority": "Government of India",
+      "publishedAt": null,
+      "accessedAt": "2026-07-05",
+      "verificationStatus": "partially_verified"
     }
-
-  ]
-
+  ],
+  "governance": {
+    "owner": "GrowWithHR Compliance Data Team",
+    "reviewCadenceDays": 90,
+    "approvalStatus": "draft",
+    "approvedBy": null,
+    "approvedAt": null,
+    "changeSummary": "Migrated the existing Payment of Bonus Act record to compliance-law schema version 1.0 without independently expanding its legal coverage."
+  }
 }
