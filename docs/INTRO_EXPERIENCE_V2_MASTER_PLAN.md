@@ -1,6 +1,6 @@
 # GrowWithHR Intro Experience v2.0 & Production Readiness Master Plan
 
-Version: `v0.12.1-beta`
+Version: `v0.15.0-beta`
 Status: Working Draft
 Product: GrowWithHR — AI Executive Advisory Platform
 Last Updated: 2026-07-16
