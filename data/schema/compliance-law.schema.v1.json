@@ -1,0 +1,713 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:growwithhr:schema:compliance-law:1.0",
+  "title": "GrowWithHR Compliance Law Record",
+  "description": "Version 1.0 governed contract for central and state compliance-law records, including applicability, evidence and temporal validity.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "recordVersion",
+    "id",
+    "name",
+    "jurisdiction",
+    "authority",
+    "status",
+    "temporal",
+    "rules",
+    "sources",
+    "governance"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "recordVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "id": {
+      "$ref": "#/$defs/identifier"
+    },
+    "name": {
+      "$ref": "#/$defs/nonEmptyString"
+    },
+    "shortName": {
+      "type": "string"
+    },
+    "officialCitation": {
+      "type": "string"
+    },
+    "overview": {
+      "type": "string"
+    },
+    "jurisdiction": {
+      "$ref": "#/$defs/jurisdiction"
+    },
+    "authority": {
+      "$ref": "#/$defs/authority"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "active",
+        "inactive",
+        "superseded",
+        "repealed"
+      ]
+    },
+    "temporal": {
+      "$ref": "#/$defs/temporal"
+    },
+    "definitions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/definition"
+      }
+    },
+    "rules": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/rule"
+      }
+    },
+    "exceptions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/exception"
+      }
+    },
+    "recommendations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/recommendation"
+      }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/source"
+      }
+    },
+    "governance": {
+      "$ref": "#/$defs/governance"
+    }
+  },
+  "$defs": {
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "identifier": {
+      "type": "string",
+      "minLength": 3,
+      "pattern": "^[A-Z0-9][A-Z0-9._-]*$"
+    },
+    "dateOrNull": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    },
+    "uriOrNull": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    },
+    "jurisdictionCode": {
+      "type": "string",
+      "pattern": "^IN(?:-[A-Z]{2})?$"
+    },
+    "jurisdiction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "country",
+        "level",
+        "code",
+        "stateCode"
+      ],
+      "properties": {
+        "country": {
+          "const": "IN"
+        },
+        "level": {
+          "type": "string",
+          "enum": [
+            "central",
+            "state",
+            "union_territory"
+          ]
+        },
+        "code": {
+          "$ref": "#/$defs/jurisdictionCode"
+        },
+        "stateCode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[A-Z]{2}$"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "level": {
+                "const": "central"
+              }
+            },
+            "required": [
+              "level"
+            ]
+          },
+          "then": {
+            "properties": {
+              "code": {
+                "const": "IN"
+              },
+              "stateCode": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "level": {
+                "enum": [
+                  "state",
+                  "union_territory"
+                ]
+              }
+            },
+            "required": [
+              "level"
+            ]
+          },
+          "then": {
+            "properties": {
+              "code": {
+                "type": "string",
+                "pattern": "^IN-[A-Z]{2}$"
+              },
+              "stateCode": {
+                "type": "string",
+                "pattern": "^[A-Z]{2}$"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "sourceId"
+      ],
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "department": {
+          "type": "string"
+        },
+        "sourceId": {
+          "$ref": "#/$defs/identifier"
+        }
+      }
+    },
+    "temporal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "effectiveFrom",
+        "effectiveTo",
+        "lastVerified",
+        "nextReviewDue",
+        "supersedes",
+        "supersededBy"
+      ],
+      "properties": {
+        "effectiveFrom": {
+          "$ref": "#/$defs/dateOrNull"
+        },
+        "effectiveTo": {
+          "$ref": "#/$defs/dateOrNull"
+        },
+        "lastVerified": {
+          "type": "string",
+          "format": "date"
+        },
+        "nextReviewDue": {
+          "type": "string",
+          "format": "date"
+        },
+        "supersedes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/identifier"
+          }
+        },
+        "supersededBy": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/identifier"
+          }
+        }
+      }
+    },
+    "definition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "term",
+        "definition"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "term": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "definition": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "employeeCount": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "min",
+        "max"
+      ],
+      "properties": {
+        "min": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        }
+      }
+    },
+    "applicabilityFlag": {
+      "type": "string",
+      "enum": [
+        "any",
+        "required",
+        "not_applicable"
+      ]
+    },
+    "stringList": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/nonEmptyString"
+      }
+    },
+    "condition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "field",
+        "operator",
+        "value"
+      ],
+      "properties": {
+        "field": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "operator": {
+          "type": "string",
+          "enum": [
+            "equals",
+            "not_equals",
+            "in",
+            "not_in",
+            "gt",
+            "gte",
+            "lt",
+            "lte",
+            "contains",
+            "exists",
+            "not_exists"
+          ]
+        },
+        "value": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": [
+                  "string",
+                  "number",
+                  "boolean"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    "applicability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "employeeCount",
+        "entityTypes",
+        "industries",
+        "jurisdictions",
+        "workerTypes",
+        "womenEmployees",
+        "contractWorkers",
+        "factory",
+        "warehouse",
+        "conditions",
+        "exclusions"
+      ],
+      "properties": {
+        "employeeCount": {
+          "$ref": "#/$defs/employeeCount"
+        },
+        "entityTypes": {
+          "$ref": "#/$defs/stringList"
+        },
+        "industries": {
+          "$ref": "#/$defs/stringList"
+        },
+        "jurisdictions": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/jurisdictionCode"
+          }
+        },
+        "workerTypes": {
+          "$ref": "#/$defs/stringList"
+        },
+        "womenEmployees": {
+          "$ref": "#/$defs/applicabilityFlag"
+        },
+        "contractWorkers": {
+          "$ref": "#/$defs/applicabilityFlag"
+        },
+        "factory": {
+          "$ref": "#/$defs/applicabilityFlag"
+        },
+        "warehouse": {
+          "$ref": "#/$defs/applicabilityFlag"
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/condition"
+          }
+        },
+        "exclusions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/condition"
+          }
+        }
+      }
+    },
+    "citation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reference"
+      ],
+      "properties": {
+        "reference": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "section": {
+          "type": "string"
+        },
+        "rule": {
+          "type": "string"
+        },
+        "page": {
+          "type": "string"
+        },
+        "excerpt": {
+          "type": "string"
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceId",
+        "citation",
+        "accessedAt",
+        "verificationStatus"
+      ],
+      "properties": {
+        "sourceId": {
+          "$ref": "#/$defs/identifier"
+        },
+        "citation": {
+          "$ref": "#/$defs/citation"
+        },
+        "publishedAt": {
+          "$ref": "#/$defs/dateOrNull"
+        },
+        "accessedAt": {
+          "type": "string",
+          "format": "date"
+        },
+        "verificationStatus": {
+          "type": "string",
+          "enum": [
+            "verified",
+            "partially_verified",
+            "unverified",
+            "superseded"
+          ]
+        }
+      }
+    },
+    "rule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "description",
+        "category",
+        "priority",
+        "applicability",
+        "evidence",
+        "temporal"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "title": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "description": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "category": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "priority": {
+          "type": "string",
+          "enum": [
+            "Mandatory",
+            "High",
+            "Medium",
+            "Low",
+            "Advisory"
+          ]
+        },
+        "recommendation": {
+          "type": "string"
+        },
+        "applicability": {
+          "$ref": "#/$defs/applicability"
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        },
+        "temporal": {
+          "$ref": "#/$defs/temporal"
+        }
+      }
+    },
+    "exception": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "description"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "title": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "description": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "applicability": {
+          "$ref": "#/$defs/applicability"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        }
+      }
+    },
+    "recommendation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "description"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "title": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "description": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceId",
+        "name",
+        "sourceType",
+        "url",
+        "authority",
+        "accessedAt",
+        "verificationStatus"
+      ],
+      "properties": {
+        "sourceId": {
+          "$ref": "#/$defs/identifier"
+        },
+        "name": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "sourceType": {
+          "type": "string",
+          "enum": [
+            "legislation",
+            "rules",
+            "notification",
+            "circular",
+            "gazette",
+            "regulator_guidance",
+            "official_portal",
+            "case_law",
+            "secondary_reference"
+          ]
+        },
+        "url": {
+          "$ref": "#/$defs/uriOrNull"
+        },
+        "authority": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "publishedAt": {
+          "$ref": "#/$defs/dateOrNull"
+        },
+        "accessedAt": {
+          "type": "string",
+          "format": "date"
+        },
+        "verificationStatus": {
+          "type": "string",
+          "enum": [
+            "verified",
+            "partially_verified",
+            "unverified",
+            "superseded"
+          ]
+        }
+      }
+    },
+    "governance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "owner",
+        "reviewCadenceDays",
+        "approvalStatus",
+        "approvedBy",
+        "approvedAt",
+        "changeSummary"
+      ],
+      "properties": {
+        "owner": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "reviewCadenceDays": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "approvalStatus": {
+          "type": "string",
+          "enum": [
+            "draft",
+            "in_review",
+            "approved",
+            "rejected"
+          ]
+        },
+        "approvedBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "approvedAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "changeSummary": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    }
+  }
+}
