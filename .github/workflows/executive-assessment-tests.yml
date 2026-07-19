@@ -1,0 +1,88 @@
+name: Executive Assessment Tests
+
+on:
+  workflow_dispatch:
+
+  push:
+    paths:
+      - "analyze-company.html"
+      - "js/executive-assessment.js"
+      - "js/executive-assessment/**"
+      - "js/pdf.js"
+      - "js/gmail-service.js"
+      - "tests/e2e/**"
+      - "playwright.config.ts"
+      - "package.json"
+      - ".github/workflows/executive-assessment-tests.yml"
+
+  pull_request:
+    paths:
+      - "analyze-company.html"
+      - "js/executive-assessment.js"
+      - "js/executive-assessment/**"
+      - "js/pdf.js"
+      - "js/gmail-service.js"
+      - "tests/e2e/**"
+      - "playwright.config.ts"
+      - "package.json"
+      - ".github/workflows/executive-assessment-tests.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: executive-assessment-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Playwright assessment tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    env:
+      CI: true
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install project dependencies
+        run: npm install --no-audit --no-fund
+
+      # @playwright/test is not currently listed in package.json,
+      # so install it temporarily on the GitHub Actions machine.
+      - name: Install Playwright test package
+        run: npm install --no-save --no-audit --no-fund @playwright/test
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run executive assessment tests
+        run: >
+          npx playwright test
+          tests/e2e/executive-assessment-modules.spec.ts
+          --project=chromium
+
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: executive-assessment-playwright-report
+          path: playwright-report/
+          if-no-files-found: ignore
+          retention-days: 7
+
+      - name: Upload failure evidence
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: executive-assessment-test-results
+          path: test-results/
+          if-no-files-found: ignore
+          retention-days: 7
