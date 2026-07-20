@@ -79,8 +79,8 @@ for (const file of htmlFiles) {
     ) {
         includes(
             html,
-            "GrowWithHR Public 0.15.1-beta",
-            `${file} must display the M0 baseline version.`
+            "GrowWithHR Public 0.16.0-beta",
+            `${file} must display the current release version.`
         );
     }
 }

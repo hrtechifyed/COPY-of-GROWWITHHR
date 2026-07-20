@@ -8,7 +8,7 @@
 const APP_CONFIG = Object.freeze({
     productName: "GrowWithHR",
     companyName: "HRTechify",
-    version: "0.15.1-beta",
+    version: "0.16.0-beta",
     releaseName: "Private Beta",
 
     website:
