@@ -1,228 +1,300 @@
 {
-  "lawId": "CENTRAL-GRATUITY",
-  "lawName": "Payment of Gratuity Act, 1972",
+  "schemaVersion": "1.0",
+  "recordVersion": "1.0.0",
+  "id": "CENTRAL-GRATUITY",
+  "name": "Payment of Gratuity Act, 1972",
   "shortName": "Gratuity Act",
-  "authority": "Ministry of Labour & Employment",
-  "sourceId": "MOL",
-  "lastVerified": "2026-07-05",
-  "status": "Active",
-
+  "officialCitation": "Payment of Gratuity Act, 1972",
   "overview": "Provides for payment of gratuity to eligible employees on termination of employment after completion of qualifying service, subject to the provisions of the Act.",
-
+  "jurisdiction": {
+    "country": "IN",
+    "level": "central",
+    "code": "IN",
+    "stateCode": null
+  },
+  "authority": {
+    "name": "Ministry of Labour & Employment",
+    "sourceId": "MOL"
+  },
+  "status": "active",
+  "temporal": {
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "lastVerified": "2026-07-05",
+    "nextReviewDue": "2026-10-03",
+    "supersedes": [],
+    "supersededBy": []
+  },
   "definitions": [
-
     {
       "id": "GRAT-DEF-001",
       "term": "Employee",
       "definition": "An employee covered under the Payment of Gratuity Act."
     },
-
     {
       "id": "GRAT-DEF-002",
       "term": "Continuous Service",
       "definition": "Continuous service as defined under the Act."
     },
-
     {
       "id": "GRAT-DEF-003",
       "term": "Employer",
       "definition": "The establishment responsible for gratuity compliance."
     }
-
   ],
-
   "rules": [
-
     {
-
-      "id":"GRAT-001",
-
-      "title":"Review Gratuity Applicability",
-
-      "priority":"Mandatory",
-
-      "category":"Gratuity",
-
-      "applicability":{
-
-        "employeeCount":{
-
-          "min":10
-
+      "id": "GRAT-001",
+      "title": "Review Gratuity Applicability",
+      "description": "Determine whether the establishment is covered under the Payment of Gratuity Act.",
+      "category": "Gratuity",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 10,
+          "max": null
         },
-
-        "entityTypes":["*"],
-
-        "industries":["*"]
-
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-
-      "description":"Determine whether the establishment is covered under the Payment of Gratuity Act.",
-
-      "sourceId":"MOL",
-
-      "citations":[
-
+      "evidence": [
         {
-
-          "reference":"Payment of Gratuity Act, 1972"
-
+          "sourceId": "MOL",
+          "citation": {
+            "reference": "Payment of Gratuity Act, 1972",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-
-      ]
-
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
-
-      "id":"GRAT-002",
-
-      "title":"Maintain Employee Service Records",
-
-      "priority":"Mandatory",
-
-      "category":"Documentation",
-
-      "applicability":{
-
-        "employeeCount":{
-
-          "min":10
-
+      "id": "GRAT-002",
+      "title": "Maintain Employee Service Records",
+      "description": "Maintain accurate employee service records to determine gratuity eligibility.",
+      "category": "Documentation",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 10,
+          "max": null
         },
-
-        "entityTypes":["*"],
-
-        "industries":["*"]
-
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-
-      "description":"Maintain accurate employee service records to determine gratuity eligibility.",
-
-      "sourceId":"MOL",
-
-      "citations":[
-
+      "evidence": [
         {
-
-          "reference":"Payment of Gratuity Act"
-
+          "sourceId": "MOL",
+          "citation": {
+            "reference": "Payment of Gratuity Act",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-
-      ]
-
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
-
-      "id":"GRAT-003",
-
-      "title":"Calculate Gratuity",
-
-      "priority":"Mandatory",
-
-      "category":"Gratuity",
-
-      "applicability":{
-
-        "employeeCount":{
-
-          "min":10
-
+      "id": "GRAT-003",
+      "title": "Calculate Gratuity",
+      "description": "Calculate gratuity payable in accordance with statutory provisions.",
+      "category": "Gratuity",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 10,
+          "max": null
         },
-
-        "entityTypes":["*"],
-
-        "industries":["*"]
-
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-
-      "description":"Calculate gratuity payable in accordance with statutory provisions.",
-
-      "sourceId":"MOL",
-
-      "citations":[
-
+      "evidence": [
         {
-
-          "reference":"Payment of Gratuity Act"
-
+          "sourceId": "MOL",
+          "citation": {
+            "reference": "Payment of Gratuity Act",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-
-      ]
-
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
-
-      "id":"GRAT-004",
-
-      "title":"Pay Eligible Gratuity",
-
-      "priority":"Mandatory",
-
-      "category":"Payroll",
-
-      "applicability":{
-
-        "employeeCount":{
-
-          "min":10
-
+      "id": "GRAT-004",
+      "title": "Pay Eligible Gratuity",
+      "description": "Ensure gratuity is paid to eligible employees within the prescribed timelines.",
+      "category": "Payroll",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 10,
+          "max": null
         },
-
-        "entityTypes":["*"],
-
-        "industries":["*"]
-
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-
-      "description":"Ensure gratuity is paid to eligible employees within the prescribed timelines.",
-
-      "sourceId":"MOL",
-
-      "citations":[
-
+      "evidence": [
         {
-
-          "reference":"Payment of Gratuity Act"
-
+          "sourceId": "MOL",
+          "citation": {
+            "reference": "Payment of Gratuity Act",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-
-      ]
-
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     }
-
   ],
-
-  "exceptions":[
-
+  "exceptions": [
     {
-
-      "id":"GRAT-EX-001",
-
-      "title":"Qualifying Service",
-
-      "description":"Eligibility is subject to qualifying service and other statutory provisions."
-
+      "id": "GRAT-EX-001",
+      "title": "Qualifying Service",
+      "description": "Eligibility is subject to qualifying service and other statutory provisions."
     }
-
   ],
-
-  "references":[
-
+  "sources": [
     {
-
-      "sourceId":"MOL"
-
+      "sourceId": "MOL",
+      "name": "Ministry of Labour & Employment",
+      "sourceType": "official_portal",
+      "url": "https://labour.gov.in",
+      "authority": "Ministry of Labour & Employment",
+      "publishedAt": null,
+      "accessedAt": "2026-07-05",
+      "verificationStatus": "partially_verified"
     },
-
     {
-
-      "sourceId":"INDIACODE"
-
+      "sourceId": "INDIACODE",
+      "name": "India Code",
+      "sourceType": "official_portal",
+      "url": "https://www.indiacode.nic.in",
+      "authority": "India Code",
+      "publishedAt": null,
+      "accessedAt": "2026-07-05",
+      "verificationStatus": "partially_verified"
     }
-
-  ]
-
+  ],
+  "governance": {
+    "owner": "GrowWithHR Compliance Data Team",
+    "reviewCadenceDays": 90,
+    "approvalStatus": "draft",
+    "approvedBy": null,
+    "approvedAt": null,
+    "changeSummary": "Migrated the existing Payment of Gratuity Act record to compliance-law schema version 1.0 without independently expanding its legal coverage."
+  }
 }
