@@ -11,6 +11,7 @@
  * - synchronous and asynchronous adapter paths produce equivalent output;
  * - catalog loading is validated and cached;
  * - deterministic timestamps produce deterministic bundles;
+ * - protected v2 answer defaults remain deterministic;
  * - adapter failures expose structured issue paths;
  * - the adapter does not access the DOM or browser storage.
  */
@@ -1042,7 +1043,7 @@ async function main() {
         );
 
         /* ======================================================
-           Missing-information behavior
+           Protected defaults and missing-information behavior
         ====================================================== */
 
         const missingResult =
@@ -1075,15 +1076,99 @@ async function main() {
             EXPECTED_RULE_COUNT
         );
 
+        const missingConfirmedFacts =
+            indexBy(
+                missingResult
+                    .traceability
+                    .facts
+                    .confirmed,
+                "id"
+            );
+
+        const missingDerivedFacts =
+            indexBy(
+                missingResult
+                    .traceability
+                    .facts
+                    .derived,
+                "id"
+            );
+
+        assert.equal(
+            missingConfirmedFacts
+                .get(
+                    "fact.footprint.location-count"
+                )
+                .value,
+            1,
+            "The protected v2 contract must retain its default permanent-location count."
+        );
+
+        assert.equal(
+            missingConfirmedFacts
+                .get(
+                    "fact.footprint.country-count"
+                )
+                .value,
+            1,
+            "The protected v2 contract must retain its default operating-country count."
+        );
+
+        assert.equal(
+            missingDerivedFacts
+                .get(
+                    "fact.footprint.multi-location"
+                )
+                .value,
+            false,
+            "A default location count of one must deterministically derive a false multi-location fact."
+        );
+
+        assert.equal(
+            missingDerivedFacts
+                .get(
+                    "fact.footprint.multi-country"
+                )
+                .value,
+            false,
+            "A default country count of one must deterministically derive a false multi-country fact."
+        );
+
+        const missingRuleIndex =
+            indexBy(
+                missingResult
+                    .traceability
+                    .ruleEvaluations,
+                "ruleId"
+            );
+
+        const expectedMissingRuleIds = [
+            "rule.governance.primary-state.review",
+            "rule.governance.employment-documentation.review",
+            "rule.workforce.distributed-workforce.review",
+            "rule.growth.rapid-change.workforce-planning",
+            "rule.people.ownership.formal-function-review",
+            "rule.people.priority.policies-compliance"
+        ];
+
         for (
-            const evaluation
-            of missingResult
-                .traceability
-                .ruleEvaluations
+            const ruleId
+            of expectedMissingRuleIds
         ) {
+            const evaluation =
+                missingRuleIndex.get(
+                    ruleId
+                );
+
+            assert(
+                evaluation,
+                `${ruleId} must be evaluated.`
+            );
+
             assert.equal(
                 evaluation.status,
-                "more-information-needed"
+                "more-information-needed",
+                `${ruleId} must represent genuinely absent required information.`
             );
 
             assert(
@@ -1091,9 +1176,51 @@ async function main() {
                     .missingFactIds
                     .length >
                     0,
-                `${evaluation.ruleId} must identify missing information.`
+                `${ruleId} must identify missing information.`
             );
         }
+
+        const defaultLocationEvaluation =
+            missingRuleIndex.get(
+                "rule.workplace.multi-location.review"
+            );
+
+        assert(
+            defaultLocationEvaluation,
+            "The multi-location rule must be evaluated."
+        );
+
+        assert.equal(
+            defaultLocationEvaluation.status,
+            "not-currently-applicable",
+            "The protected default of one location must produce a not-currently-applicable multi-location outcome."
+        );
+
+        assert.deepEqual(
+            defaultLocationEvaluation
+                .triggeringFactIds,
+            [
+                "fact.footprint.multi-location"
+            ],
+            "The multi-location outcome must remain traceable to its deterministic derived fact."
+        );
+
+        assert.equal(
+            defaultLocationEvaluation
+                .missingFactIds
+                .length,
+            0,
+            "The protected default location fact must not be reported as missing."
+        );
+
+        assert.equal(
+            missingResult
+                .traceability
+                .recommendations
+                .length,
+            5,
+            "Five missing-information outcomes provide follow-up recommendations after applying protected defaults."
+        );
 
         assert.equal(
             hasOwn(
