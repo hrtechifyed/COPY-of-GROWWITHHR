@@ -13,7 +13,7 @@
 
     <meta
         name="description"
-        content="Explore the GrowWithHR Compliance DNA Five-Act private-beta assessment experience.">
+        content="Explore the GrowWithHR Compliance DNA Five-Act private-beta assessment and deterministic recommendation traceability experience.">
 
     <meta
         name="robots"
@@ -140,8 +140,7 @@
 
             </section>
 
-            <nav
-                aria-label="Compliance DNA story acts">
+            <nav aria-label="Compliance DNA story acts">
 
                 <ol
                     id="dnaActList"
@@ -455,11 +454,284 @@
 
                         M1 Five-Act Story Foundation · Private beta
 
+                        <br>
+
+                        M2 Deterministic Traceability Diagnostics
+
                     </p>
 
                 </div>
 
             </article>
+
+            <section
+                id="dnaTraceability"
+                class="dna-traceability"
+                data-traceability-state="loading"
+                aria-labelledby="dnaTraceabilityTitle"
+                aria-describedby="dnaTraceabilityDescription">
+
+                <header class="dna-traceability__header">
+
+                    <div class="dna-traceability__heading">
+
+                        <p class="dna-traceability__eyebrow">
+                            M2 private-beta diagnostics
+                        </p>
+
+                        <h2
+                            id="dnaTraceabilityTitle"
+                            class="dna-traceability__title">
+                            Recommendation traceability
+                        </h2>
+
+                        <p
+                            id="dnaTraceabilityDescription"
+                            class="dna-traceability__description">
+                            Review the confirmed and derived facts,
+                            deterministic rule outcomes, missing
+                            information, evidence status and structured
+                            sources behind the private-beta advisory
+                            recommendations.
+                        </p>
+
+                    </div>
+
+                    <button
+                        id="dnaTraceabilityRefreshButton"
+                        class="dna-secondary-button dna-traceability__refresh"
+                        type="button"
+                        aria-busy="true"
+                        disabled>
+                        Refresh traceability
+                    </button>
+
+                </header>
+
+                <p class="dna-private-note">
+
+                    <span
+                        class="dna-private-note__icon"
+                        aria-hidden="true">
+                        ●
+                    </span>
+
+                    <span>
+                        This diagnostic reads the protected
+                        <code>growwithhr-advisory-briefing-v2</code>
+                        assessment record without modifying it. It does
+                        not change the stable report, PDF, email or
+                        delivery contracts and does not provide legal
+                        certification.
+                    </span>
+
+                </p>
+
+                <p
+                    id="dnaTraceabilityStatus"
+                    class="dna-traceability__status"
+                    role="status"
+                    aria-live="polite"
+                    aria-atomic="true">
+                    Loading protected assessment facts and deterministic
+                    recommendation traceability…
+                </p>
+
+                <dl
+                    class="dna-traceability__metrics"
+                    aria-label="Traceability record counts">
+
+                    <div class="dna-traceability__metric">
+
+                        <dt>
+                            Confirmed facts
+                        </dt>
+
+                        <dd id="dnaTraceabilityConfirmedCount">
+                            0
+                        </dd>
+
+                    </div>
+
+                    <div class="dna-traceability__metric">
+
+                        <dt>
+                            Derived facts
+                        </dt>
+
+                        <dd id="dnaTraceabilityDerivedCount">
+                            0
+                        </dd>
+
+                    </div>
+
+                    <div class="dna-traceability__metric">
+
+                        <dt>
+                            Rules evaluated
+                        </dt>
+
+                        <dd id="dnaTraceabilityRuleCount">
+                            0
+                        </dd>
+
+                    </div>
+
+                    <div class="dna-traceability__metric">
+
+                        <dt>
+                            Recommendations
+                        </dt>
+
+                        <dd id="dnaTraceabilityRecommendationCount">
+                            0
+                        </dd>
+
+                    </div>
+
+                </dl>
+
+                <section
+                    id="dnaTraceabilityEmpty"
+                    class="dna-traceability__notice"
+                    aria-labelledby="dnaTraceabilityEmptyTitle"
+                    hidden>
+
+                    <h3 id="dnaTraceabilityEmptyTitle">
+                        No saved assessment answers found
+                    </h3>
+
+                    <p>
+                        Complete or save progress in the stable assessment
+                        before reviewing recommendation traceability on
+                        this private-beta route.
+                    </p>
+
+                    <a
+                        class="dna-primary-button"
+                        href="analyze-company.html">
+                        Open the stable assessment
+                    </a>
+
+                </section>
+
+                <section
+                    id="dnaTraceabilityError"
+                    class="dna-traceability__notice dna-traceability__notice--error"
+                    aria-labelledby="dnaTraceabilityErrorTitle"
+                    role="alert"
+                    hidden>
+
+                    <h3 id="dnaTraceabilityErrorTitle">
+                        Traceability could not be prepared
+                    </h3>
+
+                    <p id="dnaTraceabilityErrorMessage">
+                        The private-beta traceability diagnostic could
+                        not load.
+                    </p>
+
+                    <p>
+                        The stable assessment and its existing report,
+                        PDF and delivery paths remain available.
+                    </p>
+
+                    <a
+                        class="dna-secondary-button"
+                        href="analyze-company.html">
+                        Use the stable assessment
+                    </a>
+
+                </section>
+
+                <div class="dna-traceability__content">
+
+                    <section
+                        class="dna-traceability__group"
+                        aria-labelledby="dnaTraceabilityRulesTitle">
+
+                        <header class="dna-traceability__group-header">
+
+                            <div>
+
+                                <p class="dna-traceability__group-eyebrow">
+                                    Evaluation ledger
+                                </p>
+
+                                <h3
+                                    id="dnaTraceabilityRulesTitle"
+                                    class="dna-traceability__group-title">
+                                    Deterministic rule outcomes
+                                </h3>
+
+                            </div>
+
+                            <p class="dna-traceability__group-description">
+                                Each outcome identifies its required
+                                facts, facts used for the decision and
+                                any information still missing.
+                            </p>
+
+                        </header>
+
+                        <div
+                            id="dnaTraceabilityRuleList"
+                            class="dna-traceability__rule-list"
+                            aria-live="polite">
+
+                            <p class="dna-traceability__loading">
+                                Preparing deterministic rule outcomes…
+                            </p>
+
+                        </div>
+
+                    </section>
+
+                    <section
+                        class="dna-traceability__group"
+                        aria-labelledby="dnaTraceabilityRecommendationsTitle">
+
+                        <header class="dna-traceability__group-header">
+
+                            <div>
+
+                                <p class="dna-traceability__group-eyebrow">
+                                    Advisory explanations
+                                </p>
+
+                                <h3
+                                    id="dnaTraceabilityRecommendationsTitle"
+                                    class="dna-traceability__group-title">
+                                    Recommendation rationale
+                                </h3>
+
+                            </div>
+
+                            <p class="dna-traceability__group-description">
+                                Recommendation records show the rule,
+                                triggering facts, evidence status,
+                                sources and limitations supporting the
+                                private-beta advisory explanation.
+                            </p>
+
+                        </header>
+
+                        <div
+                            id="dnaTraceabilityRecommendationList"
+                            class="dna-traceability__recommendation-list"
+                            aria-live="polite">
+
+                            <p class="dna-traceability__loading">
+                                Preparing recommendation explanations…
+                            </p>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+            </section>
 
             <div
                 id="dnaLiveRegion"
@@ -487,7 +759,8 @@
 
                     <p class="dna-panel__description">
                         Enable JavaScript to use the Compliance DNA
-                        private-beta journey.
+                        private-beta journey and recommendation
+                        traceability diagnostics.
                     </p>
 
                     <div class="dna-actions">
@@ -514,10 +787,16 @@
         defer>
     </script>
 
-    <!-- Compliance DNA controller; created in the next steps -->
+    <!-- Compliance DNA Five-Act controller -->
     <script
         type="module"
         src="js/assessment-v3/bootstrap.js">
+    </script>
+
+    <!-- M2 private-beta traceability controller -->
+    <script
+        type="module"
+        src="js/assessment-v3/traceability-diagnostics.js">
     </script>
 
     <!-- Existing build diagnostics -->
