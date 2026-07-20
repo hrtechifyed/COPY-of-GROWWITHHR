@@ -1,11 +1,11 @@
 {
   "schemaVersion": "1.0",
   "recordVersion": "1.0.0",
-  "id": "CENTRAL-EPFO",
-  "name": "Employees' Provident Funds and Miscellaneous Provisions Act, 1952",
-  "shortName": "EPF Act",
-  "officialCitation": "Employees' Provident Funds and Miscellaneous Provisions Act, 1952",
-  "overview": "Provides provident fund, pension and insurance benefits to eligible employees and prescribes employer obligations relating to registration, contributions and statutory compliance.",
+  "id": "CENTRAL-CODE-ON-WAGES",
+  "name": "Code on Wages, 2019",
+  "shortName": "Code on Wages",
+  "officialCitation": "Code on Wages, 2019",
+  "overview": "Consolidates provisions relating to wages, payment of wages, minimum wages, bonus and equal remuneration under a common legislative framework.",
   "jurisdiction": {
     "country": "IN",
     "level": "central",
@@ -13,8 +13,8 @@
     "stateCode": null
   },
   "authority": {
-    "name": "Employees' Provident Fund Organisation",
-    "sourceId": "EPFO"
+    "name": "Ministry of Labour & Employment",
+    "sourceId": "MOL"
   },
   "status": "active",
   "temporal": {
@@ -27,31 +27,31 @@
   },
   "definitions": [
     {
-      "id": "EPFO-DEF-001",
-      "term": "Establishment",
-      "definition": "An establishment to which the Act applies in accordance with the Act and notifications."
-    },
-    {
-      "id": "EPFO-DEF-002",
-      "term": "Employee",
-      "definition": "An employee covered under the Act as applicable."
-    },
-    {
-      "id": "EPFO-DEF-003",
+      "id": "COW-DEF-001",
       "term": "Employer",
-      "definition": "The person or organisation responsible for compliance under the Act."
+      "definition": "Employer as defined under the Code."
+    },
+    {
+      "id": "COW-DEF-002",
+      "term": "Employee",
+      "definition": "Employee as defined under the Code."
+    },
+    {
+      "id": "COW-DEF-003",
+      "term": "Wages",
+      "definition": "Wages as defined under the Code on Wages, 2019."
     }
   ],
   "rules": [
     {
-      "id": "EPFO-001",
-      "title": "Review EPF Applicability",
-      "description": "Determine whether the establishment is required to obtain EPF registration based on applicable legal criteria.",
-      "category": "Provident Fund",
+      "id": "COW-001",
+      "title": "Review Applicability",
+      "description": "Determine the applicability of the Code on Wages and relevant notified rules.",
+      "category": "Minimum Wages",
       "priority": "Mandatory",
       "applicability": {
         "employeeCount": {
-          "min": 20,
+          "min": 1,
           "max": null
         },
         "entityTypes": [
@@ -75,9 +75,9 @@
       },
       "evidence": [
         {
-          "sourceId": "EPFO",
+          "sourceId": "MOL",
           "citation": {
-            "reference": "Employees' Provident Funds and Miscellaneous Provisions Act, 1952",
+            "reference": "Code on Wages, 2019",
             "section": "",
             "rule": "",
             "page": "",
@@ -98,14 +98,14 @@
       }
     },
     {
-      "id": "EPFO-002",
-      "title": "Employer Registration",
-      "description": "Where applicable, complete employer registration with EPFO.",
-      "category": "Registration",
+      "id": "COW-002",
+      "title": "Pay Statutory Minimum Wages",
+      "description": "Ensure employees receive wages not lower than the applicable statutory minimum wages.",
+      "category": "Minimum Wages",
       "priority": "Mandatory",
       "applicability": {
         "employeeCount": {
-          "min": 20,
+          "min": 1,
           "max": null
         },
         "entityTypes": [
@@ -129,9 +129,9 @@
       },
       "evidence": [
         {
-          "sourceId": "EPFO",
+          "sourceId": "MOL",
           "citation": {
-            "reference": "EPFO Employer Registration",
+            "reference": "Code on Wages",
             "section": "",
             "rule": "",
             "page": "",
@@ -152,68 +152,14 @@
       }
     },
     {
-      "id": "EPFO-003",
-      "title": "Employee Enrollment",
-      "description": "Enroll eligible employees under the EPF scheme.",
-      "category": "Provident Fund",
-      "priority": "Mandatory",
-      "applicability": {
-        "employeeCount": {
-          "min": 20,
-          "max": null
-        },
-        "entityTypes": [
-          "*"
-        ],
-        "industries": [
-          "*"
-        ],
-        "jurisdictions": [
-          "IN"
-        ],
-        "workerTypes": [
-          "*"
-        ],
-        "womenEmployees": "any",
-        "contractWorkers": "any",
-        "factory": "any",
-        "warehouse": "any",
-        "conditions": [],
-        "exclusions": []
-      },
-      "evidence": [
-        {
-          "sourceId": "EPFO",
-          "citation": {
-            "reference": "EPFO Membership",
-            "section": "",
-            "rule": "",
-            "page": "",
-            "excerpt": ""
-          },
-          "publishedAt": null,
-          "accessedAt": "2026-07-05",
-          "verificationStatus": "partially_verified"
-        }
-      ],
-      "temporal": {
-        "effectiveFrom": null,
-        "effectiveTo": null,
-        "lastVerified": "2026-07-05",
-        "nextReviewDue": "2026-10-03",
-        "supersedes": [],
-        "supersededBy": []
-      }
-    },
-    {
-      "id": "EPFO-004",
-      "title": "Monthly Contributions",
-      "description": "Deposit employer and employee provident fund contributions within the prescribed timelines.",
+      "id": "COW-003",
+      "title": "Timely Payment of Wages",
+      "description": "Ensure wages are paid within the timelines prescribed under applicable law.",
       "category": "Payroll",
       "priority": "Mandatory",
       "applicability": {
         "employeeCount": {
-          "min": 20,
+          "min": 1,
           "max": null
         },
         "entityTypes": [
@@ -229,6 +175,7 @@
           "*"
         ],
         "womenEmployees": "any",
+",
         "contractWorkers": "any",
         "factory": "any",
         "warehouse": "any",
@@ -237,9 +184,9 @@
       },
       "evidence": [
         {
-          "sourceId": "EPFO",
+          "sourceId": "MOL",
           "citation": {
-            "reference": "EPFO Contribution Requirements",
+            "reference": "Code on Wages",
             "section": "",
             "rule": "",
             "page": "",
@@ -260,14 +207,14 @@
       }
     },
     {
-      "id": "EPFO-005",
-      "title": "Maintain EPF Records",
-      "description": "Maintain prescribed employee records and contribution records.",
+      "id": "COW-004",
+      "title": "Maintain Wage Registers",
+      "description": "Maintain wage records, registers and statutory documentation as prescribed.",
       "category": "Documentation",
       "priority": "Mandatory",
       "applicability": {
         "employeeCount": {
-          "min": 20,
+          "min": 1,
           "max": null
         },
         "entityTypes": [
@@ -291,9 +238,117 @@
       },
       "evidence": [
         {
-          "sourceId": "EPFO",
+          "sourceId": "MOL",
           "citation": {
-            "reference": "EPFO Record Maintenance",
+            "reference": "Code on Wages Rules",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    },
+    {
+      "id": "COW-005",
+      "title": "Issue Wage Slips",
+      "description": "Issue wage slips and maintain payroll transparency in accordance with applicable rules.",
+      "category": "Payroll",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
+      },
+      "evidence": [
+        {
+          "sourceId": "MOL",
+          "citation": {
+            "reference": "Code on Wages Rules",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    },
+    {
+      "id": "COW-006",
+      "title": "Comply with Equal Remuneration Requirements",
+      "description": "Ensure compliance with equal remuneration provisions incorporated within the Code.",
+      "category": "Payroll",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
+      },
+      "evidence": [
+        {
+          "sourceId": "MOL",
+          "citation": {
+            "reference": "Code on Wages",
             "section": "",
             "rule": "",
             "page": "",
@@ -316,18 +371,18 @@
   ],
   "exceptions": [
     {
-      "id": "EPFO-EX-001",
-      "title": "Voluntary Coverage",
-      "description": "Certain establishments may seek voluntary coverage subject to applicable provisions."
+      "id": "COW-EX-001",
+      "title": "State Rules",
+      "description": "Implementation and wage notifications depend upon rules notified by the appropriate Central or State Government."
     }
   ],
   "sources": [
     {
-      "sourceId": "EPFO",
-      "name": "Employees' Provident Fund Organisation",
+      "sourceId": "MOL",
+      "name": "Ministry of Labour & Employment",
       "sourceType": "official_portal",
-      "url": "https://www.epfindia.gov.in",
-      "authority": "Employees' Provident Fund Organisation",
+      "url": "https://labour.gov.in",
+      "authority": "Ministry of Labour & Employment",
       "publishedAt": null,
       "accessedAt": "2026-07-05",
       "verificationStatus": "partially_verified"
@@ -349,6 +404,6 @@
     "approvalStatus": "draft",
     "approvedBy": null,
     "approvedAt": null,
-    "changeSummary": "Migrated the existing Employees' Provident Funds and Miscellaneous Provisions Act record to compliance-law schema version 1.0 without independently expanding its legal coverage."
+    "changeSummary": "Migrated the existing Code on Wages record to compliance-law schema version 1.0 without independently expanding its legal coverage."
   }
 }
