@@ -1,212 +1,301 @@
 {
-  "lawId": "CENTRAL-CHILD-LABOUR",
-  "lawName": "Child and Adolescent Labour (Prohibition and Regulation) Act, 1986",
+  "schemaVersion": "1.0",
+  "recordVersion": "1.0.0",
+  "id": "CENTRAL-CHILD-LABOUR",
+  "name": "Child and Adolescent Labour (Prohibition and Regulation) Act, 1986",
   "shortName": "Child Labour Act",
-  "authority": "Ministry of Labour & Employment",
-  "sourceId": "MOL",
-  "lastVerified": "2026-07-05",
-  "status": "Active",
-
+  "officialCitation": "Child and Adolescent Labour (Prohibition and Regulation) Act, 1986",
   "overview": "Prohibits employment of children in all occupations and regulates employment of adolescents in accordance with the Act and applicable rules.",
-
+  "jurisdiction": {
+    "country": "IN",
+    "level": "central",
+    "code": "IN",
+    "stateCode": null
+  },
+  "authority": {
+    "name": "Ministry of Labour & Employment",
+    "department": "Government of India",
+    "sourceId": "MOL"
+  },
+  "status": "active",
+  "temporal": {
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "lastVerified": "2026-07-05",
+    "nextReviewDue": "2026-10-03",
+    "supersedes": [],
+    "supersededBy": []
+  },
   "definitions": [
-
     {
       "id": "CL-DEF-001",
       "term": "Child",
       "definition": "A person who has not completed fourteen years of age."
     },
-
     {
       "id": "CL-DEF-002",
       "term": "Adolescent",
       "definition": "A person who has completed fourteen years but has not completed eighteen years."
     },
-
     {
       "id": "CL-DEF-003",
       "term": "Employer",
       "definition": "Employer responsible for compliance under the Act."
     }
-
   ],
-
   "rules": [
-
     {
-
-      "id":"CL-001",
-
-      "title":"Prohibit Employment of Children",
-
-      "priority":"Mandatory",
-
-      "category":"Employment",
-
-      "applicability":{
-
-        "employeeCount":{"min":1},
-
-        "entityTypes":["*"],
-
-        "industries":["*"]
-
+      "id": "CL-001",
+      "title": "Prohibit Employment of Children",
+      "description": "Ensure no child is employed in violation of the provisions of the Act.",
+      "category": "Employment",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-
-      "description":"Ensure no child is employed in violation of the provisions of the Act.",
-
-      "sourceId":"MOL",
-
-      "citations":[
-
+      "evidence": [
         {
-
-          "reference":"Child and Adolescent Labour (Prohibition and Regulation) Act, 1986"
-
+          "sourceId": "MOL",
+          "citation": {
+            "reference": "Child and Adolescent Labour (Prohibition and Regulation) Act, 1986",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-
-      ]
-
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
-
-      "id":"CL-002",
-
-      "title":"Review Adolescent Employment",
-
-      "priority":"Mandatory",
-
-      "category":"Employment",
-
-      "applicability":{
-
-        "employeeCount":{"min":1},
-
-        "entityTypes":["*"],
-
-        "industries":["*"]
-
+      "id": "CL-002",
+      "title": "Review Adolescent Employment",
+      "description": "Ensure adolescent employment complies with statutory restrictions and applicable conditions.",
+      "category": "Employment",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-
-      "description":"Ensure adolescent employment complies with statutory restrictions and applicable conditions.",
-
-      "sourceId":"MOL",
-
-      "citations":[
-
+      "evidence": [
         {
-
-          "reference":"Child Labour Act"
-
+          "sourceId": "MOL",
+          "citation": {
+            "reference": "Child Labour Act",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-
-      ]
-
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
-
-      "id":"CL-003",
-
-      "title":"Maintain Age Verification Records",
-
-      "priority":"Mandatory",
-
-      "category":"Documentation",
-
-      "applicability":{
-
-        "employeeCount":{"min":1},
-
-        "entityTypes":["*"],
-
-        "industries":["*"]
-
+      "id": "CL-003",
+      "title": "Maintain Age Verification Records",
+      "description": "Maintain records supporting age verification of employees wherever required.",
+      "category": "Documentation",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-
-      "description":"Maintain records supporting age verification of employees wherever required.",
-
-      "sourceId":"MOL",
-
-      "citations":[
-
+      "evidence": [
         {
-
-          "reference":"Child Labour Rules"
-
+          "sourceId": "MOL",
+          "citation": {
+            "reference": "Child Labour Rules",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-
-      ]
-
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
-
-      "id":"CL-004",
-
-      "title":"Display Statutory Notices",
-
-      "priority":"Mandatory",
-
-      "category":"Documentation",
-
-      "applicability":{
-
-        "employeeCount":{"min":1},
-
-        "entityTypes":["*"],
-
-        "industries":["*"]
-
+      "id": "CL-004",
+      "title": "Display Statutory Notices",
+      "description": "Display notices where required under applicable statutory provisions.",
+      "category": "Documentation",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-
-      "description":"Display notices where required under applicable statutory provisions.",
-
-      "sourceId":"MOL",
-
-      "citations":[
-
+      "evidence": [
         {
-
-          "reference":"Child Labour Rules"
-
+          "sourceId": "MOL",
+          "citation": {
+            "reference": "Child Labour Rules",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-
-      ]
-
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     }
-
   ],
-
-  "exceptions":[
-
+  "exceptions": [
     {
-
-      "id":"CL-EX-001",
-
-      "title":"Statutory Exceptions",
-
-      "description":"Employment of adolescents is subject to statutory restrictions, prohibited occupations and prescribed conditions."
-
+      "id": "CL-EX-001",
+      "title": "Statutory Exceptions",
+      "description": "Employment of adolescents is subject to statutory restrictions, prohibited occupations and prescribed conditions."
     }
-
   ],
-
-  "references":[
-
+  "sources": [
     {
-
-      "sourceId":"MOL"
-
+      "sourceId": "MOL",
+      "name": "Ministry of Labour & Employment",
+      "sourceType": "official_portal",
+      "url": "https://labour.gov.in",
+      "authority": "Ministry of Labour & Employment",
+      "publishedAt": null,
+      "accessedAt": "2026-07-05",
+      "verificationStatus": "partially_verified"
     },
-
     {
-
-      "sourceId":"INDIACODE"
-
+      "sourceId": "INDIACODE",
+      "name": "India Code",
+      "sourceType": "official_portal",
+      "url": "https://www.indiacode.nic.in",
+      "authority": "India Code",
+      "publishedAt": null,
+      "accessedAt": "2026-07-05",
+      "verificationStatus": "partially_verified"
     }
-
-  ]
-
+  ],
+  "governance": {
+    "owner": "GrowWithHR Compliance Data Team",
+    "reviewCadenceDays": 90,
+    "approvalStatus": "draft",
+    "approvedBy": null,
+    "approvedAt": null,
+    "changeSummary": "Migrated the existing Child and Adolescent Labour record to compliance-law schema version 1.0 without independently expanding its legal coverage."
+  }
 }
