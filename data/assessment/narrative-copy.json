@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "experience": "Compliance DNA v3 private beta",
+  "acts": [
+    {
+      "id": "discover",
+      "number": 1,
+      "label": "Discover",
+      "title": "Meet the organisation behind the obligations",
+      "description": "Start with the business facts that anchor every recommendation."
+    },
+    {
+      "id": "people",
+      "number": 2,
+      "label": "People",
+      "title": "Map the people who make the business work",
+      "description": "Capture the workforce and working model without changing the existing assessment meaning."
+    },
+    {
+      "id": "footprint",
+      "number": 3,
+      "label": "Footprint",
+      "title": "Trace how work and growth create compliance signals",
+      "description": "Connect operating footprint, expansion and People support to the current advisory model."
+    },
+    {
+      "id": "understand",
+      "number": 4,
+      "label": "Understand",
+      "title": "Read the organisation story before the handoff",
+      "description": "Review the facts and run only processing stages that are genuinely completed."
+    },
+    {
+      "id": "act",
+      "number": 5,
+      "label": "Act",
+      "title": "Receive the current GrowWithHR advisory",
+      "description": "Use the existing report, PDF and email contracts while the new narrative remains private beta."
+    }
+  ],
+  "screens": {
+    "business-basics": {
+      "act": "discover",
+      "title": "Name the organisation and what it does"
+    },
+    "business-stage": {
+      "act": "discover",
+      "title": "Place the organisation in its current stage"
+    },
+    "workforce": {
+      "act": "people",
+      "title": "Count the workforce groups that contribute"
+    },
+    "working-model": {
+      "act": "people",
+      "title": "Describe how the team usually works"
+    },
+    "operating-footprint": {
+      "act": "footprint",
+      "title": "Map where the organisation operates"
+    },
+    "growth-direction": {
+      "act": "footprint",
+      "title": "Show what is likely to change next"
+    },
+    "people-readiness": {
+      "act": "footprint",
+      "title": "Describe how people decisions are supported"
+    }
+  },
+  "review": {
+    "act": "understand",
+    "title": "Review the organisation story"
+  },
+  "analysis": {
+    "act": "understand",
+    "title": "Prepare the compatible advisory model"
+  },
+  "contact": {
+    "act": "act",
+    "title": "Choose where the advisory should be sent"
+  },
+  "success": {
+    "act": "act",
+    "title": "Your advisory is ready"
+  }
+}
