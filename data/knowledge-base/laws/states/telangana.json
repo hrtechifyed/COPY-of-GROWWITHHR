@@ -1,218 +1,513 @@
 {
-  "stateId": "TS",
-  "stateName": "Telangana",
-  "lastVerified": "2026-07-05",
-  "status": "Active",
-
+  "schemaVersion": "1.0",
+  "recordVersion": "1.0.0",
+  "id": "STATE-TS",
+  "name": "Telangana Labour Laws",
+  "shortName": "Telangana",
+  "overview": "State-specific labour law requirements applicable to establishments operating in Telangana.",
+  "jurisdiction": {
+    "country": "IN",
+    "level": "state",
+    "code": "IN-TS",
+    "stateCode": "TS"
+  },
   "authority": {
-    "department": "Labour Department, Government of Telangana",
+    "name": "Labour Department, Government of Telangana",
     "sourceId": "TS-LABOUR"
   },
-
-  "overview": "State-specific labour law requirements applicable to establishments operating in Telangana.",
-
+  "status": "active",
+  "temporal": {
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "lastVerified": "2026-07-05",
+    "nextReviewDue": "2026-10-03",
+    "supersedes": [],
+    "supersededBy": []
+  },
   "rules": [
-
     {
       "id": "TS-001",
       "title": "Review Telangana Shops and Establishments Registration",
-      "priority": "Mandatory",
-      "category": "Shops & Establishments",
       "description": "Determine whether registration under the Telangana Shops and Establishments Act is applicable.",
+      "category": "Shops & Establishments",
+      "priority": "Mandatory",
       "applicability": {
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
-        "entityTypes": ["*"],
-        "industries": ["*"]
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN-TS"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "TS-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Telangana Shops and Establishments Act"
+          "sourceId": "TS-LABOUR",
+          "citation": {
+            "reference": "Telangana Shops and Establishments Act",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "TS-002",
       "title": "Maintain Statutory Registers and Employment Records",
-      "priority": "Mandatory",
-      "category": "Documentation",
       "description": "Maintain statutory registers, employee records, attendance records and prescribed notices under Telangana labour legislation.",
+      "category": "Documentation",
+      "priority": "Mandatory",
       "applicability": {
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
-        "entityTypes": ["*"],
-        "industries": ["*"]
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN-TS"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "TS-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Telangana Shops and Establishments Rules"
+          "sourceId": "TS-LABOUR",
+          "citation": {
+            "reference": "Telangana Shops and Establishments Rules",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "TS-003",
       "title": "Display Statutory Notices",
-      "priority": "Mandatory",
-      "category": "Documentation",
       "description": "Display statutory notices, abstracts and employee information required under Telangana labour legislation.",
+      "category": "Documentation",
+      "priority": "Mandatory",
       "applicability": {
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
-        "entityTypes": ["*"],
-        "industries": ["*"]
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN-TS"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "TS-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Telangana Shops and Establishments Rules"
+          "sourceId": "TS-LABOUR",
+          "citation": {
+            "reference": "Telangana Shops and Establishments Rules",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "TS-004",
       "title": "Review Working Hours, Overtime, Leave and Weekly Holidays",
-      "priority": "Mandatory",
-      "category": "Working Conditions",
       "description": "Ensure compliance with Telangana provisions governing working hours, spread-over, overtime, leave and weekly holidays.",
+      "category": "Working Conditions",
+      "priority": "Mandatory",
       "applicability": {
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
-        "entityTypes": ["*"],
-        "industries": ["*"]
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN-TS"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "TS-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Telangana Shops and Establishments Act"
+          "sourceId": "TS-LABOUR",
+          "citation": {
+            "reference": "Telangana Shops and Establishments Act",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "TS-005",
       "title": "Review Telangana Professional Tax Compliance",
-      "priority": "Mandatory",
-      "category": "Professional Tax",
       "description": "Determine whether Professional Tax registration, enrolment, deduction, return filing and payment obligations apply under Telangana law.",
+      "category": "Professional Tax",
+      "priority": "Mandatory",
       "applicability": {
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
-        "entityTypes": ["*"],
-        "industries": ["*"]
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN-TS"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "TS-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Telangana Tax on Professions, Trades, Callings and Employments Act"
+          "sourceId": "TS-LABOUR",
+          "citation": {
+            "reference": "Telangana Tax on Professions, Trades, Callings and Employments Act",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "TS-006",
       "title": "Review Telangana Labour Welfare Fund Compliance",
-      "priority": "Mandatory",
-      "category": "Labour Welfare",
       "description": "Review employer obligations relating to the Telangana Labour Welfare Fund including employer and employee contribution requirements where applicable.",
+      "category": "Labour Welfare",
+      "priority": "Mandatory",
       "applicability": {
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
-        "entityTypes": ["*"],
-        "industries": ["*"]
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN-TS"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "TS-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Telangana Labour Welfare Fund Act"
+          "sourceId": "TS-LABOUR",
+          "citation": {
+            "reference": "Telangana Labour Welfare Fund Act",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "TS-007",
       "title": "Review Telangana Minimum Wage Notifications",
-      "priority": "Mandatory",
-      "category": "Minimum Wages",
       "description": "Ensure employee wages comply with the latest Telangana minimum wage notifications applicable to the scheduled employment.",
+      "category": "Minimum Wages",
+      "priority": "Mandatory",
       "applicability": {
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
-        "entityTypes": ["*"],
-        "industries": ["*"]
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN-TS"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "TS-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Government of Telangana Minimum Wage Notifications"
+          "sourceId": "TS-LABOUR",
+          "citation": {
+            "reference": "Government of Telangana Minimum Wage Notifications",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "TS-008",
       "title": "Monitor Telangana Labour Notifications",
-      "priority": "Mandatory",
-      "category": "State Notifications",
       "description": "Review labour department notifications, amendments, exemptions and compliance circulars issued by the Government of Telangana.",
+      "category": "State Notifications",
+      "priority": "Mandatory",
       "applicability": {
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
-        "entityTypes": ["*"],
-        "industries": ["*"]
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN-TS"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "TS-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Government of Telangana Labour Notifications"
+          "sourceId": "TS-LABOUR",
+          "citation": {
+            "reference": "Government of Telangana Labour Notifications",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     }
-
   ],
-
-  "recommended": [
-
+  "recommendations": [
     {
       "id": "TSR-001",
       "title": "Annual Labour Compliance Audit",
       "description": "Conduct an annual audit covering labour registrations, Professional Tax, Labour Welfare Fund, statutory records and inspection readiness."
     },
-
     {
       "id": "TSR-002",
       "title": "Digital Compliance Calendar",
       "description": "Maintain a digital calendar for Professional Tax returns, Labour Welfare Fund contributions, statutory filings, inspections and licence renewals."
     }
-
   ],
-
-  "references": [
-
+  "sources": [
     {
-      "sourceId": "TS-LABOUR"
+      "sourceId": "TS-LABOUR",
+      "name": "Labour Department, Government of Telangana",
+      "sourceType": "official_portal",
+      "url": null,
+      "authority": "Labour Department, Government of Telangana",
+      "publishedAt": null,
+      "accessedAt": "2026-07-05",
+      "verificationStatus": "partially_verified"
     },
-
     {
-      "sourceId": "MOL"
+      "sourceId": "MOL",
+      "name": "Ministry of Labour & Employment",
+      "sourceType": "official_portal",
+      "url": "https://labour.gov.in",
+      "authority": "Ministry of Labour & Employment",
+      "publishedAt": null,
+      "accessedAt": "2026-07-05",
+      "verificationStatus": "partially_verified"
     },
-
     {
-      "sourceId": "INDIACODE"
+      "sourceId": "INDIACODE",
+      "name": "India Code",
+      "sourceType": "official_portal",
+      "url": "https://www.indiacode.nic.in",
+      "authority": "India Code",
+      "publishedAt": null,
+      "accessedAt": "2026-07-05",
+      "verificationStatus": "partially_verified"
     }
-
-  ]
-
+  ],
+  "governance": {
+    "owner": "GrowWithHR Compliance Data Team",
+    "reviewCadenceDays": 90,
+    "approvalStatus": "draft",
+    "approvedBy": null,
+    "approvedAt": null,
+    "changeSummary": "Migrated the existing Telangana labour law record to compliance-law schema version 1.0 without independently expanding its legal coverage."
+  }
 }
