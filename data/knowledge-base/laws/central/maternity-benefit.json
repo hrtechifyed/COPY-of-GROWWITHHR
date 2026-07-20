@@ -4,8 +4,8 @@
   "id": "CENTRAL-MATERNITY",
   "name": "Maternity Benefit Act, 1961",
   "shortName": "Maternity Benefit Act",
-  "officialCitation": "The Maternity Benefit Act, 1961 (Act No. 53 of 1961), repealed and saved under section 164 of the Code on Social Security, 2020.",
-  "overview": "Historical central labour-law record governing maternity benefit and employment protection before the Code on Social Security, 2020 became operative on 21 November 2025. The Maternity Benefit Act, 1961 was repealed under section 164 of the Code, subject to repeal-and-savings provisions. Current maternity-benefit obligations must be assessed under Chapter VI of the Code on Social Security, 2020 and the applicable Central, State or Union Territory rules and notifications. This record is retained for historical periods, saved rules and notifications, accrued rights and benefits, pending claims and proceedings, prior exemptions and audit traceability.",
+  "officialCitation": "The Maternity Benefit Act, 1961, repealed and saved under section 164 of the Code on Social Security, 2020.",
+  "overview": "Historical record governing maternity benefit before the Code on Social Security became operative on 21 November 2025. Current obligations must be assessed under Chapter VI of the Code and applicable rules and notifications.",
   "jurisdiction": {
     "country": "IN",
     "level": "central",
@@ -13,8 +13,7 @@
     "stateCode": null
   },
   "authority": {
-    "name": "Ministry of Labour & Employment, Government of India",
-    "department": "Social Security Division",
+    "name": "Ministry of Labour & Employment",
     "sourceId": "MOL"
   },
   "status": "superseded",
@@ -78,17 +77,17 @@
       },
       "evidence": [
         {
-          "sourceId": "INDIACODE",
+          "sourceId": "MOL",
           "citation": {
             "reference": "Maternity Benefit Act, 1961",
-            "section": "Sections 1 and 2",
+            "section": "",
             "rule": "",
             "page": "",
             "excerpt": ""
           },
           "publishedAt": null,
           "accessedAt": "2026-07-20",
-          "verificationStatus": "verified"
+          "verificationStatus": "partially_verified"
         }
       ],
       "temporal": {
@@ -134,17 +133,17 @@
       },
       "evidence": [
         {
-          "sourceId": "INDIACODE",
+          "sourceId": "MOL",
           "citation": {
-            "reference": "Maternity Benefit Act, 1961",
-            "section": "Sections 4 to 11A",
+            "reference": "Maternity Benefit Act",
+            "section": "",
             "rule": "",
             "page": "",
             "excerpt": ""
           },
           "publishedAt": null,
           "accessedAt": "2026-07-20",
-          "verificationStatus": "verified"
+          "verificationStatus": "partially_verified"
         }
       ],
       "temporal": {
@@ -190,17 +189,17 @@
       },
       "evidence": [
         {
-          "sourceId": "INDIACODE",
+          "sourceId": "MOL",
           "citation": {
-            "reference": "Maternity Benefit Act, 1961",
-            "section": "Sections 12 and 13",
+            "reference": "Maternity Benefit Act",
+            "section": "",
             "rule": "",
             "page": "",
             "excerpt": ""
           },
           "publishedAt": null,
           "accessedAt": "2026-07-20",
-          "verificationStatus": "verified"
+          "verificationStatus": "partially_verified"
         }
       ],
       "temporal": {
@@ -248,15 +247,15 @@
         {
           "sourceId": "MOL",
           "citation": {
-            "reference": "Maternity Benefit Rules, 1963",
+            "reference": "Maternity Benefit Rules",
             "section": "",
-            "rule": "Rules and prescribed forms",
+            "rule": "",
             "page": "",
             "excerpt": ""
           },
           "publishedAt": null,
           "accessedAt": "2026-07-20",
-          "verificationStatus": "verified"
+          "verificationStatus": "partially_verified"
         }
       ],
       "temporal": {
@@ -302,17 +301,17 @@
       },
       "evidence": [
         {
-          "sourceId": "INDIACODE",
+          "sourceId": "MOL",
           "citation": {
-            "reference": "Maternity Benefit Act, 1961",
-            "section": "Section 11A",
+            "reference": "Maternity Benefit Act",
+            "section": "",
             "rule": "",
             "page": "",
             "excerpt": ""
           },
           "publishedAt": null,
           "accessedAt": "2026-07-20",
-          "verificationStatus": "verified"
+          "verificationStatus": "partially_verified"
         }
       ],
       "temporal": {
@@ -336,41 +335,29 @@
     {
       "id": "MB-EX-002",
       "title": "Repeal and Savings",
-      "description": "Rules, notifications, exemptions, accrued rights, benefits, claims, proceedings and actions under the repealed Act continue only to the extent preserved by section 164 of the Code on Social Security, 2020 and section 6 of the General Clauses Act, 1897."
-    }
-  ],
-  "recommendations": [
-    {
-      "id": "MB-REC-001",
-      "title": "Retain Historical Maternity Records",
-      "description": "Preserve eligibility, service, notice, medical, payment, leave, crèche, dismissal-protection, claim and proceeding records created under the repealed Act for saved rights and audit traceability."
-    },
-    {
-      "id": "MB-REC-002",
-      "title": "Use the Social Security Code Record for Current Compliance",
-      "description": "Assess maternity-benefit obligations arising on or after 21 November 2025 under CENTRAL-SOCIAL-SECURITY and the applicable Central, State or Union Territory rules and notifications."
+      "description": "Legacy rules, notifications, schemes, licences, exemptions, rights, proceedings and actions continue only to the extent preserved by the applicable repeal-and-savings provision and until lawfully replaced or superseded."
     }
   ],
   "sources": [
     {
       "sourceId": "MOL",
-      "name": "Ministry of Labour & Employment Labour Codes Portal",
+      "name": "Ministry of Labour & Employment",
       "sourceType": "official_portal",
-      "url": "https://www.labour.gov.in/offerings/schemes-and-services/details/labour-codes-gzNzQzMtQWa",
-      "authority": "Ministry of Labour & Employment, Government of India",
+      "url": "https://labour.gov.in",
+      "authority": "Ministry of Labour & Employment",
       "publishedAt": null,
       "accessedAt": "2026-07-20",
-      "verificationStatus": "verified"
+      "verificationStatus": "partially_verified"
     },
     {
       "sourceId": "INDIACODE",
-      "name": "Maternity Benefit Act, 1961 and Code on Social Security, 2020",
-      "sourceType": "legislation",
-      "url": "https://www.indiacode.nic.in/handle/123456789/16823",
-      "authority": "Legislative Department, Ministry of Law and Justice, Government of India",
+      "name": "India Code",
+      "sourceType": "official_portal",
+      "url": "https://www.indiacode.nic.in",
+      "authority": "India Code",
       "publishedAt": null,
       "accessedAt": "2026-07-20",
-      "verificationStatus": "verified"
+      "verificationStatus": "partially_verified"
     }
   ],
   "governance": {
@@ -379,6 +366,18 @@
     "approvalStatus": "draft",
     "approvedBy": null,
     "approvedAt": null,
-    "changeSummary": "Updated the Maternity Benefit Act record as a superseded historical record, preserved its existing definitions, rule identifiers and eligibility exception, documented repeal-and-savings treatment, and linked current maternity-benefit compliance to the Code on Social Security, 2020 from 21 November 2025."
-  }
+    "changeSummary": "Updated this legacy record as superseded from 21 November 2025, preserved its existing identifiers and obligations for historical use, and linked current compliance to CENTRAL-SOCIAL-SECURITY."
+  },
+  "recommendations": [
+    {
+      "id": "MB-REC-001",
+      "title": "Retain Historical Records",
+      "description": "Preserve records created under the repealed enactment for saved liabilities, proceedings and audit traceability."
+    },
+    {
+      "id": "MB-REC-002",
+      "title": "Use the Successor Code for Current Compliance",
+      "description": "Assess current obligations under CENTRAL-SOCIAL-SECURITY and the applicable rules, schemes, notifications and regulator directions."
+    }
+  ]
 }
