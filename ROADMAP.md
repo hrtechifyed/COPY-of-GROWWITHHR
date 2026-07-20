@@ -174,7 +174,7 @@ The M1 release manifest is `docs/releases/v0.16.0-m1-five-act-foundation.md`.
 
 ## M2 — Explainable recommendation foundation
 
-**Status:** Implementation complete; release validation pending
+**Status:** Complete and validated
 
 ### Objective
 
@@ -191,11 +191,11 @@ Create a deterministic recommendation-traceability layer that explains:
 
 M2 improves explainability without changing the existing stable report contract.
 
-The milestone must not be marked complete and validated until its complete regression, browser and CI gates have passing evidence.
+The complete regression, browser and CI validation gates have passed.
 
 ### Delivered implementation
 
-M2 has delivered:
+M2 delivered:
 
 - a governed recommendation-traceability schema;
 - stable fact, rule, recommendation and source identifiers;
@@ -221,7 +221,7 @@ M2 has delivered:
 - Playwright browser coverage;
 - maintained CI browser-test coverage;
 - release documentation;
-- rollback and validation gates.
+- rollback and validation records.
 
 ### M2 implementation files
 
@@ -252,13 +252,17 @@ The M2 release record is:
 
 - `docs/releases/v0.16.0-m2-explainable-recommendation-foundation.md`
 
+The M2 validation record is:
+
+- `docs/releases/v0.16.0-m2-validation-record.md`
+
 ### Stable-route guarantee
 
 M2 does not replace `/analyze-company.html`.
 
 The private-beta diagnostics remain isolated at `/analyze-company-v3.html`.
 
-Public routing must continue to resolve to the stable assessment while:
+Public routing continues to resolve to the stable assessment while:
 
 `complianceDnaV3: false`
 
@@ -522,7 +526,7 @@ The initial governed catalog includes official references to:
 
 ## M2 implementation sequence
 
-The M2 implementation sequence has been completed:
+The M2 implementation sequence is complete:
 
 1. Define the recommendation-traceability contract.
 2. Define deterministic rule identifiers.
@@ -541,49 +545,64 @@ The M2 implementation sequence has been completed:
 15. Expose private-beta diagnostics for review.
 16. Add browser checks for visible recommendation explanations.
 17. Document limitations, rollback and release gates.
-
-Completion of the implementation sequence does not by itself complete the milestone.
-
-The validation gates below still require passing evidence.
+18. Complete maintained regression, browser and CI validation.
+19. Record successful validation.
 
 ---
 
 ## M2 acceptance gates
 
-M2 is complete only when:
+M2 required:
 
-- each evaluated recommendation has a stable identifier;
-- each recommendation records its triggering facts;
-- each recommendation references a deterministic rule identifier;
-- each rule records its required facts;
-- applicability and evidence statuses remain separate;
-- unresolved information is represented explicitly;
-- official-source references are structured;
-- rules do not claim legal verification;
-- evidence defaults are conservative;
-- the evaluator has no DOM access;
-- the evaluator has no local-storage access;
-- the evaluator produces deterministic results;
-- no rule silently changes protected v2 report output;
-- no protected report field is removed;
-- no protected persistence key is renamed;
-- no new browser-storage key is introduced without approval;
-- `npm run version:check` passes;
-- `npm run validate:compliance` passes;
-- `npm run test:m2` passes;
-- the complete `npm test` regression suite passes;
-- stable browser checks pass;
-- Five-Act private-beta browser checks pass;
-- M2 traceability browser checks pass;
-- the maintained CI workflows report success.
+- each evaluated recommendation to have a stable identifier;
+- each recommendation to record its triggering facts;
+- each recommendation to reference a deterministic rule identifier;
+- each rule to record its required facts;
+- applicability and evidence statuses to remain separate;
+- unresolved information to be represented explicitly;
+- official-source references to be structured;
+- rules not to claim legal verification;
+- evidence defaults to remain conservative;
+- the evaluator to have no DOM access;
+- the evaluator to have no local-storage access;
+- the evaluator to produce deterministic results;
+- no rule to silently change protected v2 report output;
+- no protected report field to be removed;
+- no protected persistence key to be renamed;
+- no new browser-storage key to be introduced without approval;
+- `npm run version:check` to pass;
+- `npm run validate:compliance` to pass;
+- `npm run test:m2` to pass;
+- the complete `npm test` regression suite to pass;
+- stable browser checks to pass;
+- Five-Act private-beta browser checks to pass;
+- M2 traceability browser checks to pass;
+- maintained CI workflows to report success.
 
-### Current acceptance status
+### Acceptance result
 
-The implementation and maintained test coverage are present.
+All required M2 implementation and validation gates passed.
 
-M2 remains in release validation until passing evidence is available for every required gate on the final integration commit.
+The successful validation covered:
 
-The roadmap must not change the M2 status to “Complete and validated” before that evidence exists.
+- GrowWithHR CI;
+- version consistency;
+- compliance-data validation;
+- the complete maintained regression suite;
+- Executive Assessment Tests;
+- stable assessment browser checks;
+- Five-Act private-beta browser checks;
+- M2 traceability browser checks.
+
+The validation baseline was:
+
+`387b7897ad2f367a0e5e62d1019cf956a42a7598`
+
+The validation result is recorded in:
+
+`docs/releases/v0.16.0-m2-validation-record.md`
+
+M2 is complete and validated.
 
 ---
 
@@ -618,6 +637,8 @@ It must not reconstruct recommendation logic in:
 - PDF templates.
 
 Any integration into stable reports requires a separately approved migration.
+
+M3 must not begin without a separately approved planning decision.
 
 ---
 
@@ -760,13 +781,13 @@ New milestones must extend existing test layers rather than replacing protected 
 
 # Release strategy
 
-The repository remains at `0.15.1-beta` during integration and validation.
+The repository remains at `0.15.1-beta` after M2 validation.
 
 The target `0.16.0-beta` version must be applied as one coordinated release cut across every version-bearing file governed by the version-sync contract.
 
 A release cut requires:
 
-- completed milestone acceptance gates;
+- an explicit release decision;
 - passing GrowWithHR CI;
 - passing Executive Assessment Tests;
 - updated release documentation;
@@ -777,21 +798,19 @@ A release cut requires:
 
 M2 completion does not itself authorise the version cut.
 
-The private-beta route must remain excluded from public promotion until an explicit release decision changes the feature flag.
+The private-beta route remains excluded from public promotion until an explicit release decision changes the feature flag.
+
+No individual version-bearing file may be changed independently.
 
 ---
 
-# Immediate next validation tasks
+# Immediate next decision tasks
 
-1. Run `npm run version:check`.
-2. Run `npm run validate:compliance`.
-3. Run `npm run test:m2`.
-4. Run the complete `npm test` regression suite.
-5. Run stable assessment browser checks.
-6. Run Five-Act private-beta browser checks.
-7. Run `tests/e2e/analyze-company-v3-traceability.spec.ts`.
-8. Confirm maintained CI workflows report success.
-9. Record any corrective work revealed by validation.
-10. Mark M2 complete and validated only after every acceptance gate passes.
-11. Review whether to begin M3 planning.
-12. Approve or reject a coordinated `0.16.0-beta` version cut separately.
+1. Preserve the stable production route at `/analyze-company.html`.
+2. Keep `complianceDnaV3` disabled by default.
+3. Review whether to approve the coordinated `0.16.0-beta` version cut.
+4. Treat the version cut as one coordinated multi-file release operation.
+5. Review whether to begin formal M3 planning.
+6. Do not begin M3 implementation without an approved scope.
+7. Do not integrate traceability into stable report, PDF or email contracts without a separate migration decision.
+8. Continue maintaining M2 regression and browser coverage.
