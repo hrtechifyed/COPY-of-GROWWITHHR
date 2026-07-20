@@ -1,183 +1,459 @@
 {
-  "stateId": "UK",
-  "stateName": "Uttarakhand",
-  "lastVerified": "2026-07-05",
-  "status": "Active",
-
+  "schemaVersion": "1.0",
+  "recordVersion": "1.0.0",
+  "id": "STATE-UK",
+  "name": "Uttarakhand Labour Laws",
+  "shortName": "Uttarakhand",
+  "overview": "State-specific labour law requirements applicable to establishments operating in Uttarakhand.",
+  "jurisdiction": {
+    "country": "IN",
+    "level": "state",
+    "code": "IN-UK",
+    "stateCode": "UK"
+  },
   "authority": {
-    "department": "Labour Department, Government of Uttarakhand",
+    "name": "Labour Department, Government of Uttarakhand",
     "sourceId": "UK-LABOUR"
   },
-
-  "overview": "State-specific labour law requirements applicable to establishments operating in Uttarakhand.",
-
+  "status": "active",
+  "temporal": {
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "lastVerified": "2026-07-05",
+    "nextReviewDue": "2026-10-03",
+    "supersedes": [],
+    "supersededBy": []
+  },
   "rules": [
-
     {
       "id": "UK-001",
       "title": "Review Uttarakhand Shops and Commercial Establishments Registration",
-      "priority": "Mandatory",
-      "category": "Shops & Establishments",
       "description": "Determine whether registration under the Uttarakhand Shops and Commercial Establishments Act is applicable.",
+      "category": "Shops & Establishments",
+      "priority": "Mandatory",
       "applicability": {
-        "employeeCount": { "min": 1 },
-        "entityTypes": ["*"],
-        "industries": ["*"]
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN-UK"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "UK-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Uttarakhand Shops and Commercial Establishments Act"
+          "sourceId": "UK-LABOUR",
+          "citation": {
+            "reference": "Uttarakhand Shops and Commercial Establishments Act",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "UK-002",
       "title": "Maintain Statutory Registers and Employment Records",
-      "priority": "Mandatory",
-      "category": "Documentation",
       "description": "Maintain statutory registers, wage records, attendance records and prescribed notices under Uttarakhand labour legislation.",
+      "category": "Documentation",
+      "priority": "Mandatory",
       "applicability": {
-        "employeeCount": { "min": 1 },
-        "entityTypes": ["*"],
-        "industries": ["*"]
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN-UK"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "UK-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Applicable Uttarakhand Labour Rules"
+          "sourceId": "UK-LABOUR",
+          "citation": {
+            "reference": "Applicable Uttarakhand Labour Rules",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "UK-003",
       "title": "Display Statutory Notices",
-      "priority": "Mandatory",
-      "category": "Documentation",
       "description": "Display statutory notices and employee information required under Uttarakhand labour legislation.",
+      "category": "Documentation",
+      "priority": "Mandatory",
       "applicability": {
-        "employeeCount": { "min": 1 },
-        "entityTypes": ["*"],
-        "industries": ["*"]
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN-UK"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "UK-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Applicable Uttarakhand Labour Rules"
+          "sourceId": "UK-LABOUR",
+          "citation": {
+            "reference": "Applicable Uttarakhand Labour Rules",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "UK-004",
       "title": "Review Working Hours, Overtime, Leave and Weekly Holidays",
-      "priority": "Mandatory",
-      "category": "Working Conditions",
       "description": "Ensure compliance with Uttarakhand provisions governing working hours, overtime, leave, holidays and weekly offs.",
+      "category": "Working Conditions",
+      "priority": "Mandatory",
       "applicability": {
-        "employeeCount": { "min": 1 },
-        "entityTypes": ["*"],
-        "industries": ["*"]
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN-UK"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "UK-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Uttarakhand Shops and Commercial Establishments Rules"
+          "sourceId": "UK-LABOUR",
+          "citation": {
+            "reference": "Uttarakhand Shops and Commercial Establishments Rules",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "UK-005",
       "title": "Review Labour Welfare Fund Compliance",
-      "priority": "Mandatory",
-      "category": "Labour Welfare",
       "description": "Review employer obligations relating to the Uttarakhand Labour Welfare Fund, where applicable.",
+      "category": "Labour Welfare",
+      "priority": "Mandatory",
       "applicability": {
-        "employeeCount": { "min": 1 },
-        "entityTypes": ["*"],
-        "industries": ["*"]
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN-UK"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "UK-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Uttarakhand Labour Welfare Fund Act"
+          "sourceId": "UK-LABOUR",
+          "citation": {
+            "reference": "Uttarakhand Labour Welfare Fund Act",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "UK-006",
       "title": "Review Minimum Wage Notifications",
-      "priority": "Mandatory",
-      "category": "Minimum Wages",
       "description": "Ensure employee wages comply with the latest minimum wage notifications applicable in Uttarakhand.",
+      "category": "Minimum Wages",
+      "priority": "Mandatory",
       "applicability": {
-        "employeeCount": { "min": 1 },
-        "entityTypes": ["*"],
-        "industries": ["*"]
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN-UK"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "UK-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Government of Uttarakhand Minimum Wage Notifications"
+          "sourceId": "UK-LABOUR",
+          "citation": {
+            "reference": "Government of Uttarakhand Minimum Wage Notifications",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "UK-007",
       "title": "Monitor Uttarakhand Labour Notifications",
-      "priority": "Mandatory",
-      "category": "State Notifications",
       "description": "Review labour department notifications, amendments, exemptions and compliance circulars issued by the Government of Uttarakhand.",
+      "category": "State Notifications",
+      "priority": "Mandatory",
       "applicability": {
-        "employeeCount": { "min": 1 },
-        "entityTypes": ["*"],
-        "industries": ["*"]
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN-UK"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "UK-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Government of Uttarakhand Labour Notifications"
+          "sourceId": "UK-LABOUR",
+          "citation": {
+            "reference": "Government of Uttarakhand Labour Notifications",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     }
-
   ],
-
-  "recommended": [
-
+  "recommendations": [
     {
       "id": "UKR-001",
       "title": "Annual Labour Compliance Audit",
       "description": "Conduct an annual audit covering statutory registrations, labour welfare, payroll compliance and inspection readiness."
     },
-
     {
       "id": "UKR-002",
       "title": "Digital Compliance Calendar",
       "description": "Maintain a digital calendar for statutory filings, licence renewals, inspections and labour compliance due dates."
     }
-
   ],
-
-  "references": [
-
+  "sources": [
     {
-      "sourceId": "UK-LABOUR"
+      "sourceId": "UK-LABOUR",
+      "name": "Labour Department, Government of Uttarakhand",
+      "sourceType": "official_portal",
+      "url": null,
+      "authority": "Labour Department, Government of Uttarakhand",
+      "publishedAt": null,
+      "accessedAt": "2026-07-05",
+      "verificationStatus": "partially_verified"
     },
-
     {
-      "sourceId": "MOL"
+      "sourceId": "MOL",
+      "name": "Ministry of Labour & Employment",
+      "sourceType": "official_portal",
+      "url": "https://labour.gov.in",
+      "authority": "Ministry of Labour & Employment",
+      "publishedAt": null,
+      "accessedAt": "2026-07-05",
+      "verificationStatus": "partially_verified"
     },
-
     {
-      "sourceId": "INDIACODE"
+      "sourceId": "INDIACODE",
+      "name": "India Code",
+      "sourceType": "official_portal",
+      "url": "https://www.indiacode.nic.in",
+      "authority": "India Code",
+      "publishedAt": null,
+      "accessedAt": "2026-07-05",
+      "verificationStatus": "partially_verified"
     }
-
-  ]
-
+  ],
+  "governance": {
+    "owner": "GrowWithHR Compliance Data Team",
+    "reviewCadenceDays": 90,
+    "approvalStatus": "draft",
+    "approvedBy": null,
+    "approvedAt": null,
+    "changeSummary": "Migrated the existing Uttarakhand labour law record to compliance-law schema version 1.0 without independently expanding its legal coverage."
+  }
 }
