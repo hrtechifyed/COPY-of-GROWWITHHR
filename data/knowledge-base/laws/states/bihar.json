@@ -1,234 +1,351 @@
 {
-  "stateId": "BR",
-  "stateName": "Bihar",
-  "lastVerified": "2026-07-05",
-  "status": "Active",
-
+  "schemaVersion": "1.0",
+  "recordVersion": "1.0.0",
+  "id": "STATE-BR",
+  "name": "Bihar Labour Laws",
+  "shortName": "Bihar",
+  "overview": "State-specific labour law requirements applicable to establishments operating in Bihar.",
+  "jurisdiction": {
+    "country": "IN",
+    "level": "state",
+    "code": "IN-BR",
+    "stateCode": "BR"
+  },
   "authority": {
-    "department": "Labour Resources Department, Government of Bihar",
+    "name": "Labour Resources Department, Government of Bihar",
     "sourceId": "BR-LABOUR"
   },
-
-  "overview": "State-specific labour law requirements applicable to establishments operating in Bihar.",
-
+  "status": "active",
+  "temporal": {
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "lastVerified": "2026-07-05",
+    "nextReviewDue": "2026-10-03",
+    "supersedes": [],
+    "supersededBy": []
+  },
   "rules": [
-
     {
       "id": "BR-001",
-
       "title": "Review Bihar Shops and Establishments Registration",
-
-      "priority": "Mandatory",
-
-      "category": "Shops & Establishments",
-
       "description": "Determine whether registration under the Bihar Shops and Establishments legislation is applicable.",
-
+      "category": "Shops & Establishments",
+      "priority": "Mandatory",
       "applicability": {
-
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
-
         "entityTypes": [
           "*"
         ],
-
         "industries": [
           "*"
-        ]
-
+        ],
+        "jurisdictions": [
+          "IN-BR"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-
-      "sourceId": "BR-LABOUR",
-
-      "citations": [
+      "evidence": [
         {
-          "reference": "Applicable Bihar Shops and Establishments legislation"
+          "sourceId": "BR-LABOUR",
+          "citation": {
+            "reference": "Applicable Bihar Shops and Establishments legislation",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "BR-002",
-
       "title": "Maintain Statutory Registers and Employment Records",
-
-      "priority": "Mandatory",
-
-      "category": "Documentation",
-
       "description": "Maintain all registers, employment records and notices prescribed under Bihar labour legislation.",
-
+      "category": "Documentation",
+      "priority": "Mandatory",
       "applicability": {
-
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
-
         "entityTypes": [
           "*"
         ],
-
         "industries": [
           "*"
-        ]
-
+        ],
+        "jurisdictions": [
+          "IN-BR"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-
-      "sourceId": "BR-LABOUR",
-
-      "citations": [
+      "evidence": [
         {
-          "reference": "Applicable Bihar Labour Rules"
+          "sourceId": "BR-LABOUR",
+          "citation": {
+            "reference": "Applicable Bihar Labour Rules",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "BR-003",
-
       "title": "Display Statutory Notices",
-
-      "priority": "Mandatory",
-
-      "category": "Documentation",
-
       "description": "Display all statutory notices required under Bihar labour laws at the workplace.",
-
+      "category": "Documentation",
+      "priority": "Mandatory",
       "applicability": {
-
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
-
         "entityTypes": [
           "*"
         ],
-
         "industries": [
           "*"
-        ]
-
+        ],
+        "jurisdictions": [
+          "IN-BR"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-
-      "sourceId": "BR-LABOUR",
-
-      "citations": [
+      "evidence": [
         {
-          "reference": "Applicable Bihar Labour Rules"
+          "sourceId": "BR-LABOUR",
+          "citation": {
+            "reference": "Applicable Bihar Labour Rules",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "BR-004",
-
       "title": "Review Working Hours, Leave and Weekly Holiday Requirements",
-
-      "priority": "Mandatory",
-
-      "category": "Working Conditions",
-
       "description": "Ensure compliance with Bihar-specific provisions governing working hours, overtime, leave and weekly holidays.",
-
+      "category": "Working Conditions",
+      "priority": "Mandatory",
       "applicability": {
-
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
-
         "entityTypes": [
           "*"
         ],
-
         "industries": [
           "*"
-        ]
-
+        ],
+        "jurisdictions": [
+          "IN-BR"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-
-      "sourceId": "BR-LABOUR",
-
-      "citations": [
+      "evidence": [
         {
-          "reference": "Applicable Bihar Shops and Establishments Rules"
+          "sourceId": "BR-LABOUR",
+          "citation": {
+            "reference": "Applicable Bihar Shops and Establishments Rules",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "BR-005",
-
       "title": "Review Labour Welfare Fund Requirements",
-
-      "priority": "Mandatory",
-
-      "category": "Labour Welfare",
-
       "description": "Review whether any Bihar-specific labour welfare obligations or contributions apply to the establishment.",
-
+      "category": "Labour Welfare",
+      "priority": "Mandatory",
       "applicability": {
-
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
-
         "entityTypes": [
           "*"
         ],
-
         "industries": [
           "*"
-        ]
-
+        ],
+        "jurisdictions": [
+          "IN-BR"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-
-      "sourceId": "BR-LABOUR",
-
-      "citations": [
+      "evidence": [
         {
-          "reference": "Applicable Bihar Labour Welfare legislation"
+          "sourceId": "BR-LABOUR",
+          "citation": {
+            "reference": "Applicable Bihar Labour Welfare legislation",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     }
-
   ],
-
-  "recommended": [
-
+  "recommendations": [
     {
       "id": "BRR-001",
-
       "title": "Annual Labour Compliance Audit",
-
       "description": "Conduct a yearly audit covering labour registrations, statutory records and employment documentation."
     },
-
     {
       "id": "BRR-002",
-
       "title": "Digital Statutory Register Management",
-
       "description": "Maintain digital statutory registers and a compliance calendar for inspections and renewals."
     }
-
   ],
-
-  "references": [
-
+  "sources": [
     {
-      "sourceId": "BR-LABOUR"
+      "sourceId": "BR-LABOUR",
+      "name": "Labour Resources Department, Government of Bihar",
+      "sourceType": "official_portal",
+      "url": null,
+      "authority": "Labour Resources Department, Government of Bihar",
+      "publishedAt": null,
+      "accessedAt": "2026-07-05",
+      "verificationStatus": "partially_verified"
     },
-
     {
-      "sourceId": "MOL"
+      "sourceId": "MOL",
+      "name": "Ministry of Labour & Employment",
+      "sourceType": "official_portal",
+      "url": "https://labour.gov.in",
+      "authority": "Ministry of Labour & Employment",
+      "publishedAt": null,
+      "accessedAt": "2026-07-05",
+      "verificationStatus": "partially_verified"
     },
-
     {
-      "sourceId": "INDIACODE"
+      "sourceId": "INDIACODE",
+      "name": "India Code",
+      "sourceType": "official_portal",
+      "url": "https://www.indiacode.nic.in",
+      "authority": "India Code",
+      "publishedAt": null,
+      "accessedAt": "2026-07-05",
+      "verificationStatus": "partially_verified"
     }
-
-  ]
-
+  ],
+  "governance": {
+    "owner": "GrowWithHR Compliance Data Team",
+    "reviewCadenceDays": 90,
+    "approvalStatus": "draft",
+    "approvedBy": null,
+    "approvedAt": null,
+    "changeSummary": "Migrated the existing Bihar labour law record to compliance-law schema version 1.0 without independently expanding its legal coverage."
+  }
 }
