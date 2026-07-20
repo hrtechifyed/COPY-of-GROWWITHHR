@@ -1,202 +1,513 @@
 {
-  "stateId": "TN",
-  "stateName": "Tamil Nadu",
-  "lastVerified": "2026-07-05",
-  "status": "Active",
-
+  "schemaVersion": "1.0",
+  "recordVersion": "1.0.0",
+  "id": "STATE-TN",
+  "name": "Tamil Nadu Labour Laws",
+  "shortName": "Tamil Nadu",
+  "overview": "State-specific labour law requirements applicable to establishments operating in Tamil Nadu.",
+  "jurisdiction": {
+    "country": "IN",
+    "level": "state",
+    "code": "IN-TN",
+    "stateCode": "TN"
+  },
   "authority": {
-    "department": "Labour Welfare and Skill Development Department, Government of Tamil Nadu",
+    "name": "Labour Welfare and Skill Development Department, Government of Tamil Nadu",
     "sourceId": "TN-LABOUR"
   },
-
-  "overview": "State-specific labour law requirements applicable to establishments operating in Tamil Nadu.",
-
+  "status": "active",
+  "temporal": {
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "lastVerified": "2026-07-05",
+    "nextReviewDue": "2026-10-03",
+    "supersedes": [],
+    "supersededBy": []
+  },
   "rules": [
-
     {
       "id": "TN-001",
       "title": "Review Tamil Nadu Shops and Establishments Registration",
-      "priority": "Mandatory",
-      "category": "Shops & Establishments",
       "description": "Determine whether registration under the Tamil Nadu Shops and Establishments Act is applicable.",
+      "category": "Shops & Establishments",
+      "priority": "Mandatory",
       "applicability": {
-        "employeeCount": { "min": 1 },
-        "entityTypes": ["*"],
-        "industries": ["*"]
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN-TN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "TN-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Tamil Nadu Shops and Establishments Act, 1947"
+          "sourceId": "TN-LABOUR",
+          "citation": {
+            "reference": "Tamil Nadu Shops and Establishments Act, 1947",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "TN-002",
       "title": "Maintain Statutory Registers and Employment Records",
-      "priority": "Mandatory",
-      "category": "Documentation",
       "description": "Maintain statutory registers, employee records, attendance registers, wage registers and notices prescribed under Tamil Nadu labour legislation.",
+      "category": "Documentation",
+      "priority": "Mandatory",
       "applicability": {
-        "employeeCount": { "min": 1 },
-        "entityTypes": ["*"],
-        "industries": ["*"]
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN-TN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "TN-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Tamil Nadu Shops and Establishments Rules"
+          "sourceId": "TN-LABOUR",
+          "citation": {
+            "reference": "Tamil Nadu Shops and Establishments Rules",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "TN-003",
       "title": "Display Statutory Notices",
-      "priority": "Mandatory",
-      "category": "Documentation",
       "description": "Display statutory notices, abstracts and employee information required under Tamil Nadu labour laws.",
+      "category": "Documentation",
+      "priority": "Mandatory",
       "applicability": {
-        "employeeCount": { "min": 1 },
-        "entityTypes": ["*"],
-        "industries": ["*"]
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN-TN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "TN-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Tamil Nadu Shops and Establishments Rules"
+          "sourceId": "TN-LABOUR",
+          "citation": {
+            "reference": "Tamil Nadu Shops and Establishments Rules",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "TN-004",
       "title": "Review Working Hours, Overtime, Leave and Weekly Holidays",
-      "priority": "Mandatory",
-      "category": "Working Conditions",
       "description": "Ensure compliance with Tamil Nadu provisions governing working hours, spread-over, overtime, leave, holidays and weekly offs.",
+      "category": "Working Conditions",
+      "priority": "Mandatory",
       "applicability": {
-        "employeeCount": { "min": 1 },
-        "entityTypes": ["*"],
-        "industries": ["*"]
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN-TN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "TN-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Tamil Nadu Shops and Establishments Act"
+          "sourceId": "TN-LABOUR",
+          "citation": {
+            "reference": "Tamil Nadu Shops and Establishments Act",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "TN-005",
       "title": "Review Tamil Nadu Labour Welfare Fund Compliance",
-      "priority": "Mandatory",
-      "category": "Labour Welfare",
       "description": "Review employer obligations relating to the Tamil Nadu Labour Welfare Fund including periodic employer and employee contributions.",
+      "category": "Labour Welfare",
+      "priority": "Mandatory",
       "applicability": {
-        "employeeCount": { "min": 1 },
-        "entityTypes": ["*"],
-        "industries": ["*"]
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN-TN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "TN-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Tamil Nadu Labour Welfare Fund Act"
+          "sourceId": "TN-LABOUR",
+          "citation": {
+            "reference": "Tamil Nadu Labour Welfare Fund Act",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "TN-006",
       "title": "Review Professional Tax Compliance",
-      "priority": "Mandatory",
-      "category": "Professional Tax",
       "description": "Determine applicability of Professional Tax levied by local bodies such as Municipal Corporations, Municipalities and Town Panchayats, and ensure registration, deduction and payment wherever applicable.",
+      "category": "Professional Tax",
+      "priority": "Mandatory",
       "applicability": {
-        "employeeCount": { "min": 1 },
-        "entityTypes": ["*"],
-        "industries": ["*"]
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN-TN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "TN-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Tamil Nadu Municipal Laws relating to Professional Tax"
+          "sourceId": "TN-LABOUR",
+          "citation": {
+            "reference": "Tamil Nadu Municipal Laws relating to Professional Tax",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "TN-007",
       "title": "Review Tamil Nadu Minimum Wage Notifications",
-      "priority": "Mandatory",
-      "category": "Minimum Wages",
       "description": "Ensure employee wages comply with the latest Tamil Nadu minimum wage notifications applicable to the scheduled employment.",
+      "category": "Minimum Wages",
+      "priority": "Mandatory",
       "applicability": {
-        "employeeCount": { "min": 1 },
-        "entityTypes": ["*"],
-        "industries": ["*"]
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN-TN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "TN-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Government of Tamil Nadu Minimum Wage Notifications"
+          "sourceId": "TN-LABOUR",
+          "citation": {
+            "reference": "Government of Tamil Nadu Minimum Wage Notifications",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "TN-008",
       "title": "Monitor Tamil Nadu Labour Notifications",
-      "priority": "Mandatory",
-      "category": "State Notifications",
       "description": "Review labour department notifications, amendments, exemptions and compliance circulars issued by the Government of Tamil Nadu.",
+      "category": "State Notifications",
+      "priority": "Mandatory",
       "applicability": {
-        "employeeCount": { "min": 1 },
-        "entityTypes": ["*"],
-        "industries": ["*"]
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN-TN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "TN-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Government of Tamil Nadu Labour Notifications"
+          "sourceId": "TN-LABOUR",
+          "citation": {
+            "reference": "Government of Tamil Nadu Labour Notifications",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     }
-
   ],
-
-  "recommended": [
-
+  "recommendations": [
     {
       "id": "TNR-001",
       "title": "Annual Labour Compliance Audit",
       "description": "Conduct an annual audit covering labour registrations, Labour Welfare Fund, Professional Tax, statutory records and inspection readiness."
     },
-
     {
       "id": "TNR-002",
       "title": "Digital Compliance Calendar",
       "description": "Maintain a digital calendar for Professional Tax due dates, Labour Welfare Fund contributions, statutory filings, inspections and licence renewals."
     }
-
   ],
-
-  "references": [
-
+  "sources": [
     {
-      "sourceId": "TN-LABOUR"
+      "sourceId": "TN-LABOUR",
+      "name": "Labour Welfare and Skill Development Department, Government of Tamil Nadu",
+      "sourceType": "official_portal",
+      "url": null,
+      "authority": "Labour Welfare and Skill Development Department, Government of Tamil Nadu",
+      "publishedAt": null,
+      "accessedAt": "2026-07-05",
+      "verificationStatus": "partially_verified"
     },
-
     {
-      "sourceId": "MOL"
+      "sourceId": "MOL",
+      "name": "Ministry of Labour & Employment",
+      "sourceType": "official_portal",
+      "url": "https://labour.gov.in",
+      "authority": "Ministry of Labour & Employment",
+      "publishedAt": null,
+      "accessedAt": "2026-07-05",
+      "verificationStatus": "partially_verified"
     },
-
     {
-      "sourceId": "INDIACODE"
+      "sourceId": "INDIACODE",
+      "name": "India Code",
+      "sourceType": "official_portal",
+      "url": "https://www.indiacode.nic.in",
+      "authority": "India Code",
+      "publishedAt": null,
+      "accessedAt": "2026-07-05",
+      "verificationStatus": "partially_verified"
     }
-
-  ]
-
+  ],
+  "governance": {
+    "owner": "GrowWithHR Compliance Data Team",
+    "reviewCadenceDays": 90,
+    "approvalStatus": "draft",
+    "approvedBy": null,
+    "approvedAt": null,
+    "changeSummary": "Migrated the existing Tamil Nadu labour law record to compliance-law schema version 1.0 without independently expanding its legal coverage."
+  }
 }
