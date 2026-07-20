@@ -1,11 +1,11 @@
 {
   "schemaVersion": "1.0",
-  "recordVersion": "1.0.0",
+  "recordVersion": "2.0.0",
   "id": "CENTRAL-EMP-COMP",
   "name": "Employees' Compensation Act, 1923",
   "shortName": "Employees' Compensation Act",
-  "officialCitation": "Employees' Compensation Act, 1923",
-  "overview": "Provides compensation to employees or their dependants for injury, occupational disease or death arising out of and in the course of employment.",
+  "officialCitation": "The Employee's Compensation Act, 1923 (Act No. 8 of 1923), repealed and saved under section 164 of the Code on Social Security, 2020.",
+  "overview": "Historical central labour-law record governing employer liability to pay compensation for employment injury, occupational disease, disablement or death before the Code on Social Security, 2020 became operative on 21 November 2025. The Employee's Compensation Act, 1923 was repealed by section 164 of the Code on Social Security, 2020, subject to the statutory savings and transitional provisions. Current employees' compensation obligations must be evaluated under Chapter VII of the Code on Social Security, 2020 and the applicable Central or State rules and notifications. This record is retained for historical periods, saved claims, pending proceedings, legacy actions and audit traceability.",
   "jurisdiction": {
     "country": "IN",
     "level": "central",
@@ -13,17 +13,20 @@
     "stateCode": null
   },
   "authority": {
-    "name": "Ministry of Labour & Employment",
+    "name": "Ministry of Labour & Employment, Government of India",
+    "department": "Government of India",
     "sourceId": "MOL"
   },
-  "status": "active",
+  "status": "superseded",
   "temporal": {
     "effectiveFrom": null,
-    "effectiveTo": null,
-    "lastVerified": "2026-07-05",
-    "nextReviewDue": "2026-10-03",
+    "effectiveTo": "2025-11-20",
+    "lastVerified": "2026-07-20",
+    "nextReviewDue": "2026-08-19",
     "supersedes": [],
-    "supersededBy": []
+    "supersededBy": [
+      "CENTRAL-SOCIAL-SECURITY"
+    ]
   },
   "definitions": [
     {
@@ -84,17 +87,19 @@
             "excerpt": ""
           },
           "publishedAt": null,
-          "accessedAt": "2026-07-05",
-          "verificationStatus": "partially_verified"
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
         }
       ],
       "temporal": {
         "effectiveFrom": null,
-        "effectiveTo": null,
-        "lastVerified": "2026-07-05",
-        "nextReviewDue": "2026-10-03",
+        "effectiveTo": "2025-11-20",
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
         "supersedes": [],
-        "supersededBy": []
+        "supersededBy": [
+          "CENTRAL-SOCIAL-SECURITY"
+        ]
       }
     },
     {
@@ -138,17 +143,19 @@
             "excerpt": ""
           },
           "publishedAt": null,
-          "accessedAt": "2026-07-05",
-          "verificationStatus": "partially_verified"
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
         }
       ],
       "temporal": {
         "effectiveFrom": null,
-        "effectiveTo": null,
-        "lastVerified": "2026-07-05",
-        "nextReviewDue": "2026-10-03",
+        "effectiveTo": "2025-11-20",
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
         "supersedes": [],
-        "supersededBy": []
+        "supersededBy": [
+          "CENTRAL-SOCIAL-SECURITY"
+        ]
       }
     },
     {
@@ -192,17 +199,19 @@
             "excerpt": ""
           },
           "publishedAt": null,
-          "accessedAt": "2026-07-05",
-          "verificationStatus": "partially_verified"
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
         }
       ],
       "temporal": {
         "effectiveFrom": null,
-        "effectiveTo": null,
-        "lastVerified": "2026-07-05",
-        "nextReviewDue": "2026-10-03",
+        "effectiveTo": "2025-11-20",
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
         "supersedes": [],
-        "supersededBy": []
+        "supersededBy": [
+          "CENTRAL-SOCIAL-SECURITY"
+        ]
       }
     },
     {
@@ -246,17 +255,19 @@
             "excerpt": ""
           },
           "publishedAt": null,
-          "accessedAt": "2026-07-05",
-          "verificationStatus": "partially_verified"
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
         }
       ],
       "temporal": {
         "effectiveFrom": null,
-        "effectiveTo": null,
-        "lastVerified": "2026-07-05",
-        "nextReviewDue": "2026-10-03",
+        "effectiveTo": "2025-11-20",
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
         "supersedes": [],
-        "supersededBy": []
+        "supersededBy": [
+          "CENTRAL-SOCIAL-SECURITY"
+        ]
       }
     }
   ],
@@ -270,31 +281,31 @@
   "sources": [
     {
       "sourceId": "MOL",
-      "name": "Ministry of Labour & Employment",
+      "name": "Ministry of Labour & Employment Labour Codes Portal",
       "sourceType": "official_portal",
-      "url": "https://labour.gov.in",
-      "authority": "Ministry of Labour & Employment",
+      "url": "https://www.labour.gov.in/offerings/schemes-and-services/details/labour-codes-gzNzQzMtQWa",
+      "authority": "Ministry of Labour & Employment, Government of India",
       "publishedAt": null,
-      "accessedAt": "2026-07-05",
-      "verificationStatus": "partially_verified"
+      "accessedAt": "2026-07-20",
+      "verificationStatus": "verified"
     },
     {
       "sourceId": "INDIACODE",
-      "name": "India Code",
-      "sourceType": "official_portal",
-      "url": "https://www.indiacode.nic.in",
-      "authority": "India Code",
+      "name": "Employee's Compensation Act, 1923 and Code on Social Security, 2020",
+      "sourceType": "legislation",
+      "url": "https://www.indiacode.nic.in/handle/123456789/17139",
+      "authority": "Legislative Department, Ministry of Law and Justice, Government of India",
       "publishedAt": null,
-      "accessedAt": "2026-07-05",
-      "verificationStatus": "partially_verified"
+      "accessedAt": "2026-07-20",
+      "verificationStatus": "verified"
     }
   ],
   "governance": {
     "owner": "GrowWithHR Compliance Data Team",
-    "reviewCadenceDays": 90,
+    "reviewCadenceDays": 30,
     "approvalStatus": "draft",
     "approvedBy": null,
     "approvedAt": null,
-    "changeSummary": "Migrated the existing Employees' Compensation Act record to compliance-law schema version 1.0 without independently expanding its legal coverage."
+    "changeSummary": "Updated the Employees' Compensation Act record as a superseded historical record, preserved all legacy definitions, rule IDs, descriptions and statutory exception, and linked current employees' compensation compliance to the Code on Social Security, 2020 from 21 November 2025."
   }
 }
