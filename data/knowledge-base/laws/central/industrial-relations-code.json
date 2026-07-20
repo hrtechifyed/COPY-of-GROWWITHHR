@@ -1,0 +1,1025 @@
+{
+  "schemaVersion": "1.0",
+  "recordVersion": "1.0.0",
+  "id": "CENTRAL-INDUSTRIAL-RELATIONS",
+  "name": "Industrial Relations Code, 2020",
+  "shortName": "Industrial Relations Code",
+  "officialCitation": "Act No. 35 of 2020, as amended by Act No. 1 of 2026; commenced by S.O. 5320(E) dated 21 November 2025.",
+  "overview": "The Industrial Relations Code, 2020 consolidates the central framework governing trade unions, bipartite forums, standing orders, changes in service conditions, settlement and adjudication of industrial disputes, strikes and lock-outs, lay-off, retrenchment, closure, worker re-skilling, unfair labour practices and related enforcement. It came into force on 21 November 2025. The Industrial Relations (Central) Rules, 2026 and Model Standing Orders, 2026 apply where the Central Government is the appropriate government. The Industrial Relations Code (Amendment) Act, 2026 confirms repeal of the Trade Unions Act, 1926, the Industrial Employment (Standing Orders) Act, 1946 and the Industrial Disputes Act, 1947 from the commencement date while preserving the functioning of existing tribunals and statutory authorities until the corresponding bodies under the Code become functional.",
+  "jurisdiction": {
+    "country": "IN",
+    "level": "central",
+    "code": "IN",
+    "stateCode": null
+  },
+  "authority": {
+    "name": "Ministry of Labour & Employment, Government of India",
+    "department": "Industrial Relations Division",
+    "sourceId": "MOL"
+  },
+  "status": "active",
+  "temporal": {
+    "effectiveFrom": "2025-11-21",
+    "effectiveTo": null,
+    "lastVerified": "2026-07-20",
+    "nextReviewDue": "2026-08-19",
+    "supersedes": [],
+    "supersededBy": []
+  },
+  "definitions": [
+    {
+      "id": "IRC-DEF-001",
+      "term": "Worker",
+      "definition": "A person covered by the worker definition in section 2 of the Code, including specified manual, skilled, technical, operational, clerical or supervisory work, subject to the statutory inclusions, exclusions and wage threshold applicable to supervisory work."
+    },
+    {
+      "id": "IRC-DEF-002",
+      "term": "Industrial Dispute",
+      "definition": "A dispute or difference connected with employment, non-employment, terms of employment or conditions of labour, including specified disputes involving discharge, dismissal, retrenchment or termination of an individual worker."
+    },
+    {
+      "id": "IRC-DEF-004",
+      "term": "Standing Orders",
+      "definition": "Orders covering the employment-condition matters listed in the First Schedule to the Code."
+    },
+    {
+      "id": "IRC-DEF-006",
+      "term": "Appropriate Government",
+      "definition": "The Central Government or the relevant State Government determined under section 2 of the Code according to the establishment, industry, ownership, control and territorial criteria."
+    }
+  ],
+  "rules": [
+    {
+      "id": "IRC-001",
+      "title": "Determine Code Coverage and the Appropriate Government",
+      "description": "Map each industrial establishment, undertaking and worker category to the Industrial Relations Code and determine whether the Central Government or a State Government is the appropriate government. Apply the corresponding rules, authorities, forms, notifications and electronic filing procedures instead of assuming that the Central Rules apply to every establishment.",
+      "category": "Applicability and Governance",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
+      },
+      "evidence": [
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Industrial Relations Code, 2020",
+            "section": "1 and 2",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "IR-RULES-2026",
+          "citation": {
+            "reference": "Industrial Relations (Central) Rules, 2026",
+            "section": "",
+            "rule": "2 and 3",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-05-08",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": "2025-11-21",
+        "effectiveTo": null,
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    },
+    {
+      "id": "IRC-002",
+      "title": "Constitute and Operate a Works Committee When Ordered",
+      "description": "Where an industrial establishment employed 100 or more workers on any day in the preceding twelve months and the appropriate government issues a general or special order, constitute a Works Committee. Under the Central Rules, the committee may have up to 20 members, worker representation must not be lower than employer representation, women workers must receive proportionate representation, and the committee must operate in accordance with the prescribed election, tenure, meeting and reporting requirements.",
+      "category": "Bipartite Forums",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 100,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [
+          {
+            "field": "appropriateGovernmentWorksCommitteeOrder",
+            "operator": "equals",
+            "value": true
+          }
+        ],
+        "exclusions": []
+      },
+      "evidence": [
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Industrial Relations Code, 2020",
+            "section": "3",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "IR-RULES-2026",
+          "citation": {
+            "reference": "Industrial Relations (Central) Rules, 2026",
+            "section": "",
+            "rule": "5",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-05-08",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": "2025-11-21",
+        "effectiveTo": null,
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    },
+    {
+      "id": "IRC-003",
+      "title": "Establish a Grievance Redressal Committee",
+      "description": "Every industrial establishment employing 20 or more workers must establish one or more Grievance Redressal Committees for individual grievances. The committee must have equal employer and worker representation, no more than 10 members and proportionate representation of women workers. Accept grievances filed within one year of the cause of action, support electronic filing, and complete proceedings within the statutory period.",
+      "category": "Grievance Redressal",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 20,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
+      },
+      "evidence": [
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Industrial Relations Code, 2020",
+            "section": "4",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "IR-RULES-2026",
+          "citation": {
+            "reference": "Industrial Relations (Central) Rules, 2026",
+            "section": "",
+            "rule": "6 to 8",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-05-08",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": "2025-11-21",
+        "effectiveTo": null,
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    },
+    {
+      "id": "IRC-004",
+      "title": "Recognise the Negotiating Union or Constitute a Negotiating Council",
+      "description": "Where registered trade unions operate in an industrial establishment, follow the statutory recognition framework. Under the Central Rules, a sole operating registered trade union must have membership of at least 30 per cent of the total workers to be recognised as the sole negotiating union. Where multiple unions operate, recognise a union supported by at least 51 per cent of workers as the sole negotiating union; if no union reaches that level, constitute a negotiating council using unions supported by at least 20 per cent of workers. Complete membership verification, recognition tenure, facilities and check-off arrangements in the prescribed manner.",
+      "category": "Trade Unions and Collective Bargaining",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [
+          {
+            "field": "registeredTradeUnionPresent",
+            "operator": "equals",
+            "value": true
+          }
+        ],
+        "exclusions": []
+      },
+      "evidence": [
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Industrial Relations Code, 2020",
+            "section": "14",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "IR-RULES-2026",
+          "citation": {
+            "reference": "Industrial Relations (Central) Rules, 2026",
+            "section": "",
+            "rule": "9",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-05-08",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": "2025-11-21",
+        "effectiveTo": null,
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    },
+    {
+      "id": "IRC-005",
+      "title": "Prepare, Adopt and Certify Standing Orders",
+      "description": "An industrial establishment with 300 or more workers, or a higher notified threshold, must comply with the standing-orders chapter. Prepare draft standing orders covering every applicable matter in the First Schedule, use the Model Standing Orders, 2026 as the statutory baseline, consult the negotiating union, negotiating council, trade unions or worker representatives, submit drafts or modifications to the certifying officer within the applicable six-month period, display the operative orders and comply with appeal, registration and modification requirements.",
+      "category": "Standing Orders",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 300,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [
+          {
+            "field": "standingOrdersChapterThresholdMet",
+            "operator": "equals",
+            "value": true
+          }
+        ],
+        "exclusions": [
+          {
+            "field": "workersGovernedByNotifiedCivilOrRailwayServiceRules",
+            "operator": "equals",
+            "value": true
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Industrial Relations Code, 2020",
+            "section": "28 to 35",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "IR-RULES-2026",
+          "citation": {
+            "reference": "Industrial Relations (Central) Rules, 2026",
+            "section": "",
+            "rule": "Chapter IV",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-05-08",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "IR-MSO-2026",
+          "citation": {
+            "reference": "Model Standing Orders, 2026",
+            "section": "",
+            "rule": "Schedules A, B and C",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-05-08",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": "2025-11-21",
+        "effectiveTo": null,
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    },
+    {
+      "id": "IRC-006",
+      "title": "Control Changes in Service Conditions and Industrial Dispute Proceedings",
+      "description": "Before changing a worker's service conditions in relation to a matter listed in the Third Schedule, give the prescribed notice and do not implement the change within 21 days unless a statutory exception applies. Document settlements and follow the applicable procedures for voluntary arbitration, conciliation, recovery of money due, applications to Industrial Tribunals and National Industrial Tribunals, and enforcement of settlements and awards.",
+      "category": "Conditions of Service and Dispute Resolution",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
+      },
+      "evidence": [
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Industrial Relations Code, 2020",
+            "section": "40 to 61 and Third Schedule",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "IR-RULES-2026",
+          "citation": {
+            "reference": "Industrial Relations (Central) Rules, 2026",
+            "section": "",
+            "rule": "4 and Chapters V to VII",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-05-08",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": "2025-11-21",
+        "effectiveTo": null,
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    },
+    {
+      "id": "IRC-007",
+      "title": "Comply with Strike and Lock-out Notice Restrictions",
+      "description": "Do not commence a strike or lock-out in breach of the statutory notice and cooling-off restrictions. Use the prescribed forms, serve the required parties and authorities, observe the periods connected with conciliation, arbitration and tribunal proceedings, display lock-out notices where required, and send the prescribed employer intimation within five days after receiving a strike notice or issuing a lock-out notice.",
+      "category": "Strikes and Lock-outs",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [
+          {
+            "field": "strikeOrLockoutContemplatedOrNotified",
+            "operator": "equals",
+            "value": true
+          }
+        ],
+        "exclusions": []
+      },
+      "evidence": [
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Industrial Relations Code, 2020",
+            "section": "62 to 64",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "IR-RULES-2026",
+          "citation": {
+            "reference": "Industrial Relations (Central) Rules, 2026",
+            "section": "",
+            "rule": "25 and 26",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-05-08",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": "2025-11-21",
+        "effectiveTo": null,
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    },
+    {
+      "id": "IRC-008",
+      "title": "Comply with General Lay-off, Retrenchment and Closure Requirements",
+      "description": "Where Chapter IX applies, maintain muster rolls and comply with lay-off compensation, retrenchment and closure requirements. A qualifying laid-off worker must receive 50 per cent of basic wages and dearness allowance, subject to statutory conditions. Before retrenching a worker with at least one year of continuous service, provide one month's notice or wages in lieu, pay compensation equal to 15 days' average pay for every completed year of service or qualifying part-year, send the prescribed government notice and follow seniority and re-employment preference requirements. Where the general closure provisions apply, give the appropriate government at least 60 days' notice and pay the required compensation.",
+      "category": "Lay-off, Retrenchment and Closure",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 50,
+          "max": 299
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [
+          {
+            "field": "chapterIXApplies",
+            "operator": "equals",
+            "value": true
+          },
+          {
+            "field": "seasonalOrIntermittentEstablishment",
+            "operator": "equals",
+            "value": false
+          }
+        ],
+        "exclusions": []
+      },
+      "evidence": [
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Industrial Relations Code, 2020",
+            "section": "66 to 76",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "IR-RULES-2026",
+          "citation": {
+            "reference": "Industrial Relations (Central) Rules, 2026",
+            "section": "",
+            "rule": "27 to 29",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-05-08",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": "2025-11-21",
+        "effectiveTo": null,
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    },
+    {
+      "id": "IRC-009",
+      "title": "Obtain Prior Permission for Major Lay-off, Retrenchment or Closure",
+      "description": "A non-seasonal and non-intermittent factory, mine or plantation averaging at least 300 workers per working day in the preceding twelve months, or a higher notified number, must follow Chapter X. Obtain prior permission for covered lay-offs and retrenchments and apply for closure permission at least 90 days before the intended closure. Under the Central Rules, permission applications are generally made at least 15 days before a proposed lay-off and 60 days before proposed retrenchment. Observe the longer statutory notice, hearing, deemed-permission, compensation and review requirements.",
+      "category": "Prior Government Permission",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 300,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [
+          {
+            "field": "chapterXThresholdMet",
+            "operator": "equals",
+            "value": true
+          },
+          {
+            "field": "industrialEstablishmentType",
+            "operator": "in",
+            "value": [
+              "factory",
+              "mine",
+              "plantation"
+            ]
+          },
+          {
+            "field": "layoffRetrenchmentOrClosureContemplated",
+            "operator": "equals",
+            "value": true
+          }
+        ],
+        "exclusions": [
+          {
+            "field": "seasonalOrIntermittentEstablishment",
+            "operator": "equals",
+            "value": true
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Industrial Relations Code, 2020",
+            "section": "77 to 82",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "IR-RULES-2026",
+          "citation": {
+            "reference": "Industrial Relations (Central) Rules, 2026",
+            "section": "",
+            "rule": "Chapter X",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-05-08",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": "2025-11-21",
+        "effectiveTo": null,
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    },
+    {
+      "id": "IRC-010",
+      "title": "Fund Worker Re-skilling After Retrenchment",
+      "description": "After retrenching a worker, electronically transfer an amount equal to 15 days of the worker's last drawn wages to the notified worker re-skilling fund within 10 days and submit the worker list, contribution amount and bank-account details to the prescribed labour authority. Retain proof sufficient to support transfer of the amount to the retrenched worker within 45 days of retrenchment.",
+      "category": "Worker Re-skilling",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [
+          {
+            "field": "retrenchmentOccurred",
+            "operator": "equals",
+            "value": true
+          }
+        ],
+        "exclusions": []
+      },
+      "evidence": [
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Industrial Relations Code, 2020",
+            "section": "83",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "IR-RULES-2026",
+          "citation": {
+            "reference": "Industrial Relations (Central) Rules, 2026",
+            "section": "",
+            "rule": "37",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-05-08",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": "2025-11-21",
+        "effectiveTo": null,
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    },
+    {
+      "id": "IRC-011",
+      "title": "Prevent Unfair Labour Practices and Maintain Compliance Records",
+      "description": "Do not commit an unfair labour practice listed in the Second Schedule. During pending industrial-dispute proceedings, comply with the restrictions protecting concerned and protected workers. Maintain records supporting worker counts, union verification, committee constitution, grievances, settlements, standing orders, notices of change, industrial-action notices, muster rolls, workforce restructuring, re-employment offers, re-skilling contributions and proceedings, and use the prescribed forms and submission methods.",
+      "category": "Worker Protection and Documentation",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
+      },
+      "evidence": [
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Industrial Relations Code, 2020",
+            "section": "84, 90, 93, 99 and Second Schedule",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "IR-RULES-2026",
+          "citation": {
+            "reference": "Industrial Relations (Central) Rules, 2026",
+            "section": "",
+            "rule": "Rules and prescribed forms",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-05-08",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": "2025-11-21",
+        "effectiveTo": null,
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    },
+    {
+      "id": "IRC-012",
+      "title": "Apply the Repeal and Institutional Transition Provisions",
+      "description": "Treat the Trade Unions Act, 1926, the Industrial Employment (Standing Orders) Act, 1946 and the Industrial Disputes Act, 1947 as repealed from 21 November 2025. Continue to recognise the functioning of tribunals and statutory authorities under the repealed Acts only to the extent preserved by the 2026 amendment, until the corresponding tribunals and authorities under the Code become functional.",
+      "category": "Legal Transition",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
+      },
+      "evidence": [
+        {
+          "sourceId": "IR-AMENDMENT-2026",
+          "citation": {
+            "reference": "Industrial Relations Code (Amendment) Act, 2026",
+            "section": "1 and 2",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-02-16",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Industrial Relations Code, 2020",
+            "section": "104",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": "2025-11-21",
+        "effectiveTo": null,
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    }
+  ],
+  "recommendations": [
+    {
+      "id": "IRC-REC-001",
+      "title": "Maintain a Monthly Worker-Threshold Register",
+      "description": "Track average and peak worker counts for the preceding month and preceding twelve months so that the 20, 50, 100 and 300-worker obligations are identified before a transaction or workforce action occurs."
+    },
+    {
+      "id": "IRC-REC-002",
+      "title": "Map Central and State Industrial Relations Rules",
+      "description": "For every location, document the appropriate government and link the establishment to the applicable Central or State rules, authorities, portals, forms and notifications."
+    },
+    {
+      "id": "IRC-REC-003",
+      "title": "Complete a Standing Orders Gap Assessment",
+      "description": "Compare existing certified standing orders and employment policies against the Model Standing Orders, 2026 and prepare any required draft, adoption, certification or modification filing."
+    },
+    {
+      "id": "IRC-REC-004",
+      "title": "Create an Industrial Action and Restructuring Approval Workflow",
+      "description": "Require legal and compliance review before any notice of change, strike or lock-out response, lay-off, retrenchment, closure or disciplinary action involving a protected worker."
+    }
+  ],
+  "sources": [
+    {
+      "sourceId": "MOL",
+      "name": "Ministry of Labour & Employment Labour Codes Portal",
+      "sourceType": "official_portal",
+      "url": "https://www.labour.gov.in/offerings/schemes-and-services/details/labour-codes-gzNzQzMtQWa",
+      "authority": "Ministry of Labour & Employment, Government of India",
+      "publishedAt": null,
+      "accessedAt": "2026-07-20",
+      "verificationStatus": "verified"
+    },
+    {
+      "sourceId": "INDIACODE",
+      "name": "Industrial Relations Code, 2020",
+      "sourceType": "legislation",
+      "url": "https://www.indiacode.nic.in/handle/123456789/22040",
+      "authority": "Legislative Department, Ministry of Law and Justice, Government of India",
+      "publishedAt": "2020-09-28",
+      "accessedAt": "2026-07-20",
+      "verificationStatus": "verified"
+    },
+    {
+      "sourceId": "IR-RULES-2026",
+      "name": "Industrial Relations (Central) Rules, 2026",
+      "sourceType": "rules",
+      "url": "https://egazette.gov.in/WriteReadData/2026/272336.pdf",
+      "authority": "Ministry of Labour & Employment, Government of India",
+      "publishedAt": "2026-05-08",
+      "accessedAt": "2026-07-20",
+      "verificationStatus": "verified"
+    },
+    {
+      "sourceId": "IR-AMENDMENT-2026",
+      "name": "Industrial Relations Code (Amendment) Act, 2026",
+      "sourceType": "legislation",
+      "url": "https://egazette.gov.in/WriteReadData/2026/270186.pdf",
+      "authority": "Legislative Department, Ministry of Law and Justice, Government of India",
+      "publishedAt": "2026-02-16",
+      "accessedAt": "2026-07-20",
+      "verificationStatus": "verified"
+    },
+    {
+      "sourceId": "IR-MSO-2026",
+      "name": "Model Standing Orders, 2026",
+      "sourceType": "rules",
+      "url": "https://www.labour.gov.in/offerings/schemes-and-services/details/labour-codes-gzNzQzMtQWa",
+      "authority": "Ministry of Labour & Employment, Government of India",
+      "publishedAt": "2026-05-08",
+      "accessedAt": "2026-07-20",
+      "verificationStatus": "verified"
+    }
+  ],
+  "governance": {
+    "owner": "GrowWithHR Compliance Data Team",
+    "reviewCadenceDays": 30,
+    "approvalStatus": "draft",
+    "approvedBy": null,
+    "approvedAt": null,
+    "changeSummary": "Created a dedicated Industrial Relations Code record reflecting commencement on 21 November 2025, the Industrial Relations Code (Amendment) Act, 2026, the Industrial Relations (Central) Rules, 2026, Model Standing Orders, 2026, threshold-based applicability and post-repeal transition requirements."
+  }
+}
