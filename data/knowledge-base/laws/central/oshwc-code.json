@@ -4,8 +4,8 @@
   "id": "CENTRAL-OSHWC",
   "name": "Occupational Safety, Health and Working Conditions Code, 2020",
   "shortName": "OSHWC Code",
-  "officialCitation": "Act No. 37 of 2020; commenced by S.O. 5321(E) dated 21 November 2025; Occupational Safety, Health and Working Conditions (Central) Rules, 2026 notified by G.S.R. 345(E) dated 8 May 2026.",
-  "overview": "The Occupational Safety, Health and Working Conditions Code, 2020 consolidates the central framework for establishment registration, employer and employee safety duties, occupational health standards, welfare facilities, working hours and annual leave, records and inspection, employment of women, contract labour, inter-State migrant workers and sector-specific conditions for mines, factories, dock work, construction, plantations, motor transport, beedi and cigar work, audio-visual production and newspaper establishments. It came into force on 21 November 2025. The 2026 Central Rules apply where the Central Government is the appropriate government; establishments under State or Union Territory jurisdiction must apply the corresponding local rules, standards, notifications and authorities. Saved instruments under repealed enactments continue only to the extent permitted by section 143.",
+  "officialCitation": "The Occupational Safety, Health and Working Conditions Code, 2020 (Act No. 37 of 2020), operative from 21 November 2025.",
+  "overview": "The Occupational Safety, Health and Working Conditions Code, 2020 is the current central framework for establishment registration, occupational safety and health, welfare, working hours and leave, women employees, contract labour, inter-State migrant workers and sector-specific working conditions. It became operative on 21 November 2025. The 2026 Central Rules apply where the Central Government is the appropriate government; State and Union Territory rules apply elsewhere. Instruments under the thirteen repealed enactments continue only to the extent preserved by section 143.",
   "jurisdiction": {
     "country": "IN",
     "level": "central",
@@ -13,8 +13,8 @@
     "stateCode": null
   },
   "authority": {
-    "name": "Ministry of Labour & Employment, Government of India",
-    "department": "Occupational Safety and Health Division",
+    "name": "Ministry of Labour & Employment",
+    "department": "Government of India",
     "sourceId": "MOL"
   },
   "status": "active",
@@ -32,44 +32,24 @@
     {
       "id": "OSH-DEF-001",
       "term": "Employer",
-      "definition": "Employer responsible for providing a safe and healthy workplace under the Code, including the person or authority treated as employer for the relevant establishment or sector."
+      "definition": "Employer responsible for providing a safe and healthy workplace."
     },
     {
       "id": "OSH-DEF-002",
       "term": "Employee",
-      "definition": "Employee covered under the Occupational Safety, Health and Working Conditions Code, subject to the provision and establishment being assessed."
+      "definition": "Employee covered under the Occupational Safety, Health and Working Conditions Code."
     },
     {
       "id": "OSH-DEF-003",
       "term": "Workplace",
-      "definition": "Premises or place where employees perform work covered by the Code, including sector-specific workplaces regulated under the Code."
-    },
-    {
-      "id": "OSH-DEF-004",
-      "term": "Establishment",
-      "definition": "A covered place of industry, trade, business, manufacture or occupation, including specified sectors and establishments meeting the statutory worker threshold or carrying on a notified hazardous or life-threatening activity."
-    },
-    {
-      "id": "OSH-DEF-005",
-      "term": "Contract Labour",
-      "definition": "A worker deemed to be employed in or in connection with the work of an establishment through a contractor, with the statutory inclusions and exclusions under the Code."
-    },
-    {
-      "id": "OSH-DEF-006",
-      "term": "Inter-State Migrant Worker",
-      "definition": "A worker recruited directly or through a contractor in one State for employment in another State, or who moved on their own and obtained employment in another State, within the statutory wage ceiling or a higher notified amount."
-    },
-    {
-      "id": "OSH-DEF-007",
-      "term": "Appropriate Government",
-      "definition": "The Central Government or the relevant State Government determined under the Code according to the establishment, sector, ownership, control and territorial criteria."
+      "definition": "Premises where employees perform work covered by the Code."
     }
   ],
   "rules": [
     {
       "id": "OSH-001",
-      "title": "Review Applicability of the OSHWC Code",
-      "description": "Determine whether each establishment, workplace, activity and worker category falls within the Occupational Safety, Health and Working Conditions Code, identify the appropriate government, and apply the corresponding Central, State or Union Territory rules, standards, notifications, authorities, forms and portals. Document worker-count thresholds and any hazardous or life-threatening activity for which the ordinary threshold does not apply.",
+      "title": "Determine Code Coverage and the Appropriate Government",
+      "description": "Determine whether each establishment, activity and worker category falls within the Code, identify the appropriate government and apply the corresponding rules, standards, notifications, authorities, forms and portals.",
       "category": "Applicability and Governance",
       "priority": "Mandatory",
       "applicability": {
@@ -93,13 +73,7 @@
         "contractWorkers": "any",
         "factory": "any",
         "warehouse": "any",
-        "conditions": [
-          {
-            "field": "oshwcApplicabilityAssessmentCompleted",
-            "operator": "equals",
-            "value": true
-          }
-        ],
+        "conditions": [],
         "exclusions": []
       },
       "evidence": [
@@ -121,11 +95,11 @@
           "citation": {
             "reference": "Occupational Safety, Health and Working Conditions (Central) Rules, 2026",
             "section": "",
-            "rule": "Rules 1 and 2",
+            "rule": "",
             "page": "",
             "excerpt": ""
           },
-          "publishedAt": "2026-05-08",
+          "publishedAt": null,
           "accessedAt": "2026-07-20",
           "verificationStatus": "verified"
         }
@@ -142,7 +116,7 @@
     {
       "id": "OSH-002",
       "title": "Provide a Safe Working Environment",
-      "description": "Provide and maintain a workplace free from hazards likely to cause injury or occupational disease, comply with notified occupational safety and health standards, control physical, chemical, biological and other risks, maintain safe systems of work, and ensure safe handling and disposal of hazardous, toxic and electronic waste.",
+      "description": "Provide and maintain a workplace free from hazards likely to cause injury or occupational disease and comply with notified occupational safety and health standards.",
       "category": "Occupational Safety",
       "priority": "Mandatory",
       "applicability": {
@@ -188,11 +162,11 @@
           "citation": {
             "reference": "Occupational Safety, Health and Working Conditions (Central) Rules, 2026",
             "section": "",
-            "rule": "Health, safety and working-condition provisions",
+            "rule": "",
             "page": "",
             "excerpt": ""
           },
-          "publishedAt": "2026-05-08",
+          "publishedAt": null,
           "accessedAt": "2026-07-20",
           "verificationStatus": "verified"
         }
@@ -208,8 +182,8 @@
     },
     {
       "id": "OSH-003",
-      "title": "Conduct Safety Training",
-      "description": "Provide employees and workers with information, instruction, induction, supervision and role-specific safety training required for their work, equipment, hazardous substances, emergency procedures and sector-specific risks. Maintain evidence of competency, refresher training and communication in a language and manner understood by the workforce.",
+      "title": "Provide Safety Information and Training",
+      "description": "Provide induction, information, instruction, supervision and role-specific safety training for work, equipment, substances and emergency procedures.",
       "category": "Training",
       "priority": "Mandatory",
       "applicability": {
@@ -241,7 +215,7 @@
           "sourceId": "INDIACODE",
           "citation": {
             "reference": "Occupational Safety, Health and Working Conditions Code, 2020",
-            "section": "Sections 6, 13, 16 to 18 and 23",
+            "section": "Sections 6, 13 and 16 to 18",
             "rule": "",
             "page": "",
             "excerpt": ""
@@ -255,11 +229,11 @@
           "citation": {
             "reference": "Occupational Safety, Health and Working Conditions (Central) Rules, 2026",
             "section": "",
-            "rule": "Training and safety provisions",
+            "rule": "",
             "page": "",
             "excerpt": ""
           },
-          "publishedAt": "2026-05-08",
+          "publishedAt": null,
           "accessedAt": "2026-07-20",
           "verificationStatus": "verified"
         }
@@ -275,8 +249,8 @@
     },
     {
       "id": "OSH-004",
-      "title": "Maintain Health and Safety Records",
-      "description": "Maintain the prescribed registers, records, notices and returns for employees, attendance, working hours, leave, occupational health examinations, hazards, inspections, training, welfare facilities, accidents, dangerous occurrences and occupational diseases. File required returns electronically or in the prescribed manner and retain supporting audit trails.",
+      "title": "Maintain Health, Safety and Working-Condition Records",
+      "description": "Maintain prescribed registers, notices and returns for employment, hours, leave, health examinations, hazards, training, welfare facilities, accidents, dangerous occurrences and occupational diseases.",
       "category": "Documentation",
       "priority": "Mandatory",
       "applicability": {
@@ -322,11 +296,11 @@
           "citation": {
             "reference": "Occupational Safety, Health and Working Conditions (Central) Rules, 2026",
             "section": "",
-            "rule": "Registers, records, notices and returns",
+            "rule": "",
             "page": "",
             "excerpt": ""
           },
-          "publishedAt": "2026-05-08",
+          "publishedAt": null,
           "accessedAt": "2026-07-20",
           "verificationStatus": "verified"
         }
@@ -342,9 +316,9 @@
     },
     {
       "id": "OSH-005",
-      "title": "Provide Welfare Facilities",
-      "description": "Provide the welfare facilities prescribed for the establishment and workforce, including drinking water, sanitation, washing facilities, first aid, rest or lunch rooms, canteens, crèches, ambulance rooms, welfare officers or other facilities when the relevant sector and worker-count thresholds are met. Provide separate and hygienic sanitation arrangements for male, female and transgender employees as required.",
-      "category": "Occupational Safety",
+      "title": "Provide Prescribed Welfare Facilities",
+      "description": "Provide drinking water, sanitation, first aid and all additional welfare facilities required for the establishment type and worker-count threshold.",
+      "category": "Welfare",
       "priority": "Mandatory",
       "applicability": {
         "employeeCount": {
@@ -389,11 +363,11 @@
           "citation": {
             "reference": "Occupational Safety, Health and Working Conditions (Central) Rules, 2026",
             "section": "",
-            "rule": "Welfare provisions and applicable annexures",
+            "rule": "",
             "page": "",
             "excerpt": ""
           },
-          "publishedAt": "2026-05-08",
+          "publishedAt": null,
           "accessedAt": "2026-07-20",
           "verificationStatus": "verified"
         }
@@ -410,8 +384,8 @@
     {
       "id": "OSH-006",
       "title": "Report Serious Workplace Incidents",
-      "description": "Report fatal accidents, serious bodily injuries, dangerous occurrences and notified occupational diseases to the prescribed authorities within the applicable timelines. Preserve the incident scene and evidence where required, notify next of kin and authorities where applicable, investigate root causes and maintain records of corrective and preventive actions.",
-      "category": "Documentation",
+      "description": "Report fatal accidents, serious bodily injuries, dangerous occurrences and notified occupational diseases to the prescribed authorities within the applicable timelines.",
+      "category": "Incident Reporting",
       "priority": "Mandatory",
       "applicability": {
         "employeeCount": {
@@ -434,13 +408,7 @@
         "contractWorkers": "any",
         "factory": "any",
         "warehouse": "any",
-        "conditions": [
-          {
-            "field": "reportableAccidentDangerousOccurrenceOrDisease",
-            "operator": "equals",
-            "value": true
-          }
-        ],
+        "conditions": [],
         "exclusions": []
       },
       "evidence": [
@@ -462,11 +430,11 @@
           "citation": {
             "reference": "Occupational Safety, Health and Working Conditions (Central) Rules, 2026",
             "section": "",
-            "rule": "Accident, dangerous occurrence and disease reporting provisions",
+            "rule": "",
             "page": "",
             "excerpt": ""
           },
-          "publishedAt": "2026-05-08",
+          "publishedAt": null,
           "accessedAt": "2026-07-20",
           "verificationStatus": "verified"
         }
@@ -482,8 +450,8 @@
     },
     {
       "id": "OSH-007",
-      "title": "Register Covered Establishments and Notify Operations",
-      "description": "Register every covered establishment in the prescribed manner, retain the registration certificate, update material particulars, and submit the prescribed notice of commencement or cessation of operations. Obtain any sector-specific registration, licence or common licence required for factories, industrial premises, contractors or other covered activities.",
+      "title": "Register Covered Establishments and Obtain Required Licences",
+      "description": "Register covered establishments, update material particulars and obtain any common or sector-specific licence required for the establishment, contractor or activity.",
       "category": "Registration and Licensing",
       "priority": "Mandatory",
       "applicability": {
@@ -509,7 +477,7 @@
         "warehouse": "any",
         "conditions": [
           {
-            "field": "registrationRequiredUnderOSHWC",
+            "field": "registrationOrLicenceRequiredUnderOSHWC",
             "operator": "equals",
             "value": true
           }
@@ -535,11 +503,11 @@
           "citation": {
             "reference": "Occupational Safety, Health and Working Conditions (Central) Rules, 2026",
             "section": "",
-            "rule": "Registration, notice and common-licence provisions",
+            "rule": "Registration and licensing provisions",
             "page": "",
             "excerpt": ""
           },
-          "publishedAt": "2026-05-08",
+          "publishedAt": null,
           "accessedAt": "2026-07-20",
           "verificationStatus": "verified"
         }
@@ -555,8 +523,8 @@
     },
     {
       "id": "OSH-008",
-      "title": "Issue Appointment Letters and Provide Health Examinations",
-      "description": "Issue the prescribed appointment letter to every employee at appointment and issue a compliant letter to any existing employee who did not previously receive one within the transitional period. Provide free annual health examinations or tests to the employee classes, ages, establishments and occupations prescribed by the appropriate government and retain medical records with required confidentiality.",
+      "title": "Issue Appointment Letters and Provide Required Health Examinations",
+      "description": "Issue prescribed appointment letters and provide free health examinations or tests to the employee classes and occupations specified by the applicable rules or notification.",
       "category": "Employment Documentation and Health Surveillance",
       "priority": "Mandatory",
       "applicability": {
@@ -602,11 +570,11 @@
           "citation": {
             "reference": "Occupational Safety, Health and Working Conditions (Central) Rules, 2026",
             "section": "",
-            "rule": "Appointment-letter and annual health-examination provisions",
+            "rule": "Appointment letter and health examination provisions",
             "page": "",
             "excerpt": ""
           },
-          "publishedAt": "2026-05-08",
+          "publishedAt": null,
           "accessedAt": "2026-07-20",
           "verificationStatus": "verified"
         }
@@ -623,7 +591,7 @@
     {
       "id": "OSH-009",
       "title": "Control Working Hours, Overtime and Annual Leave",
-      "description": "Schedule work within the applicable daily and weekly limits, provide required rest intervals and weekly rest, display or notify work periods where prescribed, obtain required consent or approvals for overtime, and pay overtime at the statutory rate. Grant annual leave with wages to eligible workers, including the statutory accrual rules after 180 days of work and the special rates applicable to adolescent workers and below-ground mine workers.",
+      "description": "Schedule work within applicable limits, provide rest and weekly holidays, pay overtime at the statutory rate and grant annual leave with wages to eligible workers.",
       "category": "Working Hours and Leave",
       "priority": "Mandatory",
       "applicability": {
@@ -669,11 +637,11 @@
           "citation": {
             "reference": "Occupational Safety, Health and Working Conditions (Central) Rules, 2026",
             "section": "",
-            "rule": "Working hours, overtime, rest and leave provisions",
+            "rule": "Working hours, overtime and leave provisions",
             "page": "",
             "excerpt": ""
           },
-          "publishedAt": "2026-05-08",
+          "publishedAt": null,
           "accessedAt": "2026-07-20",
           "verificationStatus": "verified"
         }
@@ -690,7 +658,7 @@
     {
       "id": "OSH-010",
       "title": "Protect Women Employees and Manage Night Work",
-      "description": "Permit women to work in all establishments and all types of work subject to the Code. Where women work before 6 a.m. or after 7 p.m., obtain their consent and implement the conditions prescribed by the appropriate government for safety, holidays, working hours and other safeguards. Apply additional restrictions or protective measures for dangerous operations only as lawfully prescribed.",
+      "description": "Permit women to work subject to the Code and implement consent, safety, working-hour and other prescribed safeguards where women work before 6 a.m. or after 7 p.m.",
       "category": "Women at Work",
       "priority": "Mandatory",
       "applicability": {
@@ -742,11 +710,11 @@
           "citation": {
             "reference": "Occupational Safety, Health and Working Conditions (Central) Rules, 2026",
             "section": "",
-            "rule": "Employment of women and night-shift safeguards",
+            "rule": "Employment of women provisions",
             "page": "",
             "excerpt": ""
           },
-          "publishedAt": "2026-05-08",
+          "publishedAt": null,
           "accessedAt": "2026-07-20",
           "verificationStatus": "verified"
         }
@@ -762,8 +730,8 @@
     },
     {
       "id": "OSH-011",
-      "title": "Comply with Contract Labour Licensing and Principal Employer Duties",
-      "description": "Where 50 or more contract labour are employed or were employed on any day in the preceding twelve months, apply the contract-labour provisions. Engage contract labour through a duly licensed contractor where licensing is required, ensure no recruitment fee or commission is charged to workers, provide prescribed welfare facilities, verify timely wage payment, discharge principal-employer liability where the contractor defaults, issue experience certificates, report work orders and comply with any lawful prohibition on contract labour in core activities.",
+      "title": "Comply with Contract Labour Requirements",
+      "description": "Where the statutory threshold is met, engage contract labour through compliant contractors, maintain licensing and work-order records, provide welfare facilities, verify wage payment and discharge principal-employer obligations when the contractor defaults.",
       "category": "Contract Labour",
       "priority": "Mandatory",
       "applicability": {
@@ -789,7 +757,7 @@
         "warehouse": "any",
         "conditions": [
           {
-            "field": "contractLabourCountThresholdMet",
+            "field": "contractLabourThresholdMet",
             "operator": "equals",
             "value": true
           }
@@ -815,11 +783,11 @@
           "citation": {
             "reference": "Occupational Safety, Health and Working Conditions (Central) Rules, 2026",
             "section": "",
-            "rule": "Contract-labour licensing, welfare and wage provisions",
+            "rule": "Contract labour provisions",
             "page": "",
             "excerpt": ""
           },
-          "publishedAt": "2026-05-08",
+          "publishedAt": null,
           "accessedAt": "2026-07-20",
           "verificationStatus": "verified"
         }
@@ -836,7 +804,7 @@
     {
       "id": "OSH-012",
       "title": "Protect Inter-State Migrant Workers",
-      "description": "Where 10 or more inter-State migrant workers are employed or were employed on any day in the preceding twelve months, maintain prescribed worker information, ensure suitable working conditions, provide benefits available to comparable workers, facilitate medical examinations, report fatal accidents or serious bodily injuries to authorities in both States and the next of kin, provide the prescribed annual journey allowance, and support portability and access to applicable public distribution and construction-worker benefits.",
+      "description": "Where the statutory threshold is met, maintain worker information and provide the benefits, accident reporting, journey allowance and portability support required for inter-State migrant workers.",
       "category": "Inter-State Migrant Workers",
       "priority": "Mandatory",
       "applicability": {
@@ -888,11 +856,11 @@
           "citation": {
             "reference": "Occupational Safety, Health and Working Conditions (Central) Rules, 2026",
             "section": "",
-            "rule": "Inter-State migrant worker records, facilities and journey allowance",
+            "rule": "Inter-State migrant worker provisions",
             "page": "",
             "excerpt": ""
           },
-          "publishedAt": "2026-05-08",
+          "publishedAt": null,
           "accessedAt": "2026-07-20",
           "verificationStatus": "verified"
         }
@@ -908,148 +876,8 @@
     },
     {
       "id": "OSH-013",
-      "title": "Apply Sector-Specific Safety and Working-Condition Requirements",
-      "description": "Identify and comply with additional provisions, standards, licences, competency requirements, medical surveillance, working-hour limits and welfare obligations applicable to mines, dock work, factories, building and other construction work, plantations, motor transport undertakings, beedi and cigar establishments, audio-visual productions, newspaper establishments and other notified sectors. Apply any threshold-free requirements for notified hazardous or life-threatening activities.",
-      "category": "Sector-Specific Requirements",
-      "priority": "Mandatory",
-      "applicability": {
-        "employeeCount": {
-          "min": 1,
-          "max": null
-        },
-        "entityTypes": [
-          "*"
-        ],
-        "industries": [
-          "*"
-        ],
-        "jurisdictions": [
-          "IN"
-        ],
-        "workerTypes": [
-          "*"
-        ],
-        "womenEmployees": "any",
-        "contractWorkers": "any",
-        "factory": "any",
-        "warehouse": "any",
-        "conditions": [
-          {
-            "field": "sectorSpecificOSHWCPartApplies",
-            "operator": "equals",
-            "value": true
-          }
-        ],
-        "exclusions": []
-      },
-      "evidence": [
-        {
-          "sourceId": "INDIACODE",
-          "citation": {
-            "reference": "Occupational Safety, Health and Working Conditions Code, 2020",
-            "section": "Chapter XI, Parts III to VIII; Chapters XII and XIII; Schedules",
-            "rule": "",
-            "page": "",
-            "excerpt": ""
-          },
-          "publishedAt": null,
-          "accessedAt": "2026-07-20",
-          "verificationStatus": "verified"
-        },
-        {
-          "sourceId": "OSH-RULES-2026",
-          "citation": {
-            "reference": "Occupational Safety, Health and Working Conditions (Central) Rules, 2026",
-            "section": "",
-            "rule": "Sector-specific chapters, annexures and forms",
-            "page": "",
-            "excerpt": ""
-          },
-          "publishedAt": "2026-05-08",
-          "accessedAt": "2026-07-20",
-          "verificationStatus": "verified"
-        }
-      ],
-      "temporal": {
-        "effectiveFrom": "2025-11-21",
-        "effectiveTo": null,
-        "lastVerified": "2026-07-20",
-        "nextReviewDue": "2026-08-19",
-        "supersedes": [],
-        "supersededBy": []
-      }
-    },
-    {
-      "id": "OSH-014",
-      "title": "Cooperate with Inspection, Audit and Enforcement",
-      "description": "Provide Inspector-cum-Facilitators, medical officers, designated authorities and authorised auditors with lawful access, records, samples, measurements and assistance. Complete corrective actions, respond to notices and orders, maintain evidence supporting compliance and use statutory appeal or compounding procedures within prescribed limits and timelines.",
-      "category": "Inspection and Enforcement",
-      "priority": "Mandatory",
-      "applicability": {
-        "employeeCount": {
-          "min": 1,
-          "max": null
-        },
-        "entityTypes": [
-          "*"
-        ],
-        "industries": [
-          "*"
-        ],
-        "jurisdictions": [
-          "IN"
-        ],
-        "workerTypes": [
-          "*"
-        ],
-        "womenEmployees": "any",
-        "contractWorkers": "any",
-        "factory": "any",
-        "warehouse": "any",
-        "conditions": [],
-        "exclusions": []
-      },
-      "evidence": [
-        {
-          "sourceId": "INDIACODE",
-          "citation": {
-            "reference": "Occupational Safety, Health and Working Conditions Code, 2020",
-            "section": "Sections 34 to 42 and Chapters XII and XIII",
-            "rule": "",
-            "page": "",
-            "excerpt": ""
-          },
-          "publishedAt": null,
-          "accessedAt": "2026-07-20",
-          "verificationStatus": "verified"
-        },
-        {
-          "sourceId": "OSH-RULES-2026",
-          "citation": {
-            "reference": "Occupational Safety, Health and Working Conditions (Central) Rules, 2026",
-            "section": "",
-            "rule": "Inspection, audit, penalty, appeal and compounding procedures",
-            "page": "",
-            "excerpt": ""
-          },
-          "publishedAt": "2026-05-08",
-          "accessedAt": "2026-07-20",
-          "verificationStatus": "verified"
-        }
-      ],
-      "temporal": {
-        "effectiveFrom": "2025-11-21",
-        "effectiveTo": null,
-        "lastVerified": "2026-07-20",
-        "nextReviewDue": "2026-08-19",
-        "supersedes": [],
-        "supersededBy": []
-      }
-    },
-    {
-      "id": "OSH-015",
       "title": "Apply Repeal and Savings Requirements",
-      "description": "Treat the thirteen enactments listed in section 143, including the Factories Act, 1948, Mines Act, 1952, Contract Labour (Regulation and Abolition) Act, 1970, Inter-State Migrant Workmen Act, 1979 and Building and Other Construction Workers employment-and-conditions Act, 1996, as repealed from commencement. Preserve prior rules, licences, registrations, orders, appointments, proceedings, liabilities and actions only to the extent saved by section 143 and not contrary to the Code until lawfully replaced or repealed.",
+      "description": "Treat the thirteen enactments listed in section 143, including the Contract Labour Act and the principal factory, mine, plantation and inter-State migrant worker enactments, as repealed from commencement while preserving prior instruments and actions only to the extent saved.",
       "category": "Legal Transition",
       "priority": "Mandatory",
       "applicability": {
@@ -1089,32 +917,6 @@
           "publishedAt": null,
           "accessedAt": "2026-07-20",
           "verificationStatus": "verified"
-        },
-        {
-          "sourceId": "OSH-COMMENCEMENT-2025",
-          "citation": {
-            "reference": "S.O. 5321(E), commencement notification for the Occupational Safety, Health and Working Conditions Code, 2020",
-            "section": "",
-            "rule": "",
-            "page": "",
-            "excerpt": ""
-          },
-          "publishedAt": "2025-11-21",
-          "accessedAt": "2026-07-20",
-          "verificationStatus": "verified"
-        },
-        {
-          "sourceId": "OSH-RULES-2026",
-          "citation": {
-            "reference": "Occupational Safety, Health and Working Conditions (Central) Rules, 2026",
-            "section": "",
-            "rule": "Rule 1 and supersession clause",
-            "page": "",
-            "excerpt": ""
-          },
-          "publishedAt": "2026-05-08",
-          "accessedAt": "2026-07-20",
-          "verificationStatus": "verified"
         }
       ],
       "temporal": {
@@ -1130,40 +932,18 @@
   "exceptions": [
     {
       "id": "OSH-EX-001",
-      "title": "Sector Specific Requirements",
-      "description": "Certain industries and establishments have additional statutory obligations, standards, notifications, licences, thresholds and rules under the Code."
+      "title": "Sector-Specific Requirements",
+      "description": "Certain industries and establishments have additional statutory standards, licences, thresholds and rules under the Code."
     },
     {
       "id": "OSH-EX-002",
-      "title": "Government Offices and Warships",
-      "description": "The Code does not ordinarily apply to offices of the Central or State Governments or to warships, subject to the statutory application to contract labour employed through a contractor in government offices where the government is the principal employer."
+      "title": "Appropriate Government Rules",
+      "description": "The 2026 Central Rules apply only where the Central Government is the appropriate government. State and Union Territory establishments must use the corresponding local instruments."
     },
     {
       "id": "OSH-EX-003",
-      "title": "Appropriate Government Rules",
-      "description": "The 2026 Central Rules apply only where the Central Government is the appropriate government. State and Union Territory establishments must use the corresponding local rules and notifications."
-    }
-  ],
-  "recommendations": [
-    {
-      "id": "OSH-REC-001",
-      "title": "Maintain an Establishment Applicability Matrix",
-      "description": "Map every location and activity against worker-count thresholds, sector-specific parts, hazardous activities, the appropriate government and applicable registrations, licences, rules and standards."
-    },
-    {
-      "id": "OSH-REC-002",
-      "title": "Create a Safety Management System",
-      "description": "Maintain risk assessments, control plans, training matrices, inspection schedules, health surveillance, incident investigations and corrective-action tracking for each workplace."
-    },
-    {
-      "id": "OSH-REC-003",
-      "title": "Audit Contractors and Migrant Worker Controls",
-      "description": "Verify contractor licences, wage payments, welfare facilities, worker records, inter-State migrant benefits, accident reporting and principal-employer oversight before and during each contract."
-    },
-    {
-      "id": "OSH-REC-004",
-      "title": "Review Central and State Notifications Monthly",
-      "description": "Monitor the Ministry and applicable State or Union Territory authorities for new standards, notifications, forms, thresholds, exemptions and enforcement appointments."
+      "title": "Saved Legacy Instruments",
+      "description": "Rules, licences, registrations, orders and actions under repealed enactments continue only to the extent preserved by section 143."
     }
   ],
   "sources": [
@@ -1188,16 +968,6 @@
       "verificationStatus": "verified"
     },
     {
-      "sourceId": "OSH-COMMENCEMENT-2025",
-      "name": "Implementation of the Occupational Safety, Health and Working Conditions Code, 2020",
-      "sourceType": "notification",
-      "url": "https://www.labour.gov.in/offerings/schemes-and-services/details/labour-codes-gzNzQzMtQWa",
-      "authority": "Ministry of Labour & Employment, Government of India",
-      "publishedAt": "2025-11-21",
-      "accessedAt": "2026-07-20",
-      "verificationStatus": "verified"
-    },
-    {
       "sourceId": "OSH-RULES-2026",
       "name": "Occupational Safety, Health and Working Conditions (Central) Rules, 2026",
       "sourceType": "rules",
@@ -1214,6 +984,23 @@
     "approvalStatus": "draft",
     "approvedBy": null,
     "approvedAt": null,
-    "changeSummary": "Updated the OSHWC Code record for commencement on 21 November 2025, the Occupational Safety, Health and Working Conditions (Central) Rules, 2026, appropriate-government implementation, registration, appointment letters, health surveillance, safety and welfare duties, working hours, women employees, contract labour, inter-State migrant workers, sector-specific requirements and repeal-and-savings transition."
-  }
+    "changeSummary": "Updated the OSHWC Code record for commencement on 21 November 2025, the 2026 Central Rules, registration, safety and welfare, working hours, women employees, contract labour, inter-State migrant workers and repeal-and-savings transition."
+  },
+  "recommendations": [
+    {
+      "id": "OSH-REC-001",
+      "title": "Maintain an Establishment Applicability Matrix",
+      "description": "Map every location and activity against worker-count thresholds, sector-specific provisions, hazardous activities, the appropriate government and required registrations or licences."
+    },
+    {
+      "id": "OSH-REC-002",
+      "title": "Maintain a Safety Management System",
+      "description": "Maintain risk assessments, control plans, training matrices, health surveillance, incident investigations and corrective-action tracking."
+    },
+    {
+      "id": "OSH-REC-003",
+      "title": "Audit Contractors and Migrant Worker Controls",
+      "description": "Verify contractor compliance, welfare, wage payment, migrant-worker benefits and principal-employer oversight throughout each contract."
+    }
+  ]
 }
