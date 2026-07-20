@@ -1,18 +1,30 @@
 {
-  "stateId": "MH",
-  "stateName": "Maharashtra",
-  "lastVerified": "2026-07-05",
-  "status": "Active",
-
+  "schemaVersion": "1.0",
+  "recordVersion": "1.0.0",
+  "id": "STATE-MH",
+  "name": "Maharashtra Labour Laws",
+  "shortName": "Maharashtra",
+  "overview": "State-specific labour law requirements applicable to establishments operating in Maharashtra.",
+  "jurisdiction": {
+    "country": "IN",
+    "level": "state",
+    "code": "IN-MH",
+    "stateCode": "MH"
+  },
   "authority": {
-    "department": "Department of Labour, Government of Maharashtra",
+    "name": "Department of Labour, Government of Maharashtra",
     "sourceId": "MH-LABOUR"
   },
-
-  "overview": "State-specific labour law requirements applicable to establishments operating in Maharashtra.",
-
+  "status": "active",
+  "temporal": {
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "lastVerified": "2026-07-05",
+    "nextReviewDue": "2026-10-03",
+    "supersedes": [],
+    "supersededBy": []
+  },
   "rules": [
-
     {
       "id": "MH-001",
       "title": "Review Maharashtra Shops and Establishments Registration",
@@ -21,23 +33,52 @@
       "description": "Determine whether registration under the Maharashtra Shops and Establishments (Regulation of Employment and Conditions of Service) Act is applicable to the establishment.",
       "applicability": {
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
         "entityTypes": [
           "*"
         ],
         "industries": [
           "*"
-        ]
+        ],
+        "jurisdictions": [
+          "IN-MH"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "MH-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Maharashtra Shops and Establishments (Regulation of Employment and Conditions of Service) Act, 2017"
+          "sourceId": "MH-LABOUR",
+          "citation": {
+            "reference": "Maharashtra Shops and Establishments (Regulation of Employment and Conditions of Service) Act, 2017",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "MH-002",
       "title": "Maintain Statutory Registers and Employment Records",
@@ -46,23 +87,52 @@
       "description": "Maintain statutory registers, employee records and notices prescribed under Maharashtra labour legislation.",
       "applicability": {
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
         "entityTypes": [
           "*"
         ],
         "industries": [
           "*"
-        ]
+        ],
+        "jurisdictions": [
+          "IN-MH"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "MH-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Applicable Maharashtra Labour Rules"
+          "sourceId": "MH-LABOUR",
+          "citation": {
+            "reference": "Applicable Maharashtra Labour Rules",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "MH-003",
       "title": "Display Statutory Notices",
@@ -71,23 +141,52 @@
       "description": "Display statutory notices, abstracts and employee information required under Maharashtra labour legislation.",
       "applicability": {
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
         "entityTypes": [
           "*"
         ],
         "industries": [
           "*"
-        ]
+        ],
+        "jurisdictions": [
+          "IN-MH"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "MH-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Applicable Maharashtra Labour Rules"
+          "sourceId": "MH-LABOUR",
+          "citation": {
+            "reference": "Applicable Maharashtra Labour Rules",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "MH-004",
       "title": "Review Working Hours, Overtime, Leave and Weekly Holidays",
@@ -96,23 +195,52 @@
       "description": "Ensure compliance with Maharashtra provisions governing working hours, overtime, leave, holidays and weekly offs.",
       "applicability": {
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
         "entityTypes": [
           "*"
         ],
         "industries": [
           "*"
-        ]
+        ],
+        "jurisdictions": [
+          "IN-MH"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "MH-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Maharashtra Shops and Establishments Rules"
+          "sourceId": "MH-LABOUR",
+          "citation": {
+            "reference": "Maharashtra Shops and Establishments Rules",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "MH-005",
       "title": "Review Maharashtra Professional Tax Compliance",
@@ -121,23 +249,52 @@
       "description": "Determine whether Professional Tax registration, enrolment, deduction, return filing and payment obligations apply under Maharashtra law.",
       "applicability": {
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
         "entityTypes": [
           "*"
         ],
         "industries": [
           "*"
-        ]
+        ],
+        "jurisdictions": [
+          "IN-MH"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "MH-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Maharashtra State Tax on Professions, Trades, Callings and Employments Act, 1975"
+          "sourceId": "MH-LABOUR",
+          "citation": {
+            "reference": "Maharashtra State Tax on Professions, Trades, Callings and Employments Act, 1975",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "MH-006",
       "title": "Review Maharashtra Labour Welfare Fund Compliance",
@@ -146,23 +303,52 @@
       "description": "Review employer obligations relating to the Maharashtra Labour Welfare Fund, including contribution requirements where applicable.",
       "applicability": {
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
         "entityTypes": [
           "*"
         ],
         "industries": [
           "*"
-        ]
+        ],
+        "jurisdictions": [
+          "IN-MH"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "MH-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Bombay Labour Welfare Fund Act, 1953"
+          "sourceId": "MH-LABOUR",
+          "citation": {
+            "reference": "Bombay Labour Welfare Fund Act, 1953",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "MH-007",
       "title": "Review Maharashtra Minimum Wage Notifications",
@@ -171,23 +357,52 @@
       "description": "Ensure employee wages comply with the latest minimum wage notifications applicable in Maharashtra.",
       "applicability": {
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
         "entityTypes": [
           "*"
         ],
         "industries": [
           "*"
-        ]
+        ],
+        "jurisdictions": [
+          "IN-MH"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "MH-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Government of Maharashtra Minimum Wage Notifications"
+          "sourceId": "MH-LABOUR",
+          "citation": {
+            "reference": "Government of Maharashtra Minimum Wage Notifications",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "MH-008",
       "title": "Monitor Maharashtra Labour Notifications",
@@ -196,55 +411,103 @@
       "description": "Review labour department circulars, amendments, notifications and compliance updates issued by the Government of Maharashtra.",
       "applicability": {
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
         "entityTypes": [
           "*"
         ],
         "industries": [
           "*"
-        ]
+        ],
+        "jurisdictions": [
+          "IN-MH"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "MH-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Government of Maharashtra Labour Notifications"
+          "sourceId": "MH-LABOUR",
+          "citation": {
+            "reference": "Government of Maharashtra Labour Notifications",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     }
-
   ],
-
-  "recommended": [
-
+  "recommendations": [
     {
       "id": "MHR-001",
       "title": "Annual Labour Compliance Audit",
       "description": "Conduct an annual audit covering labour registrations, professional tax, labour welfare fund, statutory records and inspection readiness."
     },
-
     {
       "id": "MHR-002",
       "title": "Digital Compliance Calendar",
       "description": "Maintain a digital calendar for licence renewals, labour inspections, professional tax returns and statutory due dates."
     }
-
   ],
-
-  "references": [
-
+  "sources": [
     {
-      "sourceId": "MH-LABOUR"
+      "sourceId": "MH-LABOUR",
+      "name": "Department of Labour, Government of Maharashtra",
+      "sourceType": "official_portal",
+      "url": null,
+      "authority": "Department of Labour, Government of Maharashtra",
+      "publishedAt": null,
+      "accessedAt": "2026-07-05",
+      "verificationStatus": "partially_verified"
     },
-
     {
-      "sourceId": "MOL"
+      "sourceId": "MOL",
+      "name": "Ministry of Labour & Employment",
+      "sourceType": "official_portal",
+      "url": "https://labour.gov.in",
+      "authority": "Ministry of Labour & Employment",
+      "publishedAt": null,
+      "accessedAt": "2026-07-05",
+      "verificationStatus": "partially_verified"
     },
-
     {
-      "sourceId": "INDIACODE"
+      "sourceId": "INDIACODE",
+      "name": "India Code",
+      "sourceType": "official_portal",
+      "url": "https://www.indiacode.nic.in",
+      "authority": "India Code",
+      "publishedAt": null,
+      "accessedAt": "2026-07-05",
+      "verificationStatus": "partially_verified"
     }
-
-  ]
-
+  ],
+  "governance": {
+    "owner": "GrowWithHR Compliance Data Team",
+    "reviewCadenceDays": 90,
+    "approvalStatus": "draft",
+    "approvedBy": null,
+    "approvedAt": null,
+    "changeSummary": "Migrated the existing Maharashtra labour law record to compliance-law schema version 1.0 without independently expanding its legal coverage."
+  }
 }
