@@ -1,0 +1,1426 @@
+{
+  "schemaVersion": "1.0",
+  "recordVersion": "1.0.0",
+  "id": "CENTRAL-SOCIAL-SECURITY",
+  "name": "Code on Social Security, 2020",
+  "shortName": "Social Security Code",
+  "officialCitation": "Act No. 36 of 2020; principal commencement notification S.O. 5319(E) dated 21 November 2025; Social Security (Central) Rules, 2026 notified by G.S.R. 344(E) dated 8 May 2026.",
+  "overview": "The Code on Social Security, 2020 consolidates the central framework for provident fund, pension and deposit-linked insurance, employees state insurance, gratuity, maternity benefit, employees compensation, building and other construction worker cess and welfare, social security for unorganised workers, gig workers and platform workers, employment information, compliance, assessment and recovery. Most operative provisions commenced on 21 November 2025. The Social Security (Central) Rules, 2026 commenced on 8 May 2026 and apply where the Central Government is the appropriate government. Existing schemes, regulations, notifications and actions under repealed enactments continue to the extent preserved by the Code and not inconsistent with it until replaced or superseded.",
+  "jurisdiction": {
+    "country": "IN",
+    "level": "central",
+    "code": "IN",
+    "stateCode": null
+  },
+  "authority": {
+    "name": "Ministry of Labour & Employment, Government of India",
+    "department": "Social Security Division",
+    "sourceId": "MOL"
+  },
+  "status": "active",
+  "temporal": {
+    "effectiveFrom": "2025-11-21",
+    "effectiveTo": null,
+    "lastVerified": "2026-07-20",
+    "nextReviewDue": "2026-08-19",
+    "supersedes": [
+      "CENTRAL-EPFO",
+      "CENTRAL-ESIC",
+      "CENTRAL-GRATUITY",
+      "CENTRAL-MATERNITY",
+      "CENTRAL-EMP-COMP"
+    ],
+    "supersededBy": []
+  },
+  "definitions": [
+    {
+      "id": "SS-DEF-001",
+      "term": "Employee",
+      "definition": "A person employed on wages by an establishment, directly or through a contractor, to perform work covered by the employee definition in the Code, subject to chapter-specific inclusions and exclusions."
+    },
+    {
+      "id": "SS-DEF-002",
+      "term": "Employer",
+      "definition": "The person or authority having ultimate control over the affairs of an establishment, together with the persons treated as employers for factories, mines, plantations, contract labour and other covered arrangements under the Code."
+    },
+    {
+      "id": "SS-DEF-003",
+      "term": "Establishment",
+      "definition": "A place where an industry, trade, business, manufacture or occupation is carried on, including establishments of the types covered by the Code and its schedules."
+    },
+    {
+      "id": "SS-DEF-004",
+      "term": "Wages",
+      "definition": "Remuneration expressed in money and payable for employment or work, determined under the Code definition and its inclusion, exclusion and fifty-per-cent adjustment provisions."
+    },
+    {
+      "id": "SS-DEF-005",
+      "term": "Fixed-Term Employment",
+      "definition": "Engagement of an employee on the basis of a written contract for a fixed period, with statutory treatment and benefits determined under the Code."
+    },
+    {
+      "id": "SS-DEF-006",
+      "term": "Unorganised Worker",
+      "definition": "A home-based worker, self-employed worker or wage worker in the unorganised sector, and other workers falling within the statutory definition."
+    },
+    {
+      "id": "SS-DEF-007",
+      "term": "Gig Worker",
+      "definition": "A person who performs work or participates in a work arrangement and earns from activities outside a traditional employer-employee relationship."
+    },
+    {
+      "id": "SS-DEF-008",
+      "term": "Platform Worker",
+      "definition": "A person engaged in platform work through an online platform that connects organisations or individuals to solve problems or provide services for payment."
+    },
+    {
+      "id": "SS-DEF-009",
+      "term": "Aggregator",
+      "definition": "A digital intermediary or marketplace that connects a buyer or user of a service with a seller or service provider in a category listed in the Seventh Schedule."
+    },
+    {
+      "id": "SS-DEF-010",
+      "term": "Building Worker",
+      "definition": "A person engaged in building or other construction work who falls within the statutory definition, subject to the exclusions stated in the Code."
+    }
+  ],
+  "rules": [
+    {
+      "id": "SS-001",
+      "title": "Determine Chapter Applicability and the Appropriate Government",
+      "description": "For every establishment, identify the applicable chapters by using the First Schedule, employee and worker counts, establishment type, notified coverage, wage ceilings, occupational criteria and continuing-coverage rules. Determine whether the Central Government or a State or Union Territory Government is the appropriate government, then apply the corresponding rules, schemes, regulations, notifications, forms, portals and enforcement authorities. Do not assume that the 2026 Central Rules apply to every establishment.",
+      "category": "Applicability and Governance",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [
+          {
+            "field": "socialSecurityChapterAssessmentCompleted",
+            "operator": "equals",
+            "value": true
+          }
+        ],
+        "exclusions": []
+      },
+      "evidence": [
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Code on Social Security, 2020",
+            "section": "1, 2 and First Schedule",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "SS-RULES-2026",
+          "citation": {
+            "reference": "Social Security (Central) Rules, 2026",
+            "section": "",
+            "rule": "1 and 2",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-05-08",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": "2025-11-21",
+        "effectiveTo": null,
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    },
+    {
+      "id": "SS-002",
+      "title": "Register the Establishment and Maintain Current Registration Data",
+      "description": "Where registration is required under the Code, submit the prescribed electronic registration using the applicable government portal, provide accurate establishment and employment particulars, retain the registration certificate, update material changes and follow the prescribed cancellation process only after all liabilities and pending compliances have been addressed. Coordinate registration data with EPFO, ESIC and other social security systems where applicable.",
+      "category": "Registration",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [
+          {
+            "field": "registrationRequiredUnderCode",
+            "operator": "equals",
+            "value": true
+          }
+        ],
+        "exclusions": []
+      },
+      "evidence": [
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Code on Social Security, 2020",
+            "section": "3",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "SS-RULES-2026",
+          "citation": {
+            "reference": "Social Security (Central) Rules, 2026",
+            "section": "",
+            "rule": "Registration and cancellation provisions",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-05-08",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": "2025-11-21",
+        "effectiveTo": null,
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    },
+    {
+      "id": "SS-003",
+      "title": "Comply with Employees Provident Fund, Pension and Insurance Requirements",
+      "description": "An establishment covered by Chapter III must enrol eligible employees, determine wages and membership under the Code and saved schemes, deduct and deposit employee contributions, pay employer contributions, administer pension and deposit-linked insurance obligations, maintain member and contribution records, support account transfers and comply with EPFO electronic returns and directions. Coverage generally applies at 20 or more employees, and once applicable continues even if employment later falls below the threshold. Voluntary coverage and statutory exemptions must be documented through the prescribed process.",
+      "category": "Provident Fund and Pension",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 20,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [
+          {
+            "field": "chapterIIIEPFApplies",
+            "operator": "equals",
+            "value": true
+          }
+        ],
+        "exclusions": []
+      },
+      "evidence": [
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Code on Social Security, 2020",
+            "section": "1, 15 to 23 and First Schedule",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "EPFO",
+          "citation": {
+            "reference": "EPFO schemes, employer compliance directions and electronic filing guidance",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "SS-RULES-2026",
+          "citation": {
+            "reference": "Social Security (Central) Rules, 2026",
+            "section": "",
+            "rule": "Chapter III and applicable forms",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-05-08",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": "2025-11-21",
+        "effectiveTo": null,
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    },
+    {
+      "id": "SS-004",
+      "title": "Coordinate Social Security Contributions for Contract Employees",
+      "description": "Where employees are engaged through a contractor, the principal employer and contractor must maintain worker-level contribution information and ensure that contributions required under the applicable provident fund or insurance framework are correctly deducted, deposited and reconciled. Contract terms must support timely data exchange, inspection of contribution proof and recovery of amounts for which the principal employer becomes liable.",
+      "category": "Contract Labour Contributions",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "required",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [
+          {
+            "field": "contractEmployeesEngaged",
+            "operator": "equals",
+            "value": true
+          },
+          {
+            "field": "contributionChapterApplies",
+            "operator": "equals",
+            "value": true
+          }
+        ],
+        "exclusions": []
+      },
+      "evidence": [
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Code on Social Security, 2020",
+            "section": "17 and 31",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "SS-RULES-2026",
+          "citation": {
+            "reference": "Social Security (Central) Rules, 2026",
+            "section": "",
+            "rule": "Contribution and contractor compliance provisions",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-05-08",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": "2025-11-21",
+        "effectiveTo": null,
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    },
+    {
+      "id": "SS-005",
+      "title": "Comply with Employees State Insurance Coverage and Contributions",
+      "description": "An establishment covered by Chapter IV must register with ESIC, insure eligible employees, collect and deposit contributions at the notified rates within prescribed timelines, maintain wage and contribution records, report employment injuries and facilitate access to sickness, maternity, disablement, dependants and medical benefits. Coverage generally applies to establishments with 10 or more employees other than excluded seasonal factories, together with any other notified classes and hazardous or life-threatening occupations covered under the Code. Once applicable, coverage continues even if employment later falls below the threshold.",
+      "category": "Employees State Insurance",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 10,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [
+          {
+            "field": "chapterIVESIApplies",
+            "operator": "equals",
+            "value": true
+          }
+        ],
+        "exclusions": []
+      },
+      "evidence": [
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Code on Social Security, 2020",
+            "section": "1 and 25 to 52 and First Schedule",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "ESIC",
+          "citation": {
+            "reference": "ESIC employer registration, contribution, insured-person and benefit guidance",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "SS-RULES-2026",
+          "citation": {
+            "reference": "Social Security (Central) Rules, 2026",
+            "section": "",
+            "rule": "Employees State Insurance provisions and forms",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-05-08",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": "2025-11-21",
+        "effectiveTo": null,
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    },
+    {
+      "id": "SS-006",
+      "title": "Determine, Calculate and Pay Gratuity",
+      "description": "For a covered establishment, maintain continuous-service and nomination records, determine gratuity when employment ends on superannuation, retirement, resignation, death, disablement, expiry of fixed-term employment or another notified event, calculate the amount under sections 53 to 56, issue the prescribed notices and pay within the statutory timeline. Apply the five-year continuous-service condition and its statutory exceptions correctly, including proportionate gratuity for eligible fixed-term employees, and maintain compulsory insurance or an approved gratuity fund where required.",
+      "category": "Gratuity",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 10,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [
+          {
+            "field": "chapterVGratuityApplies",
+            "operator": "equals",
+            "value": true
+          }
+        ],
+        "exclusions": []
+      },
+      "evidence": [
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Code on Social Security, 2020",
+            "section": "53 to 58 and First Schedule",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "SS-RULES-2026",
+          "citation": {
+            "reference": "Social Security (Central) Rules, 2026",
+            "section": "",
+            "rule": "Gratuity provisions and prescribed forms",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-05-08",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": "2025-11-21",
+        "effectiveTo": null,
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    },
+    {
+      "id": "SS-007",
+      "title": "Provide Maternity Benefit and Protect Employment",
+      "description": "A covered employer must provide maternity benefit to an eligible woman who satisfies the statutory service condition, observe the prohibition on employment during the protected post-delivery period, process notice and payment, provide applicable leave for miscarriage, medical termination of pregnancy, tubectomy and illness, permit nursing breaks, avoid prohibited dismissal or disadvantage, and communicate maternity rights at appointment. Apply the statutory duration rules for childbirth, surviving children, adopting mothers and commissioning mothers, and consider work-from-home arrangements where the nature of work permits.",
+      "category": "Maternity Benefit",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 10,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "required",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [
+          {
+            "field": "chapterVIMaternityBenefitApplies",
+            "operator": "equals",
+            "value": true
+          }
+        ],
+        "exclusions": []
+      },
+      "evidence": [
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Code on Social Security, 2020",
+            "section": "59 to 71 and First Schedule",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "SS-RULES-2026",
+          "citation": {
+            "reference": "Social Security (Central) Rules, 2026",
+            "section": "",
+            "rule": "Maternity benefit procedures and forms",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-05-08",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": "2025-11-21",
+        "effectiveTo": null,
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    },
+    {
+      "id": "SS-008",
+      "title": "Provide and Document Crèche Facilities",
+      "description": "Every covered establishment with 50 or more employees must provide access to a crèche within the prescribed distance or through a permitted common facility, allow the prescribed number of visits by the woman employee and maintain records demonstrating the facility, accessibility, operating arrangements and communication to employees.",
+      "category": "Maternity and Childcare Facilities",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 50,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "required",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [
+          {
+            "field": "chapterVIMaternityBenefitApplies",
+            "operator": "equals",
+            "value": true
+          }
+        ],
+        "exclusions": []
+      },
+      "evidence": [
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Code on Social Security, 2020",
+            "section": "67",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "SS-RULES-2026",
+          "citation": {
+            "reference": "Social Security (Central) Rules, 2026",
+            "section": "",
+            "rule": "Crèche facility provisions",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-05-08",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": "2025-11-21",
+        "effectiveTo": null,
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    },
+    {
+      "id": "SS-009",
+      "title": "Report Accidents and Pay Employees Compensation",
+      "description": "Where Chapter VII applies, report fatal accidents and serious bodily injuries as prescribed, investigate whether personal injury or occupational disease arose out of and in the course of employment, calculate and pay compensation when due, deposit amounts requiring distribution through the competent authority, arrange medical examination where permitted and maintain claim, wage, dependant, payment and settlement records. The principal employer or contractor must also address statutory contracting and indemnity responsibilities.",
+      "category": "Employees Compensation",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [
+          {
+            "field": "chapterVIIEmployeesCompensationApplies",
+            "operator": "equals",
+            "value": true
+          }
+        ],
+        "exclusions": []
+      },
+      "evidence": [
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Code on Social Security, 2020",
+            "section": "73 to 99 and Second to Fourth Schedules",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "SS-RULES-2026",
+          "citation": {
+            "reference": "Social Security (Central) Rules, 2026",
+            "section": "",
+            "rule": "Employees compensation procedure and forms",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-05-08",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": "2025-11-21",
+        "effectiveTo": null,
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    },
+    {
+      "id": "SS-010",
+      "title": "Assess and Pay Building and Other Construction Worker Cess",
+      "description": "An establishment undertaking building or other construction work and meeting the applicable building-worker threshold must register and self-assess the cess, pay cess at the notified rate on the cost of construction within prescribed timelines, deduct or coordinate cess where payments pass through government or public authorities, respond to assessment, retain project-cost and payment records and address interest, penalty and appeal requirements. Facilitate eligible building workers registration with the relevant welfare board and maintain supporting worker and project records.",
+      "category": "Building and Construction Worker Welfare",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 10,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "building workers"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [
+          {
+            "field": "buildingOrOtherConstructionWork",
+            "operator": "equals",
+            "value": true
+          },
+          {
+            "field": "chapterVIIIBOCWApplies",
+            "operator": "equals",
+            "value": true
+          }
+        ],
+        "exclusions": []
+      },
+      "evidence": [
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Code on Social Security, 2020",
+            "section": "100 to 108 and First Schedule",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "MOL",
+          "citation": {
+            "reference": "Notification levying building and other construction worker cess at one per cent under section 100(1)",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "SS-RULES-2026",
+          "citation": {
+            "reference": "Social Security (Central) Rules, 2026",
+            "section": "",
+            "rule": "Building worker cess, assessment and beneficiary provisions",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-05-08",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": "2025-11-21",
+        "effectiveTo": null,
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    },
+    {
+      "id": "SS-011",
+      "title": "Support Registration and Schemes for Unorganised Workers",
+      "description": "Where an organisation engages or administers arrangements involving unorganised workers, support collection of accurate worker information, facilitate registration through the prescribed system, preserve identity and engagement records, communicate available Central and State schemes and cooperate with social security boards, helplines and facilitation centres. Do not represent registration alone as conferring a benefit unless the worker also meets the conditions of the relevant scheme.",
+      "category": "Unorganised Worker Social Security",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 0,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "unorganised workers"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [
+          {
+            "field": "unorganisedWorkersEngagedOrSupported",
+            "operator": "equals",
+            "value": true
+          }
+        ],
+        "exclusions": []
+      },
+      "evidence": [
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Code on Social Security, 2020",
+            "section": "109 to 113",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "SS-RULES-2026",
+          "citation": {
+            "reference": "Social Security (Central) Rules, 2026",
+            "section": "",
+            "rule": "Unorganised worker registration and scheme procedures",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-05-08",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": "2025-11-21",
+        "effectiveTo": null,
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    },
+    {
+      "id": "SS-012",
+      "title": "Comply with Gig and Platform Worker Social Security Obligations",
+      "description": "An aggregator covered by the Seventh Schedule must register and maintain prescribed platform, transaction, worker-engagement and payment data, support registration of eligible gig and platform workers, submit required returns and pay the contribution notified for applicable schemes within the statutory limits. Determine worker eligibility under the applicable scheme and rules, including prescribed engagement-period criteria, and do not treat social security registration as changing the contractual relationship beyond the effect of the Code.",
+      "category": "Gig and Platform Worker Social Security",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 0,
+          "max": null
+        },
+        "entityTypes": [
+          "aggregator",
+          "digital platform",
+          "marketplace"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "gig workers",
+          "platform workers"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [
+          {
+            "field": "aggregatorCategoryInSeventhSchedule",
+            "operator": "equals",
+            "value": true
+          }
+        ],
+        "exclusions": []
+      },
+      "evidence": [
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Code on Social Security, 2020",
+            "section": "2, 45 and 112 to 114 and Seventh Schedule",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "SS-RULES-2026",
+          "citation": {
+            "reference": "Social Security (Central) Rules, 2026",
+            "section": "",
+            "rule": "Gig and platform worker registration, eligibility, contribution and reporting provisions",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-05-08",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": "2025-11-21",
+        "effectiveTo": null,
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    },
+    {
+      "id": "SS-013",
+      "title": "Report Notified Vacancies to Career Centres",
+      "description": "An employer within a notified establishment or class of establishments must report prescribed vacancies to the designated career centre before filling them, provide required employment information and returns, and preserve evidence of submission. Reporting a vacancy does not require recruitment through the career centre, and statutory exclusions for specified employment categories must be applied.",
+      "category": "Employment Information",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [
+          {
+            "field": "careerCentreReportingNotificationApplies",
+            "operator": "equals",
+            "value": true
+          }
+        ],
+        "exclusions": []
+      },
+      "evidence": [
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Code on Social Security, 2020",
+            "section": "139 and 140",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "MOL",
+          "citation": {
+            "reference": "Publication of notification under the Code on Social Security, 2020 regarding Career Centres",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "SS-RULES-2026",
+          "citation": {
+            "reference": "Social Security (Central) Rules, 2026",
+            "section": "",
+            "rule": "Career centre vacancy reporting and returns",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-05-08",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": "2025-11-21",
+        "effectiveTo": null,
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    },
+    {
+      "id": "SS-014",
+      "title": "Maintain Records, Returns and Payment Evidence",
+      "description": "Maintain prescribed electronic or physical registers, employee and beneficiary records, wage and contribution data, nominations, claims, accident reports, cess records, contractor reconciliations, notices, returns and proof of payment for every applicable chapter. Produce records to Inspector-cum-Facilitators and authorised officers, preserve audit trails for corrections, and prevent any reduction of wages or benefits merely because the employer becomes liable for a contribution under the Code.",
+      "category": "Documentation and Compliance",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [
+          {
+            "field": "oneOrMoreSocialSecurityChaptersApply",
+            "operator": "equals",
+            "value": true
+          }
+        ],
+        "exclusions": []
+      },
+      "evidence": [
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Code on Social Security, 2020",
+            "section": "122 to 124",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "SS-RULES-2026",
+          "citation": {
+            "reference": "Social Security (Central) Rules, 2026",
+            "section": "",
+            "rule": "Registers, records, returns, electronic filing and self-certification provisions",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-05-08",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": "2025-11-21",
+        "effectiveTo": null,
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    },
+    {
+      "id": "SS-015",
+      "title": "Respond to Assessment, Interest, Damages and Recovery Proceedings",
+      "description": "Reconcile social security liabilities periodically and respond to notices, inspections and assessments within prescribed periods. Pay determined dues, statutory interest and damages where applicable, use appeal rights only with the required filing and pre-deposit conditions, and preserve evidence supporting employee counts, wage calculations, contribution treatment, exemptions and payment dates. Do not delay current contributions while a historical assessment is pending.",
+      "category": "Assessment and Recovery",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [
+          {
+            "field": "socialSecurityContributionOrCessLiabilityExists",
+            "operator": "equals",
+            "value": true
+          }
+        ],
+        "exclusions": []
+      },
+      "evidence": [
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Code on Social Security, 2020",
+            "section": "125 to 138",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "SS-RULES-2026",
+          "citation": {
+            "reference": "Social Security (Central) Rules, 2026",
+            "section": "",
+            "rule": "Assessment, appeal, interest, damages, recovery and compounding procedures",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-05-08",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": "2025-11-21",
+        "effectiveTo": null,
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    },
+    {
+      "id": "SS-016",
+      "title": "Apply Repeal, Savings and Transition Requirements",
+      "description": "Map each legacy social security obligation to the corresponding chapter of the Code. Treat rules, regulations, schemes, notifications, appointments, orders, benefits and actions under repealed enactments as continuing only to the extent preserved by section 164 and the commencement notifications and not inconsistent with the Code, until replaced under the corresponding Code provisions. Preserve historical records and claims, and update legacy EPFO, ESIC, gratuity, maternity benefit and employees compensation records to show their relationship to this Code without deleting their audit history.",
+      "category": "Legal Transition",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
+      },
+      "evidence": [
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Code on Social Security, 2020",
+            "section": "153 and 164",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "SS-COMMENCEMENT-2025",
+          "citation": {
+            "reference": "S.O. 5319(E), commencement notification for the Code on Social Security, 2020",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2025-11-21",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "SS-RULES-2026",
+          "citation": {
+            "reference": "Social Security (Central) Rules, 2026; repeal and savings for superseded Central Rules",
+            "section": "",
+            "rule": "1",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-05-08",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": "2025-11-21",
+        "effectiveTo": null,
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    }
+  ],
+  "recommendations": [
+    {
+      "id": "SS-REC-001",
+      "title": "Maintain a Chapter Applicability Matrix",
+      "description": "Track each legal entity and location against the First Schedule, employee counts, wage ceilings, establishment type, appropriate government, applicable schemes and continuing-coverage status."
+    },
+    {
+      "id": "SS-REC-002",
+      "title": "Reconcile EPFO, ESIC and Payroll Monthly",
+      "description": "Reconcile payroll wages, employee master data, contractor data, UAN and insurance records, contribution files, challans and ledger postings before each statutory filing."
+    },
+    {
+      "id": "SS-REC-003",
+      "title": "Create a Benefits Event Workflow",
+      "description": "Use a controlled workflow for maternity claims, gratuity events, employment injuries, deaths, disablement, fixed-term expiry and worker-benefit communications so statutory notices and payments are not missed."
+    },
+    {
+      "id": "SS-REC-004",
+      "title": "Update Contractor and Aggregator Contracts",
+      "description": "Include data-sharing, contribution, audit, worker-registration, record-retention and indemnity clauses appropriate to contractors, staffing providers, digital platforms and aggregators."
+    },
+    {
+      "id": "SS-REC-005",
+      "title": "Review Central and State Implementation Monthly",
+      "description": "Monitor Ministry, EPFO, ESIC, India Code and applicable State or Union Territory notifications monthly because schemes, wage ceilings, contribution rates, portals, forms and enforcement procedures may change."
+    }
+  ],
+  "sources": [
+    {
+      "sourceId": "MOL",
+      "name": "Ministry of Labour & Employment Labour Codes Portal",
+      "sourceType": "official_portal",
+      "url": "https://www.labour.gov.in/offerings/schemes-and-services/details/labour-codes-gzNzQzMtQWa",
+      "authority": "Ministry of Labour & Employment, Government of India",
+      "publishedAt": null,
+      "accessedAt": "2026-07-20",
+      "verificationStatus": "verified"
+    },
+    {
+      "sourceId": "INDIACODE",
+      "name": "Code on Social Security, 2020",
+      "sourceType": "legislation",
+      "url": "https://www.indiacode.nic.in/handle/123456789/16823",
+      "authority": "Legislative Department, Ministry of Law and Justice, Government of India",
+      "publishedAt": "2020-09-28",
+      "accessedAt": "2026-07-20",
+      "verificationStatus": "verified"
+    },
+    {
+      "sourceId": "EPFO",
+      "name": "Employees' Provident Fund Organisation",
+      "sourceType": "regulator_guidance",
+      "url": "https://www.epfindia.gov.in",
+      "authority": "Employees' Provident Fund Organisation",
+      "publishedAt": null,
+      "accessedAt": "2026-07-20",
+      "verificationStatus": "verified"
+    },
+    {
+      "sourceId": "ESIC",
+      "name": "Employees' State Insurance Corporation",
+      "sourceType": "regulator_guidance",
+      "url": "https://www.esic.gov.in",
+      "authority": "Employees' State Insurance Corporation",
+      "publishedAt": null,
+      "accessedAt": "2026-07-20",
+      "verificationStatus": "verified"
+    },
+    {
+      "sourceId": "SS-COMMENCEMENT-2025",
+      "name": "Commencement Notification for the Code on Social Security, 2020",
+      "sourceType": "gazette",
+      "url": "https://egazette.gov.in/WriteReadData/2025/267882.pdf",
+      "authority": "Ministry of Labour & Employment, Government of India",
+      "publishedAt": "2025-11-21",
+      "accessedAt": "2026-07-20",
+      "verificationStatus": "verified"
+    },
+    {
+      "sourceId": "SS-RULES-2026",
+      "name": "Social Security (Central) Rules, 2026",
+      "sourceType": "rules",
+      "url": "https://egazette.gov.in/WriteReadData/2026/272366.pdf",
+      "authority": "Ministry of Labour & Employment, Government of India",
+      "publishedAt": "2026-05-08",
+      "accessedAt": "2026-07-20",
+      "verificationStatus": "verified"
+    }
+  ],
+  "governance": {
+    "owner": "GrowWithHR Compliance Data Team",
+    "reviewCadenceDays": 30,
+    "approvalStatus": "draft",
+    "approvedBy": null,
+    "approvedAt": null,
+    "changeSummary": "Created a dedicated Code on Social Security record reflecting the principal commencement on 21 November 2025, the Social Security (Central) Rules, 2026, chapter-specific employer obligations, saved EPFO and ESIC schemes, building worker cess, gig and platform worker provisions, and transition from legacy social security enactments."
+  }
+}
