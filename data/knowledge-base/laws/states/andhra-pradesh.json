@@ -1,10 +1,10 @@
 {
   "schemaVersion": "1.0",
-  "recordVersion": "1.0.0",
+  "recordVersion": "2.0.0",
   "id": "STATE-AP",
   "name": "Andhra Pradesh Labour Laws",
   "shortName": "Andhra Pradesh",
-  "overview": "State-specific labour law requirements applicable to establishments operating in Andhra Pradesh.",
+  "overview": "State-specific labour-law requirements applicable to establishments operating in Andhra Pradesh. The Andhra Pradesh Shops and Establishments framework and other independent State laws continue to apply unless specifically repealed or replaced. Following commencement of the four Labour Codes on 21 November 2025, establishments must determine whether the Central Government or the Government of Andhra Pradesh is the appropriate government for each obligation. As of 20 July 2026, Andhra Pradesh has notified final State rules under the Code on Wages, 2019, the Industrial Relations Code, 2020 and the Code on Social Security, 2020. The Occupational Safety, Health and Working Conditions (Andhra Pradesh) Rules, 2026 were identifiable as draft rules and must not be treated as final until an official final notification is confirmed.",
   "jurisdiction": {
     "country": "IN",
     "level": "state",
@@ -12,15 +12,15 @@
     "stateCode": "AP"
   },
   "authority": {
-    "name": "Labour Department, Government of Andhra Pradesh",
+    "name": "Labour, Factories, Boilers and Insurance Medical Services Department, Government of Andhra Pradesh",
     "sourceId": "AP-LABOUR"
   },
   "status": "active",
   "temporal": {
     "effectiveFrom": null,
     "effectiveTo": null,
-    "lastVerified": "2026-07-05",
-    "nextReviewDue": "2026-10-03",
+    "lastVerified": "2026-07-20",
+    "nextReviewDue": "2026-08-19",
     "supersedes": [],
     "supersededBy": []
   },
@@ -28,7 +28,7 @@
     {
       "id": "AP-001",
       "title": "Review Andhra Pradesh Shops and Establishments Registration",
-      "description": "Determine whether registration under the Andhra Pradesh Shops and Establishments legislation is applicable.",
+      "description": "Determine whether registration under the Andhra Pradesh Shops and Establishments legislation is applicable. Treat State Shops and Establishments registration as a separate obligation from any registration or licence required under a central Labour Code.",
       "category": "Shops & Establishments",
       "priority": "Mandatory",
       "applicability": {
@@ -66,15 +66,28 @@
             "excerpt": ""
           },
           "publishedAt": null,
-          "accessedAt": "2026-07-05",
+          "accessedAt": "2026-07-20",
           "verificationStatus": "partially_verified"
+        },
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Andhra Pradesh Shops and Establishments Act, 1988",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
         }
       ],
       "temporal": {
         "effectiveFrom": null,
         "effectiveTo": null,
-        "lastVerified": "2026-07-05",
-        "nextReviewDue": "2026-10-03",
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
         "supersedes": [],
         "supersededBy": []
       }
@@ -82,7 +95,7 @@
     {
       "id": "AP-002",
       "title": "Maintain Statutory Registers",
-      "description": "Maintain registers, records and notices prescribed under Andhra Pradesh labour laws.",
+      "description": "Maintain registers, records and notices prescribed under applicable Andhra Pradesh labour laws. Maintain any registers, wage records, returns, electronic filings and audit trails separately required under the applicable Labour Codes and Andhra Pradesh Labour Code Rules.",
       "category": "Documentation",
       "priority": "Mandatory",
       "applicability": {
@@ -120,15 +133,28 @@
             "excerpt": ""
           },
           "publishedAt": null,
-          "accessedAt": "2026-07-05",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "partially_verified"
+        },
+        {
+          "sourceId": "AP-COW-RULES-2026",
+          "citation": {
+            "reference": "Code on Wages (Andhra Pradesh) Rules, 2026",
+            "section": "",
+            "rule": "Registers, wage slips, records and returns",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-06-29",
+          "accessedAt": "2026-07-20",
           "verificationStatus": "partially_verified"
         }
       ],
       "temporal": {
         "effectiveFrom": null,
         "effectiveTo": null,
-        "lastVerified": "2026-07-05",
-        "nextReviewDue": "2026-10-03",
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
         "supersedes": [],
         "supersededBy": []
       }
@@ -136,7 +162,7 @@
     {
       "id": "AP-003",
       "title": "Display Statutory Notices",
-      "description": "Display statutory notices required under applicable Andhra Pradesh labour laws.",
+      "description": "Display statutory notices required under applicable Andhra Pradesh labour laws. Display or provide any additional notices, wage information, abstracts or employee communications required under an applicable Labour Code or Andhra Pradesh Labour Code Rule.",
       "category": "Documentation",
       "priority": "Mandatory",
       "applicability": {
@@ -174,15 +200,28 @@
             "excerpt": ""
           },
           "publishedAt": null,
-          "accessedAt": "2026-07-05",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "partially_verified"
+        },
+        {
+          "sourceId": "AP-COW-RULES-2026",
+          "citation": {
+            "reference": "Code on Wages (Andhra Pradesh) Rules, 2026",
+            "section": "",
+            "rule": "Notice, wage-slip and employee-information provisions",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-06-29",
+          "accessedAt": "2026-07-20",
           "verificationStatus": "partially_verified"
         }
       ],
       "temporal": {
         "effectiveFrom": null,
         "effectiveTo": null,
-        "lastVerified": "2026-07-05",
-        "nextReviewDue": "2026-10-03",
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
         "supersedes": [],
         "supersededBy": []
       }
@@ -190,7 +229,7 @@
     {
       "id": "AP-004",
       "title": "Review State Holidays and Leave Requirements",
-      "description": "Ensure compliance with state-specific holidays, leave and weekly off requirements applicable in Andhra Pradesh.",
+      "description": "Ensure compliance with State-specific holidays, leave and weekly-rest requirements applicable in Andhra Pradesh. Do not assume that commencement of the Labour Codes repealed independent Andhra Pradesh Shops and Establishments, holiday or leave requirements. Where the OSHWC Code applies to a covered establishment or worker category, assess its working-hours, rest and annual-leave provisions separately.",
       "category": "Leave",
       "priority": "Mandatory",
       "applicability": {
@@ -221,77 +260,545 @@
         {
           "sourceId": "AP-LABOUR",
           "citation": {
-            "reference": "Applicable Andhra Pradesh Labour Rules",
+            "reference": "Applicable Andhra Pradesh Shops and Establishments, holiday and leave provisions",
             "section": "",
             "rule": "",
             "page": "",
             "excerpt": ""
           },
           "publishedAt": null,
-          "accessedAt": "2026-07-05",
+          "accessedAt": "2026-07-20",
           "verificationStatus": "partially_verified"
+        },
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Occupational Safety, Health and Working Conditions Code, 2020",
+            "section": "Working-hours, weekly-rest and annual-leave provisions",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
         }
       ],
       "temporal": {
         "effectiveFrom": null,
         "effectiveTo": null,
-        "lastVerified": "2026-07-05",
-        "nextReviewDue": "2026-10-03",
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
         "supersedes": [],
         "supersededBy": []
       }
+    },
+    {
+      "id": "AP-005",
+      "title": "Apply the Code on Wages and Andhra Pradesh Wage Rules",
+      "description": "Where the Government of Andhra Pradesh is the appropriate government, apply the Code on Wages, 2019 together with the Code on Wages (Andhra Pradesh) Rules, 2026 notified through G.O.Rt.No.124 dated 29 June 2026. Identify the applicable minimum wage, skill category, employment category, location, wage period and variable dearness allowance; observe wage-payment, overtime and deduction requirements; issue wage slips; and maintain the prescribed registers and returns.",
+      "category": "Wages",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN-AP"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [
+          {
+            "field": "andhraPradeshIsAppropriateGovernmentForWages",
+            "operator": "equals",
+            "value": true
+          }
+        ],
+        "exclusions": []
+      },
+      "evidence": [
+        {
+          "sourceId": "AP-COW-RULES-2026",
+          "citation": {
+            "reference": "Code on Wages (Andhra Pradesh) Rules, 2026",
+            "section": "",
+            "rule": "G.O.Rt.No.124",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-06-29",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "partially_verified"
+        },
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Code on Wages, 2019",
+            "section": "Chapters II to IV and sections 50, 67 and 69",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": "2026-06-29",
+        "effectiveTo": null,
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    },
+    {
+      "id": "AP-006",
+      "title": "Apply the Industrial Relations Code and Andhra Pradesh Rules",
+      "description": "Where the Government of Andhra Pradesh is the appropriate government, apply the Industrial Relations Code, 2020 together with the Industrial Relations (Andhra Pradesh) Rules, 2026 notified through G.O.Rt.No.111 dated 12 June 2026. Assess trade-union, negotiating-union, grievance-redressal, works-committee, standing-orders, service-condition, industrial-dispute, strike, lock-out, lay-off, retrenchment, closure and worker re-skilling obligations using the applicable statutory thresholds.",
+      "category": "Industrial Relations",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN-AP"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [
+          {
+            "field": "andhraPradeshIsAppropriateGovernmentForIndustrialRelations",
+            "operator": "equals",
+            "value": true
+          }
+        ],
+        "exclusions": []
+      },
+      "evidence": [
+        {
+          "sourceId": "AP-IR-RULES-2026",
+          "citation": {
+            "reference": "Industrial Relations (Andhra Pradesh) Rules, 2026",
+            "section": "",
+            "rule": "G.O.Rt.No.111",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-06-12",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "partially_verified"
+        },
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Industrial Relations Code, 2020",
+            "section": "Applicable chapters and section 99",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": "2026-06-12",
+        "effectiveTo": null,
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    },
+    {
+      "id": "AP-007",
+      "title": "Apply the Social Security Code and Andhra Pradesh Rules",
+      "description": "Where the Government of Andhra Pradesh is the appropriate government, apply the Code on Social Security, 2020 together with the Code on Social Security (Andhra Pradesh) Rules, 2026 notified through G.O.Rt.No.126 dated 7 July 2026. Assess establishment registration, gratuity, maternity benefit, employees compensation, building-worker welfare and cess, unorganised-worker registration and other State-administered social-security obligations. Apply EPFO and ESIC requirements through the competent central organisations where those chapters and schemes apply.",
+      "category": "Social Security",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN-AP"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [
+          {
+            "field": "andhraPradeshIsAppropriateGovernmentForSocialSecurityObligation",
+            "operator": "equals",
+            "value": true
+          }
+        ],
+        "exclusions": []
+      },
+      "evidence": [
+        {
+          "sourceId": "AP-SS-RULES-2026",
+          "citation": {
+            "reference": "Code on Social Security (Andhra Pradesh) Rules, 2026",
+            "section": "",
+            "rule": "G.O.Rt.No.126",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-07-07",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "partially_verified"
+        },
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Code on Social Security, 2020",
+            "section": "Applicable chapters and sections 154, 156 and 164",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": "2026-07-07",
+        "effectiveTo": null,
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    },
+    {
+      "id": "AP-008",
+      "title": "Apply OSHWC Requirements and Track Final Andhra Pradesh Rules",
+      "description": "Assess registration, appointment letters, occupational safety, health examinations, welfare facilities, working hours, annual leave, women employees, contract labour, inter-State migrant workers and sector-specific obligations under the Occupational Safety, Health and Working Conditions Code, 2020. The Occupational Safety, Health and Working Conditions (Andhra Pradesh) Rules, 2026 published through G.O.Rt.No.68 dated 6 April 2026 were identifiable as draft rules as of 20 July 2026. Do not treat those draft rules as final. Until final State rules are officially confirmed, apply the Code, valid saved instruments and any rules or notifications lawfully applicable to the establishment.",
+      "category": "Occupational Safety and Working Conditions",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN-AP"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [
+          {
+            "field": "oshwcCodeApplies",
+            "operator": "equals",
+            "value": true
+          }
+        ],
+        "exclusions": []
+      },
+      "evidence": [
+        {
+          "sourceId": "AP-OSH-DRAFT-2026",
+          "citation": {
+            "reference": "Draft Occupational Safety, Health and Working Conditions (Andhra Pradesh) Rules, 2026",
+            "section": "",
+            "rule": "G.O.Rt.No.68",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-04-06",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "partially_verified"
+        },
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Occupational Safety, Health and Working Conditions Code, 2020",
+            "section": "Applicable chapters and section 143",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "MOL",
+          "citation": {
+            "reference": "Occupational Safety, Health and Working Conditions (Central) Rules, 2026",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2026-05-08",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": "2025-11-21",
+        "effectiveTo": null,
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    },
+    {
+      "id": "AP-009",
+      "title": "Determine the Appropriate Government and Preserve Saved Actions",
+      "description": "For every establishment and compliance topic, document whether the Central Government or the Government of Andhra Pradesh is the appropriate government. Apply the corresponding rules, notifications, wage rates, schemes, registrations, licences, forms, portals and authorities. Preserve registrations, licences, exemptions, proceedings, claims, liabilities, wage notifications and actions under repealed central enactments only to the extent saved by the relevant Labour Code and not inconsistent with it.",
+      "category": "Labour Codes Transition",
+      "priority": "Mandatory",
+      "applicability": {
+        "employeeCount": {
+          "min": 1,
+          "max": null
+        },
+        "entityTypes": [
+          "*"
+        ],
+        "industries": [
+          "*"
+        ],
+        "jurisdictions": [
+          "IN-AP"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [
+          {
+            "field": "appropriateGovernmentDetermined",
+            "operator": "equals",
+            "value": true
+          }
+        ],
+        "exclusions": []
+      },
+      "evidence": [
+        {
+          "sourceId": "MOL",
+          "citation": {
+            "reference": "Implementation of the four Labour Codes from 21 November 2025",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": "2025-11-21",
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        },
+        {
+          "sourceId": "INDIACODE",
+          "citation": {
+            "reference": "Appropriate-government, rule-making and repeal-and-savings provisions under the four Labour Codes",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-20",
+          "verificationStatus": "verified"
+        }
+      ],
+      "temporal": {
+        "effectiveFrom": "2025-11-21",
+        "effectiveTo": null,
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
+        "supersedes": [],
+        "supersededBy": []
+      }
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "AP-EX-001",
+      "title": "Independent Andhra Pradesh Laws Continue",
+      "description": "The four Labour Codes do not automatically repeal the Andhra Pradesh Shops and Establishments Act, State holiday laws, State welfare legislation or other independent State enactments outside the central laws expressly repealed by the Codes."
+    },
+    {
+      "id": "AP-EX-002",
+      "title": "Central Rules Do Not Apply Universally",
+      "description": "Central Labour Code Rules apply where the Central Government is the appropriate government. Where the Government of Andhra Pradesh is the appropriate government, the corresponding Andhra Pradesh rules and authorities must be used."
+    },
+    {
+      "id": "AP-EX-003",
+      "title": "Draft OSHWC Rules Are Not Final Rules",
+      "description": "The draft Occupational Safety, Health and Working Conditions (Andhra Pradesh) Rules, 2026 must not be relied upon as final law unless a final notification is located and verified."
+    },
+    {
+      "id": "AP-EX-004",
+      "title": "Saved Legacy Instruments",
+      "description": "Rules, notifications, licences, registrations, exemptions, proceedings and actions under repealed central enactments continue only to the extent preserved by the relevant Labour Code and until lawfully replaced, repealed or superseded."
     }
   ],
   "recommendations": [
     {
       "id": "APR-001",
       "title": "Annual Labour Compliance Review",
-      "description": "Conduct an annual review of state labour law compliance."
+      "description": "Conduct an annual review of State labour laws, Labour Code applicability, employee thresholds, registrations, wage compliance, social security and occupational-safety obligations."
     },
     {
       "id": "APR-002",
       "title": "Digitise Statutory Registers",
-      "description": "Maintain electronic compliance records wherever legally permissible."
+      "description": "Maintain electronic compliance records wherever legally permissible and retain controlled evidence of filings, wage payments, notices, registrations and approvals."
+    },
+    {
+      "id": "APR-003",
+      "title": "Maintain an Appropriate Government Matrix",
+      "description": "Map each legal entity, establishment, industry and workforce category to the Central Government or Government of Andhra Pradesh for each Labour Code obligation."
+    },
+    {
+      "id": "APR-004",
+      "title": "Maintain a Labour Code Notification Register",
+      "description": "Track each Andhra Pradesh Labour Code rule, government order, amendment, wage notification, form, authority appointment and effective date, including whether an instrument is draft or final."
+    },
+    {
+      "id": "APR-005",
+      "title": "Review Andhra Pradesh Notifications Monthly",
+      "description": "Review official Andhra Pradesh and Ministry publications monthly, with particular attention to final OSHWC Rules, wage revisions, schemes, institutional appointments and digital filing procedures."
     }
   ],
   "sources": [
     {
       "sourceId": "AP-LABOUR",
-      "name": "Labour Department, Government of Andhra Pradesh",
+      "name": "Labour, Factories, Boilers and Insurance Medical Services Department, Government of Andhra Pradesh",
       "sourceType": "official_portal",
       "url": null,
-      "authority": "Labour Department, Government of Andhra Pradesh",
+      "authority": "Government of Andhra Pradesh",
       "publishedAt": null,
-      "accessedAt": "2026-07-05",
+      "accessedAt": "2026-07-20",
+      "verificationStatus": "partially_verified"
+    },
+    {
+      "sourceId": "AP-COW-RULES-2026",
+      "name": "Code on Wages (Andhra Pradesh) Rules, 2026",
+      "sourceType": "rules",
+      "url": null,
+      "authority": "Government of Andhra Pradesh",
+      "publishedAt": "2026-06-29",
+      "accessedAt": "2026-07-20",
+      "verificationStatus": "partially_verified"
+    },
+    {
+      "sourceId": "AP-IR-RULES-2026",
+      "name": "Industrial Relations (Andhra Pradesh) Rules, 2026",
+      "sourceType": "rules",
+      "url": null,
+      "authority": "Government of Andhra Pradesh",
+      "publishedAt": "2026-06-12",
+      "accessedAt": "2026-07-20",
+      "verificationStatus": "partially_verified"
+    },
+    {
+      "sourceId": "AP-SS-RULES-2026",
+      "name": "Code on Social Security (Andhra Pradesh) Rules, 2026",
+      "sourceType": "rules",
+      "url": null,
+      "authority": "Government of Andhra Pradesh",
+      "publishedAt": "2026-07-07",
+      "accessedAt": "2026-07-20",
+      "verificationStatus": "partially_verified"
+    },
+    {
+      "sourceId": "AP-OSH-DRAFT-2026",
+      "name": "Draft Occupational Safety, Health and Working Conditions (Andhra Pradesh) Rules, 2026",
+      "sourceType": "notification",
+      "url": null,
+      "authority": "Government of Andhra Pradesh",
+      "publishedAt": "2026-04-06",
+      "accessedAt": "2026-07-20",
       "verificationStatus": "partially_verified"
     },
     {
       "sourceId": "MOL",
-      "name": "Ministry of Labour & Employment",
+      "name": "Ministry of Labour & Employment Labour Codes Portal",
       "sourceType": "official_portal",
-      "url": "https://labour.gov.in",
-      "authority": "Ministry of Labour & Employment",
+      "url": "https://www.labour.gov.in/offerings/schemes-and-services/details/labour-codes-gzNzQzMtQWa",
+      "authority": "Ministry of Labour & Employment, Government of India",
       "publishedAt": null,
-      "accessedAt": "2026-07-05",
-      "verificationStatus": "partially_verified"
+      "accessedAt": "2026-07-20",
+      "verificationStatus": "verified"
     },
     {
       "sourceId": "INDIACODE",
       "name": "India Code",
       "sourceType": "official_portal",
       "url": "https://www.indiacode.nic.in",
-      "authority": "India Code",
+      "authority": "Legislative Department, Ministry of Law and Justice, Government of India",
       "publishedAt": null,
-      "accessedAt": "2026-07-05",
-      "verificationStatus": "partially_verified"
+      "accessedAt": "2026-07-20",
+      "verificationStatus": "verified"
     }
   ],
   "governance": {
     "owner": "GrowWithHR Compliance Data Team",
-    "reviewCadenceDays": 90,
+    "reviewCadenceDays": 30,
     "approvalStatus": "draft",
     "approvedBy": null,
     "approvedAt": null,
-    "changeSummary": "Migrated the existing Andhra Pradesh labour law record to compliance-law schema version 1.0 without independently expanding its legal coverage."
+    "changeSummary": "Updated the Andhra Pradesh record for implementation of the four Labour Codes without superseding independent State laws. Added the final Code on Wages, Industrial Relations and Social Security Rules notified by Andhra Pradesh, recorded the OSHWC State Rules as draft pending final verification, added appropriate-government and repeal-and-savings controls, and preserved the existing Shops and Establishments, documentation, notice, holiday and leave obligations."
   }
 }
