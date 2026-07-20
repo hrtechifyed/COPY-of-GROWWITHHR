@@ -1,214 +1,351 @@
 {
-  "stateId": "GA",
-  "stateName": "Goa",
-  "lastVerified": "2026-07-05",
-  "status": "Active",
-
+  "schemaVersion": "1.0",
+  "recordVersion": "1.0.0",
+  "id": "STATE-GA",
+  "name": "Goa Labour Laws",
+  "shortName": "Goa",
+  "overview": "State-specific labour law requirements applicable to establishments operating in Goa.",
+  "jurisdiction": {
+    "country": "IN",
+    "level": "state",
+    "code": "IN-GA",
+    "stateCode": "GA"
+  },
   "authority": {
-    "department": "Labour Department, Government of Goa",
+    "name": "Labour Department, Government of Goa",
     "sourceId": "GA-LABOUR"
   },
-
-  "overview": "State-specific labour law requirements applicable to establishments operating in Goa.",
-
+  "status": "active",
+  "temporal": {
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "lastVerified": "2026-07-05",
+    "nextReviewDue": "2026-10-03",
+    "supersedes": [],
+    "supersededBy": []
+  },
   "rules": [
-
     {
       "id": "GA-001",
-
       "title": "Review Goa Shops and Establishments Registration",
-
       "priority": "Mandatory",
-
       "category": "Shops & Establishments",
-
       "description": "Determine whether registration under the Goa Shops and Establishments legislation is applicable.",
-
       "applicability": {
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
         "entityTypes": [
           "*"
         ],
         "industries": [
           "*"
-        ]
+        ],
+        "jurisdictions": [
+          "IN-GA"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-
-      "sourceId": "GA-LABOUR",
-
-      "citations": [
+      "evidence": [
         {
-          "reference": "Goa Shops and Establishments Act"
+          "sourceId": "GA-LABOUR",
+          "citation": {
+            "reference": "Goa Shops and Establishments Act",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "GA-002",
-
       "title": "Maintain Statutory Registers and Employment Records",
-
       "priority": "Mandatory",
-
       "category": "Documentation",
-
       "description": "Maintain statutory registers, employee records and notices prescribed under Goa labour legislation.",
-
       "applicability": {
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
         "entityTypes": [
           "*"
         ],
         "industries": [
           "*"
-        ]
+        ],
+        "jurisdictions": [
+          "IN-GA"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-
-      "sourceId": "GA-LABOUR",
-
-      "citations": [
+      "evidence": [
         {
-          "reference": "Applicable Goa Labour Rules"
+          "sourceId": "GA-LABOUR",
+          "citation": {
+            "reference": "Applicable Goa Labour Rules",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "GA-003",
-
       "title": "Display Statutory Notices",
-
       "priority": "Mandatory",
-
       "category": "Documentation",
-
       "description": "Display statutory notices and abstracts required under applicable labour legislation.",
-
       "applicability": {
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
         "entityTypes": [
           "*"
         ],
         "industries": [
           "*"
-        ]
+        ],
+        "jurisdictions": [
+          "IN-GA"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-
-      "sourceId": "GA-LABOUR",
-
-      "citations": [
+      "evidence": [
         {
-          "reference": "Applicable Goa Labour Rules"
+          "sourceId": "GA-LABOUR",
+          "citation": {
+            "reference": "Applicable Goa Labour Rules",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "GA-004",
-
       "title": "Review Working Hours, Weekly Holidays and Leave",
-
       "priority": "Mandatory",
-
       "category": "Working Conditions",
-
       "description": "Ensure compliance with Goa-specific provisions relating to working hours, overtime, leave and weekly holidays.",
-
       "applicability": {
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
         "entityTypes": [
           "*"
         ],
         "industries": [
           "*"
-        ]
+        ],
+        "jurisdictions": [
+          "IN-GA"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-
-      "sourceId": "GA-LABOUR",
-
-      "citations": [
+      "evidence": [
         {
-          "reference": "Goa Shops and Establishments Rules"
+          "sourceId": "GA-LABOUR",
+          "citation": {
+            "reference": "Goa Shops and Establishments Rules",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "GA-005",
-
       "title": "Review Professional Tax Obligations",
-
       "priority": "Mandatory",
-
       "category": "Professional Tax",
-
       "description": "Determine whether Professional Tax registration, deduction and payment obligations apply in Goa.",
-
       "applicability": {
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
         "entityTypes": [
           "*"
         ],
         "industries": [
           "*"
-        ]
+        ],
+        "jurisdictions": [
+          "IN-GA"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-
-      "sourceId": "GA-LABOUR",
-
-      "citations": [
+      "evidence": [
         {
-          "reference": "Goa Tax on Professions, Trades, Callings and Employments legislation"
+          "sourceId": "GA-LABOUR",
+          "citation": {
+            "reference": "Goa Tax on Professions, Trades, Callings and Employments legislation",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     }
-
   ],
-
-  "recommended": [
-
+  "recommendations": [
     {
       "id": "GAR-001",
-
       "title": "Annual Labour Compliance Audit",
-
       "description": "Conduct an annual review of registrations, statutory records, wage compliance and inspection readiness."
     },
-
     {
       "id": "GAR-002",
-
       "title": "Digital Compliance Calendar",
-
       "description": "Maintain a digital compliance calendar for licence renewals, statutory filings and labour inspections."
     }
-
   ],
-
-  "references": [
-
+  "sources": [
     {
-      "sourceId": "GA-LABOUR"
+      "sourceId": "GA-LABOUR",
+      "name": "Labour Department, Government of Goa",
+      "sourceType": "official_portal",
+      "url": null,
+      "authority": "Labour Department, Government of Goa",
+      "publishedAt": null,
+      "accessedAt": "2026-07-05",
+      "verificationStatus": "partially_verified"
     },
-
     {
-      "sourceId": "MOL"
+      "sourceId": "MOL",
+      "name": "Ministry of Labour & Employment",
+      "sourceType": "official_portal",
+      "url": "https://labour.gov.in",
+      "authority": "Ministry of Labour & Employment",
+      "publishedAt": null,
+      "accessedAt": "2026-07-05",
+      "verificationStatus": "partially_verified"
     },
-
     {
-      "sourceId": "INDIACODE"
+      "sourceId": "INDIACODE",
+      "name": "India Code",
+      "sourceType": "official_portal",
+      "url": "https://www.indiacode.nic.in",
+      "authority": "India Code",
+      "publishedAt": null,
+      "accessedAt": "2026-07-05",
+      "verificationStatus": "partially_verified"
     }
-
-  ]
-
+  ],
+  "governance": {
+    "owner": "GrowWithHR Compliance Data Team",
+    "reviewCadenceDays": 90,
+    "approvalStatus": "draft",
+    "approvedBy": null,
+    "approvedAt": null,
+    "changeSummary": "Migrated the existing Goa labour law record to compliance-law schema version 1.0 without independently expanding its legal coverage."
+  }
 }
