@@ -1,200 +1,405 @@
 {
-  "stateId": "ML",
-  "stateName": "Meghalaya",
-  "lastVerified": "2026-07-05",
-  "status": "Active",
-
+  "schemaVersion": "1.0",
+  "recordVersion": "1.0.0",
+  "id": "STATE-ML",
+  "name": "Meghalaya Labour Laws",
+  "shortName": "Meghalaya",
+  "overview": "State-specific labour law requirements applicable to establishments operating in Meghalaya.",
+  "jurisdiction": {
+    "country": "IN",
+    "level": "state",
+    "code": "IN-ML",
+    "stateCode": "ML"
+  },
   "authority": {
-    "department": "Labour Department, Government of Meghalaya",
+    "name": "Labour Department, Government of Meghalaya",
     "sourceId": "ML-LABOUR"
   },
-
-  "overview": "State-specific labour law requirements applicable to establishments operating in Meghalaya.",
-
+  "status": "active",
+  "temporal": {
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "lastVerified": "2026-07-05",
+    "nextReviewDue": "2026-10-03",
+    "supersedes": [],
+    "supersededBy": []
+  },
   "rules": [
-
     {
       "id": "ML-001",
       "title": "Review Meghalaya Shops and Establishments Registration",
-      "priority": "Mandatory",
-      "category": "Shops & Establishments",
       "description": "Determine whether registration under the applicable Meghalaya Shops and Establishments legislation is required.",
+      "category": "Shops & Establishments",
+      "priority": "Mandatory",
       "applicability": {
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
         "entityTypes": [
           "*"
         ],
         "industries": [
           "*"
-        ]
+        ],
+        "jurisdictions": [
+          "IN-ML"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "ML-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Applicable Meghalaya Shops and Establishments legislation"
+          "sourceId": "ML-LABOUR",
+          "citation": {
+            "reference": "Applicable Meghalaya Shops and Establishments legislation",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "ML-002",
       "title": "Maintain Statutory Registers and Employment Records",
-      "priority": "Mandatory",
-      "category": "Documentation",
       "description": "Maintain statutory registers, employee records and prescribed notices under Meghalaya labour legislation.",
+      "category": "Documentation",
+      "priority": "Mandatory",
       "applicability": {
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
         "entityTypes": [
           "*"
         ],
         "industries": [
           "*"
-        ]
+        ],
+        "jurisdictions": [
+          "IN-ML"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "ML-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Applicable Meghalaya Labour Rules"
+          "sourceId": "ML-LABOUR",
+          "citation": {
+            "reference": "Applicable Meghalaya Labour Rules",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "ML-003",
       "title": "Display Statutory Notices",
-      "priority": "Mandatory",
-      "category": "Documentation",
       "description": "Display statutory notices and employee information required under applicable labour legislation.",
+      "category": "Documentation",
+      "priority": "Mandatory",
       "applicability": {
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
         "entityTypes": [
           "*"
         ],
         "industries": [
           "*"
-        ]
+        ],
+        "jurisdictions": [
+          "IN-ML"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "ML-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Applicable Meghalaya Labour Rules"
+          "sourceId": "ML-LABOUR",
+          "citation": {
+            "reference": "Applicable Meghalaya Labour Rules",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "ML-004",
       "title": "Review Working Hours, Overtime, Leave and Weekly Holidays",
-      "priority": "Mandatory",
-      "category": "Working Conditions",
       "description": "Ensure compliance with Meghalaya provisions governing working hours, overtime, leave and weekly holidays.",
+      "category": "Working Conditions",
+      "priority": "Mandatory",
       "applicability": {
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
         "entityTypes": [
           "*"
         ],
         "industries": [
           "*"
-        ]
+        ],
+        "jurisdictions": [
+          "IN-ML"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "ML-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Applicable Meghalaya Shops and Establishments Rules"
+          "sourceId": "ML-LABOUR",
+          "citation": {
+            "reference": "Applicable Meghalaya Shops and Establishments Rules",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "ML-005",
       "title": "Review Minimum Wage Notifications",
-      "priority": "Mandatory",
-      "category": "Minimum Wages",
       "description": "Ensure employee wages comply with the latest minimum wage notifications applicable in Meghalaya.",
+      "category": "Minimum Wages",
+      "priority": "Mandatory",
       "applicability": {
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
         "entityTypes": [
           "*"
         ],
         "industries": [
           "*"
-        ]
+        ],
+        "jurisdictions": [
+          "IN-ML"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "ML-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Government of Meghalaya Minimum Wage Notifications"
+          "sourceId": "ML-LABOUR",
+          "citation": {
+            "reference": "Government of Meghalaya Minimum Wage Notifications",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "ML-006",
       "title": "Monitor State Labour Notifications",
-      "priority": "Mandatory",
-      "category": "State Notifications",
       "description": "Review labour department notifications, amendments and circulars issued by the Government of Meghalaya.",
+      "category": "State Notifications",
+      "priority": "Mandatory",
       "applicability": {
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
         "entityTypes": [
           "*"
         ],
         "industries": [
           "*"
-        ]
+        ],
+        "jurisdictions": [
+          "IN-ML"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-      "sourceId": "ML-LABOUR",
-      "citations": [
+      "evidence": [
         {
-          "reference": "Government of Meghalaya Labour Notifications"
+          "sourceId": "ML-LABOUR",
+          "citation": {
+            "reference": "Government of Meghalaya Labour Notifications",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     }
-
   ],
-
-  "recommended": [
-
+  "recommendations": [
     {
       "id": "MLR-001",
       "title": "Annual Labour Compliance Audit",
       "description": "Conduct an annual audit covering statutory registrations, labour records, payroll compliance and inspection readiness."
     },
-
     {
       "id": "MLR-002",
       "title": "Digital Compliance Calendar",
       "description": "Maintain a digital calendar for statutory filings, inspections, licence renewals and labour compliance due dates."
     }
-
   ],
-
-  "references": [
-
+  "sources": [
     {
-      "sourceId": "ML-LABOUR"
+      "sourceId": "ML-LABOUR",
+      "name": "Labour Department, Government of Meghalaya",
+      "sourceType": "official_portal",
+      "url": null,
+      "authority": "Labour Department, Government of Meghalaya",
+      "publishedAt": null,
+      "accessedAt": "2026-07-05",
+      "verificationStatus": "partially_verified"
     },
-
     {
-      "sourceId": "MOL"
+      "sourceId": "MOL",
+      "name": "Ministry of Labour & Employment",
+      "sourceType": "official_portal",
+      "url": "https://labour.gov.in",
+      "authority": "Ministry of Labour & Employment",
+      "publishedAt": null,
+      "accessedAt": "2026-07-05",
+      "verificationStatus": "partially_verified"
     },
-
     {
-      "sourceId": "INDIACODE"
+      "sourceId": "INDIACODE",
+      "name": "India Code",
+      "sourceType": "official_portal",
+      "url": "https://www.indiacode.nic.in",
+      "authority": "India Code",
+      "publishedAt": null,
+      "accessedAt": "2026-07-05",
+      "verificationStatus": "partially_verified"
     }
-
-  ]
-
+  ],
+  "governance": {
+    "owner": "GrowWithHR Compliance Data Team",
+    "reviewCadenceDays": 90,
+    "approvalStatus": "draft",
+    "approvedBy": null,
+    "approvedAt": null,
+    "changeSummary": "Migrated the existing Meghalaya labour law record to compliance-law schema version 1.0 without independently expanding its legal coverage."
+  }
 }
