@@ -1,6 +1,6 @@
 import {
     expect,
-    Page,
+    type Page,
     test
 } from "@playwright/test";
 
@@ -16,3 +16,235 @@ const VIEWPORTS = [
 async function expectNoHorizontalOverflow(
     page: Page
 ): Promise<void> {
+    const overflow = await page.evaluate(() => {
+        return (
+            document.documentElement.scrollWidth >
+            document.documentElement.clientWidth + 1
+        );
+    });
+
+    expect(overflow).toBe(false);
+}
+
+async function expectElementsInsideViewport(
+    page: Page,
+    selector: string
+): Promise<void> {
+    const results = await page.locator(selector).evaluateAll(
+        (elements) => {
+            return elements.map((element) => {
+                const rect = element.getBoundingClientRect();
+
+                return {
+                    left: rect.left,
+                    right: rect.right,
+                    width: rect.width
+                };
+            });
+        }
+    );
+
+    expect(results.length).toBeGreaterThan(0);
+
+    for (const result of results) {
+        expect(result.width).toBeGreaterThan(0);
+        expect(result.left).toBeGreaterThanOrEqual(-1);
+        expect(result.right).toBeLessThanOrEqual(
+            page.viewportSize()!.width + 1
+        );
+    }
+}
+
+test.describe(
+    "homepage responsive layout",
+    () => {
+        for (const viewport of VIEWPORTS) {
+            test(
+                `keeps the current homepage contract at ${viewport.width}x${viewport.height}`,
+                async ({ page }) => {
+                    await page.setViewportSize(viewport);
+                    await page.goto("/?e2e=1");
+
+                    const executiveStack =
+                        page.getByTestId(
+                            "home-executive-stack"
+                        );
+                    const processStack =
+                        page.getByTestId(
+                            "home-process-stack"
+                        );
+                    const capabilitiesStack =
+                        page.getByTestId(
+                            "home-capabilities-stack"
+                        );
+
+                    await expect(
+                        executiveStack
+                    ).toBeVisible();
+                    await expect(
+                        processStack
+                    ).toBeVisible();
+                    await expect(
+                        capabilitiesStack
+                    ).toBeVisible();
+
+                    const executiveCards =
+                        executiveStack.locator(
+                            ":scope > .workspace-card"
+                        );
+                    const processCards =
+                        processStack.locator(
+                            ":scope > .how-card"
+                        );
+                    const capabilityCards =
+                        capabilitiesStack.locator(
+                            ":scope > .capability-slide"
+                        );
+
+                    await expect(
+                        executiveCards
+                    ).toHaveCount(3);
+                    await expect(
+                        processCards
+                    ).toHaveCount(3);
+                    await expect(
+                        capabilityCards
+                    ).toHaveCount(8);
+
+                    await expect(
+                        executiveCards.first()
+                    ).toHaveCSS(
+                        "position",
+                        "relative"
+                    );
+                    await expect(
+                        processCards.first()
+                    ).toHaveCSS(
+                        "position",
+                        "relative"
+                    );
+                    await expect(
+                        capabilityCards.first()
+                    ).toHaveCSS(
+                        "position",
+                        "relative"
+                    );
+
+                    await expectElementsInsideViewport(
+                        page,
+                        '[data-testid="home-executive-stack"] > .workspace-card'
+                    );
+                    await expectElementsInsideViewport(
+                        page,
+                        '[data-testid="home-process-stack"] > .how-card'
+                    );
+
+                    await expectNoHorizontalOverflow(
+                        page
+                    );
+                }
+            );
+        }
+
+        test(
+            "renders the self-contained intelligence graph",
+            async ({ page }) => {
+                await page.setViewportSize({
+                    width: 1440,
+                    height: 900
+                });
+                await page.goto("/?e2e=1");
+
+                const graph = page.locator(
+                    "#dnaCoreCanvas"
+                );
+                const canvas = graph.locator(
+                    "canvas[data-growwithhr-intelligence-core]"
+                );
+
+                await expect(graph).toBeVisible();
+                await expect(graph).toHaveAttribute(
+                    "data-renderer",
+                    "canvas-2d"
+                );
+                await expect(graph).toHaveAttribute(
+                    "data-ready",
+                    "true"
+                );
+                await expect(canvas).toHaveCount(1);
+
+                const dimensions =
+                    await canvas.evaluate(
+                        (element) => {
+                            const canvasElement =
+                                element as HTMLCanvasElement;
+                            const rect =
+                                canvasElement
+                                    .getBoundingClientRect();
+
+                            return {
+                                cssWidth: rect.width,
+                                cssHeight: rect.height,
+                                bitmapWidth:
+                                    canvasElement.width,
+                                bitmapHeight:
+                                    canvasElement.height
+                            };
+                        }
+                    );
+
+                expect(
+                    dimensions.cssWidth
+                ).toBeGreaterThan(250);
+                expect(
+                    dimensions.cssHeight
+                ).toBeGreaterThan(250);
+                expect(
+                    dimensions.bitmapWidth
+                ).toBeGreaterThanOrEqual(
+                    Math.floor(
+                        dimensions.cssWidth
+                    )
+                );
+                expect(
+                    dimensions.bitmapHeight
+                ).toBeGreaterThanOrEqual(
+                    Math.floor(
+                        dimensions.cssHeight
+                    )
+                );
+
+                const diagnostics =
+                    await page.evaluate(
+                        () => {
+                            return (
+                                window as Window & {
+                                    GrowWithHRIntelligenceCore?: {
+                                        renderer: string;
+                                        ready: boolean;
+                                        getState(): {
+                                            width: number;
+                                            height: number;
+                                        };
+                                    };
+                                }
+                            ).GrowWithHRIntelligenceCore;
+                        }
+                    );
+
+                expect(
+                    diagnostics?.renderer
+                ).toBe("canvas-2d");
+                expect(
+                    diagnostics?.ready
+                ).toBe(true);
+                expect(
+                    diagnostics?.getState().width
+                ).toBeGreaterThan(250);
+                expect(
+                    diagnostics?.getState().height
+                ).toBeGreaterThan(250);
+            }
+        );
+    }
+);
