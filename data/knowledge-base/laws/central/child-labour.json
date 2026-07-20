@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0",
-  "recordVersion": "1.0.0",
+  "recordVersion": "1.1.0",
   "id": "CENTRAL-CHILD-LABOUR",
   "name": "Child and Adolescent Labour (Prohibition and Regulation) Act, 1986",
   "shortName": "Child Labour Act",
@@ -21,8 +21,8 @@
   "temporal": {
     "effectiveFrom": null,
     "effectiveTo": null,
-    "lastVerified": "2026-07-05",
-    "nextReviewDue": "2026-10-03",
+    "lastVerified": "2026-07-20",
+    "nextReviewDue": "2026-08-19",
     "supersedes": [],
     "supersededBy": []
   },
@@ -85,15 +85,15 @@
             "excerpt": ""
           },
           "publishedAt": null,
-          "accessedAt": "2026-07-05",
+          "accessedAt": "2026-07-20",
           "verificationStatus": "partially_verified"
         }
       ],
       "temporal": {
         "effectiveFrom": null,
         "effectiveTo": null,
-        "lastVerified": "2026-07-05",
-        "nextReviewDue": "2026-10-03",
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
         "supersedes": [],
         "supersededBy": []
       }
@@ -139,15 +139,15 @@
             "excerpt": ""
           },
           "publishedAt": null,
-          "accessedAt": "2026-07-05",
+          "accessedAt": "2026-07-20",
           "verificationStatus": "partially_verified"
         }
       ],
       "temporal": {
         "effectiveFrom": null,
         "effectiveTo": null,
-        "lastVerified": "2026-07-05",
-        "nextReviewDue": "2026-10-03",
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
         "supersedes": [],
         "supersededBy": []
       }
@@ -193,15 +193,15 @@
             "excerpt": ""
           },
           "publishedAt": null,
-          "accessedAt": "2026-07-05",
+          "accessedAt": "2026-07-20",
           "verificationStatus": "partially_verified"
         }
       ],
       "temporal": {
         "effectiveFrom": null,
         "effectiveTo": null,
-        "lastVerified": "2026-07-05",
-        "nextReviewDue": "2026-10-03",
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
         "supersedes": [],
         "supersededBy": []
       }
@@ -247,15 +247,15 @@
             "excerpt": ""
           },
           "publishedAt": null,
-          "accessedAt": "2026-07-05",
+          "accessedAt": "2026-07-20",
           "verificationStatus": "partially_verified"
         }
       ],
       "temporal": {
         "effectiveFrom": null,
         "effectiveTo": null,
-        "lastVerified": "2026-07-05",
-        "nextReviewDue": "2026-10-03",
+        "lastVerified": "2026-07-20",
+        "nextReviewDue": "2026-08-19",
         "supersedes": [],
         "supersededBy": []
       }
@@ -276,7 +276,7 @@
       "url": "https://labour.gov.in",
       "authority": "Ministry of Labour & Employment",
       "publishedAt": null,
-      "accessedAt": "2026-07-05",
+      "accessedAt": "2026-07-20",
       "verificationStatus": "partially_verified"
     },
     {
@@ -286,16 +286,16 @@
       "url": "https://www.indiacode.nic.in",
       "authority": "India Code",
       "publishedAt": null,
-      "accessedAt": "2026-07-05",
+      "accessedAt": "2026-07-20",
       "verificationStatus": "partially_verified"
     }
   ],
   "governance": {
     "owner": "GrowWithHR Compliance Data Team",
-    "reviewCadenceDays": 90,
+    "reviewCadenceDays": 30,
     "approvalStatus": "draft",
     "approvedBy": null,
     "approvedAt": null,
-    "changeSummary": "Migrated the existing Child and Adolescent Labour record to compliance-law schema version 1.0 without independently expanding its legal coverage."
+    "changeSummary": "Refreshed the standalone Child and Adolescent Labour record for the post-Labour-Code framework. The Act remains active and is not among the enactments repealed by the four Labour Codes."
   }
 }
