@@ -1,246 +1,405 @@
 {
-  "stateId": "LD",
-  "stateName": "Lakshadweep",
-  "lastVerified": "2026-07-05",
-  "status": "Active",
-
+  "schemaVersion": "1.0",
+  "recordVersion": "1.0.0",
+  "id": "STATE-LD",
+  "name": "Lakshadweep Labour Laws",
+  "shortName": "Lakshadweep",
+  "overview": "Union Territory-specific labour law requirements applicable to establishments operating in Lakshadweep.",
+  "jurisdiction": {
+    "country": "IN",
+    "level": "union_territory",
+    "code": "IN-LD",
+    "stateCode": "LD"
+  },
   "authority": {
-    "department": "Labour Department, Administration of the Union Territory of Lakshadweep",
+    "name": "Labour Department, Administration of the Union Territory of Lakshadweep",
     "sourceId": "LD-LABOUR"
   },
-
-  "overview": "Union Territory-specific labour law requirements applicable to establishments operating in Lakshadweep.",
-
+  "status": "active",
+  "temporal": {
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "lastVerified": "2026-07-05",
+    "nextReviewDue": "2026-10-03",
+    "supersedes": [],
+    "supersededBy": []
+  },
   "rules": [
-
     {
       "id": "LD-001",
-
       "title": "Review Shops and Establishments Registration",
-
-      "priority": "Mandatory",
-
-      "category": "Shops & Establishments",
-
       "description": "Determine whether registration under the applicable Shops and Establishments legislation is required.",
-
+      "category": "Shops & Establishments",
+      "priority": "Mandatory",
       "applicability": {
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
         "entityTypes": [
           "*"
         ],
         "industries": [
           "*"
-        ]
+        ],
+        "jurisdictions": [
+          "IN-LD"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-
-      "sourceId": "LD-LABOUR",
-
-      "citations": [
+      "evidence": [
         {
-          "reference": "Applicable Lakshadweep Shops and Establishments legislation"
+          "sourceId": "LD-LABOUR",
+          "citation": {
+            "reference": "Applicable Lakshadweep Shops and Establishments legislation",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "LD-002",
-
       "title": "Maintain Statutory Registers and Employment Records",
-
-      "priority": "Mandatory",
-
-      "category": "Documentation",
-
       "description": "Maintain statutory registers, employee records and prescribed notices under applicable labour legislation.",
-
+      "category": "Documentation",
+      "priority": "Mandatory",
       "applicability": {
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
         "entityTypes": [
           "*"
         ],
         "industries": [
           "*"
-        ]
+        ],
+        "jurisdictions": [
+          "IN-LD"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-
-      "sourceId": "LD-LABOUR",
-
-      "citations": [
+      "evidence": [
         {
-          "reference": "Applicable Lakshadweep Labour Rules"
+          "sourceId": "LD-LABOUR",
+          "citation": {
+            "reference": "Applicable Lakshadweep Labour Rules",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "LD-003",
-
       "title": "Display Statutory Notices",
-
-      "priority": "Mandatory",
-
-      "category": "Documentation",
-
       "description": "Display statutory notices and employee information required under applicable labour legislation.",
-
+      "category": "Documentation",
+      "priority": "Mandatory",
       "applicability": {
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
         "entityTypes": [
           "*"
         ],
         "industries": [
           "*"
-        ]
+        ],
+        "jurisdictions": [
+          "IN-LD"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-
-      "sourceId": "LD-LABOUR",
-
-      "citations": [
+      "evidence": [
         {
-          "reference": "Applicable Lakshadweep Labour Rules"
+          "sourceId": "LD-LABOUR",
+          "citation": {
+            "reference": "Applicable Lakshadweep Labour Rules",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "LD-004",
-
       "title": "Review Working Hours, Leave and Weekly Holidays",
-
-      "priority": "Mandatory",
-
-      "category": "Working Conditions",
-
       "description": "Ensure compliance with applicable provisions governing working hours, overtime, leave and weekly holidays.",
-
+      "category": "Working Conditions",
+      "priority": "Mandatory",
       "applicability": {
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
         "entityTypes": [
           "*"
         ],
         "industries": [
           "*"
-        ]
+        ],
+        "jurisdictions": [
+          "IN-LD"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-
-      "sourceId": "LD-LABOUR",
-
-      "citations": [
+      "evidence": [
         {
-          "reference": "Applicable Lakshadweep Shops and Establishments Rules"
+          "sourceId": "LD-LABOUR",
+          "citation": {
+            "reference": "Applicable Lakshadweep Shops and Establishments Rules",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "LD-005",
-
       "title": "Review Minimum Wage Notifications",
-
-      "priority": "Mandatory",
-
-      "category": "Minimum Wages",
-
       "description": "Ensure employee wages comply with the latest minimum wage notifications applicable in Lakshadweep.",
-
+      "category": "Minimum Wages",
+      "priority": "Mandatory",
       "applicability": {
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
         "entityTypes": [
           "*"
         ],
         "industries": [
           "*"
-        ]
+        ],
+        "jurisdictions": [
+          "IN-LD"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-
-      "sourceId": "LD-LABOUR",
-
-      "citations": [
+      "evidence": [
         {
-          "reference": "Lakshadweep Minimum Wage Notifications"
+          "sourceId": "LD-LABOUR",
+          "citation": {
+            "reference": "Lakshadweep Minimum Wage Notifications",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     },
-
     {
       "id": "LD-006",
-
       "title": "Monitor Union Territory Labour Notifications",
-
-      "priority": "Mandatory",
-
-      "category": "State Notifications",
-
       "description": "Review labour department notifications, circulars and amendments issued by the Union Territory Administration.",
-
+      "category": "State Notifications",
+      "priority": "Mandatory",
       "applicability": {
         "employeeCount": {
-          "min": 1
+          "min": 1,
+          "max": null
         },
         "entityTypes": [
           "*"
         ],
         "industries": [
           "*"
-        ]
+        ],
+        "jurisdictions": [
+          "IN-LD"
+        ],
+        "workerTypes": [
+          "*"
+        ],
+        "womenEmployees": "any",
+        "contractWorkers": "any",
+        "factory": "any",
+        "warehouse": "any",
+        "conditions": [],
+        "exclusions": []
       },
-
-      "sourceId": "LD-LABOUR",
-
-      "citations": [
+      "evidence": [
         {
-          "reference": "Lakshadweep Labour Department Notifications"
+          "sourceId": "LD-LABOUR",
+          "citation": {
+            "reference": "Lakshadweep Labour Department Notifications",
+            "section": "",
+            "rule": "",
+            "page": "",
+            "excerpt": ""
+          },
+          "publishedAt": null,
+          "accessedAt": "2026-07-05",
+          "verificationStatus": "partially_verified"
         }
-      ]
+      ],
+      "temporal": {
+        "effectiveFrom": null,
+        "effectiveTo": null,
+        "lastVerified": "2026-07-05",
+        "nextReviewDue": "2026-10-03",
+        "supersedes": [],
+        "supersededBy": []
+      }
     }
-
   ],
-
-  "recommended": [
-
+  "recommendations": [
     {
       "id": "LDR-001",
-
       "title": "Annual Labour Compliance Audit",
-
       "description": "Conduct an annual audit covering registrations, payroll compliance, statutory records and inspection readiness."
     },
-
     {
       "id": "LDR-002",
-
       "title": "Digital Compliance Calendar",
-
       "description": "Maintain a digital compliance calendar for statutory filings, inspections, licence renewals and compliance due dates."
     }
-
   ],
-
-  "references": [
-
+  "sources": [
     {
-      "sourceId": "LD-LABOUR"
+      "sourceId": "LD-LABOUR",
+      "name": "Labour Department, Administration of the Union Territory of Lakshadweep",
+      "sourceType": "official_portal",
+      "url": null,
+      "authority": "Labour Department, Administration of the Union Territory of Lakshadweep",
+      "publishedAt": null,
+      "accessedAt": "2026-07-05",
+      "verificationStatus": "partially_verified"
     },
-
     {
-      "sourceId": "MOL"
+      "sourceId": "MOL",
+      "name": "Ministry of Labour & Employment",
+      "sourceType": "official_portal",
+      "url": "https://labour.gov.in",
+      "authority": "Ministry of Labour & Employment",
+      "publishedAt": null,
+      "accessedAt": "2026-07-05",
+      "verificationStatus": "partially_verified"
     },
-
     {
-      "sourceId": "INDIACODE"
+      "sourceId": "INDIACODE",
+      "name": "India Code",
+      "sourceType": "official_portal",
+      "url": "https://www.indiacode.nic.in",
+      "authority": "India Code",
+      "publishedAt": null,
+      "accessedAt": "2026-07-05",
+      "verificationStatus": "partially_verified"
     }
-
-  ]
-
+  ],
+  "governance": {
+    "owner": "GrowWithHR Compliance Data Team",
+    "reviewCadenceDays": 90,
+    "approvalStatus": "draft",
+    "approvedBy": null,
+    "approvedAt": null,
+    "changeSummary": "Migrated the existing Lakshadweep labour law record to compliance-law schema version 1.0 without independently expanding its legal coverage."
+  }
 }
