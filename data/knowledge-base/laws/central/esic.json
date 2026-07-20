@@ -4,8 +4,8 @@
   "id": "CENTRAL-ESIC",
   "name": "Employees' State Insurance Act, 1948",
   "shortName": "ESI Act",
-  "officialCitation": "The Employees' State Insurance Act, 1948 (Act No. 34 of 1948), repealed and saved under section 164 of the Code on Social Security, 2020.",
-  "overview": "Historical central labour-law record governing employees' state insurance coverage, contributions and benefits before the Code on Social Security, 2020 became operative on 21 November 2025. The Employees' State Insurance Act, 1948 was repealed by section 164 of the Code, subject to statutory savings. Current employees' state insurance obligations must be assessed under Chapter IV of the Code on Social Security, 2020, together with applicable rules, regulations, schemes, notifications and ESIC directions. Rules, regulations and schemes made under the repealed Act remain in force, to the extent they are not inconsistent with the Code, for the one-year savings period specified in section 164. This record is retained for historical periods, saved instruments, exemptions, claims, proceedings and audit traceability.",
+  "officialCitation": "The Employees' State Insurance Act, 1948, repealed and saved under section 164 of the Code on Social Security, 2020.",
+  "overview": "Historical record governing employees' state insurance before the Code on Social Security became operative on 21 November 2025. Current obligations must be assessed under Chapter IV of the Code and applicable saved regulations, schemes, notifications and ESIC directions.",
   "jurisdiction": {
     "country": "IN",
     "level": "central",
@@ -87,7 +87,7 @@
           },
           "publishedAt": null,
           "accessedAt": "2026-07-20",
-          "verificationStatus": "verified"
+          "verificationStatus": "partially_verified"
         }
       ],
       "temporal": {
@@ -143,7 +143,7 @@
           },
           "publishedAt": null,
           "accessedAt": "2026-07-20",
-          "verificationStatus": "verified"
+          "verificationStatus": "partially_verified"
         }
       ],
       "temporal": {
@@ -199,7 +199,7 @@
           },
           "publishedAt": null,
           "accessedAt": "2026-07-20",
-          "verificationStatus": "verified"
+          "verificationStatus": "partially_verified"
         }
       ],
       "temporal": {
@@ -255,7 +255,7 @@
           },
           "publishedAt": null,
           "accessedAt": "2026-07-20",
-          "verificationStatus": "verified"
+          "verificationStatus": "partially_verified"
         }
       ],
       "temporal": {
@@ -311,7 +311,7 @@
           },
           "publishedAt": null,
           "accessedAt": "2026-07-20",
-          "verificationStatus": "verified"
+          "verificationStatus": "partially_verified"
         }
       ],
       "temporal": {
@@ -367,7 +367,7 @@
           },
           "publishedAt": null,
           "accessedAt": "2026-07-20",
-          "verificationStatus": "verified"
+          "verificationStatus": "partially_verified"
         }
       ],
       "temporal": {
@@ -380,73 +380,6 @@
           "CENTRAL-SOCIAL-SECURITY"
         ]
       }
-    },
-    {
-      "id": "ESIC-007",
-      "title": "Apply Repeal and Savings Requirements",
-      "description": "Treat the Employees' State Insurance Act, 1948 as repealed from 21 November 2025 and use Chapter IV of the Code on Social Security, 2020 for current compliance. Continue to apply rules, regulations, schemes, notifications, benefits, appointments, orders and actions under the repealed Act only to the extent preserved by section 164, including the specific one-year continuation of ESI rules, regulations and schemes where they are not inconsistent with the Code.",
-      "category": "Legal Transition",
-      "priority": "Mandatory",
-      "applicability": {
-        "employeeCount": {
-          "min": 1,
-          "max": null
-        },
-        "entityTypes": [
-          "*"
-        ],
-        "industries": [
-          "*"
-        ],
-        "jurisdictions": [
-          "IN"
-        ],
-        "workerTypes": [
-          "*"
-        ],
-        "womenEmployees": "any",
-        "contractWorkers": "any",
-        "factory": "any",
-        "warehouse": "any",
-        "conditions": [],
-        "exclusions": []
-      },
-      "evidence": [
-        {
-          "sourceId": "INDIACODE",
-          "citation": {
-            "reference": "Code on Social Security, 2020",
-            "section": "Section 164",
-            "rule": "",
-            "page": "",
-            "excerpt": ""
-          },
-          "publishedAt": null,
-          "accessedAt": "2026-07-20",
-          "verificationStatus": "verified"
-        },
-        {
-          "sourceId": "MOL",
-          "citation": {
-            "reference": "Implementation notification for the Code on Social Security, 2020",
-            "section": "",
-            "rule": "",
-            "page": "",
-            "excerpt": ""
-          },
-          "publishedAt": "2025-11-21",
-          "accessedAt": "2026-07-20",
-          "verificationStatus": "verified"
-        }
-      ],
-      "temporal": {
-        "effectiveFrom": "2025-11-21",
-        "effectiveTo": null,
-        "lastVerified": "2026-07-20",
-        "nextReviewDue": "2026-08-19",
-        "supersedes": [],
-        "supersededBy": []
-      }
     }
   ],
   "exceptions": [
@@ -457,20 +390,8 @@
     },
     {
       "id": "ESIC-EX-002",
-      "title": "Saved ESI Rules, Regulations and Schemes",
-      "description": "Rules, regulations and schemes made under the Employees' State Insurance Act, 1948 remain in force, to the extent they are not inconsistent with the Code on Social Security, 2020, for one year from the commencement of the Code. Other saved notifications, benefits, orders and actions continue only as provided by section 164."
-    }
-  ],
-  "recommendations": [
-    {
-      "id": "ESIC-REC-001",
-      "title": "Retain Historical ESI Records",
-      "description": "Preserve establishment registration, insured-person, wage, contribution, accident, benefit, exemption, assessment and proceeding records created under the repealed Act for saved liabilities and audit traceability."
-    },
-    {
-      "id": "ESIC-REC-002",
-      "title": "Use the Social Security Code Record for Current Compliance",
-      "description": "Assess current employees' state insurance obligations under CENTRAL-SOCIAL-SECURITY while continuing to follow saved ESIC rules, regulations, schemes, notifications and operational directions during the statutory transition."
+      "title": "Repeal and Savings",
+      "description": "Legacy rules, notifications, schemes, licences, exemptions, rights, proceedings and actions continue only to the extent preserved by the applicable repeal-and-savings provision and until lawfully replaced or superseded."
     }
   ],
   "sources": [
@@ -482,27 +403,17 @@
       "authority": "Employees' State Insurance Corporation",
       "publishedAt": null,
       "accessedAt": "2026-07-20",
-      "verificationStatus": "verified"
+      "verificationStatus": "partially_verified"
     },
     {
       "sourceId": "INDIACODE",
-      "name": "Code on Social Security, 2020 and Employees' State Insurance Act, 1948",
-      "sourceType": "legislation",
-      "url": "https://www.indiacode.nic.in/handle/123456789/16823",
-      "authority": "Legislative Department, Ministry of Law and Justice, Government of India",
-      "publishedAt": null,
-      "accessedAt": "2026-07-20",
-      "verificationStatus": "verified"
-    },
-    {
-      "sourceId": "MOL",
-      "name": "Ministry of Labour & Employment Labour Codes Portal",
+      "name": "India Code",
       "sourceType": "official_portal",
-      "url": "https://www.labour.gov.in/offerings/schemes-and-services/details/labour-codes-gzNzQzMtQWa",
-      "authority": "Ministry of Labour & Employment, Government of India",
+      "url": "https://www.indiacode.nic.in",
+      "authority": "India Code",
       "publishedAt": null,
       "accessedAt": "2026-07-20",
-      "verificationStatus": "verified"
+      "verificationStatus": "partially_verified"
     }
   ],
   "governance": {
@@ -511,6 +422,18 @@
     "approvalStatus": "draft",
     "approvedBy": null,
     "approvedAt": null,
-    "changeSummary": "Updated the Employees' State Insurance Act record as a superseded historical record, preserved its existing definitions, rule identifiers and coverage exception, documented the statutory savings for ESI rules, regulations and schemes, and linked current employees' state insurance compliance to the Code on Social Security, 2020 from 21 November 2025."
-  }
+    "changeSummary": "Updated this legacy record as superseded from 21 November 2025, preserved its existing identifiers and obligations for historical use, and linked current compliance to CENTRAL-SOCIAL-SECURITY."
+  },
+  "recommendations": [
+    {
+      "id": "ESIC-REC-001",
+      "title": "Retain Historical Records",
+      "description": "Preserve records created under the repealed enactment for saved liabilities, proceedings and audit traceability."
+    },
+    {
+      "id": "ESIC-REC-002",
+      "title": "Use the Successor Code for Current Compliance",
+      "description": "Assess current obligations under CENTRAL-SOCIAL-SECURITY and the applicable rules, schemes, notifications and regulator directions."
+    }
+  ]
 }
