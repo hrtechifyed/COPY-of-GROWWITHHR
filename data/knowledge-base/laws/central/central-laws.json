@@ -727,7 +727,7 @@
   "governance": {
     "owner": "GrowWithHR Compliance Data Team",
     "reviewCadenceDays": 30,
-    "approvalStatus": "in_review",
+    "approvalStatus": "draft",
     "approvedBy": null,
     "approvedAt": null,
     "changeSummary": "Expanded the empty central-law index into an active umbrella framework reflecting the four Labour Codes effective from 21 November 2025, the 2026 Central Rules, continuing standalone central employment laws, and the required transition of subsumed legacy records."
