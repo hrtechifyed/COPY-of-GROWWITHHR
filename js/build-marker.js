@@ -2,7 +2,7 @@
 (() => {
     "use strict";
 
-    const BUILD_ID = "presentation-polish-20260721-0003";
+    const BUILD_ID = "presentation-polish-20260721-0005";
     const scriptUrl = document.currentScript?.src || window.location.href;
     const rootUrl = new URL("../", scriptUrl);
     const params = new URLSearchParams(window.location.search);
@@ -15,13 +15,24 @@
         console.info(prefix, payload);
     };
 
-    const loadPresentationStyles = () => {
-        if (document.querySelector("link[data-growwithhr-presentation-polish]")) return;
+    const appendStylesheet = (path, marker) => {
+        if (document.querySelector(`link[${marker}]`)) return;
         const link = document.createElement("link");
         link.rel = "stylesheet";
-        link.href = new URL("css/19-presentation-polish.css", rootUrl).href;
-        link.dataset.growwithhrPresentationPolish = "true";
+        link.href = new URL(path, rootUrl).href;
+        link.setAttribute(marker, "true");
         document.head.appendChild(link);
+    };
+
+    const loadPresentationStyles = () => {
+        appendStylesheet(
+            "css/19-presentation-polish.css",
+            "data-growwithhr-presentation-polish"
+        );
+        appendStylesheet(
+            "css/21-logo-restore.css",
+            "data-growwithhr-original-logo"
+        );
     };
 
     const integrateBrandIntoNavigation = () => {
@@ -38,7 +49,7 @@
 
         if (image) {
             image.src = new URL(
-                "assets/hrtechify-logo-transparent.svg",
+                "assets/hrtechify-logo.png",
                 rootUrl
             ).href;
         }
