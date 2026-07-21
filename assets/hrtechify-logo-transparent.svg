@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+  <title id="title">HRTechify</title>
+  <desc id="desc">Transparent HRTechify avatar brand mark.</desc>
+  <defs>
+    <linearGradient id="ring" x1="20" y1="16" x2="136" y2="142" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFD35A"/>
+      <stop offset=".48" stop-color="#FF8A00"/>
+      <stop offset="1" stop-color="#FF3D00"/>
+    </linearGradient>
+    <radialGradient id="core" cx="50%" cy="34%" r="72%">
+      <stop stop-color="#9B2500"/>
+      <stop offset="1" stop-color="#260A07"/>
+    </radialGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <circle cx="80" cy="65" r="48" fill="url(#core)" stroke="url(#ring)" stroke-width="4" filter="url(#glow)"/>
+  <path d="M57 55c1-19 11-29 24-29 15 0 25 10 24 30-7-7-14-10-24-10-9 0-17 3-24 9Z" fill="#07101E"/>
+  <path d="M61 56c0-13 8-22 20-22s20 9 20 22v10c0 15-8 25-20 25S61 81 61 66Z" fill="#FF741A"/>
+  <path d="M52 107c7-12 18-19 29-19s23 7 30 19l8 18H44Z" fill="#5C1A0C" stroke="#FF7A00" stroke-width="2"/>
+  <path d="m70 91 11 17 11-17-4-5H74Z" fill="#F8FAFC"/>
+  <text x="80" y="146" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="18" font-weight="800" fill="#FFB000" letter-spacing="-.4">HRTechify</text>
+</svg>
