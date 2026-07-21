@@ -32,9 +32,12 @@ jobs:
           node-version: "20"
 
       - name: Extract and run the audited transformation
+        id: repair
         shell: bash
         run: |
-          python3 - <<'PY'
+          set +e
+          mkdir -p repair-diagnostics
+          python3 - <<'PY' > repair-diagnostics/extraction.log 2>&1
           from pathlib import Path
           text = Path('.github/workflows/apply-client-readiness.yml').read_text()
           start_marker = "          python3 - <<'PY'\n"
@@ -45,7 +48,30 @@ jobs:
           script = '\n'.join(line[10:] if line.startswith('          ') else line for line in script.splitlines())
           Path('/tmp/apply-client-readiness.py').write_text(script + '\n')
           PY
-          python3 /tmp/apply-client-readiness.py
+          EXTRACTION_STATUS=$?
+          if [[ "$EXTRACTION_STATUS" -eq 0 ]]; then
+            python3 /tmp/apply-client-readiness.py > repair-diagnostics/transformation.log 2>&1
+            TRANSFORMATION_STATUS=$?
+          else
+            TRANSFORMATION_STATUS=99
+          fi
+          cat repair-diagnostics/extraction.log
+          cat repair-diagnostics/transformation.log 2>/dev/null || true
+          echo "status=${TRANSFORMATION_STATUS}" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Upload transformation diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: client-readiness-transformation-diagnostics
+          path: repair-diagnostics/
+          if-no-files-found: error
+          retention-days: 2
+
+      - name: Require successful transformation
+        if: steps.repair.outputs.status != '0'
+        run: exit 1
 
       - name: Install dependencies
         run: npm install --no-audit --no-fund
@@ -99,7 +125,7 @@ jobs:
           set -euo pipefail
           rm -f .github/workflows/apply-client-readiness.yml
           rm -f .github/workflows/run-client-readiness-on-pr.yml
-          rm -rf playwright-report test-results
+          rm -rf playwright-report test-results repair-diagnostics
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add --all
