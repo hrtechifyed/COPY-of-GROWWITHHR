@@ -24,7 +24,7 @@ const REPORT = {
     ]
 };
 
-test("integrates the transparent logo inside the navigation capsule", async ({ page }) => {
+test("keeps the original HRTechify logo inside the navigation capsule", async ({ page }) => {
     await page.addInitScript((report) => {
         localStorage.setItem("growwithhr-report", JSON.stringify(report));
     }, REPORT);
@@ -40,8 +40,19 @@ test("integrates the transparent logo inside the navigation capsule", async ({ p
     await expect(brand).toBeVisible();
     await expect(logo).toHaveAttribute(
         "src",
-        /assets\/hrtechify-logo-transparent\.svg$/
+        /assets\/hrtechify-logo\.png$/
     );
+
+    const presentation = await logo.evaluate((element) => {
+        const style = getComputedStyle(element);
+        return {
+            blendMode: style.mixBlendMode,
+            backgroundColor: style.backgroundColor
+        };
+    });
+
+    expect(presentation.blendMode).toBe("screen");
+    expect(presentation.backgroundColor).toBe("rgba(0, 0, 0, 0)");
 
     const boxes = await page.evaluate(() => {
         const nav = document.querySelector(".site-nav-glass")?.getBoundingClientRect();
