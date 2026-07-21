@@ -1,0 +1,69 @@
+/* GrowWithHR v0.19 report-experience additions.
+   Existing page grids, navigation and report layout remain unchanged. */
+
+.advisory-field.is-system-locked input {
+    cursor: not-allowed;
+    opacity: 0.78;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.advisory-report-theme-choice {
+    gap: 0.65rem;
+}
+
+.advisory-report-theme-choice .advisory-field-help {
+    margin: 0 0 0.25rem;
+}
+
+.advisory-report-theme-choice .advisory-consent-option {
+    align-items: flex-start;
+}
+
+.advisory-report-theme-choice strong {
+    color: var(--color-accent, #f59e0b);
+}
+
+.exec-card__implementation {
+    margin-top: 1rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid rgba(245, 158, 11, 0.28);
+}
+
+.exec-card__implementation h4 {
+    margin: 0 0 0.55rem;
+    color: var(--color-accent, #f59e0b);
+    font-size: 0.86rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.exec-card__implementation ol {
+    margin: 0;
+    padding-left: 1.2rem;
+}
+
+.exec-card__implementation li + li {
+    margin-top: 0.35rem;
+}
+
+.exec-card__resource {
+    display: inline-flex;
+    margin-top: 0.75rem;
+    font-weight: 700;
+    color: var(--color-accent, #f59e0b);
+    text-decoration: none;
+}
+
+.exec-card__resource:hover,
+.exec-card__resource:focus-visible {
+    text-decoration: underline;
+}
+
+.exec-card__meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    margin-top: 0.7rem;
+    font-size: 0.82rem;
+    opacity: 0.82;
+}
