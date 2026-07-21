@@ -1,0 +1,4 @@
+Obligation or policy,Jurisdiction or location,Frequency,Due date,Reminder 1,Reminder 2,Accountable owner,Supporting evidence,Status,Next review,Notes
+Example: Shops and Establishments registration,Primary operating state,Annual,YYYY-MM-DD,30 days before,7 days before,HR or compliance owner,Registration certificate,Not started,YYYY-MM-DD,Confirm applicability with qualified adviser
+Example: Payroll statutory filing,Applicable jurisdiction,Monthly,YYYY-MM-DD,7 days before,2 days before,Payroll owner,Filing receipt,Not started,YYYY-MM-DD,Record payment and filing evidence
+Example: Policy review,All locations,Annual,YYYY-MM-DD,30 days before,14 days before,Policy owner,Approved policy and communication record,Not started,YYYY-MM-DD,Verify current law and operating changes
