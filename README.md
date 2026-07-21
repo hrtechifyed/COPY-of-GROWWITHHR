@@ -20,6 +20,7 @@ The old `/assessment.html` URL redirects to the public assessment so visitors en
 - Deterministic stable advisory/report mapping.
 - Browser-generated PDF download.
 - Optional email delivery through the Node/Express Gmail API backend.
+- GitHub Pages delivery is routed to the Render API through an origin-restricted CORS bridge.
 - M1-M3 private-beta Compliance DNA foundations: Five-Act presentation, deterministic traceability and Compliance Story presentation.
 
 The private-beta route does not replace the public assessment and does not mutate protected report, PDF, email or delivery contracts.
@@ -30,6 +31,13 @@ The private-beta route does not replace the public assessment and does not mutat
 
 GrowWithHR currently has no customer account system, cloud-save service or dedicated assessment database. See `docs/DATA_FLOW.md` and the public privacy section in `more-info.html`.
 
+## Deployment routes
+
+- GitHub Pages client route: `https://hrtechifyed.github.io/GrowwithHR-Version2/analyze-company.html`
+- Render API and full-stack route: `https://growwithhr.onrender.com/analyze-company.html`
+- The GitHub Pages client calls `https://growwithhr.onrender.com/api/send-advisory` only from the approved `https://hrtechifyed.github.io` origin.
+- Additional approved frontend origins may be supplied to Render through the comma-separated `ALLOWED_CORS_ORIGINS` environment variable.
+
 ## Repository map
 
 - `index.html` — public homepage.
@@ -37,6 +45,7 @@ GrowWithHR currently has no customer account system, cloud-save service or dedic
 - `analyze-company-v3.html` — no-index private-beta review route.
 - `sample-advisory-report.html` — fictional, illustrative report.
 - `server.js` — health endpoint and Gmail delivery boundary.
+- `server-entry.js` — CORS-aware production entrypoint used by Render.
 - `js/executive-assessment/` — stable assessment modules.
 - `js/assessment-v3/` — isolated M1-M3 private-beta modules.
 - `data/assessment/` and `data/schema/` — governed data and schemas.

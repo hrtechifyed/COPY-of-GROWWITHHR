@@ -2,18 +2,17 @@
 
 Last reviewed: 21 July 2026
 
-## Critical external-readiness action
+## Security follow-through
 
-Historical Git analysis found a committed `.env` containing Gmail configuration and an app-password value. Current `.gitignore` prevents future `.env` commits, but deletion from the current tree is not equivalent to secret revocation or history removal. Before any external demonstration that uses email delivery:
+The historically committed `.env` was removed from reachable Git history and the Gmail/OAuth credentials were rotated before restoring live delivery. Remaining administrative follow-through is to complete any GitHub cached-reference purge/support request and re-run the final secret-scanning review.
 
-1. revoke and rotate every historically committed Gmail/app-password credential;
-2. verify deployment values are the rotated values;
-3. perform a controlled Git history rewrite and GitHub cache/reference purge if complete repository-history removal is required;
-4. re-run secret scanning after the purge.
+Current `.gitignore` blocks `.env` and `.env.*` while retaining the placeholder-only `.env.example`.
 
 ## Deployment boundary
 
-The GitHub Pages homepage is static. Relative `/api/send-advisory` delivery requires the application to be served from the Node/Express deployment or an explicitly configured API origin. Email delivery should not be demonstrated from a static-only preview.
+The GitHub Pages site is static, but its public assessment now sends explicit email-delivery requests to the Render backend. The Render entrypoint permits the exact `https://hrtechifyed.github.io` origin, supports the required browser preflight request and rejects unapproved cross-origin API calls. The Render deployment must continue using `npm start` so `server-entry.js` is loaded.
+
+A free or sleeping Render service may introduce a cold-start delay before the first email request. The client should wait for the request to complete rather than retrying repeatedly.
 
 ## Manual verification still required
 

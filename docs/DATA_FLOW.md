@@ -14,7 +14,9 @@
 
 ## Delivery flow
 
-When the visitor explicitly requests email delivery, the browser sends the recipient, required advisory data and PDF payload to `POST /api/send-advisory`. The Express backend validates size, type and required fields, applies rate limiting and calls Gmail. Sent mail and attachments may remain in the connected Gmail account under its retention settings.
+When the visitor explicitly requests email delivery, the browser sends the recipient, required advisory data and PDF payload to `POST /api/send-advisory`. On GitHub Pages, the frontend sends the request to the Render API over HTTPS; Render permits only the configured frontend origin and rejects unapproved cross-origin API requests. The Express backend validates size, type and required fields, applies rate limiting and calls Gmail. Sent mail and attachments may remain in the connected Gmail account under its retention settings.
+
+No Gmail or OAuth credential is present in the browser request or static GitHub Pages files. Credentials remain in Render environment variables.
 
 ## What does not exist
 

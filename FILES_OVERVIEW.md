@@ -18,11 +18,12 @@ This inventory describes the deployed `0.18.0` product. Historical detail belong
 ## Runtime
 
 - `app.js`, `styles.css`, `css/`, `js/` — static production application.
-- `server.js` — optional Gmail delivery backend and `/api/health`.
+- `server-entry.js` — production Node entrypoint with exact-origin CORS handling for GitHub Pages delivery.
+- `server.js` — Gmail delivery backend, `/api/health` and `/api/send-advisory`.
 - `data/` — governed catalogs, schemas and knowledge material.
 
 ## Quality and governance
 
-- `tests/`, `playwright.config.ts`, `.github/workflows/` — maintained automated checks.
+- `tests/`, `playwright.config.ts`, `.github/workflows/` — maintained automated checks, including CORS preflight coverage.
 - `README.md`, `CHANGELOG.md`, `ROADMAP.md`, `docs/` — canonical documentation.
 - `apps/web/src/` — archived React/TypeScript experiment; not deployed.
