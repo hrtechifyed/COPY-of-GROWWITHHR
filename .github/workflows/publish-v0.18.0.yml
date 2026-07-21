@@ -1,0 +1,130 @@
+name: Publish v0.18.0
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/publish-v0.18.0.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-v0.18.0
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.head_ref == 'release/v0.18.0-publish'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      RELEASE_TAG: v0.18.0
+      RELEASE_VERSION: 0.18.0
+      EXPECTED_MAIN_SHA: 73be28c2781990add1e58c50d18905e641a830f2
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: release/v0.18.0-publish
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Verify exact release target
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main --tags
+          TARGET_SHA="$(git rev-parse origin/main)"
+          test "${TARGET_SHA}" = "${EXPECTED_MAIN_SHA}"
+          test "$(node -p "require('./package.json').version")" = "${RELEASE_VERSION}"
+          grep -q 'version: "0.18.0"' js/config/app-config.js
+          grep -q 'complianceDnaV3: false' js/config/app-config.js
+          if git ls-remote --exit-code --tags origin "refs/tags/${RELEASE_TAG}" >/dev/null 2>&1; then
+            echo "Tag ${RELEASE_TAG} already exists."
+            exit 1
+          fi
+
+      - name: Install dependencies
+        run: npm install --package-lock=false --no-audit --no-fund
+
+      - name: Validate release contracts
+        run: npm run test:release
+
+      - name: Install Playwright and Chromium
+        run: |
+          npm install --no-save --package-lock=false --no-audit --no-fund @playwright/test
+          npx playwright install --with-deps chromium
+
+      - name: Validate stable through M3 browser routes
+        run: npm run test:release:e2e
+
+      - name: Create annotated release tag
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -a "${RELEASE_TAG}" "${EXPECTED_MAIN_SHA}" -m "GrowWithHR ${RELEASE_TAG} — M3 Compliance Story and Safe Health Model"
+          git push origin "${RELEASE_TAG}"
+
+      - name: Prepare GitHub release notes
+        shell: bash
+        run: |
+          cat > /tmp/v0.18.0-release-notes.md <<'NOTES'
+          # GrowWithHR v0.18.0
+
+          M3 delivers the private-beta **Compliance Story and Safe Health Model** on top of the validated M2 deterministic traceability foundation.
+
+          ## Highlights
+
+          - Versioned Compliance Story schema and pure model `1.0.0`.
+          - Company snapshot, safe-status counts and a maximum of three deterministic priorities.
+          - Grouped advisory findings with rationale, trigger facts, missing information, next actions, timelines, implications, sources and limitations.
+          - Ready, empty and safe error states with responsive, keyboard and reduced-motion safeguards.
+          - M3 contract tests plus stable, M1, M2 and M3 Playwright coverage.
+
+          ## Protected boundaries
+
+          - `/analyze-company.html` remains the stable public route.
+          - `/analyze-company-v3.html` remains private.
+          - `complianceDnaV3` remains disabled by default.
+          - Protected browser state, stable report, PDF, email and delivery contracts remain unchanged.
+          - No cloud persistence, account requirement or storage migration is introduced.
+
+          ## Validation
+
+          The exact tagged main commit passed version consistency, compliance validation, the complete maintained regression suite and stable-through-M3 browser tests before publication.
+
+          Full records:
+
+          - [M3 release manifest](https://github.com/hrtechifyed/GrowwithHR-Version2/blob/v0.18.0/docs/releases/v0.18.0-m3-compliance-story.md)
+          - [M3 validation record](https://github.com/hrtechifyed/GrowwithHR-Version2/blob/v0.18.0/docs/releases/v0.18.0-m3-validation-record.md)
+
+          ## Rollback
+
+          Revert the v0.18.0 release commit and continue from the merged M3 implementation baseline. No storage cleanup or data migration reversal is required.
+          NOTES
+
+      - name: Publish GitHub release
+        run: |
+          gh release create "${RELEASE_TAG}" \
+            --repo "${GITHUB_REPOSITORY}" \
+            --target "${EXPECTED_MAIN_SHA}" \
+            --title "GrowWithHR v0.18.0 — M3 Compliance Story" \
+            --notes-file /tmp/v0.18.0-release-notes.md \
+            --verify-tag
+
+      - name: Remove one-time publisher from audit branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rm .github/workflows/publish-v0.18.0.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "ci(release): remove one-time v0.18.0 publisher"
+          git push origin HEAD:release/v0.18.0-publish
