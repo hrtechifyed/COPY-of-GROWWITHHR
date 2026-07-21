@@ -2,7 +2,7 @@
 (() => {
     "use strict";
 
-    const BUILD_ID = "presentation-polish-20260721-0003";
+    const BUILD_ID = "presentation-polish-20260721-0004";
     const scriptUrl = document.currentScript?.src || window.location.href;
     const rootUrl = new URL("../", scriptUrl);
     const params = new URLSearchParams(window.location.search);
@@ -38,7 +38,7 @@
 
         if (image) {
             image.src = new URL(
-                "assets/hrtechify-logo-transparent.svg",
+                "assets/hrtechify-logo.png",
                 rootUrl
             ).href;
         }
