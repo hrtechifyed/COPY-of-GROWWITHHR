@@ -2,7 +2,7 @@
 (() => {
     "use strict";
 
-    const BUILD_ID = "presentation-polish-20260721-0002";
+    const BUILD_ID = "presentation-polish-20260721-0003";
     const scriptUrl = document.currentScript?.src || window.location.href;
     const rootUrl = new URL("../", scriptUrl);
     const params = new URLSearchParams(window.location.search);
@@ -22,6 +22,28 @@
         link.href = new URL("css/19-presentation-polish.css", rootUrl).href;
         link.dataset.growwithhrPresentationPolish = "true";
         document.head.appendChild(link);
+    };
+
+    const integrateBrandIntoNavigation = () => {
+        const header = document.querySelector("[data-site-shell-header]");
+        const navigation = header?.querySelector(".site-nav-glass");
+        const brand = header?.querySelector(".site-brand-logo");
+        const image = brand?.querySelector("img");
+
+        if (!navigation || !brand) return;
+
+        if (brand.parentElement !== navigation) {
+            navigation.insertBefore(brand, navigation.firstChild);
+        }
+
+        if (image) {
+            image.src = new URL(
+                "assets/hrtechify-logo-transparent.svg",
+                rootUrl
+            ).href;
+        }
+
+        header.classList.add("site-header-shell--integrated-brand");
     };
 
     const loadPrivateBetaModules = () => {
@@ -53,6 +75,7 @@
             loadedAt: new Date().toISOString()
         });
         loadPresentationStyles();
+        integrateBrandIntoNavigation();
         loadPresentationPolish();
         loadPrivateBetaModules();
     };
