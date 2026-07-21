@@ -1,0 +1,421 @@
+/* GrowWithHR Compliance DNA — M3 private-beta presentation */
+
+.dna-compliance-story {
+    margin-top: clamp(32px, 5vw, 64px);
+    padding: clamp(22px, 4vw, 42px);
+    border: 1px solid rgba(255, 176, 0, 0.28);
+    border-radius: var(--radius-xl);
+    background: linear-gradient(150deg, rgba(255, 176, 0, 0.08), rgba(37, 99, 235, 0.04) 46%, rgba(10, 16, 32, 0.9));
+    box-shadow: var(--shadow-lg);
+}
+
+.dna-compliance-story [hidden] { display: none !important; }
+
+.dna-compliance-story__header,
+.dna-compliance-story__obligation-header,
+.dna-compliance-story__group-header,
+.dna-compliance-story__section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-3);
+}
+
+.dna-compliance-story__eyebrow,
+.dna-compliance-story__section-eyebrow {
+    margin: 0 0 10px;
+    color: var(--brand-gold);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.dna-compliance-story__title {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: clamp(1.8rem, 4vw, 3.15rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+}
+
+.dna-compliance-story__description,
+.dna-compliance-story__section-header > p {
+    max-width: 760px;
+    margin: 14px 0 0;
+    color: var(--text-secondary);
+    line-height: 1.65;
+}
+
+.dna-compliance-story__model-badge,
+.dna-compliance-story__status-badge,
+.dna-compliance-story__evidence-badge,
+.dna-compliance-story__priority-number {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    min-height: 31px;
+    padding: 6px 10px;
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-pill);
+    font-size: 0.72rem;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+.dna-compliance-story__model-badge,
+.dna-compliance-story__priority-number {
+    color: var(--brand-gold);
+    border-color: rgba(255, 176, 0, 0.3);
+    background: rgba(255, 176, 0, 0.08);
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.dna-compliance-story__status {
+    margin: var(--space-3) 0 0;
+    padding: 13px 15px;
+    border-left: 3px solid var(--brand-blue-light);
+    color: var(--text-secondary);
+    background: rgba(37, 99, 235, 0.08);
+    line-height: 1.55;
+}
+
+.dna-compliance-story__hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+}
+
+.dna-compliance-story__hero > * {
+    padding: clamp(20px, 3vw, 30px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.035);
+}
+
+.dna-compliance-story__hero h3 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: clamp(1.3rem, 2.6vw, 2rem);
+    line-height: 1.25;
+}
+
+.dna-compliance-story__assurance {
+    margin: 0;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+.dna-compliance-story__metrics {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 10px;
+    margin: var(--space-3) 0 0;
+}
+
+.dna-compliance-story__metric,
+.dna-compliance-story__snapshot-card {
+    min-width: 0;
+    padding: 16px;
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.035);
+}
+
+.dna-compliance-story__metric dt,
+.dna-compliance-story__snapshot-card span,
+.dna-compliance-story__detail span {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.74rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.dna-compliance-story__metric dd {
+    margin: 8px 0 0;
+    color: var(--text-primary);
+    font-size: clamp(1.45rem, 3vw, 2.15rem);
+    font-weight: 800;
+}
+
+.dna-compliance-story__section { margin-top: clamp(30px, 5vw, 52px); }
+
+.dna-compliance-story__section-header {
+    align-items: end;
+    margin-bottom: var(--space-3);
+}
+
+.dna-compliance-story__section-header h3 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: clamp(1.35rem, 3vw, 2.15rem);
+}
+
+.dna-compliance-story__section-header > p {
+    max-width: 540px;
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.dna-compliance-story__snapshot-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.dna-compliance-story__snapshot-card strong {
+    display: block;
+    margin-top: 7px;
+    overflow-wrap: anywhere;
+    color: var(--text-primary);
+    line-height: 1.45;
+}
+
+.dna-compliance-story__priority-list,
+.dna-compliance-story__group-list {
+    display: grid;
+    gap: var(--space-3);
+}
+
+.dna-compliance-story__obligation-card {
+    padding: clamp(20px, 3vw, 28px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.035);
+}
+
+#dnaComplianceStoryPriorityList .dna-compliance-story__obligation-card {
+    border-color: rgba(255, 176, 0, 0.34);
+    background: linear-gradient(135deg, rgba(255, 176, 0, 0.1), rgba(255, 255, 255, 0.03));
+}
+
+.dna-compliance-story__obligation-header h4 {
+    margin: 8px 0 0;
+    color: var(--text-primary);
+    font-size: clamp(1.15rem, 2.2vw, 1.55rem);
+}
+
+.dna-compliance-story__obligation-header code,
+.dna-compliance-story__fact-list code,
+.dna-compliance-story__assumption-list code {
+    display: inline-block;
+    max-width: 100%;
+    margin-top: 7px;
+    overflow-wrap: anywhere;
+    color: var(--text-muted);
+    font-size: 0.7rem;
+}
+
+.dna-compliance-story__badges {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.dna-compliance-story__status-badge[data-applicability-status="applicable"] {
+    border-color: rgba(34, 197, 94, 0.35);
+    color: var(--success);
+    background: rgba(34, 197, 94, 0.09);
+}
+
+.dna-compliance-story__status-badge[data-applicability-status="likely-applicable"] {
+    border-color: rgba(255, 176, 0, 0.35);
+    color: var(--brand-gold);
+    background: rgba(255, 176, 0, 0.09);
+}
+
+.dna-compliance-story__status-badge[data-applicability-status="more-information-needed"],
+.dna-compliance-story__status-badge[data-applicability-status="specialist-review"] {
+    border-color: rgba(248, 113, 113, 0.35);
+    color: #fca5a5;
+    background: rgba(248, 113, 113, 0.09);
+}
+
+.dna-compliance-story__status-badge[data-applicability-status="not-currently-applicable"] {
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.045);
+}
+
+.dna-compliance-story__evidence-badge {
+    color: var(--brand-blue-light);
+    background: rgba(37, 99, 235, 0.08);
+}
+
+.dna-compliance-story__detail-grid,
+.dna-compliance-story__explanation-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.dna-compliance-story__detail,
+.dna-compliance-story__explanation-grid > section {
+    padding: 15px;
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    background: rgba(0, 0, 0, 0.12);
+}
+
+.dna-compliance-story__detail--wide { grid-column: 1 / -1; }
+
+.dna-compliance-story__detail strong {
+    display: block;
+    margin-top: 7px;
+    color: var(--text-primary);
+    line-height: 1.55;
+}
+
+.dna-compliance-story__explanation-grid h5 {
+    margin: 0 0 10px;
+    color: var(--text-primary);
+    font-size: 0.88rem;
+    text-transform: uppercase;
+}
+
+.dna-compliance-story__explanation-grid p {
+    color: var(--text-secondary);
+    line-height: 1.65;
+}
+
+.dna-compliance-story__review-details {
+    margin-top: 18px;
+    padding-top: 15px;
+    border-top: 1px solid var(--glass-border);
+}
+
+.dna-compliance-story__review-details summary {
+    width: fit-content;
+    color: var(--brand-gold);
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.dna-compliance-story__review-details summary:focus-visible,
+.dna-compliance-story__source-link:focus-visible {
+    outline: 3px solid var(--brand-gold);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+.dna-compliance-story__fact-list,
+.dna-compliance-story__source-list,
+.dna-compliance-story__limitation-list,
+.dna-compliance-story__assumption-list {
+    display: grid;
+    gap: 9px;
+    padding: 0;
+    margin: 12px 0 0;
+    list-style: none;
+}
+
+.dna-compliance-story__fact-list li,
+.dna-compliance-story__source-list li,
+.dna-compliance-story__assumption-list li {
+    display: grid;
+    gap: 4px;
+    padding: 12px;
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.025);
+}
+
+.dna-compliance-story__fact-list strong,
+.dna-compliance-story__assumption-list strong { color: var(--text-primary); }
+
+.dna-compliance-story__fact-list span,
+.dna-compliance-story__source-list span,
+.dna-compliance-story__source-list small,
+.dna-compliance-story__assumption-list span,
+.dna-compliance-story__limitation-list li {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    line-height: 1.55;
+}
+
+.dna-compliance-story__source-link {
+    width: fit-content;
+    color: var(--brand-blue-light);
+    font-weight: 800;
+}
+
+.dna-compliance-story__limitation-list {
+    padding-left: 18px;
+    list-style: disc;
+}
+
+.dna-compliance-story__group {
+    padding: clamp(18px, 3vw, 26px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    background: rgba(0, 0, 0, 0.12);
+}
+
+.dna-compliance-story__group-header {
+    align-items: center;
+    margin-bottom: var(--space-2);
+}
+
+.dna-compliance-story__group-header h4 {
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.dna-compliance-story__group-header span { color: var(--text-muted); }
+
+.dna-compliance-story__group .dna-compliance-story__obligation-card +
+.dna-compliance-story__obligation-card { margin-top: 12px; }
+
+.dna-compliance-story__notice {
+    margin-top: var(--space-3);
+    padding: clamp(20px, 4vw, 32px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.035);
+}
+
+.dna-compliance-story__notice--error {
+    border-color: rgba(248, 113, 113, 0.35);
+    background: rgba(248, 113, 113, 0.08);
+}
+
+.dna-compliance-story__notice h3 { margin: 0; color: var(--text-primary); }
+.dna-compliance-story__notice p { color: var(--text-secondary); line-height: 1.65; }
+.dna-compliance-story__notice a { margin-top: 12px; }
+.dna-compliance-story__empty-line { color: var(--text-muted); line-height: 1.6; }
+
+@media (max-width: 980px) {
+    .dna-compliance-story__hero { grid-template-columns: 1fr; }
+    .dna-compliance-story__metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .dna-compliance-story__snapshot-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .dna-compliance-story__section-header { align-items: flex-start; flex-direction: column; }
+}
+
+@media (max-width: 680px) {
+    .dna-compliance-story { padding: 18px; border-radius: var(--radius-lg); }
+    .dna-compliance-story__header,
+    .dna-compliance-story__obligation-header,
+    .dna-compliance-story__group-header { flex-direction: column; }
+    .dna-compliance-story__badges { justify-content: flex-start; }
+    .dna-compliance-story__metrics,
+    .dna-compliance-story__snapshot-list,
+    .dna-compliance-story__detail-grid,
+    .dna-compliance-story__explanation-grid { grid-template-columns: 1fr; }
+    .dna-compliance-story__detail--wide { grid-column: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dna-compliance-story *,
+    .dna-compliance-story *::before,
+    .dna-compliance-story *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
