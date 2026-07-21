@@ -8,6 +8,8 @@ const homepage = read("index.html");
 const sample = read("sample-advisory-report.html");
 const readme = read("README.md");
 const knownIssues = read("docs/KNOWN_ISSUES.md");
+const gmailService = read("js/gmail-service.js");
+const serverEntry = read("server-entry.js");
 
 assert(assessment.includes(`"applicationVersion": "${packageJson.version}"`));
 assert(assessment.includes('"experienceVersion": "2.0.0"'));
@@ -21,6 +23,10 @@ assert(!sample.includes('Mandatory Compliance Obligations'));
 assert(readme.startsWith('# GrowWithHR'));
 assert(readme.includes('archived experimental React/TypeScript UX layer'));
 assert(knownIssues.includes('Historical Git analysis found a committed `.env`'));
+assert(gmailService.includes('https://growwithhr.onrender.com/api/send-advisory'));
+assert(gmailService.includes('https://hrtechifyed.github.io'));
+assert(serverEntry.includes('Access-Control-Allow-Origin'));
+assert(serverEntry.includes('ALLOWED_CORS_ORIGINS'));
 for (const retired of ['backupstyles.css','js/intro-sequence.js','js/old-email-service.js','pages/company-profile.html','pages/organization-profile.html']) {
     assert(!fs.existsSync(retired), `${retired} must be retired.`);
 }
