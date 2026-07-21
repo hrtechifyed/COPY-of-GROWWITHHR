@@ -6,6 +6,7 @@
     transform-origin: 50% 50%;
     animation: growwithhr-intelligence-core-rotation 20s linear infinite;
     will-change: transform;
+    pointer-events: none;
 }
 
 @keyframes growwithhr-intelligence-core-rotation {
