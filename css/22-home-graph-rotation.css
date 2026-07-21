@@ -1,0 +1,25 @@
+/* Homepage intelligence graph: rotate the complete graph in place.
+   The canvas, nodes, connections and parameter labels share one transform,
+   so every visible graph element completes the same 360-degree orbit. */
+
+.home-page #dnaCoreCanvas {
+    transform-origin: 50% 50%;
+    animation: growwithhr-intelligence-core-rotation 20s linear infinite;
+    will-change: transform;
+}
+
+@keyframes growwithhr-intelligence-core-rotation {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .home-page #dnaCoreCanvas {
+        animation: none;
+    }
+}
