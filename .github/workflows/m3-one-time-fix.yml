@@ -1,0 +1,39 @@
+name: M3 One-Time Test Fix
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/m3-one-time-fix.yml"
+      - "tests/m3-compliance-story-contract-checks.mjs"
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: github.head_ref == 'feature/dna-m3-compliance-story'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/dna-m3-compliance-story
+      - name: Use Ajv 2020 for the 2020-12 schema
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path('tests/m3-compliance-story-contract-checks.mjs')
+          text = path.read_text()
+          text = text.replace('import Ajv from "ajv";', 'import Ajv2020 from "ajv/dist/2020.js";')
+          text = text.replace('const ajv = new Ajv({ allErrors: true, strict: true });', 'const ajv = new Ajv2020({ allErrors: true, strict: true });')
+          path.write_text(text)
+          PY
+      - name: Commit the focused repair
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet; then
+            exit 0
+          fi
+          git add tests/m3-compliance-story-contract-checks.mjs
+          git commit -m "test(m3): validate the draft 2020-12 schema with Ajv 2020"
+          git push origin HEAD:feature/dna-m3-compliance-story
