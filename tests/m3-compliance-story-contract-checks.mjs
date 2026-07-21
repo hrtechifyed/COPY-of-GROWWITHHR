@@ -5,7 +5,7 @@ import { copyFile, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import Ajv from "ajv";
+import Ajv2020 from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -258,7 +258,7 @@ try {
         "Identical governed input must produce identical output."
     );
 
-    const ajv = new Ajv({ allErrors: true, strict: true });
+    const ajv = new Ajv2020({ allErrors: true, strict: true });
     addFormats(ajv);
     const validate = ajv.compile(JSON.parse(schemaSource));
     assert.equal(validate(story), true, JSON.stringify(validate.errors, null, 2));
