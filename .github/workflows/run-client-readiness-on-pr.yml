@@ -57,6 +57,7 @@ jobs:
           if [[ "$EXTRACTION_STATUS" -eq 0 ]]; then
             python3 /tmp/apply-client-readiness.py > repair-diagnostics/transformation.log 2>&1
             TRANSFORMATION_STATUS=$?
+            sed -i 's/[[:space:]]\+$//' ROADMAP.md
           else
             TRANSFORMATION_STATUS=99
           fi
