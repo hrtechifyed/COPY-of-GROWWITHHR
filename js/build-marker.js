@@ -2,7 +2,7 @@
 (() => {
     "use strict";
 
-    const BUILD_ID = "m3-compliance-story-20260721-0001";
+    const BUILD_ID = "presentation-polish-20260721-0001";
     const params = new URLSearchParams(window.location.search);
     const debug = params.get("debug") === "1";
 
@@ -14,16 +14,19 @@
     };
 
     const loadPrivateBetaModules = () => {
-        if (!document.getElementById("dnaTraceability")) {
-            return;
-        }
+        if (!document.getElementById("dnaTraceability")) return;
+        import("./assessment-v3/compliance-story-presentation.js").catch((error) => {
+            console.error("GrowWithHR: M3 private-beta module could not load.", error);
+        });
+    };
 
-        import("./assessment-v3/compliance-story-presentation.js")
+    const loadPresentationPolish = () => {
+        if (!window.GrowWithHRPDF) return;
+        window.GrowWithHRPDFPolishReady = import("./pdf-polish.js")
+            .then(() => window.GrowWithHRPDF)
             .catch((error) => {
-                console.error(
-                    "GrowWithHR: M3 private-beta module could not load.",
-                    error
-                );
+                console.error("GrowWithHR: PDF presentation polish could not load.", error);
+                return window.GrowWithHRPDF;
             });
     };
 
@@ -38,7 +41,7 @@
             },
             loadedAt: new Date().toISOString()
         });
-
+        loadPresentationPolish();
         loadPrivateBetaModules();
     };
 
