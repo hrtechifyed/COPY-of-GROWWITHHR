@@ -1,0 +1,297 @@
+/* ==========================================================
+   GrowWithHR presentation polish
+   Report layout, shared navigation and print safeguards
+   ========================================================== */
+
+.site-header-shell__inner {
+    position: relative;
+    display: block;
+}
+
+.site-nav-glass {
+    width: 100%;
+    min-height: 76px;
+    padding: 8px 14px 8px 86px;
+}
+
+.site-brand-logo {
+    position: absolute;
+    z-index: 4;
+    top: 50%;
+    left: 12px;
+    width: 62px;
+    height: 62px;
+    border-radius: 0;
+    transform: translateY(-50%);
+}
+
+.site-brand-logo::before {
+    display: none;
+}
+
+.site-brand-logo img {
+    content: url("../assets/hrtechify-logo-transparent.svg");
+    object-fit: contain;
+    filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.3));
+}
+
+.site-brand-logo:hover {
+    transform: translateY(-50%) scale(1.035);
+}
+
+body.has-site-shell .hero {
+    min-height: 64vh;
+    padding-top: calc(var(--site-shell-header-height, 92px) + 72px);
+    padding-bottom: clamp(72px, 8vw, 108px);
+}
+
+body[data-active-nav="sample"] {
+    overflow-x: hidden;
+}
+
+body[data-active-nav="sample"] .section {
+    padding: clamp(68px, 7vw, 96px) 0;
+}
+
+body[data-active-nav="sample"] .section-heading {
+    max-width: 760px;
+    margin-bottom: 44px;
+}
+
+body[data-active-nav="sample"] .section-heading p,
+body[data-active-nav="sample"] .summary-hero-copy p {
+    max-width: 72ch;
+    margin-inline: auto;
+    text-align: left;
+    text-wrap: pretty;
+}
+
+body[data-active-nav="sample"] .executive-summary-card {
+    width: min(100%, 1080px);
+    max-width: 1080px;
+    padding: clamp(30px, 4.4vw, 58px);
+}
+
+body[data-active-nav="sample"] .executive-profile-strip {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: clamp(18px, 2.2vw, 26px);
+    margin-top: 0;
+}
+
+body[data-active-nav="sample"] .executive-metric-card {
+    grid-column: span 2;
+    min-width: 0;
+    min-height: 220px;
+    padding: clamp(24px, 2.8vw, 32px);
+    overflow: hidden;
+}
+
+body[data-active-nav="sample"] .executive-metric-card:nth-child(4),
+body[data-active-nav="sample"] .executive-metric-card:nth-child(5) {
+    grid-column: span 3;
+}
+
+body[data-active-nav="sample"] .metric-label {
+    line-height: 1.45;
+}
+
+body[data-active-nav="sample"] .metric-value {
+    max-width: 100%;
+    margin: 18px 0;
+    font-size: clamp(1.42rem, 2.25vw, 2rem);
+    line-height: 1.18;
+    overflow-wrap: anywhere;
+    word-break: normal;
+    hyphens: auto;
+    text-wrap: balance;
+}
+
+body[data-active-nav="sample"] .metric-note {
+    line-height: 1.45;
+}
+
+body[data-active-nav="sample"] .summary-card {
+    margin-top: 30px !important;
+    padding: clamp(28px, 3.4vw, 42px);
+}
+
+body[data-active-nav="sample"] .value-grid,
+body[data-active-nav="sample"] .refined-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    align-items: stretch;
+}
+
+body[data-active-nav="sample"] .exec-card {
+    display: flex;
+    min-width: 0;
+    min-height: 270px;
+    flex-direction: column;
+    padding: clamp(28px, 3vw, 38px);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-top: 4px solid #ffc107;
+    border-radius: 20px;
+    background: linear-gradient(180deg, #171f37, #131a2e);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.2);
+}
+
+body[data-active-nav="sample"] .exec-card > span {
+    margin-bottom: 18px;
+    color: #ffc107;
+    font-size: 0.76rem;
+    font-weight: 750;
+    letter-spacing: 0.12em;
+    line-height: 1.45;
+    text-transform: uppercase;
+}
+
+body[data-active-nav="sample"] .exec-card h3 {
+    margin: 0 0 18px;
+    font-size: clamp(1.28rem, 1.8vw, 1.55rem);
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+}
+
+body[data-active-nav="sample"] .exec-card p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.78;
+    text-wrap: pretty;
+}
+
+body[data-active-nav="sample"] .timeline-grid {
+    max-width: 980px;
+}
+
+body[data-active-nav="sample"] .contact-card {
+    width: min(100%, 1080px);
+    margin-inline: auto;
+    padding: clamp(42px, 6vw, 70px);
+}
+
+@media (max-width: 900px) {
+    .site-nav-glass {
+        min-height: 62px;
+        padding: 5px 6px 5px 68px;
+    }
+
+    .site-brand-logo {
+        left: 7px;
+        width: 52px;
+        height: 52px;
+    }
+
+    body[data-active-nav="sample"] .executive-profile-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    body[data-active-nav="sample"] .executive-metric-card,
+    body[data-active-nav="sample"] .executive-metric-card:nth-child(4),
+    body[data-active-nav="sample"] .executive-metric-card:nth-child(5) {
+        grid-column: span 1;
+        min-height: 190px;
+    }
+
+    body[data-active-nav="sample"] .executive-metric-card:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 580px) {
+    .site-nav-glass {
+        padding-left: 60px;
+    }
+
+    .site-brand-logo {
+        left: 5px;
+        width: 48px;
+        height: 48px;
+    }
+
+    .site-nav-glass > a[aria-label="HRTechify home"] {
+        padding-left: 4px !important;
+        font-size: 0.82rem !important;
+    }
+
+    body.has-site-shell .hero {
+        padding-top: calc(var(--site-shell-header-height, 72px) + 48px);
+    }
+
+    body[data-active-nav="sample"] .executive-profile-strip {
+        grid-template-columns: 1fr;
+    }
+
+    body[data-active-nav="sample"] .executive-metric-card,
+    body[data-active-nav="sample"] .executive-metric-card:nth-child(4),
+    body[data-active-nav="sample"] .executive-metric-card:nth-child(5),
+    body[data-active-nav="sample"] .executive-metric-card:last-child:nth-child(odd) {
+        grid-column: 1;
+        min-height: 170px;
+    }
+
+    body[data-active-nav="sample"] .metric-value {
+        font-size: 1.42rem;
+    }
+}
+
+@page {
+    size: A4 portrait;
+    margin: 16mm 14mm 18mm;
+}
+
+@media print {
+    body[data-active-nav="sample"] {
+        background: #ffffff !important;
+        color: #111827 !important;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    body[data-active-nav="sample"] .hero {
+        min-height: auto;
+        padding: 18mm 0 14mm;
+        break-after: page;
+    }
+
+    body[data-active-nav="sample"] .section {
+        padding: 10mm 0;
+        overflow: visible;
+        animation: none !important;
+        break-inside: auto;
+    }
+
+    body[data-active-nav="sample"] .section-heading {
+        margin-bottom: 7mm;
+        break-after: avoid-page;
+    }
+
+    body[data-active-nav="sample"] .executive-summary-card {
+        max-width: none;
+        padding: 8mm;
+        break-inside: auto;
+    }
+
+    body[data-active-nav="sample"] .executive-profile-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 5mm;
+    }
+
+    body[data-active-nav="sample"] .executive-metric-card,
+    body[data-active-nav="sample"] .executive-metric-card:nth-child(4),
+    body[data-active-nav="sample"] .executive-metric-card:nth-child(5) {
+        grid-column: span 1;
+        min-height: 42mm;
+        padding: 6mm;
+        break-inside: avoid-page;
+    }
+
+    body[data-active-nav="sample"] .exec-card,
+    body[data-active-nav="sample"] .timeline-card,
+    body[data-active-nav="sample"] .summary-card,
+    body[data-active-nav="sample"] .recommendation-card,
+    body[data-active-nav="sample"] .compliance-card,
+    body[data-active-nav="sample"] .opportunity-card {
+        min-height: 0;
+        break-inside: avoid-page;
+    }
+}
