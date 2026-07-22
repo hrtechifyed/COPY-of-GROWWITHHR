@@ -125,9 +125,9 @@ test("loads the page-safe PDF renderer on the public sample route", async ({ pag
     await page.goto("/sample-advisory-report.html");
 
     await page.waitForFunction(() => (
-        window.GrowWithHRPDF?.version === "3.1.0-clean-report-layout"
+        window.GrowWithHRPDF?.version === "3.1.2-contained-table-layout"
     ));
 
     const version = await page.evaluate(() => window.GrowWithHRPDF?.version);
-    expect(version).toBe("3.1.0-clean-report-layout");
+    expect(version).toBe("3.1.2-contained-table-layout");
 });
