@@ -50,7 +50,24 @@ async function activateContinueTwice(page: Page): Promise<void> {
     const button = page.locator("#nextButton");
 
     await expect(button).toBeVisible();
-    await button.dblclick({ delay: 25 });
+
+    await page.evaluate(() => {
+        const form = document.getElementById(
+            "storyForm"
+        ) as HTMLFormElement | null;
+        const submitter = document.getElementById(
+            "nextButton"
+        ) as HTMLButtonElement | null;
+
+        if (!form || !submitter) {
+            throw new Error(
+                "Assessment Continue controls are unavailable."
+            );
+        }
+
+        form.requestSubmit(submitter);
+        form.requestSubmit(submitter);
+    });
 }
 
 test.describe(
