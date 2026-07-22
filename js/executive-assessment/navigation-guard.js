@@ -3,9 +3,8 @@
    Executive assessment navigation resilience
 
    Prevents rapid repeated Continue activation from submitting the newly
-   rendered scene before the user has answered it. It also makes unexpected
-   navigation exceptions visible and recoverable instead of leaving the
-   assessment apparently unresponsive.
+   rendered scene before the user has answered it. The guard works at the form
+   event boundary and leaves the assessment controller methods unchanged.
 ========================================================== */
 
 (() => {
@@ -61,74 +60,90 @@
     }
 
     function install(application) {
+        const form =
+            application?.elements?.storyForm ||
+            document.getElementById(
+                "storyForm"
+            );
+
         if (
             installed ||
             !application ||
-            typeof application.continueFromMoment !==
-                "function"
+            !form
         ) {
             return false;
         }
 
-        const originalContinue =
-            application
-                .continueFromMoment
-                .bind(application);
         let navigationLocked = false;
         let releaseTimer = 0;
+        let activeButton = null;
 
-        application.continueFromMoment =
-            function guardedContinueFromMoment(
-                ...args
-            ) {
+        const release = () => {
+            window.clearTimeout(
+                releaseTimer
+            );
+            releaseTimer = 0;
+            navigationLocked = false;
+            setButtonBusy(
+                activeButton,
+                false
+            );
+            activeButton = null;
+        };
+
+        form.addEventListener(
+            "submit",
+            (event) => {
                 if (navigationLocked) {
-                    return false;
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    return;
                 }
 
                 navigationLocked = true;
-
-                const nextButton =
-                    this?.elements?.nextButton ||
+                activeButton =
+                    event.submitter ||
+                    application?.elements?.nextButton ||
                     document.getElementById(
                         "nextButton"
                     );
 
-                window.clearTimeout(
-                    releaseTimer
-                );
                 setButtonBusy(
-                    nextButton,
+                    activeButton,
                     true
                 );
 
-                try {
-                    return originalContinue(
-                        ...args
+                window.clearTimeout(
+                    releaseTimer
+                );
+                releaseTimer =
+                    window.setTimeout(
+                        release,
+                        LOCK_DURATION_MS
                     );
-                } catch (error) {
-                    console.error(
-                        "GrowWithHR: assessment scene navigation failed.",
-                        error
-                    );
-                    showRecoverableError(
-                        this
-                    );
-                    return false;
-                } finally {
-                    releaseTimer =
-                        window.setTimeout(
-                            () => {
-                                navigationLocked =
-                                    false;
-                                setButtonBusy(
-                                    nextButton,
-                                    false
-                                );
-                            },
-                            LOCK_DURATION_MS
-                        );
-                }
-            };
+            },
+            true
+        );
+
+        const handleNavigationError = () => {
+            if (!navigationLocked) {
+                return;
+            }
+
+            release();
+            showRecoverableError(
+                application
+            );
+        };
+
+        window.addEventListener(
+            "error",
+            handleNavigationError
+        );
+        window.addEventListener(
+            "unhandledrejection",
+            handleNavigationError
+        );
 
         installed = true;
 
