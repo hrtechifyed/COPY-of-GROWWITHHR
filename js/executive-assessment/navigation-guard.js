@@ -71,15 +71,22 @@
             );
 
         let navigationLocked = false;
+        let transitionSettled = false;
         let releaseTimer = 0;
+        let evaluationTimer = 0;
         let activeButton = null;
 
         const release = () => {
             window.clearTimeout(
                 releaseTimer
             );
+            window.clearTimeout(
+                evaluationTimer
+            );
             releaseTimer = 0;
+            evaluationTimer = 0;
             navigationLocked = false;
+            transitionSettled = false;
             setButtonBusy(
                 activeButton ||
                 application?.elements?.nextButton ||
@@ -96,6 +103,7 @@
 
             if (
                 !navigationLocked ||
+                !transitionSettled ||
                 !storyContainer ||
                 !(target instanceof Node) ||
                 !target.isConnected ||
@@ -138,6 +146,7 @@
                     "";
 
                 navigationLocked = true;
+                transitionSettled = false;
                 activeButton =
                     event.submitter ||
                     application?.elements?.nextButton ||
@@ -149,28 +158,39 @@
                     true
                 );
 
-                window.queueMicrotask(() => {
-                    const afterMoment =
-                        application.currentMoment;
-                    const afterScreen =
-                        shell?.dataset?.screen ||
-                        "";
-                    const advanced =
-                        afterMoment !==
-                            beforeMoment ||
-                        afterScreen !==
-                            beforeScreen;
+                window.clearTimeout(
+                    evaluationTimer
+                );
+                evaluationTimer =
+                    window.setTimeout(
+                        () => {
+                            evaluationTimer = 0;
 
-                    if (
-                        !advanced ||
-                        afterScreen !==
-                            "workspace"
-                    ) {
-                        release();
-                    } else {
-                        scheduleFallbackRelease();
-                    }
-                });
+                            const afterMoment =
+                                application.currentMoment;
+                            const afterScreen =
+                                shell?.dataset?.screen ||
+                                "";
+                            const advanced =
+                                afterMoment !==
+                                    beforeMoment ||
+                                afterScreen !==
+                                    beforeScreen;
+
+                            if (
+                                !advanced ||
+                                afterScreen !==
+                                    "workspace"
+                            ) {
+                                release();
+                                return;
+                            }
+
+                            transitionSettled = true;
+                            scheduleFallbackRelease();
+                        },
+                        0
+                    );
             },
             true
         );
