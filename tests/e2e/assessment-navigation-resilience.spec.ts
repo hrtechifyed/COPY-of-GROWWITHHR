@@ -58,25 +58,32 @@ async function activateContinueTwice(page: Page): Promise<void> {
     await expect(button).toBeEnabled();
 
     await page.evaluate(() => {
-        const application = (
-            window as Window & {
-                executiveAssessment?: {
-                    continueFromMoment?: () => unknown;
-                };
-            }
-        ).executiveAssessment;
+        const form = document.getElementById(
+            "storyForm"
+        ) as HTMLFormElement | null;
+        const submitter = document.getElementById(
+            "nextButton"
+        ) as HTMLButtonElement | null;
 
-        if (
-            typeof application?.continueFromMoment !==
-            "function"
-        ) {
+        if (!form || !submitter) {
             throw new Error(
-                "Assessment continuation is unavailable."
+                "Assessment Continue controls are unavailable."
             );
         }
 
-        application.continueFromMoment();
-        application.continueFromMoment();
+        const createSubmitEvent = () =>
+            new SubmitEvent("submit", {
+                bubbles: true,
+                cancelable: true,
+                submitter
+            });
+
+        form.dispatchEvent(
+            createSubmitEvent()
+        );
+        form.dispatchEvent(
+            createSubmitEvent()
+        );
     });
 }
 
