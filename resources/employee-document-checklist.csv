@@ -1,0 +1,3 @@
+Employee or worker,Worker category,Offer or engagement letter,Appointment or contract terms,Identity records,Tax or payroll records,Policy acknowledgements,Attendance and leave records,Performance records,Exit records,Document owner,Last reviewed,Notes
+Example employee,Employee,Required,Required,Required,As applicable,Required,Required,As applicable,On exit,HR owner,YYYY-MM-DD,Store securely and apply retention rules
+Example contractor,Contractor,Not applicable,Required,Required,Invoice and tax records,Relevant policies,Access or attendance where relevant,Not applicable,Closure and access removal,Contract owner,YYYY-MM-DD,Confirm classification and principal-employer responsibilities

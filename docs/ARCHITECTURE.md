@@ -8,14 +8,24 @@ The production application is the root-level static HTML/CSS/JavaScript site. `s
 
 1. `index.html` presents the product and links to `analyze-company.html`.
 2. The stable assessment modules validate answers and persist same-browser progress under protected keys.
-3. The stable report mapper prepares the advisory record.
-4. `js/pdf.js` generates the PDF in the browser.
-5. When email delivery is requested, `js/gmail-service.js` sends a data-minimised request to `POST /api/send-advisory`.
-6. On Render the client uses the relative API route; on the approved GitHub Pages deployment the client uses `https://growwithhr.onrender.com/api/send-advisory`.
-7. `server-entry.js` permits the exact GitHub Pages origin, answers the browser preflight request and rejects unapproved cross-origin API calls.
-8. `server.js` validates the request, applies rate limiting and sends through the Gmail API.
+3. `js/report-experience-v019.js` applies presentation-only workforce safeguards, report-theme selection and recommendation-resource enrichment without changing assessment chapters or compliance applicability logic.
+4. The stable report mapper prepares the advisory record.
+5. `js/pdf.js` builds the deterministic advisory model and `js/pdf-polish.js` renders the selected light or dark A4 PDF in the browser.
+6. `executive-advisory-report.html` preserves its existing page structure while `js/executive-advisory-report.js` consumes the same enriched advisory model for web presentation.
+7. When email delivery is requested, `js/gmail-service.js` sends a data-minimised request to `POST /api/send-advisory` containing the selected generated PDF.
+8. On Render the client uses the relative API route; on the approved GitHub Pages deployment the client uses `https://growwithhr.onrender.com/api/send-advisory`.
+9. `server-entry.js` permits the exact GitHub Pages origin, answers the browser preflight request and rejects unapproved cross-origin API calls.
+10. `server.js` validates the request, applies rate limiting and sends through the Gmail API.
 
 The default approved cross-origin client is `https://hrtechifyed.github.io`. Additional approved origins may be configured through the comma-separated `ALLOWED_CORS_ORIGINS` deployment variable. Wildcard origins are not used.
+
+## Report-experience boundaries
+
+- The light/dark choice is a browser presentation preference, not a separate advisory-content model.
+- The selected value is stored under `growwithhr-report-theme` and read during PDF preparation.
+- One Person Company employee count is fixed to one at the presentation/state boundary; all other employee counts are normalised to a minimum of one.
+- Implementation templates are static files in `resources/`; they contain no customer data until downloaded and edited by the user.
+- Recommendation resource enrichment does not change statutory applicability, source traceability or evidence status.
 
 ## Private-beta architecture
 
@@ -28,5 +38,6 @@ The default approved cross-origin client is `https://hrtechifyed.github.io`. Add
 - `growwithhr-lead`
 - `growwithhr-advisory-delivery-v1`
 - `growwithhr-industry-catalog-v1`
+- `growwithhr-report-theme` (presentation preference only)
 
 Feature-flag overrides use the documented `growwithhr-feature-` prefix and are not assessment records.

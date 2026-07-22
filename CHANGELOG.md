@@ -6,6 +6,18 @@ All notable changes to GrowWithHR are documented here.
 
 ## [Unreleased]
 
+### Report experience candidate for v0.19.0
+
+- Added a light, print-friendly PDF option and a dark HRTechify presentation option at lead capture.
+- Rebuilt the A4 PDF presentation to reduce unused page space while retaining page-safe wrapping and pagination.
+- Corrected PDF branding to use the established HRTechify logo with a circular crop.
+- Normalised employee count to a minimum of one and locked One Person Company assessments to one employee.
+- Added count-aware singular and plural workforce wording.
+- Removed repeated report copy and aligned the website report with the shared advisory model.
+- Added implementation steps, suggested ownership, timing and resource links to strategic recommendations.
+- Added compliance calendar, employee document, onboarding, policy register, statutory tracker, contractor due-diligence and HR action-plan templates.
+- Added maintained report-experience static validation to the complete CI suite.
+
 ### Client readiness
 
 - Clarified the production stack and canonical documentation.
@@ -30,15 +42,12 @@ All notable changes to GrowWithHR are documented here.
 - Added `docs/DATA_FLOW.md`.
 - Updated the public privacy explanation in `more-info.html`.
 - Updated the experimental React privacy and data-handling components.
-- Clarified that GrowWithHR does not currently maintain a dedicated assessment
-  database.
-- Clarified that same-browser progress is not a user account, cloud-save
-  service or cross-device resume service.
-- Added a formal approval gate for future databases, user accounts, compliance
-  workspaces, document storage, evidence storage and RAG conversation history.
-- Clarified that sent advisory emails and PDF attachments may remain in the
-  connected Gmail account according to its retention settings.
+- Clarified that GrowWithHR does not currently maintain a dedicated assessment database.
+- Clarified that same-browser progress is not a user account, cloud-save service or cross-device resume service.
+- Added a formal approval gate for future databases, user accounts, compliance workspaces, document storage, evidence storage and RAG conversation history.
+- Clarified that sent advisory emails and PDF attachments may remain in the connected Gmail account according to its retention settings.
 - Documented the GitHub Pages-to-Render delivery boundary and optional origin configuration.
+- Added the v0.19 report-experience specification and implementation-resource documentation.
 
 ---
 
@@ -116,10 +125,8 @@ All notable changes to GrowWithHR are documented here.
 
 ### Changed
 
-- Replaced the production EmailJS delivery path with Gmail API delivery through
-  the GrowWithHR backend.
-- Updated the Executive Advisory journey to support report preparation,
-  download, email delivery and resend actions.
+- Replaced the production EmailJS delivery path with Gmail API delivery through the GrowWithHR backend.
+- Updated the Executive Advisory journey to support report preparation, download, email delivery and resend actions.
 - Updated recipient-information handling.
 - Updated delivery-status handling.
 - Improved backend request validation.
@@ -147,19 +154,15 @@ All notable changes to GrowWithHR are documented here.
 - Assessment interaction primarily takes place in the browser.
 - Limited progress may be stored in browser `localStorage`.
 - The advisory model and PDF are prepared in the browser.
-- Report-delivery information is sent to the backend when the user requests
-  email delivery.
-- The backend validates the request and sends the advisory through the Gmail
-  API.
+- Report-delivery information is sent to the backend when the user requests email delivery.
+- The backend validates the request and sends the advisory through the Gmail API.
 - Sent emails and PDF attachments may remain in the connected Gmail account.
-- GrowWithHR does not currently intentionally save completed assessments in a
-  dedicated application database.
+- GrowWithHR does not currently intentionally save completed assessments in a dedicated application database.
 
 ### Known limitations
 
 - GrowWithHR remains a beta-stage, rules-based advisory product.
-- The current customer-facing report primarily focuses on the compliance
-  pillar.
+- The current customer-facing report primarily focuses on the compliance pillar.
 - Browser progress is available only in the same browser.
 - Browser data may be cleared or replaced.
 - GrowWithHR does not currently provide user accounts.
@@ -170,5 +173,4 @@ All notable changes to GrowWithHR are documented here.
 - GrowWithHR does not currently provide a customer compliance workspace.
 - GrowWithHR does not currently provide RAG conversation-history storage.
 - Sent-email retention depends on the connected Gmail account.
-- Automated deletion controls for sent Gmail messages are not currently
-  available.
+- Automated deletion controls for sent Gmail messages are not currently available.

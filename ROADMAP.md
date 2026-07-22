@@ -3,7 +3,7 @@
 Current application version: `0.18.0`
 Current public route: `/analyze-company.html`
 Private-beta route: `/analyze-company-v3.html` with `complianceDnaV3: false`
-Last updated: 21 July 2026
+Last updated: 22 July 2026
 
 ## Completed milestones
 
@@ -21,17 +21,21 @@ Complete, validated and published. Added a versioned Compliance Story model, com
 
 ## Next milestone
 
-### M4 — Compliance Action Planning (`0.19.0`, planned)
+### M4 — Actionable Report Experience (`0.19.0`, release candidate)
 
-Candidate scope:
+Implemented candidate scope:
 
-- convert governed findings into local action items;
-- owner, target-date and status fields;
-- policy/checklist views;
-- local export-ready summaries;
-- no cloud persistence, accounts or document upload.
+- selectable light print-friendly and dark HRTechify PDF reports;
+- compact page-safe PDF presentation with corrected report logo;
+- employee-count minimum of one and One Person Company lock at one employee;
+- count-aware singular and plural report wording;
+- deduplicated website and PDF report presentation;
+- recommendation implementation steps, accountable owner and suggested timing;
+- downloadable starter templates for compliance calendars, employee documents, onboarding, policies, registrations, contractor review and HR action planning;
+- no cloud persistence, accounts or document upload;
+- maintained report-experience static tests included in the complete regression suite.
 
-M4 must consume M2/M3 governed outputs and must not recreate applicability logic in the UI.
+M4 continues to consume deterministic assessment and advisory data. Templates are starting points and must not be represented as legal certification or proof of compliance.
 
 ## Later milestones
 
