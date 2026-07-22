@@ -12,7 +12,7 @@
         return;
     }
 
-    const VERSION = "3.1.2-contained-table-layout";
+    const VERSION = "3.1.3-priority-source-separation";
     const EXPERIENCE_VERSION = "0.19.0";
     const DEFAULT_FILENAME = "GrowWithHR-Executive-Advisory.pdf";
     const REPORT_STORAGE_KEY = "growwithhr-report";
@@ -80,6 +80,88 @@
         try { window.localStorage?.setItem(REPORT_THEME_KEY, theme); } catch (_error) {}
         return theme;
     }
+    function sentenceList(items) {
+        const values = unique(toArray(items));
+        if (!values.length) return "none specified";
+        if (values.length === 1) return values[0];
+        if (values.length === 2) return `${values[0]} and ${values[1]}`;
+        return `${values.slice(0,-1).join(", ")}, and ${values[values.length-1]}`;
+    }
+    function suggestionReason(name, model) {
+        if (name === "Hiring and onboarding" || name === "Workforce planning") {
+            return !/not specified/i.test(cleanText(model.hiringPlans))
+                ? `your stated hiring direction (${model.hiringPlans})`
+                : "your anticipated workforce growth";
+        }
+        if (name === "Manager capability" || name === "Performance and rewards") {
+            return Number(model.employees) >= 75
+                ? `your workforce size of approximately ${model.employees} employees`
+                : `your current People/HR support model (${cleanText(model.peopleFunction,"not specified")})`;
+        }
+        if (name === "Policies and compliance" || name === "HR operations and technology") {
+            if (Number(model.locations) > 1 || Number(model.countries) > 1) {
+                return `your operating footprint across ${pluralise(model.locations,"location")} and ${pluralise(model.countries,"country","countries")}`;
+            }
+            if (/remote|hybrid|mixed/i.test(cleanText(model.workModel))) {
+                return `your ${cleanText(model.workModel).toLowerCase()} working model`;
+            }
+            return `your current People/HR support model (${cleanText(model.peopleFunction,"not specified")})`;
+        }
+        return "the wider company profile shared in the briefing";
+    }
+    function enrichPrioritySources(payload, baseModel) {
+        const submitted = unique([
+            ...toArray(payload.report?.priorities),
+            ...toArray(payload.lead?.priorities),
+            ...toArray(payload.answers?.priorities)
+        ]);
+        const modelPriorities = unique(baseModel.priorities || []);
+        const selectedPriorities = modelPriorities.filter((name) =>
+            submitted.some((selected) => selected.toLowerCase() === name.toLowerCase())
+        );
+        const suggestedPriorities = modelPriorities.filter((name) => !selectedPriorities.includes(name));
+        const suggestionReasons = Object.fromEntries(
+            suggestedPriorities.map((name) => [name, suggestionReason(name, baseModel)])
+        );
+        const selectedSet = new Set(selectedPriorities);
+        const recommendations = (baseModel.recommendations || []).map((item) => ({
+            ...item,
+            source: selectedSet.has(item.title) ? "selected" : "suggested",
+            sourceLabel: selectedSet.has(item.title) ? "Selected by you" : "Company DNA suggestion",
+            suggestionReason: suggestionReasons[item.title] || ""
+        }));
+        const selectedText = selectedPriorities.length
+            ? `You selected ${sentenceList(selectedPriorities)} as your immediate priority${selectedPriorities.length === 1 ? "" : " areas"}.`
+            : "No specific priority was selected, so the report uses the company profile to identify an initial focus.";
+        const suggestedText = suggestedPriorities.length
+            ? `Based on your company DNA, GrowWithHR also suggests considering ${sentenceList(suggestedPriorities)}. These are additional suggestions and were not selected by you.`
+            : "The company-DNA review did not add any separate priority beyond the areas selected by you.";
+        const executiveSummary = unique([
+            ...(baseModel.executiveSummary || []).filter((text) => !/next-stage people agenda|shaped around/i.test(cleanText(text))),
+            selectedText,
+            suggestedText
+        ]);
+        const roadmap = { first30: [], next60: [], next90: [] };
+        recommendations.forEach((item) => {
+            const prefix = `${item.sourceLabel} - ${item.title}: `;
+            if (item.first30) roadmap.first30.push(prefix + item.first30);
+            if (item.next60) roadmap.next60.push(prefix + item.next60);
+            if (item.next90) roadmap.next90.push(prefix + item.next90);
+        });
+        return {
+            ...baseModel,
+            selectedPriorities,
+            suggestedPriorities,
+            suggestionReasons,
+            recommendations,
+            executiveSummary,
+            roadmap: {
+                first30: unique(roadmap.first30).slice(0,4),
+                next60: unique(roadmap.next60).slice(0,4),
+                next90: unique(roadmap.next90).slice(0,4)
+            }
+        };
+    }
     function loadTransparentLogo() {
         if (logoPromise) return logoPromise;
         logoPromise = new Promise((resolve) => {
@@ -110,17 +192,8 @@
         const split = (text, width) => doc.splitTextToSize(cleanText(text), width);
         const lineHeight = (size, factor=1.35) => size * 0.3528 * factor;
 
-        function paintPage() {
-            setFill(theme.page); doc.rect(0,0,PAGE.width,PAGE.height,"F");
-            setDraw(theme.line); doc.setLineWidth(0.35);
-            doc.rect(PAGE.borderInset,PAGE.borderInset,PAGE.width-PAGE.borderInset*2,PAGE.height-PAGE.borderInset*2,"S");
-        }
-        function header() {
-            setFont("normal",7.4); setText(theme.muted);
-            doc.text(options.runningTitle,PAGE.width/2,PAGE.headerY,{align:"center"});
-            setDraw(theme.line); doc.setLineWidth(0.25);
-            doc.line(PAGE.left,PAGE.headerRuleY,PAGE.width-PAGE.right,PAGE.headerRuleY);
-        }
+        function paintPage() { setFill(theme.page); doc.rect(0,0,PAGE.width,PAGE.height,"F"); setDraw(theme.line); doc.setLineWidth(0.35); doc.rect(PAGE.borderInset,PAGE.borderInset,PAGE.width-PAGE.borderInset*2,PAGE.height-PAGE.borderInset*2,"S"); }
+        function header() { setFont("normal",7.4); setText(theme.muted); doc.text(options.runningTitle,PAGE.width/2,PAGE.headerY,{align:"center"}); setDraw(theme.line); doc.setLineWidth(0.25); doc.line(PAGE.left,PAGE.headerRuleY,PAGE.width-PAGE.right,PAGE.headerRuleY); }
         function addPage() { doc.addPage(); paintPage(); cursorY = PAGE.top; header(); }
         function remainingHeight() { return PAGE.contentBottom - cursorY; }
         function ensureSpace(height) { if (height > remainingHeight()) addPage(); }
@@ -135,76 +208,56 @@
             setFont("normal",11); setText(theme.text); doc.text(split(model.companyName,160),x,110,{align:"center",lineHeightFactor:1.2});
             setFill(theme.panelAlt); setDraw(theme.line); doc.roundedRect(25,135,160,50,3,3,"FD");
             const cols=[52,105,158];
-            [["INDUSTRY",model.industry],["WORKFORCE",model.employeeLabel||pluralise(model.employees,"employee")],["LOCATION",model.primaryState]].forEach((item,index)=>{
-                setFont("bold",7.2); setText(theme.heading); doc.text(item[0],cols[index],151,{align:"center"});
-                setFont("normal",8.2); setText(theme.text); doc.text(split(item[1],44),cols[index],161,{align:"center",lineHeightFactor:1.25});
-                if(index<2){setDraw(theme.line);doc.line(cols[index]+26,142,cols[index]+26,178);}
-            });
+            [["INDUSTRY",model.industry],["WORKFORCE",model.employeeLabel||pluralise(model.employees,"employee")],["LOCATION",model.primaryState]].forEach((item,index)=>{setFont("bold",7.2);setText(theme.heading);doc.text(item[0],cols[index],151,{align:"center"});setFont("normal",8.2);setText(theme.text);doc.text(split(item[1],44),cols[index],161,{align:"center",lineHeightFactor:1.25});if(index<2){setDraw(theme.line);doc.line(cols[index]+26,142,cols[index]+26,178);}});
             setFont("normal",9.2); setText(theme.text); doc.text(split(options.coverIntro,145),x,203,{align:"center",lineHeightFactor:1.4});
             setFont("normal",9); setText(theme.muted); doc.text(formatDate(model.generatedAt),x,237,{align:"center"});
         }
-
-        function paragraph(text, settings={}) {
-            if(!cleanText(text)) return;
-            const size=settings.size||9.1,factor=settings.lineHeight||1.4;
-            const lines=split(text,settings.width||usableWidth-(settings.indent||0));
-            const height=lineHeight(size,factor); ensureSpace(Math.min(lines.length*height+3,24));
-            setFont(settings.style||"normal",size);setText(settings.colour||theme.text);
-            doc.text(lines,PAGE.left+(settings.indent||0),cursorY,{lineHeightFactor:factor});
-            cursorY+=lines.length*height+(settings.spacingAfter??4.5);
-        }
-
-        function sectionHeading(label,title,introduction="") {
-            const labelSize=11.5,titleSize=11,topSpacing=cursorY>PAGE.top+1?11:0;
-            ensureSpace((introduction?39:30)+topSpacing);cursorY+=topSpacing;
-            setFont("bold",labelSize);setText(theme.accentDark);doc.text(cleanText(label).toUpperCase(),PAGE.left,cursorY);
-            cursorY+=lineHeight(labelSize,1.15)+3;
-            setFont("bold",titleSize);setText(theme.heading);const titleLines=split(title,usableWidth);
-            doc.text(titleLines,PAGE.left,cursorY,{lineHeightFactor:1.15});cursorY+=titleLines.length*lineHeight(titleSize,1.15)+4;
-            setDraw(theme.accent);doc.setLineWidth(0.7);doc.line(PAGE.left,cursorY,PAGE.left+28,cursorY);cursorY+=10;
-            if(introduction){
-                const introLines=split(introduction,usableWidth-12),boxHeight=introLines.length*lineHeight(8.8,1.35)+9;
-                setFill(theme.panelAlt);setDraw(theme.panelAlt);doc.roundedRect(PAGE.left,cursorY-4,usableWidth,boxHeight,2,2,"FD");
-                setFont("normal",8.8);setText(theme.text);doc.text(introLines,PAGE.left+6,cursorY+2,{lineHeightFactor:1.35});cursorY+=boxHeight+8;
-            }
-        }
+        function paragraph(text, settings={}) { if(!cleanText(text))return;const size=settings.size||9.1,factor=settings.lineHeight||1.4;const lines=split(text,settings.width||usableWidth-(settings.indent||0));const height=lineHeight(size,factor);ensureSpace(Math.min(lines.length*height+3,24));setFont(settings.style||"normal",size);setText(settings.colour||theme.text);doc.text(lines,PAGE.left+(settings.indent||0),cursorY,{lineHeightFactor:factor});cursorY+=lines.length*height+(settings.spacingAfter??4.5); }
+        function sectionHeading(label,title,introduction="") { const labelSize=11.5,titleSize=11,topSpacing=cursorY>PAGE.top+1?11:0;ensureSpace((introduction?39:30)+topSpacing);cursorY+=topSpacing;setFont("bold",labelSize);setText(theme.accentDark);doc.text(cleanText(label).toUpperCase(),PAGE.left,cursorY);cursorY+=lineHeight(labelSize,1.15)+3;setFont("bold",titleSize);setText(theme.heading);const titleLines=split(title,usableWidth);doc.text(titleLines,PAGE.left,cursorY,{lineHeightFactor:1.15});cursorY+=titleLines.length*lineHeight(titleSize,1.15)+4;setDraw(theme.accent);doc.setLineWidth(0.7);doc.line(PAGE.left,cursorY,PAGE.left+28,cursorY);cursorY+=10;if(introduction){const introLines=split(introduction,usableWidth-12),boxHeight=introLines.length*lineHeight(8.8,1.35)+9;setFill(theme.panelAlt);setDraw(theme.panelAlt);doc.roundedRect(PAGE.left,cursorY-4,usableWidth,boxHeight,2,2,"FD");setFont("normal",8.8);setText(theme.text);doc.text(introLines,PAGE.left+6,cursorY+2,{lineHeightFactor:1.35});cursorY+=boxHeight+8;} }
         function subheading(title){ensureSpace(15);setFont("bold",11.2);setText(theme.heading);const lines=split(title,usableWidth);doc.text(lines,PAGE.left,cursorY,{lineHeightFactor:1.18});cursorY+=lines.length*lineHeight(11.2,1.18)+5;}
         function numberedList(items,settings={}){unique(toArray(items)).forEach((item,index)=>{const lines=split(item,usableWidth-16),height=lines.length*lineHeight(8.9,1.38)+3.5;ensureSpace(Math.min(height,22));setFill(theme.accentSoft);doc.circle(PAGE.left+3.5,cursorY-1.4,3.1,"F");setFont("bold",7.5);setText(theme.accentDark);doc.text(String(index+1),PAGE.left+3.5,cursorY-0.2,{align:"center"});setFont("normal",8.9);setText(theme.text);doc.text(lines,PAGE.left+11.5,cursorY,{lineHeightFactor:1.38});cursorY+=height;});cursorY+=settings.spacingAfter??2;}
         function bulletList(items){unique(toArray(items)).forEach((item)=>{const lines=split(item,usableWidth-10),height=lines.length*lineHeight(9,1.38)+3;ensureSpace(Math.min(height,22));setFill(theme.accent);doc.circle(PAGE.left+2.2,cursorY-1,0.85,"F");setFont("normal",9);setText(theme.text);doc.text(lines,PAGE.left+7,cursorY,{lineHeightFactor:1.38});cursorY+=height;});cursorY+=4;}
         function profileTable(rows){const labelWidth=47;rows.forEach(([label,value],index)=>{const valueLines=split(cleanText(value,"Not specified"),usableWidth-labelWidth-12),rowHeight=Math.max(13,valueLines.length*lineHeight(8.8,1.3)+7);ensureSpace(rowHeight+2);setFill(index%2?theme.panelAlt:theme.panel);setDraw(theme.line);doc.roundedRect(PAGE.left,cursorY-4,usableWidth,rowHeight,1.5,1.5,"FD");setFont("bold",8.3);setText(theme.heading);doc.text(split(label,labelWidth-7),PAGE.left+5,cursorY+1,{lineHeightFactor:1.25});setFont("normal",8.8);setText(theme.text);doc.text(valueLines,PAGE.left+labelWidth+3,cursorY+1,{lineHeightFactor:1.3});cursorY+=rowHeight+2;});cursorY+=3;}
         function templateSubject(item,title){return cleanText(item.resourceLabel,title).replace(/^(?:click here to\s*)?(?:open|view|download|get)\s+/i,"").replace(/\s*(?:template|resource|toolkit|guide)\s*$/i,"").trim()||title;}
-
         function recommendationCard(item,index){
-            const title=cleanText(item.title,`Recommendation ${index+1}`),howTo=unique(toArray(item.howTo));ensureSpace(72);
-            setFill(theme.navy);setDraw(theme.navy);doc.roundedRect(PAGE.left,cursorY-4,usableWidth,11,1.7,1.7,"FD");setFill(theme.accent);doc.roundedRect(PAGE.left,cursorY-4,2.4,11,1.2,1.2,"F");setFont("bold",7.6);setText(theme.accent);doc.text(`RECOMMENDATION ${index+1}`,PAGE.left+8,cursorY+2.3);cursorY+=14;
-            subheading(title);paragraph(item.observation,{size:8.7,colour:theme.muted,spacingAfter:5});paragraph(item.recommendation,{size:9,spacingAfter:7});
+            const title=cleanText(item.title,`Recommendation ${index+1}`),howTo=unique(toArray(item.howTo));ensureSpace(78);
+            setFill(theme.navy);setDraw(theme.navy);doc.roundedRect(PAGE.left,cursorY-4,usableWidth,11,1.7,1.7,"FD");setFill(theme.accent);doc.roundedRect(PAGE.left,cursorY-4,2.4,11,1.2,1.2,"F");setFont("bold",7.6);setText(theme.accent);doc.text(`${cleanText(item.sourceLabel,"Recommendation").toUpperCase()} ${index+1}`,PAGE.left+8,cursorY+2.3);cursorY+=14;
+            subheading(title);
+            if(item.source==="suggested"&&item.suggestionReason){paragraph(`Why GrowWithHR suggests this: ${item.suggestionReason}.`,{size:8.5,style:"italic",colour:theme.accentDark,spacingAfter:4});}
+            paragraph(item.observation,{size:8.7,colour:theme.muted,spacingAfter:5});paragraph(item.recommendation,{size:9,spacingAfter:7});
             if(howTo.length){setFont("bold",8);setText(theme.accentDark);doc.text("HOW TO IMPLEMENT",PAGE.left,cursorY);cursorY+=8;numberedList(howTo,{spacingAfter:4});}
             const meta=[item.owner?`Owner: ${item.owner}`:"",item.timeframe?`Timing: ${item.timeframe}`:""].filter(Boolean);
             if(meta.length||item.resourceUrl){ensureSpace(22);const boxTop=cursorY-3,linkLabel=item.resourceUrl?`Click here to download template for ${templateSubject(item,title)}`:"",metaLines=meta.length?split(meta.join("   •   "),usableWidth-12):[],linkLines=linkLabel?split(linkLabel,usableWidth-18):[],boxHeight=8+metaLines.length*lineHeight(8,1.25)+linkLines.length*lineHeight(8.3,1.25)+(linkLines.length?5:0);setFill(theme.panel);setDraw(theme.line);doc.roundedRect(PAGE.left,boxTop,usableWidth,boxHeight,2,2,"FD");if(metaLines.length){setFont("normal",8);setText(theme.text);doc.text(metaLines,PAGE.left+6,cursorY+2,{lineHeightFactor:1.25});cursorY+=metaLines.length*lineHeight(8,1.25)+4;}if(linkLines.length){setFont("bold",8.3);setText(theme.accentDark);const url=new URL(item.resourceUrl,window.location.href).href;linkLines.forEach((line)=>{doc.textWithLink(line,PAGE.left+11,cursorY,{url});cursorY+=lineHeight(8.3,1.25);});}cursorY=boxTop+boxHeight+7;}else{cursorY+=4;}
         }
-
-        function summaryTable(rows,title="AT A GLANCE") {
-            if(!rows.length)return;
-            const widths=[63,63,52],headers=["Focus Area","Why It Matters","First Step"],bodySize=6.8,bodyFactor=1.2,paddingY=4;
-            const preparedRows=rows.map((row)=>row.map((cell,index)=>split(cell,widths[index]-5)));
-            const rowHeights=preparedRows.map((row)=>Math.max(10,...row.map((lines)=>lines.length*lineHeight(bodySize,bodyFactor)+paddingY*2)));
-            const height=14+rowHeights.reduce((sum,value)=>sum+value,0);
-            ensureSpace(height+4);setFill(theme.panelAlt);setDraw(theme.line);doc.roundedRect(PAGE.left,cursorY-4,usableWidth,height,2,2,"FD");
-            setFont("bold",7.5);setText(theme.accentDark);doc.text(title,PAGE.left+5,cursorY+1);cursorY+=8;
-            let x=PAGE.left+5;headers.forEach((headerText,index)=>{setFont("bold",7);setText(theme.heading);doc.text(headerText,x,cursorY);x+=widths[index];});cursorY+=5;
-            preparedRows.forEach((row,rowIndex)=>{const rowHeight=rowHeights[rowIndex],rowTop=cursorY-3;setDraw(theme.line);doc.line(PAGE.left+5,rowTop,PAGE.width-PAGE.right-5,rowTop);x=PAGE.left+5;row.forEach((lines,index)=>{setFont("normal",bodySize);setText(theme.text);doc.text(lines,x,cursorY+paddingY-1,{lineHeightFactor:bodyFactor});x+=widths[index];});cursorY+=rowHeight;});
-            cursorY+=5;
-        }
-
-        function roadmap(roadmapData){sectionHeading("0–90 DAYS ROADMAP","Your First Steps","A phased roadmap to help you build momentum and create impact quickly.");ensureSpace(68);const groups=[["0–30 DAYS","Build the Foundation",roadmapData?.first30||[]],["31–60 DAYS","Strengthen and Align",roadmapData?.next60||[]],["61–90 DAYS","Scale with Confidence",roadmapData?.next90||[]]],boxTop=cursorY-3,colW=usableWidth/3;setFill(theme.panelAlt);setDraw(theme.line);doc.roundedRect(PAGE.left,boxTop,usableWidth,58,2,2,"FD");groups.forEach((group,index)=>{const x=PAGE.left+index*colW+5;if(index){setDraw(theme.line);doc.line(PAGE.left+index*colW,boxTop+5,PAGE.left+index*colW,boxTop+53);}setFont("bold",7.2);setText(theme.heading);doc.text(group[0],x,cursorY+2);setFont("bold",8.7);doc.text(split(group[1],colW-10),x,cursorY+10,{lineHeightFactor:1.15});let y=cursorY+22;unique(toArray(group[2])).slice(0,4).forEach((item)=>{setFont("normal",6.9);setText(theme.text);doc.text(split(`• ${item}`,colW-10).slice(0,2),x,y,{lineHeightFactor:1.15});y+=8;});});cursorY=boxTop+68;ensureSpace(27);setFill(theme.panelAlt);setDraw(theme.panelAlt);doc.roundedRect(PAGE.left,cursorY-3,usableWidth,22,2,2,"FD");setFont("bold",9.2);setText(theme.accentDark);doc.text("SUCCESS LOOKS LIKE",PAGE.left+5,cursorY+2);const success=["Compliant and audit-ready","Efficient processes","Engaged and productive team","Ready to scale"];success.forEach((text,index)=>{setFont("normal",7);setText(theme.text);doc.text(split(text,36),PAGE.left+8+index*43,cursorY+11,{align:"center",lineHeightFactor:1.1});});cursorY+=31;}
+        function summaryTable(rows,title="AT A GLANCE") { if(!rows.length)return;const widths=[63,63,52],headers=["Focus Area","Why It Matters","First Step"],bodySize=6.8,bodyFactor=1.2,paddingY=4;const preparedRows=rows.map((row)=>row.map((cell,index)=>split(cell,widths[index]-5)));const rowHeights=preparedRows.map((row)=>Math.max(10,...row.map((lines)=>lines.length*lineHeight(bodySize,bodyFactor)+paddingY*2)));const height=14+rowHeights.reduce((sum,value)=>sum+value,0);ensureSpace(height+4);setFill(theme.panelAlt);setDraw(theme.line);doc.roundedRect(PAGE.left,cursorY-4,usableWidth,height,2,2,"FD");setFont("bold",7.5);setText(theme.accentDark);doc.text(title,PAGE.left+5,cursorY+1);cursorY+=8;let x=PAGE.left+5;headers.forEach((headerText,index)=>{setFont("bold",7);setText(theme.heading);doc.text(headerText,x,cursorY);x+=widths[index];});cursorY+=5;preparedRows.forEach((row,rowIndex)=>{const rowHeight=rowHeights[rowIndex],rowTop=cursorY-3;setDraw(theme.line);doc.line(PAGE.left+5,rowTop,PAGE.width-PAGE.right-5,rowTop);x=PAGE.left+5;row.forEach((lines,index)=>{setFont("normal",bodySize);setText(theme.text);doc.text(lines,x,cursorY+paddingY-1,{lineHeightFactor:bodyFactor});x+=widths[index];});cursorY+=rowHeight;});cursorY+=5; }
+        function roadmap(roadmapData){sectionHeading("0–90 DAYS ROADMAP","Your First Steps","Each action is labelled to show whether it comes from a priority selected by you or an additional Company DNA suggestion.");ensureSpace(68);const groups=[["0–30 DAYS","Build the Foundation",roadmapData?.first30||[]],["31–60 DAYS","Strengthen and Align",roadmapData?.next60||[]],["61–90 DAYS","Scale with Confidence",roadmapData?.next90||[]]],boxTop=cursorY-3,colW=usableWidth/3;setFill(theme.panelAlt);setDraw(theme.line);doc.roundedRect(PAGE.left,boxTop,usableWidth,58,2,2,"FD");groups.forEach((group,index)=>{const x=PAGE.left+index*colW+5;if(index){setDraw(theme.line);doc.line(PAGE.left+index*colW,boxTop+5,PAGE.left+index*colW,boxTop+53);}setFont("bold",7.2);setText(theme.heading);doc.text(group[0],x,cursorY+2);setFont("bold",8.7);doc.text(split(group[1],colW-10),x,cursorY+10,{lineHeightFactor:1.15});let y=cursorY+22;unique(toArray(group[2])).slice(0,4).forEach((item)=>{setFont("normal",6.9);setText(theme.text);doc.text(split(`• ${item}`,colW-10).slice(0,2),x,y,{lineHeightFactor:1.15});y+=8;});});cursorY=boxTop+68;ensureSpace(27);setFill(theme.panelAlt);setDraw(theme.panelAlt);doc.roundedRect(PAGE.left,cursorY-3,usableWidth,22,2,2,"FD");setFont("bold",9.2);setText(theme.accentDark);doc.text("SUCCESS LOOKS LIKE",PAGE.left+5,cursorY+2);const success=["Compliant and audit-ready","Efficient processes","Engaged and productive team","Ready to scale"];success.forEach((text,index)=>{setFont("normal",7);setText(theme.text);doc.text(split(text,36),PAGE.left+8+index*43,cursorY+11,{align:"center",lineHeightFactor:1.1});});cursorY+=31;}
         function footerLogo(page){if(!logoDataUrl)return;try{doc.addImage(logoDataUrl,"PNG",PAGE.left,PAGE.footerMainY-4.7,5.5,5.5,`footer-logo-${page}`,"FAST");}catch(_error){}}
         function footers(){const total=doc.getNumberOfPages();for(let page=1;page<=total;page+=1){doc.setPage(page);setDraw(theme.line);doc.setLineWidth(0.25);doc.line(PAGE.left,PAGE.footerRuleY,PAGE.width-PAGE.right,PAGE.footerRuleY);footerLogo(page);setFont("bold",7.1);setText(theme.accentDark);doc.text("GrowWithHR",PAGE.left+(logoDataUrl?7.5:0),PAGE.footerMainY);setFont("bold",6.8);setText(theme.muted);doc.text("HRTechify - People • Technology • Growth",PAGE.width/2,PAGE.footerMainY,{align:"center"});setFont("normal",6.2);doc.text("© 2026 All Rights Reserved",PAGE.width/2,PAGE.footerSubY,{align:"center"});setFont("normal",6.8);doc.text(`Page ${page} of ${total}`,PAGE.width-PAGE.right,PAGE.footerMainY,{align:"right"});}}
         paintPage();return{cover,addPage,sectionHeading,paragraph,subheading,numberedList,bulletList,profileTable,recommendationCard,summaryTable,roadmap,footers};
     }
 
-    function render(doc,model,logoDataUrl,options){const writer=createWriter(doc,model,logoDataUrl,options);writer.cover();writer.addPage();writer.sectionHeading("EXECUTIVE SNAPSHOT","About Your Organisation","The organisation context used to shape this advisory.");writer.profileTable([["Organisation",model.companyName],["Industry",model.industry],["What it does",model.nature],["Legal structure",model.entity],["Workforce",model.employeeLabel||pluralise(model.employees,"employee")],["Working model",model.workModel],["Primary base",model.primaryState],["Footprint",`${pluralise(model.locations,"location")} across ${pluralise(model.countries,"country","countries")}`],["Hiring direction",model.hiringPlans],["People support",model.peopleFunction]]);writer.sectionHeading("EXECUTIVE SUMMARY","What Matters Next");unique(model.executiveSummary||[]).forEach((text)=>writer.paragraph(text));writer.subheading("Immediate leadership focus");writer.numberedList(model.priorities);writer.sectionHeading("POSITIVE FOUNDATIONS","What Is Already Working");writer.bulletList(model.strengths);writer.sectionHeading("RECOMMENDED ACTIONS","Strategic Recommendations","Each recommendation includes practical implementation steps and a reusable starting template.");const recommendations=model.recommendations||[];recommendations.forEach((item,index)=>{writer.recommendationCard(item,index);if((index+1)%2===0||index===recommendations.length-1){const start=Math.max(0,index-1);writer.summaryTable(recommendations.slice(start,index+1).map((rec)=>[cleanText(rec.title),cleanText(rec.observation,"Supports organisational readiness"),cleanText(toArray(rec.howTo)[0],"Assign an owner and begin")]));}});writer.sectionHeading("COMPLIANCE REVIEW","What You Should Do","Governance prompts only; confirm applicability with qualified advisers and official sources.");writer.bulletList(model.compliance);writer.subheading("Suggested governance rhythm");writer.numberedList(["Assign one accountable owner for each obligation or policy area.","Record completion evidence and the next review date.","Escalate overdue or high-risk items through a regular leadership forum.","Reassess after changes in workforce count, location, worker type or operating model."]);writer.roadmap(model.roadmap);writer.sectionHeading("LOOKING AHEAD","Sustainable Growth, People First");writer.bulletList(model.opportunities);writer.paragraph(`${model.companyName} should select a small number of actions, assign clear owners and review progress alongside business performance.`);writer.sectionHeading("IMPORTANT INFORMATION",options.isSample?"Sample Notice and Disclaimer":"Confidentiality and Disclaimer");writer.paragraph(options.isSample?"This sample uses fictional information and demonstrates the structure of a GrowWithHR advisory.":"This advisory is a confidential leadership working document prepared from information supplied by the user.");writer.paragraph("It provides general business and people-management guidance and is not legal, tax, accounting, employment-law or regulatory advice. Verify requirements with qualified professionals and current official sources.");writer.footers();}
+    function render(doc,model,logoDataUrl,options){
+        const writer=createWriter(doc,model,logoDataUrl,options);writer.cover();writer.addPage();
+        writer.sectionHeading("EXECUTIVE SNAPSHOT","About Your Organisation","The organisation context used to shape this advisory.");
+        writer.profileTable([["Organisation",model.companyName],["Industry",model.industry],["What it does",model.nature],["Legal structure",model.entity],["Workforce",model.employeeLabel||pluralise(model.employees,"employee")],["Working model",model.workModel],["Primary base",model.primaryState],["Footprint",`${pluralise(model.locations,"location")} across ${pluralise(model.countries,"country","countries")}`],["Hiring direction",model.hiringPlans],["People support",model.peopleFunction]]);
+        writer.sectionHeading("EXECUTIVE SUMMARY","What Matters Next","Your choices and GrowWithHR's Company DNA suggestions are shown separately throughout this report.");
+        unique(model.executiveSummary||[]).forEach((text)=>writer.paragraph(text));
+        writer.subheading("Priorities selected by you");
+        if(model.selectedPriorities.length){writer.numberedList(model.selectedPriorities);}else{writer.paragraph("No specific priority was selected in the briefing.",{style:"italic"});}
+        if(model.suggestedPriorities.length){writer.subheading("Additional suggestions based on your Company DNA");writer.paragraph("These areas were inferred from the wider organisation profile. They are suggestions for consideration and were not selected by you.",{spacingAfter:5});writer.numberedList(model.suggestedPriorities.map((name)=>`${name} - suggested because of ${model.suggestionReasons[name]}.`));}
+        writer.sectionHeading("POSITIVE FOUNDATIONS","What Is Already Working");writer.bulletList(model.strengths);
+        writer.sectionHeading("RECOMMENDED ACTIONS","Strategic Recommendations","Recommendations are grouped by source so your stated priorities are never confused with additional Company DNA suggestions.");
+        const selectedRecommendations=(model.recommendations||[]).filter((item)=>item.source==="selected");
+        const suggestedRecommendations=(model.recommendations||[]).filter((item)=>item.source==="suggested");
+        if(selectedRecommendations.length){writer.subheading("Selected by you");selectedRecommendations.forEach((item,index)=>writer.recommendationCard(item,index));writer.summaryTable(selectedRecommendations.map((rec)=>[`${cleanText(rec.title)} (Selected by you)`,cleanText(rec.observation,"Supports organisational readiness"),cleanText(toArray(rec.howTo)[0],"Assign an owner and begin")]),"YOUR SELECTED PRIORITIES AT A GLANCE");}
+        if(suggestedRecommendations.length){writer.subheading("Additional Company DNA suggestions");writer.paragraph("The following recommendations are based on company information such as workforce size, work model, footprint, hiring direction and People/HR support. They do not override your selection.",{spacingAfter:6});suggestedRecommendations.forEach((item,index)=>writer.recommendationCard(item,index));writer.summaryTable(suggestedRecommendations.map((rec)=>[`${cleanText(rec.title)} (Company DNA suggestion)`,cleanText(rec.suggestionReason||rec.observation,"Supports organisational readiness"),cleanText(toArray(rec.howTo)[0],"Assign an owner and begin")]),"COMPANY DNA SUGGESTIONS AT A GLANCE");}
+        writer.sectionHeading("COMPLIANCE REVIEW","What You Should Do","Governance prompts only; confirm applicability with qualified advisers and official sources.");writer.bulletList(model.compliance);writer.subheading("Suggested governance rhythm");writer.numberedList(["Assign one accountable owner for each obligation or policy area.","Record completion evidence and the next review date.","Escalate overdue or high-risk items through a regular leadership forum.","Reassess after changes in workforce count, location, worker type or operating model."]);
+        writer.roadmap(model.roadmap);
+        writer.sectionHeading("LOOKING AHEAD","Sustainable Growth, People First");writer.bulletList(model.opportunities);writer.paragraph(`${model.companyName} should begin with the priorities selected by leadership, then review the separate Company DNA suggestions as supporting considerations alongside business performance.`);
+        writer.sectionHeading("IMPORTANT INFORMATION",options.isSample?"Sample Notice and Disclaimer":"Confidentiality and Disclaimer");writer.paragraph(options.isSample?"This sample uses fictional information and demonstrates the structure of a GrowWithHR advisory.":"This advisory is a confidential leadership working document prepared from information supplied by the user.");writer.paragraph("It provides general business and people-management guidance and is not legal, tax, accounting, employment-law or regulatory advice. Verify requirements with qualified professionals and current official sources.");writer.footers();
+    }
 
-    async function buildAdvisoryPdf(payload={}){const model=previous.buildAdvisoryModel(payload),theme=resolveTheme(payload),options={theme,isSample:Boolean(payload.isSample),runningTitle:cleanText(payload.runningTitle,"GrowWithHR Executive Advisory"),coverLabel:cleanText(payload.coverLabel,payload.isSample?"ILLUSTRATIVE SAMPLE":"PERSONALISED FOR YOUR ORGANISATION"),coverIntro:cleanText(payload.coverIntro,"Your personalised people and HR advisory report with practical recommendations to help you build a scalable, compliant and high-performing organisation.")};const logoDataUrl=await loadTransparentLogo();const doc=new JsPDF({orientation:"portrait",unit:"mm",format:"a4",compress:true,putOnlyUsedFonts:true});doc.setProperties({title:`${options.isSample?"Sample ":""}Executive Advisory - ${model.companyName}`,subject:"HRTechify GrowWithHR Executive Advisory",author:"HRTechify",creator:`GrowWithHR PDF ${VERSION} / ${EXPERIENCE_VERSION}`,keywords:"HRTechify, GrowWithHR, executive advisory, people strategy"});render(doc,model,logoDataUrl,options);const filename=cleanText(payload.filename,options.isSample?`HRTechify-Sample-Executive-Advisory-${theme}.pdf`:`GrowWithHR-Advisory-${escapeFilename(model.companyName)}-${theme}.pdf`),dataUri=doc.output("datauristring"),arrayBuffer=doc.output("arraybuffer");return{document:doc,filename,base64:dataUri.includes(",")?dataUri.split(",")[1]:dataUri,dataUri,sizeBytes:arrayBuffer.byteLength,pageCount:doc.getNumberOfPages(),generatedAt:new Date().toISOString(),companyName:model.companyName,version:VERSION,theme,isSample:options.isSample};}
+    async function buildAdvisoryPdf(payload={}){const baseModel=previous.buildAdvisoryModel(payload),model=enrichPrioritySources(payload,baseModel),theme=resolveTheme(payload),options={theme,isSample:Boolean(payload.isSample),runningTitle:cleanText(payload.runningTitle,"GrowWithHR Executive Advisory"),coverLabel:cleanText(payload.coverLabel,payload.isSample?"ILLUSTRATIVE SAMPLE":"PERSONALISED FOR YOUR ORGANISATION"),coverIntro:cleanText(payload.coverIntro,"Your personalised people and HR advisory report with practical recommendations to help you build a scalable, compliant and high-performing organisation.")};const logoDataUrl=await loadTransparentLogo();const doc=new JsPDF({orientation:"portrait",unit:"mm",format:"a4",compress:true,putOnlyUsedFonts:true});doc.setProperties({title:`${options.isSample?"Sample ":""}Executive Advisory - ${model.companyName}`,subject:"HRTechify GrowWithHR Executive Advisory",author:"HRTechify",creator:`GrowWithHR PDF ${VERSION} / ${EXPERIENCE_VERSION}`,keywords:"HRTechify, GrowWithHR, executive advisory, people strategy"});render(doc,model,logoDataUrl,options);const filename=cleanText(payload.filename,options.isSample?`HRTechify-Sample-Executive-Advisory-${theme}.pdf`:`GrowWithHR-Advisory-${escapeFilename(model.companyName)}-${theme}.pdf`),dataUri=doc.output("datauristring"),arrayBuffer=doc.output("arraybuffer");return{document:doc,filename,base64:dataUri.includes(",")?dataUri.split(",")[1]:dataUri,dataUri,sizeBytes:arrayBuffer.byteLength,pageCount:doc.getNumberOfPages(),generatedAt:new Date().toISOString(),companyName:model.companyName,version:VERSION,theme,isSample:options.isSample};}
     async function downloadAdvisoryPdf(payload={}){let result=payload.document||payload.pdf||null;if(result&&typeof result.save==="function")result={document:result,filename:cleanText(payload.filename,DEFAULT_FILENAME)};if(!result||(!result.document&&typeof result.save!=="function"))result=await buildAdvisoryPdf(payload);const doc=result.document||result,filename=cleanText(result.filename||payload.filename,DEFAULT_FILENAME);if(!doc||typeof doc.save!=="function")throw new Error("A valid jsPDF document was not available for download.");doc.save(filename);try{window.localStorage?.setItem(LAST_DOWNLOAD_KEY,new Date().toISOString());}catch(_error){}return result;}
     async function generatePDFReport(){const button=document.getElementById("generateReportBtn");if(button){button.disabled=true;button.setAttribute("aria-busy","true");}try{const result=await buildAdvisoryPdf({report:getStoredReport(),theme:resolveTheme(),lead:{email:cleanText(document.getElementById("userEmail")?.value),deliveryRequested:true}});await downloadAdvisoryPdf(result);window.closePDFModal?.();}catch(error){console.error("GrowWithHR PDF polish: report generation failed.",error);window.alert?.("We could not prepare the PDF just yet. Please try again.");}finally{if(button){button.disabled=false;button.removeAttribute("aria-busy");}}}
     window.GrowWithHRPDF=Object.freeze({version:VERSION,experienceVersion:EXPERIENCE_VERSION,buildAdvisoryPdf,downloadAdvisoryPdf,buildAdvisoryModel:previous.buildAdvisoryModel});
