@@ -1,26 +1,17 @@
-/* Homepage intelligence graph: rotate the complete graph in place.
-   The canvas, nodes, connections and parameter labels share one transform,
-   so every visible graph element completes the same 360-degree orbit. */
+/* Homepage intelligence graph motion.
+   The Canvas renderer already moves every parameter and node around the
+   circular orbit. Keep the container itself stationary so the graph does not
+   appear to zoom or tilt, and so labels remain horizontally readable. */
 
 .home-page #dnaCoreCanvas {
-    transform-origin: 50% 50%;
-    animation: growwithhr-intelligence-core-rotation 20s linear infinite;
-    will-change: transform;
+    transform: none;
+    animation: none;
+    will-change: auto;
     pointer-events: none;
 }
 
-@keyframes growwithhr-intelligence-core-rotation {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .home-page #dnaCoreCanvas {
-        animation: none;
-    }
+.home-page #dnaCoreCanvas .dna-label {
+    rotate: 0deg;
+    writing-mode: horizontal-tb;
+    text-orientation: mixed;
 }
