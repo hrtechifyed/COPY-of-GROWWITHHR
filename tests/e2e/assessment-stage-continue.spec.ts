@@ -22,6 +22,16 @@ async function waitForAssessmentGuard(page: Page): Promise<void> {
     });
 }
 
+async function waitForContinue(page: Page): Promise<void> {
+    const button = page.locator("#nextButton");
+
+    await expect(button).toBeEnabled();
+    await expect(button).not.toHaveAttribute(
+        "aria-busy",
+        "true"
+    );
+}
+
 async function expectMoment(
     page: Page,
     moment: number
@@ -92,6 +102,7 @@ test.describe(
                 await page.locator("#fundingStage").selectOption({
                     label: "Not sure"
                 });
+                await waitForContinue(page);
 
                 await page.evaluate(() => {
                     const form = document.getElementById(
@@ -116,11 +127,7 @@ test.describe(
                 await expect(
                     page.locator("#storyContainer .has-error")
                 ).toHaveCount(0);
-                await expect(
-                    page.locator("#nextButton")
-                ).not.toHaveAttribute("aria-busy", "true", {
-                    timeout: 2_000
-                });
+                await waitForContinue(page);
                 expect(pageErrors).toEqual([]);
             }
         );
@@ -141,9 +148,7 @@ test.describe(
                 await expect(
                     page.locator("#storyContainer .has-error")
                 ).toHaveCount(3);
-                await expect(
-                    page.locator("#nextButton")
-                ).not.toHaveAttribute("aria-busy", "true");
+                await waitForContinue(page);
 
                 await page.locator("#companyName").fill(
                     "Recovered Continue Company"
