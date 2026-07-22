@@ -18,17 +18,19 @@
             return;
         }
 
-        button.disabled = busy;
-
         if (busy) {
             button.setAttribute(
                 "aria-busy",
                 "true"
             );
+            button.dataset.navigationBusy =
+                "true";
         } else {
             button.removeAttribute(
                 "aria-busy"
             );
+            delete button.dataset
+                .navigationBusy;
         }
     }
 
