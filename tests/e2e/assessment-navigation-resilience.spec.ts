@@ -68,13 +68,23 @@ async function submitRapidly(page: Page): Promise<void> {
     await expect(button).toBeVisible();
     await expect(button).toBeEnabled();
     await waitForNavigationUnlock(page);
-    await button.click({
-        force: true,
-        noWaitAfter: true
-    });
-    await button.click({
-        force: true,
-        noWaitAfter: true
+
+    await page.evaluate(() => {
+        const form = document.getElementById(
+            "storyForm"
+        ) as HTMLFormElement | null;
+        const submitter = document.getElementById(
+            "nextButton"
+        ) as HTMLButtonElement | null;
+
+        if (!form || !submitter) {
+            throw new Error(
+                "Assessment Continue controls are unavailable."
+            );
+        }
+
+        form.requestSubmit(submitter);
+        form.requestSubmit(submitter);
     });
 }
 
@@ -231,7 +241,7 @@ test.describe(
                     { name: "Start my advisory" }
                 ).click();
 
-                await page.locator("#nextButton").click();
+                await submitRapidly(page);
 
                 await expect(
                     page.locator("#storyContainer .has-error")
