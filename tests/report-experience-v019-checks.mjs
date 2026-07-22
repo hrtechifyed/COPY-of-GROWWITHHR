@@ -30,7 +30,7 @@ assert(experience.includes('observerScope: "story-container"'));
 assert(!experience.includes("observer.observe(document.body"));
 assert(experience.includes('document.getElementById("storyContainer")'));
 
-assert(pdf.includes('const VERSION = "3.1.2-contained-table-layout"'));
+assert(pdf.includes('const VERSION = "3.1.3-priority-source-separation"'));
 assert(pdf.includes("const THEMES"));
 assert(pdf.includes("light:"));
 assert(pdf.includes("dark:"));
@@ -41,6 +41,9 @@ assert(pdf.includes("function summaryTable"));
 assert(pdf.includes("const rowHeights=preparedRows.map"));
 assert(pdf.includes("function roadmap"));
 assert(pdf.includes("function ensureSpace"));
+assert(pdf.includes("function enrichPrioritySources"));
+assert(pdf.includes("Selected by you"));
+assert(pdf.includes("Company DNA suggestion"));
 assert(pdf.includes("textWithLink"));
 assert(pdf.includes("HOW TO IMPLEMENT"));
 assert(pdf.includes("GrowWithHRPDFPolishReady"));
