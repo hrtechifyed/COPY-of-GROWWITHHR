@@ -2,15 +2,16 @@
    GrowWithHR
    Executive assessment navigation resilience
 
-   Prevents rapid repeated Continue activation from submitting the newly
-   rendered scene before the user has answered it. The guard works at the form
-   event boundary and leaves the assessment controller methods unchanged.
+   Prevents repeated Continue activation from validating a newly rendered
+   scene before the user has interacted with it. The guard wraps the assessment
+   controller method so mouse, touch, keyboard and programmatic submissions all
+   follow the same transition lock.
 ========================================================== */
 
 (() => {
     "use strict";
 
-    const LOCK_DURATION_MS = 450;
+    const FALLBACK_UNLOCK_MS = 1500;
     let installed = false;
 
     function setButtonBusy(button, busy) {
@@ -34,20 +35,62 @@
         }
     }
 
-    function install(application) {
-        const form =
-            application?.elements?.storyForm ||
+    function showRecoverableError(application) {
+        const message =
+            "We couldn’t move to the next scene. Your answers are still here—please try Continue again.";
+        const footer =
+            application?.elements?.footerMessage ||
             document.getElementById(
-                "storyForm"
+                "footerMessage"
+            );
+        const assertive =
+            application?.elements?.assertiveRegion ||
+            document.getElementById(
+                "assertiveRegion"
             );
 
+        if (footer) {
+            footer.textContent = message;
+        }
+
+        if (assertive) {
+            assertive.textContent = "";
+
+            window.requestAnimationFrame(() => {
+                assertive.textContent = message;
+            });
+        }
+    }
+
+    function install(application) {
         if (
             installed ||
             !application ||
-            !form
+            typeof application.continueFromMoment !==
+                "function"
         ) {
             return false;
         }
+
+        const shell =
+            application?.elements?.shell ||
+            document.getElementById(
+                "assessmentShell"
+            );
+        const storyContainer =
+            application?.elements?.storyContainer ||
+            document.getElementById(
+                "storyContainer"
+            );
+        const backButton =
+            application?.elements?.backButton ||
+            document.getElementById(
+                "backButton"
+            );
+        const originalContinue =
+            application
+                .continueFromMoment
+                .bind(application);
 
         let navigationLocked = false;
         let releaseTimer = 0;
@@ -60,53 +103,114 @@
             releaseTimer = 0;
             navigationLocked = false;
             setButtonBusy(
-                activeButton,
+                activeButton ||
+                application?.elements?.nextButton ||
+                document.getElementById(
+                    "nextButton"
+                ),
                 false
             );
             activeButton = null;
         };
 
-        form.addEventListener(
-            "submit",
-            (event) => {
+        const scheduleFallbackRelease = () => {
+            window.clearTimeout(
+                releaseTimer
+            );
+            releaseTimer =
+                window.setTimeout(
+                    release,
+                    FALLBACK_UNLOCK_MS
+                );
+        };
+
+        application.continueFromMoment =
+            function guardedContinueFromMoment(
+                ...args
+            ) {
                 if (navigationLocked) {
-                    event.preventDefault();
-                    event.stopImmediatePropagation();
-                    return;
+                    return false;
                 }
+
+                const beforeMoment =
+                    this.currentMoment;
+                const beforeScreen =
+                    shell?.dataset?.screen ||
+                    "";
 
                 navigationLocked = true;
                 activeButton =
-                    event.submitter ||
-                    application?.elements?.nextButton ||
+                    this?.elements?.nextButton ||
                     document.getElementById(
                         "nextButton"
                     );
-
                 setButtonBusy(
                     activeButton,
                     true
                 );
 
-                window.clearTimeout(
-                    releaseTimer
-                );
-                releaseTimer =
-                    window.setTimeout(
-                        release,
-                        LOCK_DURATION_MS
+                try {
+                    const result =
+                        originalContinue(
+                            ...args
+                        );
+                    const afterMoment =
+                        this.currentMoment;
+                    const afterScreen =
+                        shell?.dataset?.screen ||
+                        "";
+                    const advanced =
+                        afterMoment !==
+                            beforeMoment ||
+                        afterScreen !==
+                            beforeScreen;
+
+                    if (
+                        !advanced ||
+                        afterScreen !==
+                            "workspace"
+                    ) {
+                        release();
+                    } else {
+                        scheduleFallbackRelease();
+                    }
+
+                    return result;
+                } catch (error) {
+                    release();
+                    console.error(
+                        "GrowWithHR: assessment scene navigation failed.",
+                        error
                     );
-            },
-            true
-        );
+                    showRecoverableError(
+                        this
+                    );
+                    return false;
+                }
+            };
+
+        [
+            "focusin",
+            "input",
+            "change",
+            "pointerdown"
+        ].forEach((eventName) => {
+            storyContainer
+                ?.addEventListener(
+                    eventName,
+                    release,
+                    true
+                );
+        });
+
+        backButton
+            ?.addEventListener(
+                "click",
+                release,
+                true
+            );
 
         installed = true;
-
-        const shell =
-            application?.elements?.shell ||
-            document.getElementById(
-                "assessmentShell"
-            );
 
         if (shell) {
             shell.dataset.navigationGuard =
