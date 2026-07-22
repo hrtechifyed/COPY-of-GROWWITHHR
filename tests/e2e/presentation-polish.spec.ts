@@ -121,13 +121,13 @@ test("balances the five executive snapshot cards and contains long values", asyn
     expect(layout.every((card) => card.valueFits)).toBe(true);
 });
 
-test("loads the page-safe PDF renderer on the public sample route", async ({ page }) => {
+test("loads the priority-source PDF renderer on the public sample route", async ({ page }) => {
     await page.goto("/sample-advisory-report.html");
 
     await page.waitForFunction(() => (
-        window.GrowWithHRPDF?.version === "3.1.2-contained-table-layout"
+        window.GrowWithHRPDF?.version === "3.1.3-priority-source-separation"
     ));
 
     const version = await page.evaluate(() => window.GrowWithHRPDF?.version);
-    expect(version).toBe("3.1.2-contained-table-layout");
+    expect(version).toBe("3.1.3-priority-source-separation");
 });
