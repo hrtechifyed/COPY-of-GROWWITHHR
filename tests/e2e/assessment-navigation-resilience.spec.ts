@@ -64,12 +64,22 @@ async function waitForNavigationUnlock(
 
 async function submitRapidly(page: Page): Promise<void> {
     const button = page.locator("#nextButton");
+    const eventInit = {
+        bubbles: true,
+        cancelable: true
+    };
 
     await expect(button).toBeVisible();
     await expect(button).toBeEnabled();
     await waitForNavigationUnlock(page);
-    await button.dispatchEvent("click");
-    await button.dispatchEvent("click");
+    await button.dispatchEvent(
+        "click",
+        eventInit
+    );
+    await button.dispatchEvent(
+        "click",
+        eventInit
+    );
 }
 
 test.describe(
