@@ -11,7 +11,7 @@
 (() => {
     "use strict";
 
-    const FALLBACK_UNLOCK_MS = 1500;
+    const FALLBACK_UNLOCK_MS = 1000;
     const INSTALL_RETRY_MS = 50;
     const MAX_INSTALL_ATTEMPTS = 100;
     let installed = false;
@@ -71,22 +71,15 @@
             );
 
         let navigationLocked = false;
-        let transitionSettled = false;
         let releaseTimer = 0;
-        let evaluationTimer = 0;
         let activeButton = null;
 
         const release = () => {
             window.clearTimeout(
                 releaseTimer
             );
-            window.clearTimeout(
-                evaluationTimer
-            );
             releaseTimer = 0;
-            evaluationTimer = 0;
             navigationLocked = false;
-            transitionSettled = false;
             setButtonBusy(
                 activeButton ||
                 application?.elements?.nextButton ||
@@ -103,7 +96,6 @@
 
             if (
                 !navigationLocked ||
-                !transitionSettled ||
                 !storyContainer ||
                 !(target instanceof Node) ||
                 !target.isConnected ||
@@ -113,17 +105,6 @@
             }
 
             release();
-        };
-
-        const scheduleFallbackRelease = () => {
-            window.clearTimeout(
-                releaseTimer
-            );
-            releaseTimer =
-                window.setTimeout(
-                    release,
-                    FALLBACK_UNLOCK_MS
-                );
         };
 
         document.addEventListener(
@@ -139,14 +120,7 @@
                     return;
                 }
 
-                const beforeMoment =
-                    application.currentMoment;
-                const beforeScreen =
-                    shell?.dataset?.screen ||
-                    "";
-
                 navigationLocked = true;
-                transitionSettled = false;
                 activeButton =
                     event.submitter ||
                     application?.elements?.nextButton ||
@@ -159,37 +133,12 @@
                 );
 
                 window.clearTimeout(
-                    evaluationTimer
+                    releaseTimer
                 );
-                evaluationTimer =
+                releaseTimer =
                     window.setTimeout(
-                        () => {
-                            evaluationTimer = 0;
-
-                            const afterMoment =
-                                application.currentMoment;
-                            const afterScreen =
-                                shell?.dataset?.screen ||
-                                "";
-                            const advanced =
-                                afterMoment !==
-                                    beforeMoment ||
-                                afterScreen !==
-                                    beforeScreen;
-
-                            if (
-                                !advanced ||
-                                afterScreen !==
-                                    "workspace"
-                            ) {
-                                release();
-                                return;
-                            }
-
-                            transitionSettled = true;
-                            scheduleFallbackRelease();
-                        },
-                        0
+                        release,
+                        FALLBACK_UNLOCK_MS
                     );
             },
             true
