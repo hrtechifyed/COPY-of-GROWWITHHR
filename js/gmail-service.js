@@ -13,9 +13,10 @@
     const DEFAULT_HEALTH_ENDPOINT = "/api/health";
     const GITHUB_PAGES_ORIGIN = "https://hrtechifyed.github.io";
     const GITHUB_PAGES_PROJECT_PATH = "/GrowwithHR-Version2/";
-    const RENDER_ORIGIN = "https://growwithhr.onrender.com";
-    const RENDER_ENDPOINT = `${RENDER_ORIGIN}/api/send-advisory`;
-    const RENDER_HEALTH_ENDPOINT = `${RENDER_ORIGIN}/api/health`;
+    const RENDER_ENDPOINT =
+        "https://growwithhr.onrender.com/api/send-advisory";
+    const RENDER_HEALTH_ENDPOINT =
+        "https://growwithhr.onrender.com/api/health";
     const MAX_PDF_BYTES = 8 * 1024 * 1024;
     const REQUEST_TIMEOUT_MS = 60 * 1000;
     const HEALTH_TIMEOUT_MS = 15 * 1000;
