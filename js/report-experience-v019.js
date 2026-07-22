@@ -8,7 +8,7 @@
 (() => {
     "use strict";
 
-    const VERSION = "0.19.0-report-experience";
+    const VERSION = "0.19.1-report-experience";
     const ASSESSMENT_STORAGE_KEY = "growwithhr-advisory-briefing-v2";
     const REPORT_THEME_KEY = "growwithhr-report-theme";
     const ONE_PERSON_COMPANY = "One Person Company";
@@ -108,6 +108,10 @@
         return String(value ?? "").replace(/\s+/g, " ").trim();
     }
 
+    function isAssessmentPage() {
+        return document.body?.classList.contains("analyze-company-page");
+    }
+
     function isOnePersonCompany(entity) {
         return clean(entity).toLowerCase() === ONE_PERSON_COMPANY.toLowerCase();
     }
@@ -124,7 +128,10 @@
             .map(clean)
             .filter((value) => {
                 if (!value) return false;
-                const key = value.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+                const key = value
+                    .toLowerCase()
+                    .replace(/[^a-z0-9]+/g, " ")
+                    .trim();
                 if (seen.has(key)) return false;
                 seen.add(key);
                 return true;
@@ -132,12 +139,19 @@
     }
 
     function enhanceModel(model = {}) {
-        const employees = normaliseEmployeeCount(model.employees, model.entity);
-        const employeeLabel = `${employees} ${employees === 1 ? "employee" : "employees"}`;
+        const employees = normaliseEmployeeCount(
+            model.employees,
+            model.entity
+        );
+        const employeeLabel = `${employees} ${
+            employees === 1 ? "employee" : "employees"
+        }`;
         const recommendations = uniqueText(
             (model.recommendations || []).map((item) => item?.title)
         ).map((title) => {
-            const original = (model.recommendations || []).find((item) => item?.title === title) || {};
+            const original = (model.recommendations || []).find(
+                (item) => item?.title === title
+            ) || {};
             const implementation = RESOURCE_LIBRARY[title] || {
                 howTo: [
                     "Assign one accountable owner and define the intended outcome.",
@@ -165,7 +179,9 @@
             employees,
             employeeLabel,
             employeeNoun: employees === 1 ? "employee" : "employees",
-            employeePronoun: employees === 1 ? "this employee" : "these employees",
+            employeePronoun: employees === 1
+                ? "this employee"
+                : "these employees",
             executiveSummary: uniqueText(model.executiveSummary),
             perspective: uniqueText(model.perspective),
             strengths: uniqueText(model.strengths),
@@ -178,7 +194,13 @@
 
     function installPdfModelEnhancement() {
         const current = window.GrowWithHRPDF;
-        if (!current || typeof current.buildAdvisoryModel !== "function" || current.v019Enhanced) return;
+        if (
+            !current ||
+            typeof current.buildAdvisoryModel !== "function" ||
+            current.v019Enhanced
+        ) {
+            return;
+        }
         const originalBuild = current.buildAdvisoryModel.bind(current);
         window.GrowWithHRPDF = Object.freeze({
             ...current,
@@ -191,7 +213,9 @@
 
     function readAssessmentRecord() {
         try {
-            return JSON.parse(window.localStorage?.getItem(ASSESSMENT_STORAGE_KEY) || "{}");
+            return JSON.parse(
+                window.localStorage?.getItem(ASSESSMENT_STORAGE_KEY) || "{}"
+            );
         } catch (_error) {
             return {};
         }
@@ -200,10 +224,16 @@
     function writeAssessmentEmployees(value) {
         try {
             const record = readAssessmentRecord();
-            record.answers = { ...(record.answers || {}), employees: String(value) };
-            window.localStorage?.setItem(ASSESSMENT_STORAGE_KEY, JSON.stringify(record));
+            record.answers = {
+                ...(record.answers || {}),
+                employees: String(value)
+            };
+            window.localStorage?.setItem(
+                ASSESSMENT_STORAGE_KEY,
+                JSON.stringify(record)
+            );
         } catch (_error) {
-            // The controller remains the primary state owner; storage is best-effort.
+            // The assessment controller remains the primary state owner.
         }
     }
 
@@ -221,7 +251,10 @@
         input.min = "1";
         input.step = "1";
 
-        const parsed = normaliseEmployeeCount(input.value, onePerson ? ONE_PERSON_COMPANY : "");
+        const parsed = normaliseEmployeeCount(
+            input.value,
+            onePerson ? ONE_PERSON_COMPANY : ""
+        );
         if (String(input.value) !== String(parsed)) {
             input.value = String(parsed);
             input.dispatchEvent(new Event("input", { bubbles: true }));
@@ -231,7 +264,9 @@
 
         input.disabled = onePerson;
         input.setAttribute("aria-readonly", onePerson ? "true" : "false");
-        input.closest(".advisory-field")?.classList.toggle("is-system-locked", onePerson);
+        input
+            .closest(".advisory-field")
+            ?.classList.toggle("is-system-locked", onePerson);
 
         const help = document.getElementById("employeesHelp");
         if (help) {
@@ -242,32 +277,61 @@
     }
 
     function bindAssessmentSafeguards() {
+        if (!isAssessmentPage()) return;
+
         document.addEventListener("input", (event) => {
             if (event.target?.id !== "employees") return;
             const input = event.target;
             if (Number(input.value) < 1) input.value = "1";
         });
-        document.addEventListener("blur", (event) => {
-            if (event.target?.id !== "employees") return;
-            enforceEmployeeField();
-        }, true);
+
+        document.addEventListener(
+            "blur",
+            (event) => {
+                if (event.target?.id === "employees") {
+                    enforceEmployeeField();
+                }
+            },
+            true
+        );
+
         document.addEventListener("change", (event) => {
-            if (event.target?.id === "entity") {
-                if (isOnePersonCompany(event.target.value)) writeAssessmentEmployees(1);
-                queueMicrotask(enforceEmployeeField);
+            if (event.target?.id !== "entity") return;
+            if (isOnePersonCompany(event.target.value)) {
+                writeAssessmentEmployees(1);
             }
+            queueMicrotask(enforceEmployeeField);
         });
 
-        const observer = new MutationObserver(enforceEmployeeField);
-        observer.observe(document.body, { childList: true, subtree: true });
+        const storyContainer = document.getElementById("storyContainer");
+        if (storyContainer) {
+            let scheduled = false;
+            const scheduleEnforcement = () => {
+                if (scheduled) return;
+                scheduled = true;
+                window.requestAnimationFrame(() => {
+                    scheduled = false;
+                    enforceEmployeeField();
+                });
+            };
+            const observer = new MutationObserver(scheduleEnforcement);
+            observer.observe(storyContainer, {
+                childList: true,
+                subtree: true
+            });
+        }
+
         enforceEmployeeField();
     }
 
     function currentTheme() {
         const selected = document.querySelector(
-            "input[name='advisoryReportTheme']:checked, input[name='reportTheme']:checked"
+            "input[name='advisoryReportTheme']:checked, " +
+            "input[name='reportTheme']:checked"
         );
-        const value = selected?.value || window.localStorage?.getItem(REPORT_THEME_KEY) || "light";
+        const value = selected?.value ||
+            window.localStorage?.getItem(REPORT_THEME_KEY) ||
+            "light";
         return /dark/i.test(value) ? "dark" : "light";
     }
 
@@ -280,13 +344,22 @@
     }
 
     function installLeadThemeChoice() {
+        if (!isAssessmentPage()) return;
+
         const form = document.getElementById("leadCaptureForm");
         const actions = form?.querySelector(".advisory-panel-actions");
-        if (!form || !actions || form.querySelector("[data-report-theme-choice]")) return;
+        if (
+            !form ||
+            !actions ||
+            form.querySelector("[data-report-theme-choice]")
+        ) {
+            return;
+        }
 
         const saved = currentTheme();
         const fieldset = document.createElement("fieldset");
-        fieldset.className = "advisory-consent-group advisory-report-theme-choice";
+        fieldset.className =
+            "advisory-consent-group advisory-report-theme-choice";
         fieldset.dataset.reportThemeChoice = "true";
         fieldset.innerHTML = `
             <legend>PDF report style</legend>
@@ -308,11 +381,17 @@
     bindAssessmentSafeguards();
     installLeadThemeChoice();
 
+    window.addEventListener(
+        "growwithhr:pdf-service-ready",
+        installPdfModelEnhancement
+    );
+
     window.GrowWithHRReportExperience = Object.freeze({
         version: VERSION,
         resourceLibrary: RESOURCE_LIBRARY,
         normaliseEmployeeCount,
         enhanceModel,
-        currentTheme
+        currentTheme,
+        observerScope: "story-container"
     });
 })();
