@@ -13,7 +13,7 @@
         return;
     }
 
-    const VERSION = "3.1.0-clean-report-layout";
+    const VERSION = "3.1.1-section-hierarchy-spacing";
     const EXPERIENCE_VERSION = "0.19.0";
     const DEFAULT_FILENAME = "GrowWithHR-Executive-Advisory.pdf";
     const REPORT_STORAGE_KEY = "growwithhr-report";
@@ -169,19 +169,23 @@
         }
 
         function sectionHeading(label, title, introduction = "") {
-            ensureSpace(introduction ? 34 : 25);
-            setFont("bold", 7.8); setText(theme.accentDark); doc.text(cleanText(label).toUpperCase(), PAGE.left, cursorY);
-            cursorY += 7;
-            setFont("bold", 16); setText(theme.heading);
-            const titleLines = split(title, usableWidth); doc.text(titleLines, PAGE.left, cursorY, { lineHeightFactor: 1.1 });
-            cursorY += titleLines.length * lineHeight(16, 1.1) + 3;
-            setDraw(theme.accent); doc.setLineWidth(0.7); doc.line(PAGE.left, cursorY, PAGE.left + 28, cursorY); cursorY += 8;
+            const labelSize = 11.5;
+            const titleSize = 11;
+            const topSpacing = cursorY > PAGE.top + 1 ? 11 : 0;
+            ensureSpace((introduction ? 39 : 30) + topSpacing);
+            cursorY += topSpacing;
+            setFont("bold", labelSize); setText(theme.accentDark); doc.text(cleanText(label).toUpperCase(), PAGE.left, cursorY);
+            cursorY += lineHeight(labelSize, 1.15) + 3;
+            setFont("bold", titleSize); setText(theme.heading);
+            const titleLines = split(title, usableWidth); doc.text(titleLines, PAGE.left, cursorY, { lineHeightFactor: 1.15 });
+            cursorY += titleLines.length * lineHeight(titleSize, 1.15) + 4;
+            setDraw(theme.accent); doc.setLineWidth(0.7); doc.line(PAGE.left, cursorY, PAGE.left + 28, cursorY); cursorY += 10;
             if (introduction) {
                 const introLines = split(introduction, usableWidth - 12);
                 const boxHeight = introLines.length * lineHeight(8.8, 1.35) + 9;
                 setFill(theme.panelAlt); setDraw(theme.panelAlt); doc.roundedRect(PAGE.left, cursorY - 4, usableWidth, boxHeight, 2, 2, "FD");
                 setFont("normal", 8.8); setText(theme.text); doc.text(introLines, PAGE.left + 6, cursorY + 2, { lineHeightFactor: 1.35 });
-                cursorY += boxHeight + 4;
+                cursorY += boxHeight + 8;
             }
         }
         function subheading(title) {
@@ -205,7 +209,7 @@
                 const lines = split(item, usableWidth - 10), height = lines.length * lineHeight(9, 1.38) + 3;
                 ensureSpace(Math.min(height, 22)); setFill(theme.accent); doc.circle(PAGE.left + 2.2, cursorY - 1, 0.85, "F");
                 setFont("normal", 9); setText(theme.text); doc.text(lines, PAGE.left + 7, cursorY, { lineHeightFactor: 1.38 }); cursorY += height;
-            }); cursorY += 2;
+            }); cursorY += 4;
         }
         function profileTable(rows) {
             const labelWidth = 47;
@@ -284,12 +288,12 @@
                 let y = cursorY + 22;
                 unique(toArray(group[2])).slice(0, 4).forEach((item) => { setFont("normal", 6.9); setText(theme.text); doc.text(split(`• ${item}`, colW - 10).slice(0, 2), x, y, { lineHeightFactor: 1.15 }); y += 8; });
             });
-            cursorY = boxTop + 65;
+            cursorY = boxTop + 68;
             ensureSpace(27); setFill(theme.panelAlt); setDraw(theme.panelAlt); doc.roundedRect(PAGE.left, cursorY - 3, usableWidth, 22, 2, 2, "FD");
-            setFont("bold", 7.2); setText(theme.accentDark); doc.text("SUCCESS LOOKS LIKE", PAGE.left + 5, cursorY + 2);
+            setFont("bold", 9.2); setText(theme.accentDark); doc.text("SUCCESS LOOKS LIKE", PAGE.left + 5, cursorY + 2);
             const success = ["Compliant and audit-ready", "Efficient processes", "Engaged and productive team", "Ready to scale"];
             success.forEach((text, index) => { setFont("normal", 7); setText(theme.text); doc.text(split(text, 36), PAGE.left + 8 + index * 43, cursorY + 11, { align: "center", lineHeightFactor: 1.1 }); });
-            cursorY += 27;
+            cursorY += 31;
         }
         function footerLogo(page) {
             if (!logoDataUrl) return;
