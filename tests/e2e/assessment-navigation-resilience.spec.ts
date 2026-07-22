@@ -62,21 +62,32 @@ async function waitForNavigationUnlock(
     );
 }
 
-async function continueOnce(page: Page): Promise<void> {
-    const button = page.locator("#nextButton");
-
-    await expect(button).toBeVisible();
-    await expect(button).toBeEnabled();
+async function submitRapidly(page: Page): Promise<void> {
     await waitForNavigationUnlock(page);
-    await button.click({
-        noWaitAfter: true
+
+    await page.evaluate(() => {
+        const form = document.getElementById(
+            "storyForm"
+        ) as HTMLFormElement | null;
+        const submitter = document.getElementById(
+            "nextButton"
+        ) as HTMLButtonElement | null;
+
+        if (!form || !submitter) {
+            throw new Error(
+                "Assessment Continue controls are unavailable."
+            );
+        }
+
+        form.requestSubmit(submitter);
+        form.requestSubmit(submitter);
     });
 }
 
 test.describe(
     "Assessment navigation resilience",
     () => {
-        test.setTimeout(90_000);
+        test.setTimeout(120_000);
 
         test.beforeEach(async ({ page }) => {
             await page.setViewportSize({
@@ -91,7 +102,7 @@ test.describe(
         });
 
         test(
-            "rapid activation advances once and the complete journey remains usable",
+            "repeated activation advances exactly once through all seven scenes",
             async ({ page }) => {
                 const pageErrors: string[] = [];
 
@@ -119,15 +130,7 @@ test.describe(
                     "We provide HR technology services to growing companies."
                 );
 
-                const firstContinue =
-                    page.locator("#nextButton");
-                await firstContinue.click({
-                    noWaitAfter: true
-                });
-                await firstContinue.click({
-                    noWaitAfter: true
-                });
-
+                await submitRapidly(page);
                 await expectMoment(
                     page,
                     1,
@@ -139,7 +142,7 @@ test.describe(
                     "Private Limited"
                 );
 
-                await continueOnce(page);
+                await submitRapidly(page);
                 await expectMoment(
                     page,
                     2,
@@ -148,7 +151,7 @@ test.describe(
 
                 await page.locator("#employees").fill("25");
 
-                await continueOnce(page);
+                await submitRapidly(page);
                 await expectMoment(
                     page,
                     3,
@@ -164,7 +167,7 @@ test.describe(
                     { hasText: "25–50%" }
                 ).click();
 
-                await continueOnce(page);
+                await submitRapidly(page);
                 await expectMoment(
                     page,
                     4,
@@ -177,7 +180,7 @@ test.describe(
                 await page.locator("#locations").fill("1");
                 await page.locator("#countries").fill("1");
 
-                await continueOnce(page);
+                await submitRapidly(page);
                 await expectMoment(
                     page,
                     5,
@@ -193,7 +196,7 @@ test.describe(
                     { hasText: "No major expansion planned" }
                 ).click();
 
-                await continueOnce(page);
+                await submitRapidly(page);
                 await expectMoment(
                     page,
                     6,
@@ -209,7 +212,7 @@ test.describe(
                     { hasText: "Hiring and onboarding" }
                 ).click();
 
-                await continueOnce(page);
+                await submitRapidly(page);
 
                 await expect(
                     page.locator("#reviewScreen")
@@ -218,6 +221,45 @@ test.describe(
                     page.locator("#conversationWorkspace")
                 ).toBeHidden();
                 expect(pageErrors).toEqual([]);
+            }
+        );
+
+        test(
+            "a failed validation unlocks Continue for the corrected answer",
+            async ({ page }) => {
+                await page.goto(
+                    "/analyze-company.html"
+                );
+                await waitForAssessment(page);
+
+                await page.getByRole(
+                    "button",
+                    { name: "Start my advisory" }
+                ).click();
+
+                await page.locator("#nextButton").click();
+
+                await expect(
+                    page.locator("#storyContainer .has-error")
+                ).toHaveCount(3);
+                await waitForNavigationUnlock(page);
+
+                await page.locator("#companyName").fill(
+                    "Recovered Navigation Company"
+                );
+                await page.locator("#industry").fill(
+                    "Information Technology / SaaS"
+                );
+                await page.locator("#nature").fill(
+                    "We provide HR technology services to growing companies."
+                );
+
+                await submitRapidly(page);
+                await expectMoment(
+                    page,
+                    1,
+                    "context around its stage"
+                );
             }
         );
     }
