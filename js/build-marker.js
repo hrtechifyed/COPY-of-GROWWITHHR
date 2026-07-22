@@ -2,7 +2,7 @@
 (() => {
     "use strict";
 
-    const BUILD_ID = "report-experience-20260722-0001";
+    const BUILD_ID = "assessment-navigation-20260722-0001";
     const scriptUrl = document.currentScript?.src || window.location.href;
     const rootUrl = new URL("../", scriptUrl);
     const params = new URLSearchParams(window.location.search);
@@ -48,6 +48,13 @@
         });
     };
 
+    const loadAssessmentNavigationGuard = () => {
+        if (!document.body.classList.contains("analyze-company-page")) return;
+        import("./executive-assessment/navigation-guard.js").catch((error) => {
+            console.error("GrowWithHR: assessment navigation guard could not load.", error);
+        });
+    };
+
     const loadReportExperienceAndPdf = async () => {
         try {
             await import("./report-experience-v019.js");
@@ -77,6 +84,7 @@
         });
         loadPresentationStyles();
         integrateBrandIntoNavigation();
+        loadAssessmentNavigationGuard();
         loadReportExperienceAndPdf();
         loadPrivateBetaModules();
     };
