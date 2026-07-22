@@ -2,7 +2,7 @@
 (() => {
     "use strict";
 
-    const BUILD_ID = "assessment-navigation-20260722-0006";
+    const BUILD_ID = "assessment-navigation-20260722-0007";
     const scriptUrl = document.currentScript?.src || window.location.href;
     const rootUrl = new URL("../", scriptUrl);
     const params = new URLSearchParams(window.location.search);
@@ -107,11 +107,15 @@
             document.getElementById("assessmentShell");
 
         if (button) {
+            button.disabled = Boolean(busy);
+
             if (busy) {
                 button.setAttribute("aria-busy", "true");
+                button.setAttribute("aria-disabled", "true");
                 button.dataset.navigationBusy = "true";
             } else {
                 button.removeAttribute("aria-busy");
+                button.removeAttribute("aria-disabled");
                 delete button.dataset.navigationBusy;
             }
         }
