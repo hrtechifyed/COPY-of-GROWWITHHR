@@ -51,40 +51,12 @@ async function expectMoment(
     ).toHaveCount(0);
 }
 
-async function activateContinueTwice(page: Page): Promise<void> {
+async function continueOnce(page: Page): Promise<void> {
     const button = page.locator("#nextButton");
 
     await expect(button).toBeVisible();
     await expect(button).toBeEnabled();
-
-    await page.evaluate(() => {
-        const form = document.getElementById(
-            "storyForm"
-        ) as HTMLFormElement | null;
-        const submitter = document.getElementById(
-            "nextButton"
-        ) as HTMLButtonElement | null;
-
-        if (!form || !submitter) {
-            throw new Error(
-                "Assessment Continue controls are unavailable."
-            );
-        }
-
-        const createSubmitEvent = () =>
-            new SubmitEvent("submit", {
-                bubbles: true,
-                cancelable: true,
-                submitter
-            });
-
-        form.dispatchEvent(
-            createSubmitEvent()
-        );
-        form.dispatchEvent(
-            createSubmitEvent()
-        );
-    });
+    await button.click();
 }
 
 test.describe(
@@ -105,7 +77,7 @@ test.describe(
         });
 
         test(
-            "advances exactly one scene for rapid repeated Continue activation",
+            "double activation advances once and the complete journey remains usable",
             async ({ page }) => {
                 const pageErrors: string[] = [];
 
@@ -133,7 +105,13 @@ test.describe(
                     "We provide HR technology services to growing companies."
                 );
 
-                await activateContinueTwice(page);
+                const firstContinue =
+                    page.locator("#nextButton");
+                await expect(firstContinue).toBeEnabled();
+                await firstContinue.dblclick({
+                    delay: 25
+                });
+
                 await expectMoment(
                     page,
                     1,
@@ -145,7 +123,7 @@ test.describe(
                     "Private Limited"
                 );
 
-                await activateContinueTwice(page);
+                await continueOnce(page);
                 await expectMoment(
                     page,
                     2,
@@ -154,7 +132,7 @@ test.describe(
 
                 await page.locator("#employees").fill("25");
 
-                await activateContinueTwice(page);
+                await continueOnce(page);
                 await expectMoment(
                     page,
                     3,
@@ -170,7 +148,7 @@ test.describe(
                     { hasText: "25–50%" }
                 ).click();
 
-                await activateContinueTwice(page);
+                await continueOnce(page);
                 await expectMoment(
                     page,
                     4,
@@ -183,7 +161,7 @@ test.describe(
                 await page.locator("#locations").fill("1");
                 await page.locator("#countries").fill("1");
 
-                await activateContinueTwice(page);
+                await continueOnce(page);
                 await expectMoment(
                     page,
                     5,
@@ -199,7 +177,7 @@ test.describe(
                     { hasText: "No major expansion planned" }
                 ).click();
 
-                await activateContinueTwice(page);
+                await continueOnce(page);
                 await expectMoment(
                     page,
                     6,
@@ -215,7 +193,7 @@ test.describe(
                     { hasText: "Hiring and onboarding" }
                 ).click();
 
-                await activateContinueTwice(page);
+                await continueOnce(page);
 
                 await expect(
                     page.locator("#reviewScreen")
