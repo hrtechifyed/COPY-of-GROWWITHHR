@@ -43,5 +43,31 @@ jobs:
       - name: Validate compliance data
         run: npm run validate:compliance
 
-      - name: Run complete regression suite
-        run: npm test
+      - name: Run baseline and architecture contracts
+        run: >
+          npm run test:baseline &&
+          npm run test:m1 &&
+          npm run test:m2 &&
+          npm run test:m3
+
+      - name: Run client and server readiness checks
+        run: >
+          npm run test:client-readiness &&
+          npm run test:server-cors
+
+      - name: Run presentation and report experience checks
+        run: >
+          npm run test:presentation &&
+          npm run test:report-experience
+
+      - name: Run journey and scenario regression checks
+        run: >
+          npm run test:static &&
+          npm run test:frontend &&
+          npm run test:journeys &&
+          npm run test:input-combinations &&
+          npm run test:report-scenarios &&
+          npm run test:golden
+
+      - name: Run archived UX compatibility checks
+        run: npm run test:ux
