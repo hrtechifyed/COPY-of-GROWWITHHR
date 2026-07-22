@@ -99,6 +99,7 @@ jobs:
           npx playwright test
           tests/e2e/executive-assessment-modules.spec.ts
           tests/e2e/assessment-first-scene.spec.ts
+          tests/e2e/assessment-stage-continue.spec.ts
           tests/e2e/assessment-complete-delivery.spec.ts
           tests/e2e/analyze-company-current.spec.ts
           tests/e2e/analyze-company-v3.spec.ts
