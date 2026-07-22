@@ -315,7 +315,7 @@ test.describe(
                         "#leadEmailError"
                     )
                 ).toContainText(
-                    "Enter your work email"
+                    "Enter at least one work email"
                 );
 
                 await page
@@ -326,13 +326,22 @@ test.describe(
                         "Test User"
                     );
 
-                await page
-                    .locator(
+                const emailInput =
+                    page.locator(
                         "#leadEmail"
-                    )
-                    .fill(
-                        "test.user@example.com"
                     );
+
+                await emailInput.fill(
+                    "test.user@example.com"
+                );
+
+                await emailInput.blur();
+
+                await expect(
+                    emailInput
+                ).toHaveValue(
+                    "test.user@example.com;"
+                );
 
                 await page.evaluate(
                     () => {

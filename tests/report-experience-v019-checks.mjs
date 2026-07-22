@@ -30,7 +30,7 @@ assert(experience.includes('observerScope: "story-container"'));
 assert(!experience.includes("observer.observe(document.body"));
 assert(experience.includes('document.getElementById("storyContainer")'));
 
-assert(pdf.includes('const VERSION = "3.1.0-clean-report-layout"'));
+assert(pdf.includes('const VERSION = "3.1.2-contained-table-layout"'));
 assert(pdf.includes("const THEMES"));
 assert(pdf.includes("light:"));
 assert(pdf.includes("dark:"));
@@ -38,6 +38,7 @@ assert(pdf.includes('assets/hrtechify-logo.png'));
 assert(!pdf.includes('hrtechify-logo-transparent.svg'));
 assert(pdf.includes("function recommendationCard"));
 assert(pdf.includes("function summaryTable"));
+assert(pdf.includes("const rowHeights=preparedRows.map"));
 assert(pdf.includes("function roadmap"));
 assert(pdf.includes("function ensureSpace"));
 assert(pdf.includes("textWithLink"));

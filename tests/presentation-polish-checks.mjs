@@ -19,21 +19,22 @@ assert(polish.includes("@media print"));
 assert(polish.includes("break-inside: avoid-page"));
 
 assert(buildMarker.includes('import("./pdf-polish.js")'));
-assert(pdfPolish.includes('const VERSION = "3.1.0-clean-report-layout"'));
+assert(pdfPolish.includes('const VERSION = "3.1.2-contained-table-layout"'));
 assert(pdfPolish.includes("function ensureSpace"));
 assert(pdfPolish.includes("function recommendationCard"));
 assert(pdfPolish.includes("function summaryTable"));
+assert(pdfPolish.includes("const rowHeights=preparedRows.map"));
 assert(pdfPolish.includes("function roadmap"));
 assert(pdfPolish.includes('doc.text("GrowWithHR"'));
 assert(pdfPolish.includes('"HRTechify - People • Technology • Growth"'));
 assert(pdfPolish.includes('"© 2026 All Rights Reserved"'));
 assert(pdfPolish.includes('`Page ${page} of ${total}`'));
-assert(pdfPolish.includes('`Click here to download template for ${templateSubject(item, title)}`'));
-assert(pdfPolish.includes('writer.sectionHeading("COMPLIANCE REVIEW", "What You Should Do"'));
+assert(pdfPolish.includes('`Click here to download template for ${templateSubject(item,title)}`'));
+assert(pdfPolish.includes('writer.sectionHeading("COMPLIANCE REVIEW","What You Should Do"'));
 assert(pdfPolish.includes('writer.roadmap(model.roadmap)'));
 assert(pdfPolish.indexOf('writer.roadmap(model.roadmap)') < pdfPolish.indexOf('writer.sectionHeading("LOOKING AHEAD"'));
 assert(pdfPolish.includes('doc.text(options.coverLabel'));
-assert(pdfPolish.includes('align: "center"'));
+assert(pdfPolish.includes('align:"center"'));
 assert(pdfPolish.includes("GrowWithHRPDFPolishReady"));
 
 new vm.Script(pdfPolish, { filename: "js/pdf-polish.js" });
