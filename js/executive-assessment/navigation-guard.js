@@ -3,15 +3,15 @@
    Executive assessment navigation resilience
 
    Prevents repeated Continue activation from validating a newly rendered
-   scene before the user has interacted with it. Mouse and touch activation are
-   blocked at the Continue click boundary, while keyboard and programmatic
-   submission are protected at the form boundary.
+   scene before the user has interacted with it. The lock is scene-aware:
+   validation failures unlock immediately, while successful transitions stay
+   protected until the user begins answering the new scene.
 ========================================================== */
 
 (() => {
     "use strict";
 
-    const FALLBACK_UNLOCK_MS = 1000;
+    const FALLBACK_UNLOCK_MS = 3000;
     const INSTALL_RETRY_MS = 50;
     const MAX_INSTALL_ATTEMPTS = 100;
     let installed = false;
@@ -71,9 +71,18 @@
             );
 
         let navigationLocked = false;
-        let allowSubmitFromCurrentClick = false;
         let releaseTimer = 0;
         let activeButton = null;
+        let lockedMoment = null;
+
+        const currentButton = () => {
+            return (
+                application?.elements?.nextButton ||
+                document.getElementById(
+                    "nextButton"
+                )
+            );
+        };
 
         const release = () => {
             window.clearTimeout(
@@ -81,13 +90,10 @@
             );
             releaseTimer = 0;
             navigationLocked = false;
-            allowSubmitFromCurrentClick = false;
+            lockedMoment = null;
             setButtonBusy(
                 activeButton ||
-                application?.elements?.nextButton ||
-                document.getElementById(
-                    "nextButton"
-                ),
+                currentButton(),
                 false
             );
             activeButton = null;
@@ -95,12 +101,12 @@
 
         const lock = (button) => {
             navigationLocked = true;
+            lockedMoment =
+                application.currentMoment;
             activeButton =
                 button ||
-                application?.elements?.nextButton ||
-                document.getElementById(
-                    "nextButton"
-                );
+                currentButton();
+
             setButtonBusy(
                 activeButton,
                 true
@@ -116,11 +122,37 @@
                 );
         };
 
-        const releaseFromCurrentScene = (event) => {
+        const evaluateTransition = () => {
+            window.requestAnimationFrame(
+                () => {
+                    if (!navigationLocked) {
+                        return;
+                    }
+
+                    if (
+                        application.currentMoment ===
+                        lockedMoment
+                    ) {
+                        release();
+                    } else {
+                        setButtonBusy(
+                            currentButton(),
+                            true
+                        );
+                    }
+                }
+            );
+        };
+
+        const releaseAfterNewSceneInteraction = (
+            event
+        ) => {
             const target = event.target;
 
             if (
                 !navigationLocked ||
+                application.currentMoment ===
+                    lockedMoment ||
                 !storyContainer ||
                 !(target instanceof Node) ||
                 !target.isConnected ||
@@ -132,49 +164,9 @@
             release();
         };
 
-        document.addEventListener(
-            "click",
-            (event) => {
-                const target = event.target;
-                const button =
-                    target instanceof Element
-                        ? target.closest(
-                            "#nextButton"
-                        )
-                        : null;
-
-                if (!button) {
-                    return;
-                }
-
-                if (navigationLocked) {
-                    event.preventDefault();
-                    event.stopImmediatePropagation();
-                    return;
-                }
-
-                allowSubmitFromCurrentClick =
-                    true;
-                lock(button);
-            },
-            true
-        );
-
-        document.addEventListener(
+        form.addEventListener(
             "submit",
             (event) => {
-                if (event.target !== form) {
-                    return;
-                }
-
-                if (
-                    allowSubmitFromCurrentClick
-                ) {
-                    allowSubmitFromCurrentClick =
-                        false;
-                    return;
-                }
-
                 if (navigationLocked) {
                     event.preventDefault();
                     event.stopImmediatePropagation();
@@ -184,6 +176,7 @@
                 lock(
                     event.submitter
                 );
+                evaluateTransition();
             },
             true
         );
@@ -192,12 +185,13 @@
             "focusin",
             "input",
             "change",
-            "pointerdown"
+            "pointerdown",
+            "keydown"
         ].forEach((eventName) => {
             storyContainer
                 ?.addEventListener(
                     eventName,
-                    releaseFromCurrentScene,
+                    releaseAfterNewSceneInteraction,
                     true
                 );
         });
