@@ -13,9 +13,14 @@ async function waitForAssessment(page: Page): Promise<void> {
                 };
             }
         ).executiveAssessment;
+        const shell = document.getElementById(
+            "assessmentShell"
+        );
 
         return Boolean(
-            application?.__modularFacadeInstalled
+            application?.__modularFacadeInstalled &&
+            shell?.dataset.navigationGuard ===
+                "ready"
         );
     });
 }
@@ -52,21 +57,25 @@ async function activateContinueTwice(page: Page): Promise<void> {
     await expect(button).toBeVisible();
 
     await page.evaluate(() => {
-        const form = document.getElementById(
-            "storyForm"
-        ) as HTMLFormElement | null;
-        const submitter = document.getElementById(
-            "nextButton"
-        ) as HTMLButtonElement | null;
+        const application = (
+            window as Window & {
+                executiveAssessment?: {
+                    continueFromMoment?: () => unknown;
+                };
+            }
+        ).executiveAssessment;
 
-        if (!form || !submitter) {
+        if (
+            typeof application?.continueFromMoment !==
+            "function"
+        ) {
             throw new Error(
-                "Assessment Continue controls are unavailable."
+                "Assessment continuation is unavailable."
             );
         }
 
-        form.requestSubmit(submitter);
-        form.requestSubmit(submitter);
+        application.continueFromMoment();
+        application.continueFromMoment();
     });
 }
 
@@ -126,6 +135,7 @@ test.describe(
                     "Private Limited"
                 );
 
+                await page.waitForTimeout(500);
                 await activateContinueTwice(page);
                 await expectMoment(
                     page,
@@ -135,6 +145,7 @@ test.describe(
 
                 await page.locator("#employees").fill("25");
 
+                await page.waitForTimeout(500);
                 await activateContinueTwice(page);
                 await expectMoment(
                     page,
@@ -151,6 +162,7 @@ test.describe(
                     { hasText: "25–50%" }
                 ).click();
 
+                await page.waitForTimeout(500);
                 await activateContinueTwice(page);
                 await expectMoment(
                     page,
@@ -164,6 +176,7 @@ test.describe(
                 await page.locator("#locations").fill("1");
                 await page.locator("#countries").fill("1");
 
+                await page.waitForTimeout(500);
                 await activateContinueTwice(page);
                 await expectMoment(
                     page,
@@ -180,6 +193,7 @@ test.describe(
                     { hasText: "No major expansion planned" }
                 ).click();
 
+                await page.waitForTimeout(500);
                 await activateContinueTwice(page);
                 await expectMoment(
                     page,
@@ -196,6 +210,7 @@ test.describe(
                     { hasText: "Hiring and onboarding" }
                 ).click();
 
+                await page.waitForTimeout(500);
                 await activateContinueTwice(page);
 
                 await expect(
