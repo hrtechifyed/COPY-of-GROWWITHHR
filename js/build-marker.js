@@ -2,7 +2,7 @@
 (() => {
     "use strict";
 
-    const BUILD_ID = "report-experience-20260722-0001";
+    const BUILD_ID = "assessment-first-scene-20260722-0002";
     const scriptUrl = document.currentScript?.src || window.location.href;
     const rootUrl = new URL("../", scriptUrl);
     const params = new URLSearchParams(window.location.search);
@@ -48,6 +48,13 @@
         });
     };
 
+    const loadAssessmentFirstSceneFix = () => {
+        if (!document.body.classList.contains("analyze-company-page")) return;
+        import("./assessment-first-scene-fix.js").catch((error) => {
+            console.error("GrowWithHR: first-scene assessment fix could not load.", error);
+        });
+    };
+
     const loadReportExperienceAndPdf = async () => {
         try {
             await import("./report-experience-v019.js");
@@ -63,6 +70,8 @@
                 return window.GrowWithHRPDF;
             });
     };
+
+    loadAssessmentFirstSceneFix();
 
     const logBuild = () => {
         window.GWHR_LOG("[GrowWithHR:BUILD]", {
