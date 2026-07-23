@@ -60,10 +60,11 @@ jobs:
           npm run test:client-readiness &&
           npm run test:server-cors
 
-      - name: Run presentation and report experience checks
-        run: >
-          npm run test:presentation &&
-          npm run test:report-experience
+      - name: Run presentation checks
+        run: npm run test:presentation
+
+      - name: Run report experience checks
+        run: npm run test:report-experience
 
       - name: Run journey and scenario regression checks
         run: >
