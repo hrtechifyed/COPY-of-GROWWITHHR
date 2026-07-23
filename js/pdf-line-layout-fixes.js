@@ -114,36 +114,68 @@
             options,
             transform
         ) {
-            if (!isFullWidthRunningText(this, text, options)) {
+            const alignment = cleanText(
+                options?.align
+            ).toLowerCase();
+            const hasPreSplitLines =
+                Array.isArray(text) &&
+                text.length > 1;
+
+            if (isFullWidthRunningText(this, text, options)) {
+                /*
+                 * The base renderer often passes an array returned by
+                 * splitTextToSize(). Passing that array back with justify and
+                 * maxWidth makes jsPDF wrap every array item independently.
+                 * Recombine the source first so jsPDF calculates every line
+                 * once against the complete usable width.
+                 */
+                const paragraph = fullParagraphText(text);
+                const paragraphOptions = {
+                    ...(options || {}),
+                    align: "justify"
+                };
+
+                return originalText.call(
+                    this,
+                    paragraph,
+                    x,
+                    y,
+                    paragraphOptions,
+                    transform
+                );
+            }
+
+            if (
+                hasPreSplitLines &&
+                alignment === "justify"
+            ) {
+                /*
+                 * The executive enhancement layer previously applied
+                 * justification to every multi-line array, including narrow
+                 * table values. Restore the renderer's original left-aligned
+                 * behaviour for those non-running-text elements.
+                 */
+                const paragraphOptions = {
+                    ...(options || {})
+                };
+                delete paragraphOptions.align;
+
                 return originalText.call(
                     this,
                     text,
                     x,
                     y,
-                    options,
+                    paragraphOptions,
                     transform
                 );
             }
 
-            /*
-             * The base renderer often passes an array returned by
-             * splitTextToSize(). Passing that array back with justify and
-             * maxWidth can make jsPDF wrap an already-wrapped line again,
-             * producing a short middle line. Recombine the source first so
-             * jsPDF calculates every line against the complete usable width.
-             */
-            const paragraph = fullParagraphText(text);
-            const paragraphOptions = {
-                ...(options || {}),
-                align: "justify"
-            };
-
             return originalText.call(
                 this,
-                paragraph,
+                text,
                 x,
                 y,
-                paragraphOptions,
+                options,
                 transform
             );
         };
