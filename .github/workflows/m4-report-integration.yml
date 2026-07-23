@@ -4,11 +4,13 @@ on:
   pull_request:
     paths:
       - "js/pdf-law-transparency.js"
+      - "js/industry-adaptive-assessment.js"
       - "server-entry.js"
       - "server-m4-delivery.js"
       - "tests/m4-law-transparency-combination-checks.mjs"
       - "tests/m4-report-integration-checks.mjs"
-      - "docs/releases/v0.19.0-m4-report-integration.md"
+      - "tests/industry-adaptive-assessment-checks.mjs"
+      - "docs/releases/v0.20.0-integrated-report-industry-profiles.md"
       - ".github/workflows/m4-report-integration.yml"
   workflow_dispatch:
 
@@ -25,13 +27,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+      - name: Install dependencies
+        run: npm install --ignore-scripts --no-audit --no-fund
       - name: Validate M4 report integration syntax
         run: |
           node --check js/pdf-law-transparency.js
+          node --check js/industry-adaptive-assessment.js
           node --check server-entry.js
           node --check server-m4-delivery.js
           node --check tests/m4-report-integration-checks.mjs
+          node --check tests/industry-adaptive-assessment-checks.mjs
       - name: Run exhaustive law transparency combinations
         run: node tests/m4-law-transparency-combination-checks.mjs
+      - name: Run industry-adaptive assessment contracts
+        run: node tests/industry-adaptive-assessment-checks.mjs
       - name: Run M4 visible report and delivery contracts
         run: node tests/m4-report-integration-checks.mjs
