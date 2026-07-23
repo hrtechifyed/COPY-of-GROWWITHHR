@@ -100,7 +100,7 @@ function executeScenario(input) {
         executiveFocus: getElement("executiveFocus").textContent,
         compliance: complianceHtml,
         narrative: narrativeHtml,
-        complianceCardCount: (complianceHtml.match(/rule-card/g) || []).length,
+       complianceCardCount: (complianceHtml.match(/exec-card/g) || []).length,
         narrativeLength: narrativeHtml.length
     };
 }
