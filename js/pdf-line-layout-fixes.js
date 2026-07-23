@@ -1,7 +1,7 @@
 /* ==========================================================
    GrowWithHR PDF running-text layout fixes
    - Reflows pre-split body copy as one paragraph before wrapping
-   - Justifies full-width running text without premature line breaks
+   - Justifies every wrapped running-text block, including narrow body copy
    - Centres a mid-sized HRTechify logo on the End of Report page
    ========================================================== */
 (function installGrowWithHRPdfLineLayoutFixes(window, document) {
@@ -24,7 +24,8 @@
     if (currentPdf.fullLineLayout) return;
 
     const LAYOUT_VERSION = "3.3.1-full-line-logo";
-    const MIN_RUNNING_WIDTH = 130;
+    const RUNNING_TEXT_POLICY_VERSION = "3.3.2-all-running-text-justify";
+    const MIN_RUNNING_WIDTH = 0;
     const PAGE = Object.freeze({
         width: 210,
         height: 297,
@@ -78,7 +79,16 @@
         }
     }
 
-    function isFullWidthRunningText(doc, text, options = {}) {
+    function measuredTextWidth(doc, paragraph) {
+        try {
+            const width = Number(doc.getTextWidth?.(paragraph));
+            return Number.isFinite(width) ? width : 0;
+        } catch (_error) {
+            return 0;
+        }
+    }
+
+    function isRunningText(doc, text, options = {}) {
         const maximumWidth = Number(options.maxWidth) || 0;
         const alignment = cleanText(options.align).toLowerCase();
         const paragraph = fullParagraphText(text);
@@ -86,18 +96,25 @@
         const fontStyle = currentFontStyle(doc);
         const hasMultipleSourceLines =
             Array.isArray(text) && text.length > 1;
+        const measuredWidth = measuredTextWidth(doc, paragraph);
+        const wrapsWithinWidth =
+            maximumWidth > MIN_RUNNING_WIDTH &&
+            measuredWidth > maximumWidth;
 
-        if (!hasMultipleSourceLines && alignment !== "justify") {
-            return false;
-        }
-
-        if (maximumWidth < MIN_RUNNING_WIDTH) return false;
+        if (maximumWidth <= MIN_RUNNING_WIDTH) return false;
         if (alignment && !["left", "justify"].includes(alignment)) {
             return false;
         }
-        if (fontSize < 7 || fontSize > 10.5) return false;
+        if (fontSize < 7 || fontSize > 11) return false;
         if (fontStyle.includes("bold")) return false;
-        if (paragraph.split(/\s+/).length < 8) return false;
+        if (paragraph.split(/\s+/).length < 4) return false;
+        if (
+            !hasMultipleSourceLines &&
+            alignment !== "justify" &&
+            !wrapsWithinWidth
+        ) {
+            return false;
+        }
 
         return true;
     }
@@ -121,13 +138,13 @@
                 Array.isArray(text) &&
                 text.length > 1;
 
-            if (isFullWidthRunningText(this, text, options)) {
+            if (isRunningText(this, text, options)) {
                 /*
-                 * The base renderer often passes an array returned by
-                 * splitTextToSize(). Passing that array back with justify and
-                 * maxWidth makes jsPDF wrap every array item independently.
-                 * Recombine the source first so jsPDF calculates every line
-                 * once against the complete usable width.
+                 * Recombine any splitTextToSize() fragments before asking
+                 * jsPDF to wrap and justify the paragraph. This now applies to
+                 * every wrapped running-text block with a usable maxWidth,
+                 * including callout copy, list copy and narrative table cells.
+                 * Headings, labels and centred/right-aligned text are excluded.
                  */
                 const paragraph = fullParagraphText(text);
                 const paragraphOptions = {
@@ -150,10 +167,9 @@
                 alignment === "justify"
             ) {
                 /*
-                 * The executive enhancement layer previously applied
-                 * justification to every multi-line array, including narrow
-                 * table values. Restore the renderer's original left-aligned
-                 * behaviour for those non-running-text elements.
+                 * Do not stretch non-running elements such as bold headings or
+                 * short labels merely because an earlier layer supplied a
+                 * justify option.
                  */
                 const paragraphOptions = {
                     ...(options || {})
@@ -336,7 +352,9 @@
                     : dataUri,
             sizeBytes: arrayBuffer.byteLength,
             pageCount: doc.getNumberOfPages(),
-            lineLayoutVersion: LAYOUT_VERSION
+            lineLayoutVersion: LAYOUT_VERSION,
+            runningTextPolicyVersion: RUNNING_TEXT_POLICY_VERSION,
+            allRunningTextJustified: true
         };
     }
 
@@ -370,7 +388,9 @@
                         item.pageCount
                     ])
                 ),
-                lineLayoutVersion: LAYOUT_VERSION
+                lineLayoutVersion: LAYOUT_VERSION,
+                runningTextPolicyVersion: RUNNING_TEXT_POLICY_VERSION,
+                allRunningTextJustified: true
             };
         }
 
@@ -400,6 +420,8 @@
         ...currentPdf,
         fullLineLayout: true,
         lineLayoutVersion: LAYOUT_VERSION,
+        runningTextPolicyVersion: RUNNING_TEXT_POLICY_VERSION,
+        allRunningTextJustified: true,
         buildAdvisoryPdf
     });
 
@@ -411,7 +433,11 @@
 
     window.GrowWithHRPDFRunningTextFix = Object.freeze({
         version: LAYOUT_VERSION,
+        runningTextPolicyVersion: RUNNING_TEXT_POLICY_VERSION,
         minimumRunningWidth: MIN_RUNNING_WIDTH,
-        fullParagraphText
+        allRunningTextJustified: true,
+        fullParagraphText,
+        measuredTextWidth,
+        isRunningText
     });
 })(window, document);
