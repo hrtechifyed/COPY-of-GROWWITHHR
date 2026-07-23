@@ -77,16 +77,21 @@ assert(executiveEnhancements.includes("dualThemeDelivery:true"));
 assert(executiveEnhancements.includes("variantCount"));
 
 assert(lineLayoutFixes.includes("3.3.1-full-line-logo"));
-assert(lineLayoutFixes.includes("MIN_RUNNING_WIDTH = 130"));
+assert(lineLayoutFixes.includes("3.3.2-all-running-text-justify"));
+assert(lineLayoutFixes.includes("MIN_RUNNING_WIDTH = 0"));
 assert(lineLayoutFixes.includes('text.join(" ")'));
 assert(lineLayoutFixes.includes('align: "justify"'));
 assert(lineLayoutFixes.includes("fullParagraphText"));
-assert(lineLayoutFixes.includes("isFullWidthRunningText"));
+assert(lineLayoutFixes.includes("measuredTextWidth"));
+assert(lineLayoutFixes.includes("getTextWidth"));
+assert(lineLayoutFixes.includes("isRunningText"));
+assert(lineLayoutFixes.includes("allRunningTextJustified: true"));
 assert(lineLayoutFixes.includes("decorateEndPage"));
 assert(lineLayoutFixes.includes("assets/hrtechify-logo.png"));
 assert(lineLayoutFixes.includes("const logoSize = 34"));
 assert(lineLayoutFixes.includes('doc.text("End of Report"'));
 assert(lineLayoutFixes.includes("lineLayoutVersion"));
+assert(lineLayoutFixes.includes("runningTextPolicyVersion"));
 
 assert(report.includes("How to implement"));
 assert(report.includes("employeeLabel"));
