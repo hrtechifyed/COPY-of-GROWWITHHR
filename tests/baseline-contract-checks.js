@@ -233,9 +233,8 @@ assertIncludes(
     "The server health endpoint must remain available."
 );
 
-assertIncludes(
-    serverJs,
-    'app.post("/api/send-advisory"',
+assert(
+    /app\.post\s*\(\s*["']\/api\/send-advisory["']/.test(serverJs),
     "The advisory email endpoint must remain available."
 );
 
