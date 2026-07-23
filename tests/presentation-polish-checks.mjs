@@ -19,8 +19,9 @@ assert(polish.includes("@media print"));
 assert(polish.includes("break-inside: avoid-page"));
 
 assert(
-    /import\s*\(\s*["']\.\/pdf-polish\.js["']\s*\)/.test(buildMarker),
-    "The build loader must import the PDF polish module."
+    buildMarker.includes('"./pdf-polish.js"') &&
+    buildMarker.includes("await import(path)"),
+    "The build loader must load the PDF polish module through its module helper."
 );
 assert(pdfPolish.includes('const VERSION = "3.2.0-executive-pagination"'));
 assert(pdfPolish.includes("function ensureSpace"));
