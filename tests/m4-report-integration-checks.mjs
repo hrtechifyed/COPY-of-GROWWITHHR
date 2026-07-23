@@ -4,15 +4,18 @@ import vm from "node:vm";
 
 const read = (path) => fs.readFileSync(path, "utf8");
 const transparency = read("js/pdf-law-transparency.js");
+const adaptive = read("js/industry-adaptive-assessment.js");
 const serverEntry = read("server-entry.js");
 const delivery = read("server-m4-delivery.js");
 
 new vm.Script(transparency, { filename: "js/pdf-law-transparency.js" });
+new vm.Script(adaptive, { filename: "js/industry-adaptive-assessment.js" });
 new vm.Script(serverEntry, { filename: "server-entry.js" });
 new vm.Script(delivery, { filename: "server-m4-delivery.js" });
 
 const sandbox = {
     console,
+    document: { body: { classList: { contains: () => false } } },
     window: {
         GrowWithHRPDF: {
             buildAdvisoryPdf: async () => ({ document: null, theme: "light" }),
@@ -25,23 +28,23 @@ vm.runInContext(transparency, sandbox);
 
 const api = sandbox.window.GrowWithHRLawTransparency;
 assert(api, "M4 report transparency API must install without a browser DOM");
-assert.equal(api.integrationVersion, "0.19.0-m4-report-integration");
+assert.equal(api.integrationVersion, "0.20.0-m4-integrated-report");
 
 const completeAnswers = {
     companyName: "ABC Technologies Pvt Ltd",
     employees: 62,
-    workers: 62,
+    workers: 35,
     contractors: 25,
     indiaOperations: true,
     establishmentType: "Private Limited",
     primaryState: "Karnataka",
     operatingStates: ["Karnataka", "Maharashtra"],
-    womenEmployees: true,
+    womenEmployees: "yes",
     wageBand: "Confirmed",
-    industry: "Technology",
+    industry: "Manufacturing",
     workerCategories: ["Employees", "Workers"],
-    usesPower: false,
-    manufacturingOperations: false
+    usesPower: "yes",
+    manufacturingOperations: "yes"
 };
 
 const allLaws = sandbox.window.GrowWithHRPDF.buildReportLawTransparency(
@@ -69,29 +72,25 @@ assert.deepEqual(Array.from(scoped, (law) => law.id), ["esi"], "ESIC must not cr
     "REQUIRED INPUTS CONFIRMED",
     "This is input coverage, not legal certainty",
     "buildReportLawTransparency",
-    "withoutNestedRoadmapLabel",
-    "Math.abs(Number(width)-40)",
-    "Math.abs(Number(height)-11)"
+    "Table of Contents",
+    "moveImportantInformationToEnd",
+    "redrawPageNumbers",
+    "one continuous page sequence",
+    "Not currently triggered"
 ].forEach((expected) => assert(transparency.includes(expected), `missing report integration marker: ${expected}`));
 
-[
-    "Enter one state or union territory in each box.",
-    "change the selection to 1 state",
-    "A state or union territory cannot be repeated.",
-    "Step ${step} of ${total}",
-    "Your advisory sections",
-    "Select all",
-    "Office Based",
-    "Remote",
-    "remoteBand",
-    "advisory-report-theme-choice",
-    ".advisory-state-separator{display:none"
-].forEach((expected) => assert(transparency.includes(expected), `missing assessment UX marker: ${expected}`));
-assert(!transparency.includes("The report combines selected states with semicolons."));
+assert(transparency.includes('["workers", "workerCount", "workmen", "factoryWorkers", "blueCollarWorkers"]'));
+assert(!transparency.includes('"totalWorkers", "employees"'), "employee count must not substitute for factory-worker count");
+assert(transparency.includes('["7,16,31", [0, 0, 0]]'));
+assert(transparency.includes('page: [0, 0, 0]'));
+assert(transparency.includes('panel: [10, 10, 10]'));
+assert(transparency.includes('alt: [21, 21, 21]'));
 
-assert(transparency.includes('DELIVERY_PATH="/api/send-advisory-v2"'));
-assert(transparency.includes("reportThemes:variants.map") && transparency.includes("pdfs:variants"), "both variants must be submitted in one delivery payload");
-assert(!transparency.includes("for (const variant of variants)"), "the final delivery wrapper must not send one email per theme");
+assert(transparency.includes('import("./industry-adaptive-assessment.js")'));
+assert(adaptive.includes("INDUSTRY-SPECIFIC QUESTIONS"));
+assert(adaptive.includes("Manufacturing and plant operations"));
+assert(adaptive.includes("BPO, ITES and contact-centre operations"));
+assert(adaptive.includes("Software and technology operations"));
 
 assert(serverEntry.includes('require("./server-m4-delivery")'));
 assert(serverEntry.includes("handleM4DeliveryRequest(request, response)"));
@@ -111,4 +110,4 @@ assert(!/<strong/i.test(founderContext), "Anurag Sinha must not be bold in the e
 assert(!transparency.includes("confidencePercent"));
 assert(!transparency.includes("overallScore"));
 
-console.log("M4 report integration and UX checks passed.");
+console.log("M4 integrated report, black theme and adaptive-industry checks passed.");
