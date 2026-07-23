@@ -52,6 +52,22 @@ const completeAnswers = {
     manufacturingOperations: true
 };
 
+const sampleByField = {
+    employees: 60,
+    workers: 120,
+    contractors: 25,
+    indiaOperations: true,
+    establishmentType: "Private limited company",
+    primaryState: "Karnataka",
+    operatingStates: ["Karnataka", "Maharashtra"],
+    womenEmployees: true,
+    wageBand: "Confirmed",
+    industry: "Technology",
+    workerCategories: ["Employees", "Workers"],
+    usesPower: true,
+    manufacturingOperations: true
+};
+
 function build(lawId, answers = completeAnswers, title = recommendationByLaw[lawId]) {
     return sandbox.window.GrowWithHRPDF.buildLawTransparency(
         { answers },
@@ -75,34 +91,34 @@ const unrelated = sandbox.window.GrowWithHRPDF.buildLawTransparency(
 assert.equal(unrelated.length, 0, "unrelated recommendations must not invent laws");
 
 let masksTested = 0;
+let expectedMasks = 0;
 for (const law of api.lawCatalog) {
-    const required = law.requiredInputs;
+    const required = Array.from(law.requiredInputs);
     const combinations = 2 ** required.length;
+    expectedMasks += combinations;
+
     for (let mask = 0; mask < combinations; mask += 1) {
-        const answers = { ...completeAnswers };
+        const answers = {};
         let expectedConfirmed = 0;
+
         required.forEach((field, index) => {
             if (mask & (1 << index)) {
+                assert(Object.hasOwn(sampleByField, field), `${law.id}: missing test sample for ${field}`);
+                answers[field] = sampleByField[field];
                 expectedConfirmed += 1;
-            } else {
-                const aliases = {
-                    employees: ["employees"], workers: ["workers", "employees"], contractors: ["contractors"],
-                    indiaOperations: ["indiaOperations"], establishmentType: ["establishmentType"], primaryState: ["primaryState"],
-                    operatingStates: ["operatingStates"], womenEmployees: ["womenEmployees"], wageBand: ["wageBand"],
-                    industry: ["industry"], workerCategories: ["workerCategories"], usesPower: ["usesPower"],
-                    manufacturingOperations: ["manufacturingOperations"]
-                }[field] || [field];
-                aliases.forEach((key) => delete answers[key]);
             }
         });
-        const [row] = build(law.id, answers);
+
+        const rows = build(law.id, answers);
+        assert.equal(rows.length, 1, `${law.id} mask ${mask}: law detection`);
+        const [row] = rows;
         assert.equal(row.inputCoverage.confirmed, expectedConfirmed, `${law.id} mask ${mask}: confirmed count`);
         assert.equal(row.inputCoverage.required, required.length, `${law.id} mask ${mask}: required count`);
         assert.equal(row.missingInputs.length, required.length - expectedConfirmed, `${law.id} mask ${mask}: missing count`);
         masksTested += 1;
     }
 }
-assert.equal(masksTested, 212, `expected every governed input bitmask, got ${masksTested}`);
+assert.equal(masksTested, expectedMasks, `expected every governed input bitmask, got ${masksTested} of ${expectedMasks}`);
 
 const boundaryCases = [
     { employees: undefined, expected: "needs-information" },
