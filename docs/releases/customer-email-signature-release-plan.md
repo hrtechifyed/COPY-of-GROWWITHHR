@@ -1,6 +1,7 @@
 # Customer Email Signature Release Plan
 
-Status: release preparation
+Status: release preparation  
+Prepared: 23 July 2026
 
 This change standardises the customer advisory email closing in both plain-text and HTML output.
 
