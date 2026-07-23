@@ -132,20 +132,31 @@ test("balances the five executive snapshot cards and contains long values", asyn
     expect(layout.every((card) => card.valueFits)).toBe(true);
 });
 
-test("loads the justified dual-theme PDF renderer on the public sample route", async ({ page }) => {
+test("loads the full-line dual-theme PDF renderer on the public sample route", async ({ page }) => {
     await page.goto("/sample-advisory-report.html");
 
     await page.waitForFunction(() => (
-        window.GrowWithHRPDF?.version === "3.3.0-justified-dual-theme"
+        window.GrowWithHRPDF?.version === "3.3.0-justified-dual-theme" &&
+        window.GrowWithHRPDF?.lineLayoutVersion === "3.3.1-full-line-logo"
     ));
 
     const capabilities = await page.evaluate(() => ({
         version: window.GrowWithHRPDF?.version,
-        supportsDualTheme: window.GrowWithHRPDF?.supportsDualTheme
+        lineLayoutVersion: window.GrowWithHRPDF?.lineLayoutVersion,
+        supportsDualTheme: window.GrowWithHRPDF?.supportsDualTheme,
+        reflowedText: window.GrowWithHRPDFRunningTextFix?.fullParagraphText([
+            "Your leadership selections remain the primary focus of this advisory. Complementary Company DNA insights are",
+            "presented separately to help",
+            "you consider the broader capabilities needed for resilient, sustainable growth."
+        ])
     }));
 
     expect(capabilities.version).toBe("3.3.0-justified-dual-theme");
+    expect(capabilities.lineLayoutVersion).toBe("3.3.1-full-line-logo");
     expect(capabilities.supportsDualTheme).toBe(true);
+    expect(capabilities.reflowedText).toBe(
+        "Your leadership selections remain the primary focus of this advisory. Complementary Company DNA insights are presented separately to help you consider the broader capabilities needed for resilient, sustainable growth."
+    );
 });
 
 test("keeps every guidance area when all priorities are selected", async ({ page }) => {
