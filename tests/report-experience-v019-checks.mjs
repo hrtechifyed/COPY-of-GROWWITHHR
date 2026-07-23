@@ -8,6 +8,7 @@ const exists = (path) => fs.existsSync(path) && fs.statSync(path).size > 20;
 const experience = read("js/report-experience-v019.js");
 const pdf = read("js/pdf-polish.js");
 const executiveEnhancements = read("js/pdf-executive-enhancements.js");
+const lineLayoutFixes = read("js/pdf-line-layout-fixes.js");
 const report = read("js/executive-advisory-report.js");
 const buildMarker = read("js/build-marker.js");
 const css = read("css/23-report-experience.css");
@@ -15,10 +16,13 @@ const css = read("css/23-report-experience.css");
 new vm.Script(experience, { filename: "js/report-experience-v019.js" });
 new vm.Script(pdf, { filename: "js/pdf-polish.js" });
 new vm.Script(executiveEnhancements, { filename: "js/pdf-executive-enhancements.js" });
+new vm.Script(lineLayoutFixes, { filename: "js/pdf-line-layout-fixes.js" });
 new vm.Script(report, { filename: "js/executive-advisory-report.js" });
 new vm.Script(buildMarker, { filename: "js/build-marker.js" });
 
-assert(buildMarker.indexOf('import("./report-experience-v019.js")') < buildMarker.indexOf('import("./pdf-polish.js")'));
+assert(buildMarker.indexOf('"./report-experience-v019.js"') < buildMarker.indexOf('"./pdf-polish.js"'));
+assert(buildMarker.indexOf('"./pdf-polish.js"') < buildMarker.indexOf('"./pdf-executive-enhancements.js"'));
+assert(buildMarker.indexOf('"./pdf-executive-enhancements.js"') < buildMarker.indexOf('"./pdf-line-layout-fixes.js"'));
 assert(buildMarker.includes("css/23-report-experience.css"));
 assert(buildMarker.includes("if (!context.assessment && !context.report) return;"));
 
@@ -71,6 +75,18 @@ assert(executiveEnhancements.includes('theme:"both"'));
 assert(executiveEnhancements.includes("pdfs"));
 assert(executiveEnhancements.includes("dualThemeDelivery:true"));
 assert(executiveEnhancements.includes("variantCount"));
+
+assert(lineLayoutFixes.includes("3.3.1-full-line-logo"));
+assert(lineLayoutFixes.includes("MIN_RUNNING_WIDTH = 130"));
+assert(lineLayoutFixes.includes('text.join(" ")'));
+assert(lineLayoutFixes.includes('align: "justify"'));
+assert(lineLayoutFixes.includes("fullParagraphText"));
+assert(lineLayoutFixes.includes("isFullWidthRunningText"));
+assert(lineLayoutFixes.includes("decorateEndPage"));
+assert(lineLayoutFixes.includes("assets/hrtechify-logo.png"));
+assert(lineLayoutFixes.includes("const logoSize = 34"));
+assert(lineLayoutFixes.includes('doc.text("End of Report"'));
+assert(lineLayoutFixes.includes("lineLayoutVersion"));
 
 assert(report.includes("How to implement"));
 assert(report.includes("employeeLabel"));
