@@ -154,17 +154,20 @@ test("keeps every guidance area when all priorities are selected", async ({ page
         window.GrowWithHRPDF?.version === "3.3.0-justified-dual-theme"
     ));
 
-    const model = await page.evaluate((priorities) => (
+    const model = await page.evaluate(({ report, priorities }) => (
         window.GrowWithHRPDF.buildAdvisoryModel({
             report: {
-                ...REPORT,
+                ...report,
                 priorities
             },
             answers: {
                 priorities
             }
         })
-    ), ALL_PRIORITY_VALUES);
+    ), {
+        report: REPORT,
+        priorities: ALL_PRIORITY_VALUES
+    });
 
     expect(model.priorities).toHaveLength(8);
     expect(model.recommendations).toHaveLength(8);
