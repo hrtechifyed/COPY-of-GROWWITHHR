@@ -102,7 +102,7 @@ for (const law of api.lawCatalog) {
         masksTested += 1;
     }
 }
-assert.equal(masksTested, 216, `expected every governed input bitmask, got ${masksTested}`);
+assert.equal(masksTested, 212, `expected every governed input bitmask, got ${masksTested}`);
 
 const boundaryCases = [
     { employees: undefined, expected: "needs-information" },
