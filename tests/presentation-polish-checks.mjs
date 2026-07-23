@@ -18,7 +18,11 @@ assert(polish.includes("grid-template-columns: repeat(6"));
 assert(polish.includes("@media print"));
 assert(polish.includes("break-inside: avoid-page"));
 
-assert(buildMarker.includes('import("./pdf-polish.js")'));
+assert(
+    buildMarker.includes('"./pdf-polish.js"') &&
+    buildMarker.includes("await import(path)"),
+    "The build loader must load the PDF polish module through its module helper."
+);
 assert(pdfPolish.includes('const VERSION = "3.2.0-executive-pagination"'));
 assert(pdfPolish.includes("function ensureSpace"));
 assert(pdfPolish.includes("function recommendationCard"));

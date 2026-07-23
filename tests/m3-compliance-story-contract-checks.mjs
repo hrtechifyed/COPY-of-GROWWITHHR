@@ -266,8 +266,16 @@ try {
     assert(presentationSource.includes('"css/20-compliance-story.css"'));
     assert(presentationSource.includes("dnaComplianceStoryPriorityList"));
     assert(presentationSource.includes("dnaComplianceStoryGroupList"));
-    assert(loaderSource.includes('document.getElementById("dnaTraceability")'));
-    assert(loaderSource.includes('import("./assessment-v3/compliance-story-presentation.js")'));
+    assert(
+        /document\s*\.\s*getElementById\s*\(\s*["']dnaTraceability["']\s*\)/
+            .test(loaderSource),
+        "The build loader must detect the Compliance Story traceability region."
+    );
+    assert(
+        /import\s*\(\s*["']\.\/assessment-v3\/compliance-story-presentation\.js["']\s*\)/
+            .test(loaderSource),
+        "The build loader must import the Compliance Story presentation module."
+    );
     assert(cssSource.includes(".dna-compliance-story"));
     assert(cssSource.includes(":focus-visible"));
     assert(/@media\s*\(/.test(cssSource));
