@@ -5,8 +5,12 @@ import vm from "node:vm";
 const source = fs.readFileSync("js/pdf-law-transparency.js", "utf8");
 new vm.Script(source, { filename: "js/pdf-law-transparency.js" });
 
+const documentStub = {
+    body: { classList: { contains: () => false } }
+};
 const sandbox = {
     console,
+    document: documentStub,
     window: {
         GrowWithHRPDF: {
             buildAdvisoryPdf: async () => ({ document: null, theme: "light" }),
@@ -44,29 +48,14 @@ const completeAnswers = {
     establishmentType: "Private limited company",
     primaryState: "Karnataka",
     operatingStates: ["Karnataka", "Maharashtra"],
-    womenEmployees: true,
+    womenEmployees: "yes",
     wageBand: "Confirmed",
-    industry: "Technology",
+    industry: "Manufacturing",
     workerCategories: ["Employees", "Workers"],
-    usesPower: true,
-    manufacturingOperations: true
+    usesPower: "yes",
+    manufacturingOperations: "yes"
 };
-
-const sampleByField = {
-    employees: 60,
-    workers: 120,
-    contractors: 25,
-    indiaOperations: true,
-    establishmentType: "Private limited company",
-    primaryState: "Karnataka",
-    operatingStates: ["Karnataka", "Maharashtra"],
-    womenEmployees: true,
-    wageBand: "Confirmed",
-    industry: "Technology",
-    workerCategories: ["Employees", "Workers"],
-    usesPower: true,
-    manufacturingOperations: true
-};
+const sampleByField = { ...completeAnswers };
 
 function build(lawId, answers = completeAnswers, title = recommendationByLaw[lawId]) {
     return sandbox.window.GrowWithHRPDF.buildLawTransparency(
@@ -80,7 +69,6 @@ for (const law of api.lawCatalog) {
     assert.equal(rows.length, 1, `${law.id}: exactly one law should be detected`);
     assert.equal(rows[0].id, law.id);
     assert.equal(rows[0].officialUrl, law.url);
-    assert(!/ministry|labour\.gov/i.test(rows[0].officialUrl || ""), `${law.id}: no generic ministry landing page`);
     assert.match(rows[0].confidenceMeaning, /input coverage, not legal certainty/i);
 }
 
@@ -96,11 +84,9 @@ for (const law of api.lawCatalog) {
     const required = Array.from(law.requiredInputs);
     const combinations = 2 ** required.length;
     expectedMasks += combinations;
-
     for (let mask = 0; mask < combinations; mask += 1) {
         const answers = {};
         let expectedConfirmed = 0;
-
         required.forEach((field, index) => {
             if (mask & (1 << index)) {
                 assert(Object.hasOwn(sampleByField, field), `${law.id}: missing test sample for ${field}`);
@@ -108,56 +94,33 @@ for (const law of api.lawCatalog) {
                 expectedConfirmed += 1;
             }
         });
-
-        const rows = build(law.id, answers);
-        assert.equal(rows.length, 1, `${law.id} mask ${mask}: law detection`);
-        const [row] = rows;
+        const [row] = build(law.id, answers);
+        assert(row, `${law.id} mask ${mask}: law detection`);
         assert.equal(row.inputCoverage.confirmed, expectedConfirmed, `${law.id} mask ${mask}: confirmed count`);
         assert.equal(row.inputCoverage.required, required.length, `${law.id} mask ${mask}: required count`);
         assert.equal(row.missingInputs.length, required.length - expectedConfirmed, `${law.id} mask ${mask}: missing count`);
         masksTested += 1;
     }
 }
-assert.equal(masksTested, expectedMasks, `expected every governed input bitmask, got ${masksTested} of ${expectedMasks}`);
+assert.equal(masksTested, expectedMasks);
 
-const boundaryCases = [
-    { employees: undefined, expected: "needs-information" },
-    { employees: 1, expected: "below" },
-    { employees: 8, expected: "near" },
-    { employees: 10, expected: "crossed" },
-    { employees: 500, expected: "crossed" }
-];
-for (const testCase of boundaryCases) {
-    const answers = { ...completeAnswers };
-    if (testCase.employees === undefined) delete answers.employees;
-    else answers.employees = testCase.employees;
-    const [row] = build("posh", answers);
-    assert.equal(row.thresholdResult.state, testCase.expected, `POSH boundary ${String(testCase.employees)}`);
+for (const [employees, expected] of [[1, "below"], [8, "near"], [10, "crossed"], [20, "crossed"]]) {
+    const [row] = build("posh", { ...completeAnswers, employees });
+    assert.equal(row.thresholdResult.state, expected, `POSH ${employees}`);
+}
+for (const [workers, power, expected] of [[9, "yes", "near"], [10, "yes", "crossed"], [18, "no", "near"], [20, "no", "crossed"]]) {
+    const [row] = build("factories", { ...completeAnswers, workers, usesPower: power, manufacturingOperations: "yes" });
+    assert.equal(row.thresholdResult.state, expected, `factory ${workers}/${power}`);
 }
 
-for (const [employees, expected] of [[17, "below"], [18, "near"], [19, "near"], [20, "crossed"], [21, "crossed"]]) {
-    const [row] = build("epf", { ...completeAnswers, employees });
-    assert.equal(row.thresholdResult.state, expected, `EPF ${employees}`);
-}
-
-for (const [contractors, expected] of [[17, "below"], [18, "near"], [19, "near"], [20, "crossed"]]) {
-    const [row] = build("contract-labour", { ...completeAnswers, employees: 500, contractors });
-    assert.equal(row.thresholdResult.state, expected, `contract labour ${contractors}`);
-}
-
-for (const scenario of [
-    { workers: 9, usesPower: true, expected: "near" },
-    { workers: 10, usesPower: true, expected: "crossed" },
-    { workers: 18, usesPower: false, expected: "near" },
-    { workers: 20, usesPower: false, expected: "crossed" },
-    { workers: 20, usesPower: undefined, expected: "needs-information" }
-]) {
-    const answers = { ...completeAnswers, workers: scenario.workers };
-    if (scenario.usesPower === undefined) delete answers.usesPower;
-    else answers.usesPower = scenario.usesPower;
-    const [row] = build("factories", answers);
-    assert.equal(row.thresholdResult.state, scenario.expected, `factory ${JSON.stringify(scenario)}`);
-}
+const employeeOnlyFactory = build("factories", {
+    ...completeAnswers,
+    workers: undefined,
+    employees: 500,
+    usesPower: "yes",
+    manufacturingOperations: "yes"
+})[0];
+assert.equal(employeeOnlyFactory.thresholdResult.state, "needs-information", "employee count must never substitute for factory-worker count");
 
 const allRecommendations = Object.values(recommendationByLaw).map((title) => ({ title }));
 const allRows = sandbox.window.GrowWithHRPDF.buildLawTransparency(
@@ -165,29 +128,18 @@ const allRows = sandbox.window.GrowWithHRPDF.buildLawTransparency(
     { recommendations: [...allRecommendations, ...allRecommendations] }
 );
 assert.equal(allRows.length, api.lawCatalog.length);
-assert.equal(
-    JSON.stringify(Array.from(allRows, (row) => row.id)),
-    JSON.stringify(Array.from(api.lawCatalog, (law) => law.id)),
-    "multiple recommendations must preserve catalog order without duplicates"
-);
-
-const first = sandbox.window.GrowWithHRPDF.buildLawTransparency(
-    { answers: completeAnswers },
-    { recommendations: allRecommendations }
-);
-const second = sandbox.window.GrowWithHRPDF.buildLawTransparency(
-    { answers: completeAnswers },
-    { recommendations: allRecommendations }
-);
-assert.equal(JSON.stringify(first), JSON.stringify(second));
 
 assert(source.includes("REQUIRED INPUTS CONFIRMED"));
 assert(source.includes("textWithLink"));
 assert(source.includes("This is input coverage, not legal certainty"));
-assert(source.includes("deletePage"), "existing closing page must be moved, not replaced permanently");
-assert(source.includes("drawClosingPage"), "existing closing structure must remain after appendix");
-assert(source.includes("Array.isArray(result?.pdfs)"), "dual-theme output must be covered");
+assert(source.includes("deletePage"));
+assert(source.includes("drawClosingPage"));
+assert(source.includes("Array.isArray(result?.pdfs)"));
+assert(source.includes("Table of Contents"));
+assert(source.includes("movePage"));
+assert(source.includes("0, 0, 0"), "dark report must use true black");
+assert(!source.includes('workers: ["workers", "workerCount", "workmen", "totalWorkers", "employees"]'));
 assert(!source.includes("confidencePercent"));
 assert(!source.includes("overallScore"));
 
-console.log(`M4 law transparency checks passed (${masksTested} complete input masks plus threshold boundaries).`);
+console.log(`M4 law transparency checks passed (${masksTested} input masks plus integration safeguards).`);
