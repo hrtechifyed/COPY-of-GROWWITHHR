@@ -58,7 +58,9 @@ jobs:
       - name: Run client and server readiness checks
         run: >
           npm run test:client-readiness &&
-          npm run test:server-cors
+          npm run test:server-cors &&
+          npm run test:email-signature &&
+          npm run test:footprint-priorities
 
       - name: Run presentation checks
         run: npm run test:presentation
