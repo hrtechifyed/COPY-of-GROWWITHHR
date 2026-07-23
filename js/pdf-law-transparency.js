@@ -25,7 +25,7 @@
             id: "posh",
             title: "Sexual Harassment of Women at Workplace (Prevention, Prohibition and Redressal) Act, 2013",
             shortTitle: "POSH Act, 2013",
-            match: /posh|sexual harassment|internal committee|icc\b|ic\b/i,
+            match: /posh|sexual harassment|internal committee|\bicc\b|\bic\b/i,
             url: "https://www.indiacode.nic.in/handle/123456789/2104?locale=en",
             threshold: "Internal Committee required at every office or administrative unit with 10 or more employees.",
             thresholdValue: 10,
