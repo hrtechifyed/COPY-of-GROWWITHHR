@@ -7,8 +7,8 @@
  *   [ LARGE HRTECHIFY LOGO ] [ GLASS NAVIGATION CAPSULE ]
  *
  *  Footer copy:
- *   © 2026 HRTechify - People • Technology • Growth
- *   All Rights Reserved.
+ *  HRTechify - People • Technology • Growth
+ *  © 2026 All Rights Reserved.
  *
  * Usage on root-level pages:
  *   <script src="js/site-shell.js" defer></script>
@@ -25,10 +25,10 @@
     "use strict";
 
    const FOOTER_LINE_ONE =
-    "© 2026 HRTechify - People • Technology • Growth";
+    "HRTechify - People • Technology • Growth";
 
    const FOOTER_LINE_TWO =
-    "All Rights Reserved.";
+    "© 2026 All Rights Reserved.";
 
     const NAV_ITEMS = Object.freeze([
         {
