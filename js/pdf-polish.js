@@ -482,9 +482,10 @@
                 setFont(settings.style || "normal", size);
                 setText(settings.colour || theme.text);
                 doc.text(chunk, PAGE.left + indent, cursorY, {
-                    lineHeightFactor: factor,
-                    maxWidth: width
-                });
+                   align: settings.align ?? "justify",
+                   lineHeightFactor: factor,
+                   maxWidth: width
+               });
                 cursorY += chunk.length * height;
                 lineIndex += chunk.length;
 
