@@ -5,8 +5,23 @@
     const VERSION = "0.23.0-report-runtime-corrections";
     const INTELLIGENCE_LABEL = "UNDERSTANDING INTELLIGENCE ENGINE";
 
+    function loadFounderReportCorrections() {
+        let attempts = 0;
+        const waitForSequence = () => {
+            attempts += 1;
+            if (window.GrowWithHRPDF?.reportSequenceVersion) {
+                import("./report-founder-summary-corrections.js").catch((error) => {
+                    console.error("GrowWithHR founder summary corrections could not load.", error);
+                });
+                return;
+            }
+            if (attempts < 100) window.setTimeout(waitForSequence, 100);
+        };
+        waitForSequence();
+    }
+
     import("./report-sequence-controller.js")
-        .then(() => import("./report-founder-summary-corrections.js"))
+        .then(loadFounderReportCorrections)
         .catch((error) => {
             console.error("GrowWithHR founder-first report corrections could not load.", error);
         });
@@ -82,6 +97,7 @@
     window.GrowWithHRReportRuntimeCorrections = Object.freeze({
         version: VERSION,
         intelligenceLabel: INTELLIGENCE_LABEL,
-        replaceReportLabels
+        replaceReportLabels,
+        loadFounderReportCorrections
     });
 })();
