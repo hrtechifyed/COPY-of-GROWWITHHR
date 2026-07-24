@@ -5,11 +5,13 @@ import vm from "node:vm";
 const read = (path) => fs.readFileSync(path, "utf8");
 const transparency = read("js/pdf-law-transparency.js");
 const adaptive = read("js/industry-adaptive-assessment.js");
+const sequence = read("js/report-sequence-controller.js");
 const serverEntry = read("server-entry.js");
 const delivery = read("server-m4-delivery.js");
 
 new vm.Script(transparency, { filename: "js/pdf-law-transparency.js" });
 new vm.Script(adaptive, { filename: "js/industry-adaptive-assessment.js" });
+new vm.Script(sequence, { filename: "js/report-sequence-controller.js" });
 new vm.Script(serverEntry, { filename: "server-entry.js" });
 new vm.Script(delivery, { filename: "server-m4-delivery.js" });
 
@@ -27,8 +29,8 @@ vm.createContext(sandbox);
 vm.runInContext(transparency, sandbox);
 
 const api = sandbox.window.GrowWithHRLawTransparency;
-assert(api, "M4 report transparency API must install without a browser DOM");
-assert.equal(api.integrationVersion, "0.20.0-m4-integrated-report");
+assert(api, "law transparency API must install without a browser DOM");
+assert.equal(api.integrationVersion, "0.23.0-founder-law-intelligence");
 
 const completeAnswers = {
     companyName: "ABC Technologies Pvt Ltd",
@@ -40,9 +42,10 @@ const completeAnswers = {
     primaryState: "Karnataka",
     operatingStates: ["Karnataka", "Maharashtra"],
     womenEmployees: "yes",
-    wageBand: "Confirmed",
+    esiWageEligibility: "yes",
+    bonusWageEligibility: "yes",
     industry: "Manufacturing",
-    workerCategories: ["Employees", "Workers"],
+    workerCategories: ["permanent-employees", "factory-workers"],
     usesPower: "yes",
     manufacturingOperations: "yes"
 };
@@ -53,6 +56,7 @@ const allLaws = sandbox.window.GrowWithHRPDF.buildReportLawTransparency(
 );
 assert.equal(allLaws.length, api.lawCatalog.length, "the production report must show every governed law");
 assert(allLaws.every((law) => law.status && law.priority && law.requiredAction));
+assert(allLaws.every((law) => Array.isArray(law.missingQuestions)));
 assert(allLaws.some((law) => law.thresholdResult.state === "crossed"));
 
 const scoped = sandbox.window.GrowWithHRPDF.buildLawTransparency(
@@ -63,30 +67,51 @@ assert.deepEqual(Array.from(scoped, (law) => law.id), ["esi"], "ESIC must not cr
 
 [
     "Executive compliance summary",
-    "Law-by-law explainability",
+    "Law-by-law understanding",
     "UPCOMING COMPLIANCE TRIGGERS",
     "Missing information",
-    "Evidence used",
-    "Recommendations roadmap",
     "Governed law index",
-    "REQUIRED INPUTS CONFIRMED",
-    "This is input coverage, not legal certainty",
     "buildReportLawTransparency",
-    "Table of Contents",
-    "moveImportantInformationToEnd",
-    "redrawPageNumbers",
-    "one continuous page sequence",
-    "Not currently triggered"
-].forEach((expected) => assert(transparency.includes(expected), `missing report integration marker: ${expected}`));
+    "Not currently triggered",
+    "missingQuestions",
+    "esiWageEligibility",
+    "bonusWageEligibility",
+    "countNoun"
+].forEach((expected) => assert(transparency.includes(expected), `missing law integration marker: ${expected}`));
+
+[
+    "Understanding Intelligence Engine",
+    "Evidence and Missing Information",
+    "Compliance Review",
+    "Strategic Recommendations",
+    "Priority Compliance Actions",
+    "Upcoming Compliance Triggers",
+    "Roadmap - 0 to 90 days",
+    "Law-by-Law Understanding",
+    "Governed Law Index",
+    "Required inputs confirmed",
+    "Still needed:",
+    "LAW & STATUS",
+    "YOUR CURRENT STATE",
+    "HRTECHIFY · GROWWITHHR",
+    "Read the founder brief first",
+    "one leadership agenda rather than separate selected and suggested blocks"
+].forEach((expected) => assert(sequence.includes(expected), `missing founder-first report marker: ${expected}`));
 
 assert(transparency.includes('["workers", "workerCount", "workmen", "factoryWorkers", "blueCollarWorkers"]'));
 assert(!transparency.includes('"totalWorkers", "employees"'), "employee count must not substitute for factory-worker count");
 assert(transparency.includes('["7,16,31", [0, 0, 0]]'));
 assert(transparency.includes('page: [0, 0, 0]'));
 assert(transparency.includes('panel: [10, 10, 10]'));
-assert(transparency.includes('alt: [21, 21, 21]'));
+assert(sequence.includes('page: [0, 0, 0]'));
+assert(sequence.includes('panel: [10, 10, 10]'));
+assert(sequence.includes('alt: [21, 21, 21]'));
 
 assert(transparency.includes('import("./industry-adaptive-assessment.js")'));
+assert(adaptive.includes("WORKFORCE AND STATUTORY ELIGIBILITY"));
+assert(adaptive.includes("Which types of people work with your organisation?"));
+assert(adaptive.includes("current ESI wage-eligibility limit"));
+assert(adaptive.includes("statutory bonus eligibility limit"));
 assert(adaptive.includes("INDUSTRY-SPECIFIC QUESTIONS"));
 assert(adaptive.includes("Manufacturing and plant operations"));
 assert(adaptive.includes("BPO, ITES and contact-centre operations"));
@@ -109,5 +134,6 @@ assert(!/<strong/i.test(founderContext), "Anurag Sinha must not be bold in the e
 
 assert(!transparency.includes("confidencePercent"));
 assert(!transparency.includes("overallScore"));
+assert(!sequence.includes("sourceLabel:"), "selected/suggested labels must not be rendered as report blocks");
 
-console.log("M4 integrated report, black theme and adaptive-industry checks passed.");
+console.log("Founder-first integrated report, black theme and universal compliance-input checks passed.");
