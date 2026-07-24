@@ -2,7 +2,7 @@
 (() => {
     "use strict";
 
-    const VERSION = "0.23.0-founder-summary-corrections";
+    const VERSION = "0.23.1-founder-summary-corrections";
     const INSTALL_FLAG = "__growwithhrFounderSummaryCorrectionsInstalled";
 
     const TOC_ITEMS = Object.freeze([
@@ -285,13 +285,22 @@
 
     function install() {
         const service = window.GrowWithHRPDF;
-        if (!service || typeof service.buildAdvisoryPdf !== "function" || service[INSTALL_FLAG]) return false;
+        if (
+            !service ||
+            typeof service.buildAdvisoryPdf !== "function" ||
+            typeof service.buildAdvisoryModel !== "function" ||
+            !service.reportSequenceVersion ||
+            service[INSTALL_FLAG]
+        ) return false;
+
         const originalBuild = service.buildAdvisoryPdf.bind(service);
-        const originalModel = typeof service.buildAdvisoryModel === "function" ? service.buildAdvisoryModel.bind(service) : null;
+        const originalModel = service.buildAdvisoryModel.bind(service);
 
         async function buildAdvisoryPdf(payload = {}) {
             const result = await originalBuild(payload);
-            const model = originalModel ? originalModel(payload) : (payload.model || result?.model || {});
+            if (!result) return result;
+
+            const model = originalModel(payload);
             const rows = typeof service.buildReportLawTransparency === "function"
                 ? service.buildReportLawTransparency(payload, model)
                 : [];
@@ -325,12 +334,13 @@
         return true;
     }
 
-    let attempts = 0;
-    const timer = window.setInterval?.(() => {
-        attempts += 1;
-        if (install() || attempts >= 100) window.clearInterval?.(timer);
-    }, 100);
-    install();
+    if (!install()) {
+        let attempts = 0;
+        const timer = window.setInterval?.(() => {
+            attempts += 1;
+            if (install() || attempts >= 100) window.clearInterval?.(timer);
+        }, 100);
+    }
 
     window.GrowWithHRFounderSummaryCorrections = Object.freeze({
         version: VERSION,
