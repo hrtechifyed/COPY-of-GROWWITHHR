@@ -1,13 +1,15 @@
-/* GrowWithHR report runtime corrections v0.22.0 */
+/* GrowWithHR report runtime corrections v0.23.0 */
 (() => {
     "use strict";
 
-    const VERSION = "0.22.0-report-runtime-corrections";
+    const VERSION = "0.23.0-report-runtime-corrections";
     const INTELLIGENCE_LABEL = "UNDERSTANDING INTELLIGENCE ENGINE";
 
-    import("./report-sequence-controller.js").catch((error) => {
-        console.error("GrowWithHR report sequence controller could not load.", error);
-    });
+    import("./report-sequence-controller.js")
+        .then(() => import("./report-founder-summary-corrections.js"))
+        .catch((error) => {
+            console.error("GrowWithHR founder-first report corrections could not load.", error);
+        });
 
     function replaceReportLabels(value) {
         return String(value)
