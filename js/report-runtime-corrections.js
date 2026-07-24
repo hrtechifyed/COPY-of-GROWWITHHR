@@ -17,6 +17,14 @@
             .replace(/^0[–-]90 DAYS ROADMAP$/g, "ROADMAP - 0 TO 90 DAYS");
     }
 
+    function installAssessmentStyles() {
+        if (!document?.head || document.getElementById("growwithhrWorkModelLockStyles")) return;
+        const style = document.createElement("style");
+        style.id = "growwithhrWorkModelLockStyles";
+        style.textContent = `.is-work-model-locked{opacity:.42!important;cursor:not-allowed!important}.is-work-model-locked>span{cursor:not-allowed!important}`;
+        document.head.appendChild(style);
+    }
+
     function installPdfCorrections() {
         const JsPDF = window.jspdf?.jsPDF || window.jsPDF;
         if (!JsPDF?.API || JsPDF.API.__growwithhrReportCorrectionsInstalled) return;
@@ -66,6 +74,7 @@
         JsPDF.API.__growwithhrReportCorrectionsInstalled = VERSION;
     }
 
+    installAssessmentStyles();
     installPdfCorrections();
 
     window.GrowWithHRReportRuntimeCorrections = Object.freeze({
