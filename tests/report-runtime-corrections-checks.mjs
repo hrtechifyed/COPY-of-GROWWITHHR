@@ -9,6 +9,9 @@ new vm.Script(industry, { filename: "js/industry-adaptive-assessment.js" });
 
 assert(runtime.includes("UNDERSTANDING INTELLIGENCE ENGINE"));
 assert(!runtime.includes('INTELLIGENCE_LABEL = "M4'));
+assert(runtime.includes('import("./report-sequence-controller.js")'));
+assert(runtime.includes("STRATEGIC RECOMMENDATIONS"));
+assert(runtime.includes("ROADMAP - 0 TO 90 DAYS"));
 assert(runtime.includes("this.link(Number(x)"), "law links must receive an explicit PDF annotation rectangle");
 assert(runtime.includes("this.line(Number(x)"), "law links must be visibly underlined");
 assert(runtime.includes("Math.abs(Number(width) - 40)"));
