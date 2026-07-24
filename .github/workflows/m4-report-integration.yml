@@ -48,6 +48,14 @@ jobs:
           node --check tests/industry-adaptive-assessment-checks.mjs
           node --check tests/report-runtime-corrections-checks.mjs
           node --check tests/report-sequence-controller-checks.mjs
+      - name: Run client readiness contract
+        run: npm run test:client-readiness
+      - name: Run server CORS contract
+        run: npm run test:server-cors
+      - name: Run email signature contract
+        run: npm run test:email-signature
+      - name: Run operating footprint contract
+        run: npm run test:footprint-priorities
       - name: Run exhaustive law transparency combinations
         run: node tests/m4-law-transparency-combination-checks.mjs
       - name: Run industry-adaptive assessment contracts
