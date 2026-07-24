@@ -5,7 +5,9 @@ on:
     paths:
       - "js/pdf-law-transparency.js"
       - "js/industry-adaptive-assessment.js"
+      - "js/report-runtime-bootstrap.js"
       - "js/report-runtime-corrections.js"
+      - "js/report-acceptance-corrections.js"
       - "js/report-sequence-controller.js"
       - "js/report-founder-summary-corrections.js"
       - "server-entry.js"
@@ -15,6 +17,7 @@ on:
       - "tests/industry-adaptive-assessment-checks.mjs"
       - "tests/report-runtime-corrections-checks.mjs"
       - "tests/report-sequence-controller-checks.mjs"
+      - "tests/report-acceptance-corrections-checks.mjs"
       - "docs/releases/v0.20.0-integrated-report-industry-profiles.md"
       - "docs/releases/v0.23.0-founder-first-report.md"
       - ".github/workflows/m4-report-integration.yml"
@@ -39,7 +42,9 @@ jobs:
         run: |
           node --check js/pdf-law-transparency.js
           node --check js/industry-adaptive-assessment.js
+          node --check js/report-runtime-bootstrap.js
           node --check js/report-runtime-corrections.js
+          node --check js/report-acceptance-corrections.js
           node --check js/report-sequence-controller.js
           node --check js/report-founder-summary-corrections.js
           node --check server-entry.js
@@ -48,6 +53,7 @@ jobs:
           node --check tests/industry-adaptive-assessment-checks.mjs
           node --check tests/report-runtime-corrections-checks.mjs
           node --check tests/report-sequence-controller-checks.mjs
+          node --check tests/report-acceptance-corrections-checks.mjs
       - name: Run client readiness contract
         run: npm run test:client-readiness
       - name: Run server CORS contract
@@ -64,5 +70,7 @@ jobs:
         run: node tests/report-runtime-corrections-checks.mjs
       - name: Run report sequence and work-model lock contracts
         run: node tests/report-sequence-controller-checks.mjs
+      - name: Run report acceptance correction contracts
+        run: node tests/report-acceptance-corrections-checks.mjs
       - name: Run M4 visible report and delivery contracts
         run: node tests/m4-report-integration-checks.mjs
