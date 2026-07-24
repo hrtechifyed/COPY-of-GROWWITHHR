@@ -2,7 +2,7 @@
 (() => {
     "use strict";
 
-    const VERSION = "0.21.1-industry-adaptive-navigation";
+    const VERSION = "0.21.2-industry-adaptive-performance";
     const INSTALL_FLAG = "__industryAdaptiveAssessmentInstalled";
     const SUBMIT_GUARD_FLAG = "industryAdaptiveSubmitGuard";
 
@@ -50,7 +50,7 @@
         }
     });
 
-    const clean = (value) => String(value ?? "").replace(/\s+/g, " ").trim();
+    const clean = (value, fallback = "") => String(value ?? "").replace(/\s+/g, " ").trim() || fallback;
     const escapeHtml = (value) => clean(value)
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
@@ -109,13 +109,23 @@
         </fieldset>`;
     }
 
+    function valuesEqual(current, next) {
+        if (Array.isArray(current) || Array.isArray(next)) {
+            if (!Array.isArray(current) || !Array.isArray(next) || current.length !== next.length) return false;
+            return current.every((value, index) => value === next[index]);
+        }
+        return current === next;
+    }
+
     function setAnswer(application, name, value) {
+        const answers = applicationAnswers(application);
+        if (valuesEqual(answers[name], value)) return false;
         if (typeof application?.stateModel?.setAnswer === "function") {
             application.stateModel.setAnswer(name, value);
-            return;
+        } else {
+            answers[name] = value;
         }
-        const answers = applicationAnswers(application);
-        answers[name] = value;
+        return true;
     }
 
     function syncField(application, target) {
@@ -125,7 +135,7 @@
         const value = target.type === "checkbox"
             ? Array.from(document.querySelectorAll(`[data-industry-adaptive] input[name="${CSS.escape(name)}"]:checked`)).map((input) => input.value)
             : target.value;
-        setAnswer(application, name, value);
+        if (!setAnswer(application, name, value)) return;
         application.persist?.();
         application.saveProgress?.();
         application.saveNow?.();
@@ -133,10 +143,23 @@
 
     function render(application) {
         const container = document.getElementById("storyContainer");
-        if (!container || applicationMoment(application) !== 2) return;
+        if (!container) return false;
+
+        const existing = container.querySelector("[data-industry-adaptive]");
+        if (applicationMoment(application) !== 2) {
+            existing?.remove();
+            return false;
+        }
+
         const profileKey = resolveProfile(resolveIndustry(application));
-        container.querySelector("[data-industry-adaptive]")?.remove();
-        if (!profileKey) return;
+        if (!profileKey) {
+            existing?.remove();
+            return false;
+        }
+
+        if (existing?.dataset.industryAdaptive === profileKey) return true;
+        existing?.remove();
+
         const profile = PROFILE_RULES[profileKey];
         const section = document.createElement("section");
         section.className = "advisory-industry-adaptive";
@@ -149,6 +172,7 @@
             </div>
             <div class="advisory-field-group">${profile.fields.map((field) => fieldMarkup(field, applicationAnswers(application))).join("")}</div>`;
         container.appendChild(section);
+        return true;
     }
 
     function validate(application) {
@@ -234,19 +258,16 @@
             };
         }
 
-        /*
-         * Do not wrap continueFromMoment. Navigation is owned by the assessment
-         * controller and the existing navigation guard. A second wrapper could
-         * leave ordinary assessment moments appearing unresponsive. Industry
-         * validation is instead attached to the form submit lifecycle and only
-         * blocks the workforce moment when its relevant questions are incomplete.
-         */
         installSubmitGuard(application);
-
         document.addEventListener("input", (event) => syncField(application, event.target));
         document.addEventListener("change", (event) => syncField(application, event.target));
-        const story = document.getElementById("storyContainer");
-        if (story) new MutationObserver(() => queueMicrotask(() => render(application))).observe(story, { childList: true });
+
+        /*
+         * Rendering is driven by the controller's renderCurrentMoment lifecycle.
+         * Do not observe storyContainer mutations here: the adaptive section is
+         * itself a child of that container, so observing and rebuilding it causes
+         * an unbounded remove/append loop that can freeze the assessment page.
+         */
         queueMicrotask(() => render(application));
         return true;
     }
@@ -260,7 +281,7 @@
         let attempts = 0;
         const timer = window.setInterval(() => {
             attempts += 1;
-            if (install(findApplication()) || attempts >= 80) window.clearInterval(timer);
+            if (install(findApplication()) || attempts >= 40) window.clearInterval(timer);
         }, 100);
     }
 
