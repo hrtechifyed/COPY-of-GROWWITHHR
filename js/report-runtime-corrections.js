@@ -1,9 +1,29 @@
-/* GrowWithHR report runtime corrections v0.21.0 */
+/* GrowWithHR report runtime corrections v0.22.0 */
 (() => {
     "use strict";
 
-    const VERSION = "0.21.0-report-runtime-corrections";
+    const VERSION = "0.22.0-report-runtime-corrections";
     const INTELLIGENCE_LABEL = "UNDERSTANDING INTELLIGENCE ENGINE";
+
+    import("./report-sequence-controller.js").catch((error) => {
+        console.error("GrowWithHR report sequence controller could not load.", error);
+    });
+
+    function replaceReportLabels(value) {
+        return String(value)
+            .replace(/M4 EXPLAINABLE INTELLIGENCE/g, INTELLIGENCE_LABEL)
+            .replace(/M4 explainability section/gi, "Understanding Intelligence Engine section")
+            .replace(/^RECOMMENDED ACTIONS$/g, "STRATEGIC RECOMMENDATIONS")
+            .replace(/^0[–-]90 DAYS ROADMAP$/g, "ROADMAP - 0 TO 90 DAYS");
+    }
+
+    function installAssessmentStyles() {
+        if (!document?.head || document.getElementById("growwithhrWorkModelLockStyles")) return;
+        const style = document.createElement("style");
+        style.id = "growwithhrWorkModelLockStyles";
+        style.textContent = `.is-work-model-locked{opacity:.42!important;cursor:not-allowed!important}.is-work-model-locked>span{cursor:not-allowed!important}`;
+        document.head.appendChild(style);
+    }
 
     function installPdfCorrections() {
         const JsPDF = window.jspdf?.jsPDF || window.jsPDF;
@@ -15,16 +35,9 @@
 
         if (typeof originalText === "function") {
             JsPDF.API.text = function correctedText(value, ...args) {
-                let nextValue = value;
-                if (typeof value === "string") {
-                    nextValue = value
-                        .replace(/M4 EXPLAINABLE INTELLIGENCE/g, INTELLIGENCE_LABEL)
-                        .replace(/M4 explainability section/gi, "Understanding Intelligence Engine section");
-                } else if (Array.isArray(value)) {
-                    nextValue = value.map((line) => typeof line === "string"
-                        ? line.replace(/M4 EXPLAINABLE INTELLIGENCE/g, INTELLIGENCE_LABEL)
-                        : line);
-                }
+                const nextValue = Array.isArray(value)
+                    ? value.map((line) => typeof line === "string" ? replaceReportLabels(line) : line)
+                    : typeof value === "string" ? replaceReportLabels(value) : value;
                 return originalText.call(this, nextValue, ...args);
             };
         }
@@ -61,10 +74,12 @@
         JsPDF.API.__growwithhrReportCorrectionsInstalled = VERSION;
     }
 
+    installAssessmentStyles();
     installPdfCorrections();
 
     window.GrowWithHRReportRuntimeCorrections = Object.freeze({
         version: VERSION,
-        intelligenceLabel: INTELLIGENCE_LABEL
+        intelligenceLabel: INTELLIGENCE_LABEL,
+        replaceReportLabels
     });
 })();
