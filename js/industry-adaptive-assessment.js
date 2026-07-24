@@ -2,8 +2,9 @@
 (() => {
     "use strict";
 
-    const VERSION = "0.21.0-industry-adaptive-runtime";
+    const VERSION = "0.21.1-industry-adaptive-navigation";
     const INSTALL_FLAG = "__industryAdaptiveAssessmentInstalled";
+    const SUBMIT_GUARD_FLAG = "industryAdaptiveSubmitGuard";
 
     import("./report-runtime-corrections.js").catch((error) => {
         console.error("GrowWithHR report runtime corrections could not load.", error);
@@ -94,28 +95,37 @@
         const [name, label, type, options, required] = field;
         const value = answers?.[name];
         if (type === "number") {
-            return `<div class="advisory-field" data-industry-field="${escapeHtml(name)}">
+            return `<div class="advisory-field" data-field-wrapper="${escapeHtml(name)}" data-industry-field="${escapeHtml(name)}">
                 <label for="${escapeHtml(name)}">${escapeHtml(label)}${required ? " <span aria-hidden=\"true\">*</span>" : ""}</label>
                 <input id="${escapeHtml(name)}" name="${escapeHtml(name)}" type="number" min="0" step="1" inputmode="numeric" value="${escapeHtml(value)}" ${required ? "required" : ""}>
                 <p class="advisory-field-error" id="${escapeHtml(name)}Error" hidden></p>
             </div>`;
         }
         const multiple = type === "multi";
-        return `<fieldset class="advisory-choice-fieldset industry-adaptive-field" data-industry-field="${escapeHtml(name)}">
+        return `<fieldset class="advisory-choice-fieldset industry-adaptive-field" data-field-wrapper="${escapeHtml(name)}" data-industry-field="${escapeHtml(name)}">
             <legend>${escapeHtml(label)}${required ? " <span aria-hidden=\"true\">*</span>" : ""}</legend>
             <div class="advisory-choice-pills">${optionMarkup(name, options, value, multiple)}</div>
             <p class="advisory-field-error" id="${escapeHtml(name)}Error" hidden></p>
         </fieldset>`;
     }
 
+    function setAnswer(application, name, value) {
+        if (typeof application?.stateModel?.setAnswer === "function") {
+            application.stateModel.setAnswer(name, value);
+            return;
+        }
+        const answers = applicationAnswers(application);
+        answers[name] = value;
+    }
+
     function syncField(application, target) {
         if (!(target instanceof HTMLInputElement) || !target.closest("[data-industry-adaptive]")) return;
         const name = target.name;
         if (!name) return;
-        const answers = applicationAnswers(application);
-        answers[name] = target.type === "checkbox"
+        const value = target.type === "checkbox"
             ? Array.from(document.querySelectorAll(`[data-industry-adaptive] input[name="${CSS.escape(name)}"]:checked`)).map((input) => input.value)
             : target.value;
+        setAnswer(application, name, value);
         application.persist?.();
         application.saveProgress?.();
         application.saveNow?.();
@@ -151,7 +161,10 @@
             if (!required) continue;
             const value = answers[name];
             const missing = type === "multi" ? !Array.isArray(value) || !value.length : clean(value) === "";
+            const wrapper = document.querySelector(`[data-industry-adaptive] [data-field-wrapper="${CSS.escape(name)}"]`);
             const error = document.getElementById(`${name}Error`);
+            wrapper?.classList.toggle("has-error", missing);
+            wrapper?.querySelector("input")?.setAttribute("aria-invalid", missing ? "true" : "false");
             if (error) {
                 error.hidden = !missing;
                 error.textContent = missing ? "Please answer this industry-specific question." : "";
@@ -160,6 +173,52 @@
         }
         if (!valid) document.querySelector("[data-industry-adaptive]")?.scrollIntoView?.({ behavior: "smooth", block: "start" });
         return valid;
+    }
+
+    function unlockNavigation(application) {
+        const button = application?.elements?.nextButton || document.getElementById("nextButton");
+        const shell = application?.elements?.shell || document.getElementById("assessmentShell");
+        if (button) {
+            button.disabled = false;
+            button.removeAttribute("aria-busy");
+            button.removeAttribute("aria-disabled");
+            delete button.dataset.navigationBusy;
+        }
+        if (shell) shell.dataset.navigationGuard = "ready";
+    }
+
+    function showValidationFeedback(application) {
+        const container = document.getElementById("storyContainer");
+        const visibleError = container?.querySelector(".advisory-field-error:not([hidden])");
+        const footer = application?.elements?.footerMessage || document.getElementById("footerMessage");
+        const message = clean(visibleError?.textContent, "Review the highlighted required information before continuing.");
+        if (footer) footer.textContent = message;
+        application?.announce?.(message, true);
+    }
+
+    function installSubmitGuard(application) {
+        const form = application?.elements?.storyForm || document.getElementById("storyForm");
+        if (!form || form.dataset[SUBMIT_GUARD_FLAG] === "true") return;
+        form.dataset[SUBMIT_GUARD_FLAG] = "true";
+
+        form.addEventListener("submit", (event) => {
+            const startingMoment = applicationMoment(application);
+            application.captureAllStoryInputs?.();
+
+            if (!validate(application)) {
+                event.preventDefault();
+                event.stopImmediatePropagation();
+                unlockNavigation(application);
+                showValidationFeedback(application);
+                return;
+            }
+
+            window.setTimeout(() => {
+                if (applicationMoment(application) !== startingMoment) return;
+                unlockNavigation(application);
+                showValidationFeedback(application);
+            }, 0);
+        }, true);
     }
 
     function install(application) {
@@ -175,14 +234,14 @@
             };
         }
 
-        const originalContinue = application.continueFromMoment?.bind(application);
-        if (originalContinue) {
-            application.continueFromMoment = function industryAwareContinue(...args) {
-                this.captureAllStoryInputs?.();
-                if (!validate(this)) return false;
-                return originalContinue(...args);
-            };
-        }
+        /*
+         * Do not wrap continueFromMoment. Navigation is owned by the assessment
+         * controller and the existing navigation guard. A second wrapper could
+         * leave ordinary assessment moments appearing unresponsive. Industry
+         * validation is instead attached to the form submit lifecycle and only
+         * blocks the workforce moment when its relevant questions are incomplete.
+         */
+        installSubmitGuard(application);
 
         document.addEventListener("input", (event) => syncField(application, event.target));
         document.addEventListener("change", (event) => syncField(application, event.target));
